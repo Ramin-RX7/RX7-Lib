@@ -1,6 +1,16 @@
 <p style="font-size: 27px; font-family: Impact, Charcoal, sans-serif;">rx7 Module&nbsp; -&nbsp; Written By&nbsp; <em><span style="background-color: #ffffff;"><a style="background-color: #ffffff;" title="RX7" href="http://rx7.ir/" target="_blank" rel="noopener">Ramin RX7</a></span></em></p>
 <h3>rx7 Module is here to help you make your code shorter!</h3>
 <h3>(Most) Usefull function and methods are collected.</h3>
+<h2>&nbsp;Install:</h2>
+<table style="margin-left: 40px; height: 62px;" border="3" width="269">
+<tbody>
+<tr style="height: 44.8125px;">
+<td style="height: 44.8125px; width: 259px;">
+<h3><span class="n">$ pip install rx7</h3>
+</td>
+</tr>
+</tbody>
+</table>
 <p>&nbsp;</p>
 <h2>List of Functions:</h2>
 <table style="height: 471px; width: 567px; margin-left: 20px;">
@@ -277,11 +287,3 @@
 </tr>
 </tbody>
 </table>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
