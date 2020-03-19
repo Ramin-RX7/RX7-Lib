@@ -281,7 +281,7 @@
 <td style="width: 489px; height: 25px; text-align: center;">####</td>
 </tr>
 <tr style="height: 25px;">
-<td style="width: 119px; height: 25px;">&nbsp; &nbsp; 1.0.1</td>
+<td style="width: 119px; height: 25px;">&nbsp; &nbsp; 1.1.0</td>
 <td style="width: 153px; height: 25px;">&nbsp; &nbsp;03/19/2020</td>
 <td style="width: 489px; height: 25px; text-align: center;">Change PyPi Module Page</td>
 </tr>
