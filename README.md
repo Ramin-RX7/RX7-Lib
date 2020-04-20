@@ -1,16 +1,6 @@
 <p style="font-size: 27px; font-family: Impact, Charcoal, sans-serif;">rx7 Module&nbsp; -&nbsp; Written By&nbsp; <em><span style="background-color: #ffffff;"><a style="background-color: #ffffff;" title="RX7" href="http://rx7.ir/" target="_blank" rel="noopener">Ramin RX7</a></span></em></p>
 <h3>rx7 Module is here to help you make your code shorter!</h3>
 <h3>(Most) Usefull function and methods are collected.</h3>
-<h2>&nbsp;Install:</h2>
-<table style="margin-left: 40px; height: 62px;" border="3" width="269">
-<tbody>
-<tr style="height: 44.8125px;">
-<td style="height: 44.8125px; width: 259px;">
-<h3><span class="n">$ pip install rx7</h3>
-</td>
-</tr>
-</tbody>
-</table>
 <p>&nbsp;</p>
 <h2>List of Functions:</h2>
 <table style="height: 471px; width: 567px; margin-left: 20px;">
@@ -59,11 +49,19 @@
 <td style="width: 150px;">erase(tpl,*var)</td>
 <td style="width: 401px;">Return tpl with removing var(s) from it.</td>
 </tr>
+<tr>
+<td style="width: 150px;">replace(tpl,var,ind)</td>
+<td style="width: 401px;">Replace tpl[ind] with var</td>
+</tr>
+<tr>
+<td style="width: 150px;">insert(tpl,var,ind)</td>
+<td style="width: 401px;">Set tpl[ind] to var. (Note that tpl[ind] will be tpl[ind+1])</td>
+</tr>
 </tbody>
 </table>
 <p>&nbsp;</p>
 <h2>List of Classes:</h2>
-<h3>&nbsp; &nbsp; Class rand:&nbsp; &nbsp;<em>Random&nbsp;Variable&nbsp;Generator&nbsp;Class.</em></h3>
+<h3>&nbsp;Class rand:&nbsp; &nbsp;<em>Random&nbsp;Variable&nbsp;Generator&nbsp;Class.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr>
@@ -85,7 +83,7 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
-<h3>&nbsp; &nbsp; Class system:&nbsp; &nbsp;Some system actions.</h3>
+<h3>&nbsp; Class system:&nbsp; &nbsp;Some system actions.</h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr>
@@ -123,14 +121,18 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
-<h3>&nbsp; &nbsp; Class file:&nbsp; &nbsp;Actions and information about files.</h3>
+<h3>&nbsp; Class file:&nbsp; &nbsp;Actions and information about files.</h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
+<tr>
+<td style="width: 173px;">__init__(self,path)</td>
+<td style="width: 387px;">if path exists: self.size - self.abspath - self.acstime - self.mdftime - self.content</td>
+</tr>
 <tr>
 <td style="width: 173px;">size(path)</td>
 <td style="width: 387px;">
 <div>
-<div>&nbsp;Return&nbsp;size&nbsp;of&nbsp;the&nbsp;file&nbsp;in&nbsp;byte(s).&nbsp;Also&nbsp;work&nbsp;on&nbsp;directories.</div>
+<div>Return&nbsp;size&nbsp;of&nbsp;the&nbsp;file&nbsp;in&nbsp;byte(s).&nbsp;Also&nbsp;work&nbsp;on&nbsp;directories.</div>
 </div>
 </td>
 </tr>
@@ -198,7 +200,7 @@
 <td style="width: 173px;">copydir(src,dst)</td>
 <td style="width: 387px;">
 <div>
-<div>Same&nbsp;as&nbsp;copy&nbsp;function&nbsp;except&nbsp;that&nbsp;it\'s&nbsp;for&nbsp;folders.</div>
+<div>Same&nbsp;as&nbsp;copy&nbsp;function&nbsp;except&nbsp;that&nbsp;it's&nbsp;for&nbsp;folders.</div>
 </div>
 </td>
 </tr>
@@ -207,36 +209,54 @@
 <td style="width: 387px;">Hide given path. (It can be file or directory.)</td>
 </tr>
 <tr>
-<td style="width: 173px; font-size: 12px;">read_only(path,mode=True)</td>
+<td style="width: 173px;">read_only(path,mode=True)</td>
 <td style="width: 387px;">Make file or folder read-only. (Read Doc String)</td>
 </tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<h3>&nbsp; &nbsp; Class style:&nbsp; &nbsp; Changing text Color,BG &amp; Style. (Read Doc String)</h3>
-<table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
-<tbody>
 <tr>
-<td style="width: 173px;">text(txt,clr,BG,style)</td>
-<td style="width: 387px;">Print txt with selected color,BG,style.(Read Doc String)</td>
+<td style="width: 173px;">read(path)&nbsp; &nbsp;(v1.3)</td>
+<td style="width: 387px;">Return content of the path</td>
 </tr>
 <tr>
-<td style="width: 173px;">integer(Frst,Lst)</td>
-<td style="width: 387px;">Choose integer in range [Frst,Lst]</td>
+<td style="width: 173px;">write(path,text='',...) (v1.3)</td>
+<td style="width: 387px;">Same as write function.</td>
 </tr>
 </tbody>
 </table>
 <p>&nbsp;</p>
-<h3>&nbsp; &nbsp; Class record:&nbsp; &nbsp;Record time of a certain actions. (Read Doc String)</h3>
+<h3>&nbsp;Class style:&nbsp; &nbsp; Changing text Color,BG &amp; Style. (Read Doc String)</h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
-<tr>
-<td style="width: 173px;">__init__()</td>
-<td style="width: 387px;">Set Start Time.</td>
+<tr style="height: 15.0625px;">
+<td style="width: 173px; height: 15.0625px;">
+<p>print(txt,clr,BG,style,end)<br />(from v1.5.0)</p>
+</td>
+<td style="width: 387px; height: 15.0625px;">Print txt with selected color,BG,style.(Read Doc String)</td>
 </tr>
-<tr>
-<td style="width: 173px;">self.Stop()</td>
-<td style="width: 387px;">Return Time between creation and Stop</td>
+<tr style="height: 18px;">
+<td style="width: 173px; height: 18px;">integer(Frst,Lst)</td>
+<td style="width: 387px; height: 18px;">Choose integer in range [Frst,Lst]</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h3>&nbsp;Class record:&nbsp; &nbsp;Record time of a certain actions. (Read Doc String)</h3>
+<table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
+<tbody>
+<tr style="height: 18px;">
+<td style="width: 173px; height: 18px;">__init__()</td>
+<td style="width: 387px; height: 18px;">Set Start Time.</td>
+</tr>
+<tr style="height: 30px;">
+<td style="width: 173px; height: 30px;">self.stop()&nbsp; (v1.5.0)</td>
+<td style="width: 387px; height: 30px;">Stops Recording (You can not lap anymore)</td>
+</tr>
+<tr style="height: 23.8125px;">
+<td style="width: 173px; height: 23.8125px;">self.lap()&nbsp; (v1.5.0)</td>
+<td style="width: 387px; height: 23.8125px;">Rreturn time between start time and self.lap()Also add that time to self.laps</td>
+</tr>
+<tr style="height: 23.8125px;">
+<td style="width: 173px; height: 23.8125px;">self.laps&nbsp; &nbsp;(v1.5.0)</td>
+<td style="width: 387px; height: 23.8125px;">A list that contains all laps you have done</td>
 </tr>
 </tbody>
 </table>
@@ -249,8 +269,8 @@
 <h2>&nbsp;Upgrade:</h2>
 <table style="margin-left: 40px; height: 62px;" border="3" width="269">
 <tbody>
-<tr style="height: 44.8125px;">
-<td style="height: 44.8125px; width: 259px;">
+<tr style="height: 34.3281px;">
+<td style="height: 34.3281px; width: 259px;">
 <h3><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span>&nbsp;rx7</h3>
 </td>
 </tr>
@@ -268,22 +288,47 @@
 <p>&nbsp; &nbsp; &nbsp; &nbsp; <em>Numbers are not always in order like: 1,2,3,4,...&nbsp; , Some times they are different like: 1.2.4.8,...</em></p>
 <p>&nbsp;</p>
 <h2>Releases:</h2>
-<table style="height: 10px; margin-left: 40px; width: 501px;" cellpadding="5">
+<h4>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(+ for new features, * for changes)</h4>
+<table style="height: 10px; margin-left: 40px; width: 519px;" cellpadding="5">
 <tbody>
-<tr style="height: 42.0156px;">
-<td style="width: 119px; height: 42.0156px; text-align: center;"><strong>Version</strong></td>
-<td style="width: 153px; height: 42.0156px; text-align: center;"><strong>Release Date</strong></td>
-<td style="width: 489px; height: 42.0156px; text-align: center;"><strong>New Features &amp; Changes</strong></td>
+<tr style="height: 42px;">
+<td style="width: 119px; height: 42px; text-align: center;"><strong>Version</strong></td>
+<td style="width: 153px; height: 42px; text-align: center;"><strong>Release Date</strong></td>
+<td style="width: 513px; height: 42px; text-align: center;"><strong>New Features &amp; Changes</strong></td>
 </tr>
 <tr style="height: 25px;">
 <td style="width: 119px; height: 25px;">&nbsp; &nbsp; 1.0.0</td>
 <td style="width: 153px; height: 25px;">&nbsp; &nbsp;03/18/2020</td>
-<td style="width: 489px; height: 25px; text-align: center;">####</td>
+<td style="width: 513px; height: 25px; text-align: center;">####</td>
 </tr>
 <tr style="height: 25px;">
-<td style="width: 119px; height: 25px;">&nbsp; &nbsp; 1.1.0</td>
-<td style="width: 153px; height: 25px;">&nbsp; &nbsp;03/19/2020</td>
-<td style="width: 489px; height: 25px; text-align: center;">Change PyPi Module Page</td>
+<td style="width: 119px; height: 25px;">&nbsp; &nbsp; 1.3.0</td>
+<td style="width: 153px; height: 25px;">&nbsp; &nbsp;04/08/2020</td>
+<td style="width: 513px; height: 25px; text-align: center;">
+<div>
+<div>* Prgoressbar&nbsp;default&nbsp;args</div>
+<div>
+<div>
+<div>+ __init__ &amp; read &amp; write &amp; content&nbsp; func&nbsp;of&nbsp;file&nbsp;class</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height: 32.0156px;">
+<td style="width: 119px; height: 32.0156px; text-align: center;">1.5.0</td>
+<td style="width: 153px; height: 32.0156px;">&nbsp; &nbsp;04/21/2020</td>
+<td style="width: 513px; height: 32.0156px; text-align: center;">
+<div>'replace' and insert 'functions' for tuples</div>
+<div>* style.text =&gt; style.print</div>
+<div>+ 'end' arg for style.print()</div>
+<div>* record.stop =&gt; record.lap</div>
+<div>now 'record.stop()' will stop recording.</div>
+<div>+ 'self.laps' in record class will display all laps</div>
+</td>
 </tr>
 </tbody>
 </table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
