@@ -1,6 +1,9 @@
-![PyPI - Downloads](https://img.shields.io/pypi/dm/rx7?color=green1) ![PyPI - Format](https://img.shields.io/pypi/format/rx7?color=blue) ![](https://img.shields.io/badge/Python-3.x-blue)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/rx7?color=green1)
+![PyPI - Format](https://img.shields.io/pypi/format/rx7?color=blue) 
+![](https://img.shields.io/badge/Python-3.x-blue) 
 ## pip install rx7
-<p style="font-size: 27px; font-family: Impact, Charcoal, sans-serif;">rx7 Module&nbsp; -&nbsp; Written By&nbsp; <em><span style="background-color: #ffffff;"><a style="background-color: #ffffff;" title="RX7" href="http://rx7.ir/" target="_blank" rel="noopener">RX</a></span></em></p>
+## pip install --upgrade&nbsp;rx7
+
 <!--code coverage percentage: ![coverage](https://img.shields.io/badge/Code%20Size-25%20kB-blue)-->
 <h3>rx7 Module is here to help you make your code shorter!</h3>
 <h3>(Most) Usefull function and methods are collected.</h3>
@@ -76,7 +79,7 @@
 </tbody>
 </table>
 <h2>List of Classes:</h2>
-<h3>&nbsp;Class rand:&nbsp; &nbsp;<em>Random&nbsp;Variable&nbsp;Generator&nbsp;Class.</em></h3>
+<h3>Class rand:&nbsp; &nbsp;<em>Random&nbsp;Variable&nbsp;Generator&nbsp;Class.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr>
@@ -98,7 +101,7 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
-<h3>&nbsp; Class system:&nbsp; &nbsp;Some system actions.</h3>
+<h3>&nbsp; Class system:&nbsp; &nbsp;<em>Some system actions.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr>
@@ -144,7 +147,7 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
-<h3>&nbsp; Class file: (C<strong>lass methods)&nbsp;</strong>Actions and information about files.</h3>
+<h3>&nbsp; Class file: (<span style="text-decoration: underline;"><span style="color: #000000; text-decoration: underline;">C</span></span><strong><span style="text-decoration: underline;"><span style="color: #000000; text-decoration: underline;">lass methods</span></span>)&nbsp;</strong><em>Actions and information about files.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr style="height: 36px;">
@@ -269,7 +272,7 @@
 </tr>
 </tbody>
 </table>
-<h3>Class files: (Static<strong>&nbsp;methods)&nbsp;</strong>Actions and information about files.</h3>
+<h3>Class files: (<span style="text-decoration: underline;">Static</span><strong><span style="text-decoration: underline;">&nbsp;methods</span>)&nbsp;</strong><em>Actions and information about files.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr>
@@ -359,7 +362,7 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
-<h3>&nbsp;Class style:&nbsp; &nbsp; Changing text Color,BG &amp; Style. (Read Doc String)</h3>
+<h3>&nbsp;Class style:&nbsp; &nbsp; <em>Changing text Color,BG &amp; Style. (Read Doc String)</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr style="height: 15.0625px;">
@@ -375,7 +378,7 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
-<h3>&nbsp;Class record:&nbsp; &nbsp;Record time of a certain actions. (Read Doc String)</h3>
+<h3>&nbsp;Class record:&nbsp; &nbsp;<em>Record time of a certain actions. (Read Doc String)</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr style="height: 18px;">
@@ -401,18 +404,7 @@
 <p><span style="text-decoration: underline; color: #000080;"><strong>&nbsp; - Using an IDE that shows Function and Class Help is highly recommended.</strong></span>&nbsp;<strong>(<span style="color: #ff6600;"><a style="color: #0066b8;" title="Microsoft Visual Studio Code" href="https://code.visualstudio.com/" target="_blank" rel="noopener">VS Code</a></span>)</strong></p>
 <h4>&nbsp;- Using "from rx7 import ."</h4>
 <h4>&nbsp;- Using "import rx7 as rx"</h4>
-<p>&nbsp;</p>
-<h2>&nbsp;Upgrade:</h2>
-<table style="margin-left: 40px; height: 62px;" border="3" width="269">
-<tbody>
-<tr>
-<td style="width: 237px;">
-<h3>pip install --upgrade&nbsp;rx7</h3>
-</td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
+<h4>&nbsp;</h4>
 <h2>Versions Information:</h2>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; Releases are like this:&nbsp; &nbsp; &nbsp; &nbsp; 1.0.0</p>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1.1.1</p>
