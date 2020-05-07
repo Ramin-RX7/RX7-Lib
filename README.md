@@ -1,3 +1,7 @@
+
+![PyPI - Downloads](https://img.shields.io/pypi/dm/rx7?color=green1)
+![PyPI - Format](https://img.shields.io/pypi/format/rx7?color=blue)
+
 <p style="font-size: 27px; font-family: Impact, Charcoal, sans-serif;">rx7 Module&nbsp; -&nbsp; Written By&nbsp; <em><span style="background-color: #ffffff;"><a style="background-color: #ffffff;" title="RX7" href="http://rx7.ir/" target="_blank" rel="noopener">Ramin RX7</a></span></em></p>
 
 <!--code coverage percentage: ![coverage](https://img.shields.io/badge/Code%20Size-25%20kB-blue)-->
