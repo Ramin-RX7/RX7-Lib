@@ -4,11 +4,11 @@
 <!--code coverage percentage: ![coverage](https://img.shields.io/badge/Code%20Size-25%20kB-blue)-->
 <h3>rx7 Module is here to help you make your code shorter!</h3>
 <h3>(Most) Usefull function and methods are collected.</h3>
-<p style="font-size: 22px;">Some Special Features:</p>
-<p style="font-size: 15px;">&nbsp;- cls() function will clear the terminal</p>
-<p style="font-size: 15px;">&nbsp;- progressbar() for full customize in-app progressbar</p>
-<p style="font-size: 15px;">&nbsp;- Write with random colors in terminal using style class</p>
-<p style="font-size: 15px;">&nbsp;- Full access to files with file and files class</p>
+<h2>Some Special Features:</h2>
+<h3>&nbsp;- cls() function will clear the terminal</h3>
+<h3>&nbsp;- progressbar() for full customize in-app progressbar</h3>
+<h3>&nbsp;- Write with random colors in terminal using style class</h3>
+<h3>&nbsp;- Full access to files with file and files class</h3>
 <p>&nbsp;</p>
 <h2>List of Functions:</h2>
 <table style="height: 471px; width: 567px; margin-left: 20px;">
