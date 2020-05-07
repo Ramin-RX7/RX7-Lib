@@ -1,4 +1,7 @@
 <p style="font-size: 27px; font-family: Impact, Charcoal, sans-serif;">rx7 Module&nbsp; -&nbsp; Written By&nbsp; <em><span style="background-color: #ffffff;"><a style="background-color: #ffffff;" title="RX7" href="http://rx7.ir/" target="_blank" rel="noopener">Ramin RX7</a></span></em></p>
+
+<!--code coverage percentage: ![coverage](https://img.shields.io/badge/Code%20Size-25%20kB-blue)-->
+
 <h3>rx7 Module is here to help you make your code shorter!</h3>
 <h3>(Most) Usefull function and methods are collected.</h3>
 <p>&nbsp;</p>
