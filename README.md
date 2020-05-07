@@ -13,11 +13,11 @@
 <h3>rx7 Module is here to help you make your code shorter!</h3>
 <h3>(Most) Usefull function and methods are collected.</h3>
 
-<p style="font-size: 27px;">Some Special Features:</p>
-<p style="font-size: 20px;">&nbsp;- cls() function will clear the terminal</p>
-<p style="font-size: 20px;">&nbsp;- progressbar() for full customize in-app progressbar</p>
-<p style="font-size: 20px;">&nbsp;- Write with random colors in terminal using style class</p>
-<p style="font-size: 20px;">&nbsp;- Full access to files with file and files class</p>
+<h3>Some Special Features:</h3>
+<h3>&nbsp;- cls() function will clear the terminal</h3>
+<h3>&nbsp;- progressbar() for full customize in-app progressbar</h3>
+<h3>&nbsp;- Write with random colors in terminal using style class</h3>
+<h3>&nbsp;- Full access to files with file and files class</h3>
 
 <p>&nbsp;</p>
 <h2>List of Functions:</h2>
