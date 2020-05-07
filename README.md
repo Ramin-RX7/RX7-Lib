@@ -1,24 +1,14 @@
-
-![PyPI - Downloads](https://img.shields.io/pypi/dm/rx7?color=green1)
-![PyPI - Format](https://img.shields.io/pypi/format/rx7?color=blue)
-![](https://img.shields.io/badge/Python-3.x-blue)
-
+![PyPI - Downloads](https://img.shields.io/pypi/dm/rx7?color=green1) ![PyPI - Format](https://img.shields.io/pypi/format/rx7?color=blue) ![](https://img.shields.io/badge/Python-3.x-blue)
 ## pip install rx7
-
-
-<p style="font-size: 27px; font-family: Impact, Charcoal, sans-serif;">rx7 Module&nbsp; -&nbsp; Written By&nbsp; <em><span style="background-color: #ffffff;"><a style="background-color: #ffffff;" title="RX7" href="http://rx7.ir/" target="_blank" rel="noopener">Ramin RX7</a></span></em></p>
-
+<p style="font-size: 27px; font-family: Impact, Charcoal, sans-serif;">rx7 Module&nbsp; -&nbsp; Written By&nbsp; <em><span style="background-color: #ffffff;"><a style="background-color: #ffffff;" title="RX7" href="http://rx7.ir/" target="_blank" rel="noopener">RX</a></span></em></p>
 <!--code coverage percentage: ![coverage](https://img.shields.io/badge/Code%20Size-25%20kB-blue)-->
-
 <h3>rx7 Module is here to help you make your code shorter!</h3>
 <h3>(Most) Usefull function and methods are collected.</h3>
-
-<h3>Some Special Features:</h3>
-<h3>&nbsp;- cls() function will clear the terminal</h3>
-<h3>&nbsp;- progressbar() for full customize in-app progressbar</h3>
-<h3>&nbsp;- Write with random colors in terminal using style class</h3>
-<h3>&nbsp;- Full access to files with file and files class</h3>
-
+<p style="font-size: 22px;">Some Special Features:</p>
+<p style="font-size: 15px;">&nbsp;- cls() function will clear the terminal</p>
+<p style="font-size: 15px;">&nbsp;- progressbar() for full customize in-app progressbar</p>
+<p style="font-size: 15px;">&nbsp;- Write with random colors in terminal using style class</p>
+<p style="font-size: 15px;">&nbsp;- Full access to files with file and files class</p>
 <p>&nbsp;</p>
 <h2>List of Functions:</h2>
 <table style="height: 471px; width: 567px; margin-left: 20px;">
@@ -79,7 +69,7 @@
 </table>
 <p>&nbsp;</p>
 <h2>List of Classes:</h2>
-<h3>&nbsp;Class rand:&nbsp; &nbsp;<em>Random&nbsp;Variable&nbsp;Generator&nbsp;Class.</em></h3>
+<h3>&nbsp;<span style="color: #008000;"><span style="color: #000000;">Class</span> rand</span>:&nbsp; &nbsp;<span style="color: #000080;"><em>Random&nbsp;Variable&nbsp;Generator&nbsp;Class.</em></span></h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr>
@@ -101,7 +91,7 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
-<h3>&nbsp; Class system:&nbsp; &nbsp;Some system actions.</h3>
+<h3>&nbsp; Class <span style="color: #008000;">system</span>:&nbsp; &nbsp;<span style="color: #000080;">Some system actions.</span></h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr>
@@ -139,7 +129,7 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
-<h3>&nbsp; Class file:&nbsp; &nbsp;Actions and information about files.</h3>
+<h3>&nbsp; Class <span style="color: #008000;">file</span>:&nbsp; &nbsp;<span style="background-color: #000080;">Actions and information about files.</span></h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr>
@@ -241,7 +231,7 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
-<h3>&nbsp;Class style:&nbsp; &nbsp; Changing text Color,BG &amp; Style. (Read Doc String)</h3>
+<h3>&nbsp;Class <span style="color: #808080;">s</span><span style="color: #ff0000;">t</span><span style="color: #008000;">y</span><span style="color: #3366ff;">l</span><span style="color: #ffcc00;">e</span>:&nbsp; &nbsp; <span style="background-color: #ffffff; color: #000080;">Changing text Color,BG &amp; Style. (Read Doc String)</span></h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr style="height: 15.0625px;">
@@ -257,7 +247,7 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
-<h3>&nbsp;Class record:&nbsp; &nbsp;Record time of a certain actions. (Read Doc String)</h3>
+<h3>&nbsp;Class <span style="color: #008000;">record</span>:&nbsp; &nbsp;<span style="background-color: #ffffff; color: #000080;">Record time of a certain actions. (Read Doc String)</span></h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr style="height: 18px;">
