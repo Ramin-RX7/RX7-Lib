@@ -1,3 +1,4 @@
+<html><head></head><body>
 <!--![PyPI - Downloads](https://img.shields.io/pypi/dm/rx7?color=green1)-->
 [![Downloads](https://pepy.tech/badge/rx7/month)](https://pepy.tech/project/rx7/month)
 ![PyPI - Format](https://img.shields.io/pypi/format/rx7?color=blue) 
@@ -472,3 +473,4 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+</html></body>
