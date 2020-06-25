@@ -1,18 +1,7 @@
-<!--![PyPI - Downloads](https://img.shields.io/pypi/dm/rx7?color=green1)-->
-[![Downloads](https://pepy.tech/badge/rx7/month)](https://pepy.tech/project/rx7/month)
-![PyPI - Format](https://img.shields.io/pypi/format/rx7?color=blue) 
-![](https://img.shields.io/badge/Python-3.x-blue) 
-## pip install rx7
-## pip install --upgrade&nbsp;rx7
-
-<!--code coverage percentage: ![coverage](https://img.shields.io/badge/Code%20Size-25%20kB-blue)-->
+<p style="font-size: 27px; font-family: Impact, Charcoal, sans-serif;">rx7 Module&nbsp; -&nbsp; Written By&nbsp; <em><span style="background-color: #ffffff;"><a style="background-color: #ffffff;" title="RX7" href="http://rx7.ir/" target="_blank" rel="noopener">Ramin RX7</a></span></em></p>
 <h3>rx7 Module is here to help you make your code shorter!</h3>
 <h3>(Most) Usefull function and methods are collected.</h3>
-<h2>Some Special Features:</h2>
-<h3>&nbsp;- cls() function will clear the terminal</h3>
-<h3>&nbsp;- progressbar() for full customize in-app progressbar</h3>
-<h3>&nbsp;- Write with random colors in terminal using style class</h3>
-<h3>&nbsp;- Full access to files with file and files class</h3>
+### See Features Preview [Here](#FeaturesPreview "Here")
 <p>&nbsp;</p>
 <h2>List of Functions:</h2>
 <table style="height: 471px; width: 567px; margin-left: 20px;">
@@ -22,7 +11,7 @@
 <td style="width: 396px;">print() function. (Read Doc String)</td>
 </tr>
 <tr>
-<td style="width: 155px;">re(F_Name,n)</td>
+<td style="width: 155px;">repeat(function,n)</td>
 <td style="width: 396px;">Repeat F_Name function for n times.</td>
 </tr>
 <tr>
@@ -80,12 +69,12 @@
 </tbody>
 </table>
 <h2>List of Classes:</h2>
-<h3>Class rand:&nbsp; &nbsp;<em>Random&nbsp;Variable&nbsp;Generator&nbsp;Class.</em></h3>
+<h3>&nbsp;Class rand:&nbsp; &nbsp;<em>Random&nbsp;Variable&nbsp;Generator&nbsp;Class.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr>
-<td style="width: 173px;">choice(iter)</td>
-<td style="width: 387px;">Choose random item from iterable or string.</td>
+<td style="width: 173px;">choose(iter,k,duplicate)</td>
+<td style="width: 387px;">Choose k random items from iterable or string.</td>
 </tr>
 <tr>
 <td style="width: 173px;">integer(Frst,Lst)</td>
@@ -102,7 +91,7 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
-<h3>&nbsp; Class system:&nbsp; &nbsp;<em>Some system actions.</em></h3>
+<h3>&nbsp; Class system:&nbsp; &nbsp;<em>Some system actions and information.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr>
@@ -145,10 +134,34 @@
 <td style="width: 173px;">cwd()</td>
 <td style="width: 387px;">Return Carrent Working Directory.&nbsp;</td>
 </tr>
+<tr>
+<td style="width: 173px;">ip_global()</td>
+<td style="width: 387px;">Returns Global IP.</td>
+</tr>
+<tr>
+<td style="width: 173px;">ip_local()</td>
+<td style="width: 387px;">Returns Local IP.</td>
+</tr>
+<tr>
+<td style="width: 173px;">ram_total()</td>
+<td style="width: 387px;">Returns total ram of the system.</td>
+</tr>
+<tr>
+<td style="width: 173px;">ram_used()</td>
+<td style="width: 387px;">Returns Used Space of the ram of the system.</td>
+</tr>
+<tr>
+<td style="width: 173px;">ram_free()</td>
+<td style="width: 387px;">Returns Available (Free) space of system ram.</td>
+</tr>
+<tr>
+<td style="width: 173px;">boot_time()</td>
+<td style="width: 387px;">Return system boot time in seconds since the epoch.</td>
+</tr>
 </tbody>
 </table>
 <p>&nbsp;</p>
-<h3>&nbsp; Class file: (<span style="text-decoration: underline;"><span style="color: #000000; text-decoration: underline;">C</span></span><strong><span style="text-decoration: underline;"><span style="color: #000000; text-decoration: underline;">lass methods</span></span>)&nbsp;</strong><em>Actions and information about files.</em></h3>
+<h3>&nbsp; Class file: (C<strong>lass methods)&nbsp;</strong><em>Actions and information about files.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr style="height: 36px;">
@@ -273,7 +286,7 @@
 </tr>
 </tbody>
 </table>
-<h3>Class files: (<span style="text-decoration: underline;">Static</span><strong><span style="text-decoration: underline;">&nbsp;methods</span>)&nbsp;</strong><em>Actions and information about files.</em></h3>
+<h3>Class files: (Static<strong>&nbsp;methods)&nbsp;</strong><em>Actions and information about files.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 40px;" cellpadding="5px">
 <tbody>
 <tr>
@@ -373,8 +386,16 @@
 <td style="width: 387px; height: 15.0625px;">Print txt with selected color,BG,style.(Read Doc String)</td>
 </tr>
 <tr style="height: 18px;">
-<td style="width: 173px; height: 18px;">integer(Frst,Lst)</td>
-<td style="width: 387px; height: 18px;">Choose integer in range [Frst,Lst]</td>
+<td style="width: 173px; height: 18px;">switch(color,BG,style)</td>
+<td style="width: 387px; height: 18px;">Change Terminal Attributes Until another Call.</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 173px; height: 18px;">
+<div>
+<div>switch_default()</div>
+</div>
+</td>
+<td style="width: 387px; height: 18px;">Restore Terminal Attributes.</td>
 </tr>
 </tbody>
 </table>
@@ -405,7 +426,18 @@
 <p><span style="text-decoration: underline; color: #000080;"><strong>&nbsp; - Using an IDE that shows Function and Class Help is highly recommended.</strong></span>&nbsp;<strong>(<span style="color: #ff6600;"><a style="color: #0066b8;" title="Microsoft Visual Studio Code" href="https://code.visualstudio.com/" target="_blank" rel="noopener">VS Code</a></span>)</strong></p>
 <h4>&nbsp;- Using "from rx7 import ."</h4>
 <h4>&nbsp;- Using "import rx7 as rx"</h4>
-<h4>&nbsp;</h4>
+<p>&nbsp;</p>
+<h2>&nbsp;Upgrade:</h2>
+<table style="margin-left: 40px; height: 62px;" border="3" width="269">
+<tbody>
+<tr>
+<td style="width: 237px;">
+<h3>pip install --upgrade&nbsp;rx7</h3>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
 <h2>Versions Information:</h2>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; Releases are like this:&nbsp; &nbsp; &nbsp; &nbsp; 1.0.0</p>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1.1.1</p>
@@ -426,34 +458,36 @@
 <td style="width: 513px; height: 42px; text-align: center;"><strong>New Features &amp; Changes</strong></td>
 </tr>
 <tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center;">1.0.0</td>
-<td style="width: 153px; height: 25px;">&nbsp; &nbsp;03/18/2020</td>
-<td style="width: 513px; height: 25px; text-align: center;">####</td>
+<td style="width: 119px; height: 25px; text-align-last: center;">1.9.0</td>
+<td style="width: 153px; height: 25px; text-align: center;">09/06/20</td>
+<td style="width: 513px; height: 25px; text-align: center;">
+<p>* re() --&gt; repeat()</p>
+<p>+ New Methods of System Class:&nbsp; ip_global(),&nbsp;ip_local(),&nbsp;ram_free(), ram_percent(),&nbsp;ram_total(),&nbsp;ram_used(), boot_time()</p>
+<p>+ convert_bytes()</p>
+</td>
 </tr>
 <tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center;">1.3.0</td>
-<td style="width: 153px; height: 25px;">&nbsp; &nbsp;04/08/2020</td>
+<td style="width: 119px; height: 25px; text-align-last: center;">1.8.0</td>
+<td style="width: 153px; height: 25px; text-align: center;">05/24/2020</td>
 <td style="width: 513px; height: 25px; text-align: center;">
-<div>+ __init__ &amp; read &amp; write &amp; content&nbsp; func&nbsp;of&nbsp;file&nbsp;class</div>
-<div>* Prgoressbar&nbsp;default&nbsp;args</div>
+<div>+ style.switch_default()</div>
+<div>
+<div>+ Now Linux&nbsp;supports&nbsp;cls()</div>
+<div>
+<div>+ style&nbsp;object:&nbsp;supports&nbsp;multiply,add,index</div>
+<div>
+<div>+ rand.choice Choose &gt;1 &amp; duplicate</div>
+<div>* rand.choice --&gt; rand.choose</div>
+</div>
+</div>
+</div>
 </td>
 </tr>
-<tr style="height: 32.0156px;">
-<td style="width: 119px; height: 32.0156px; text-align-last: center;">1.5.0</td>
-<td style="width: 153px; height: 32.0156px;">&nbsp; &nbsp;04/21/2020</td>
-<td style="width: 513px; height: 32.0156px; text-align: center;">
-<div>+ 'replace' and insert 'functions' for tuples</div>
-<div>+ 'end' arg for style.print()</div>
-<div>+ 'self.laps' in record class will display all laps</div>
-<div>* style.text =&gt; style.print</div>
-<div>* record.stop =&gt; record.lap</div>
-<div>* now 'record.stop()' will stop recording.</div>
-</td>
-</tr>
-<tr style="height: 32.0156px;">
-<td style="width: 119px; height: 32.0156px; text-align-last: center;">1.7.0</td>
-<td style="width: 153px; height: 32.0156px;">&nbsp; &nbsp;05/08/2020</td>
-<td style="width: 513px; height: 32.0156px; text-align: center;">
+<tr style="height: 25px;">
+<td style="width: 119px; height: 25px; text-align-last: center;">1.7.0</td>
+<td style="width: 153px; height: 25px; text-align: center;">&nbsp; 05/08/2020</td>
+<td style="width: 513px; height: 25px; text-align: center;">
+<div>
 <div>+ call_later()&nbsp;&nbsp;-&nbsp;&nbsp;wait_for()</div>
 <div>+ terminal_size()&nbsp;&nbsp;-&nbsp;&nbsp;cwd()</div>
 <div>+ right_port,left_port arg for progressbar()</div>
@@ -465,10 +499,46 @@
 <div>* progressbar() arg names</div>
 <div>* file.delete() and file.delete_dir()&nbsp;=&gt;&nbsp;delete()</div>
 <div>* Change replace() and insert() args oreder</div>
+</div>
 </td>
+</tr>
+<tr style="height: 25px;">
+<td style="width: 119px; height: 25px; text-align-last: center;">1.5.0</td>
+<td style="width: 153px; height: 25px; text-align: center;">04/21/2020</td>
+<td style="width: 513px; height: 25px; text-align: center;">
+<div>
+<div>
+<div>+ 'replace' and insert 'functions' for tuples</div>
+<div>+ 'end' arg for style.print()</div>
+<div>+ 'self.laps' in record class will display all laps</div>
+<div>* style.text =&gt; style.print</div>
+<div>* record.stop =&gt; record.lap</div>
+<div>* now 'record.stop()' will stop recording.</div>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height: 25px;">
+<td style="width: 119px; height: 25px; text-align-last: center;">1.3.0</td>
+<td style="width: 153px; height: 25px; text-align: center;">&nbsp;04/08/2020</td>
+<td style="width: 513px; height: 25px; text-align: center;">
+<div>+ __init__ &amp; read &amp; write &amp; content&nbsp; func&nbsp;of&nbsp;file&nbsp;class</div>
+<div>* Prgoressbar&nbsp;default&nbsp;args</div>
+</td>
+</tr>
+<tr style="height: 25px;">
+<td style="width: 119px; height: 25px; text-align-last: center;">
+<p>1.0.0</p>
+</td>
+<td style="width: 153px; height: 25px;">
+<p style="text-align: center;">03/18/2020</p>
+</td>
+<td style="width: 513px; height: 25px; text-align: center;">####</td>
 </tr>
 </tbody>
 </table>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<a href="#FeaturesPreview">## Features Preview</a>
+[![Tuple](https://media.giphy.com/media/fUpibnvWjv2WsZ1NYW/giphy.gif "Tuple")](http://https://media.giphy.com/media/fUpibnvWjv2WsZ1NYW/giphy.gif "Tuple")
