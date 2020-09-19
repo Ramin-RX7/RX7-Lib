@@ -1,6 +1,6 @@
 <p><img src="https://img.shields.io/badge/downloads-32k%2Fmonth-brightgreen?style=plastic" alt="PyPI - License" /> <img src="https://img.shields.io/pypi/l/rx7?color=orange&amp;style=plastic" alt="PyPI - License" /> <img src="https://img.shields.io/badge/status-stable-success?style=plastic" alt="PyPI - License" /></p>
 <h2>rx7 Library&nbsp; is here to help you make your code shorter!</h2>
-<h3>- High API</h3>
+<h3>- High API</h3> 
 <h3>- Special Features</h3>
 <h3>- Most Usefull function and methods are collected.</h3>
 <p>&nbsp;</p>
