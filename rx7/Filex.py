@@ -13,7 +13,6 @@ import os,shutil,subprocess
 from typing import Union
 
 class files:
-    #self.info: size-atime-mtime-hide-ronly
     '''
     (STATIC METHODS)\n
     Actions and information about files.\n
@@ -163,8 +162,8 @@ class files:
         file:   File you want to change its content.
         content:   Content you want to add to file.
         mode:   Type of writing method.
-            'continue' for add content to end of the file. 
-            'replace' for overwriting to file content.
+             'a' or 'continue' for add content to end of the file. 
+             'w' or 'replace'  for overwriting to file content.
         start: I use this when I use mode='continue'
         '''
         if mode=='replace':
@@ -302,10 +301,10 @@ class files:
             return [i for i in os.walk(dir)][0][2]
         @staticmethod
         def files_all(dir):
-            return [val for sublist in [[os.dir.join(i[0], j) for j in i[2]] for i in os.walk(dir)] for val in sublist]
+            return [val for sublist in [[os.path.join(i[0], j) for j in i[2]] for i in os.walk(dir)] for val in sublist]
         @staticmethod
         def files_all_sep(dir):
-            return [[os.dir.join(i[0], j) for j in i[2]] for i in os.walk(dir)]
+            return [[os.path.join(i[0], j) for j in i[2]] for i in os.walk(dir)]
         @staticmethod
         def dirs_exactdir(dir):
             return sorted([i for i in os.listdir(dir) if i not in [i for i in os.walk(dir)][0][2]])

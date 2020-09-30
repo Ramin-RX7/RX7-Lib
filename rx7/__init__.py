@@ -7,24 +7,28 @@ Official Documention Will Be Added Soon.
 '''
 '''
 Written By RX
-Last Update: 09-01-2020
+Last Update: 10-01-2020
 '''
-# Check_Type  ---  system.pyshell_execute_bit()  ---  system.pids()
-# record.lap round arg
-__version__ = '2.4.0'
+
+__version__ = '2.6.0'
 
 '''
 TODO:
-- Screen recorder
-- Open Video
-- Open Audio
-- Make Sound
-- registery editor
-- pip install update
-- style defaults
-- time.process_time()
-- style.COLOR
-- mp3 tags
+ - Screen recorder
+ - Open Video
+ - Open Audio
+ - Make Sound
+ - registery editor
+ - pip install update
+ - style defaults
+ - time.process_time()
+ - style.COLOR
+ - mp3 tags
+ - No_Error func
+ - Style.print INFO WARNING
+ - getpass.getpass
+ - re module
+ - CHECK 3rd-party Modules imports
 '''
 
 
@@ -34,6 +38,7 @@ TODO:
 import os
 import time
 import sys
+import subprocess
 import random as _RANDOM
 from typing import Any, Iterable, Optional, Callable
 
@@ -70,43 +75,6 @@ def repeat(function, n: int, **kwargs):
     for _ in range(n):
         function(**kwargs)
 
-def read(file: str):
-    '''
-    This can help you to read your file faster.
-    Example:
-        read_file('C:\\users\\Jack\\test.txt')
-        ==> "Content of 'test.txt' will be shown."
-    '''
-    with open(file) as f:
-        content = f.read()
-    return content
-def write(file: str, text: str=None, mode='replace', start:str=None):
-    '''
-    With this method you can change content of the file.  
-    file:   File you want to change its content.
-    content:   Content you want to add to file.
-    mode:   Type of writing method.
-        'continue' for add content to end of the file. 
-        'replace' for overwriting to file content.
-    start: I use this when I use mode='continue'
-    '''
-    if not text:
-        text = ''
-    if not start:
-        start = ''
-    pass
-    if mode in ('replace', 'w', 'continue', 'a'):
-        if mode in ('replace', 'w'):
-            mode = 'w'
-        elif mode in ('continue', 'a'):
-            mode = 'a'
-
-        with open(file, mode=mode) as f:
-            f.write(str(start)+str(text))
-
-    else:   
-        raise ValueError(f'mode can only be: 1-replace(default)  2-continue\nNot "{mode}"') 
-
 def wait(seconds):
     '''
     Use this if you want your program wait for a certain time.
@@ -132,7 +100,8 @@ def progressbar(
     total=100, dashes_nom=100, delay=1, dashes_shape=' ', complete_shape='█',
     pre_text='Loading: ', left_port='|', right_port='|'):
     '''
-    Use this function to make a custom in-app progress bar.
+    Use this function to make a custom in-app progress bar (Not Very Usefull).
+    (Use Progressbar() Generator instead to do your stuffs while updating progressbar)
     Example:
         progressbar(
             Total=100,Dashes_Nom=10,Time=1,Dashes_Shape='-',
@@ -180,7 +149,7 @@ def call_later(function:Callable, *args, delay=0.001):
     call_later() will help you to do that!
     First arg should be your function name,
     After That (*args) you can add any args that your function need,
-    And Last arg is delay for calling your function in seconds.
+    And last arg is delay for calling your function in seconds.
     '''
     import keyboard
     keyboard.call_later(function, args, delay)
@@ -226,7 +195,7 @@ def Input(prompt:str ='', default_value:str =''):
     return input(str(prompt))
 default_input = Input
 
-def restart_app(python3:bool =False):
+def restart_app(python3:bool = False):
     '''
     This Function Close App and Recall it From Terminal
     '''
@@ -252,7 +221,6 @@ def open_image(path:str):
     if platform.system() == 'Windows':
         os.system(path)
     elif platform.system() == 'Linux':
-        import subprocess
         subprocess.getoutput(f'xdg-open {path}')
     else:
         raise OSError('OS X is not supported for this function.')
@@ -349,7 +317,6 @@ def func_info(func:Callable):
         _code_ =  f'No "file" and "line" information available '
         _code_ += f' (I guess "{func}" is a built-in function)'
     print(_code_)
-
 
 class Check_Type:
     """
@@ -473,54 +440,36 @@ class Check_Type:
         
         return self.function(*__local__, **kwargs)
 
-
-
-
-"""
-def screen_recorder():
-    from screen_recorder_sdk import screen_recorder
-    #screen_recorder.enable_dev_log ()
-    screen_recorder.disable_log()
-    pid = 2456
-    screen_recorder.init_resources(pid)
-    screen_recorder.start_video_recording ('video1.mp4', 30, 8000000, True)
-    time.sleep(10)
-    print('hello')
-    for i in range(100):
-        x= i**3
-    screen_recorder.stop_video_recording ()
-    screen_recorder.free_resources()
-
-
-class Error(Exception):
+def Progressbar(
+    total=60, dashes_nom=30, dashes_shape=' ', complete_shape='█',
+    pre_text='Loading: ', left_port='|', right_port='|'):
     '''
-    This module is for creating you own Error and Exception!
-     Useage:
-     >>> MyError = Error(name='MyError', msg='An Error occurred')
-     Traceback (most recent call last):
-       File "<stdin>", line 1, in <module>
-     MyError: An Error occurred
-
-     Also You can raise it directly:
-     >>> raise Error(name='MyError', msg='An Error occurred')
-     Traceback (most recent call last):
-       File "<stdin>", line 1, in <module>
-     MyError: An Error occurred
-
+    Make your code more beautiful with progressbars!
+     this is generator function so use it like this:
+        >>> for _ in generator(100,10):
+                do_this()
+                do_that()
+        Loading: |████      | 40/100
     '''
-    def __new__(cls, msg, name=''):
-        Error.__name__ = name
-        return super(Error, cls).__new__(cls, msg)
-
-    def __init__(self, **kwargs):
-        pass
+    echo = sys.stdout
+    def show(j):
+        x = int(dashes_nom*j/total)
+        echo.write(
+            f"{pre_text}{right_port}{complete_shape*x}{dashes_shape*(dashes_nom-x)}{left_port} {j}/{total}\r")
+        echo.flush()        
+    show(0)
+    for i, item in enumerate(range(total)):
+        yield item
+        show(i+1)
+    echo.write("\n")
+    echo.flush()
 
 _MOUSE_X = ''
 _MOUSE_Y = ''
 def pixel_color(x=_MOUSE_X, y=_MOUSE_Y) -> tuple:
     '''
     Function to return color of pixel of screen in RGB
-    By default x and y are last mpuse position
+    By default x and y are last mouse position
     '''
     import pyautogui
     if not x:
@@ -530,8 +479,6 @@ def pixel_color(x=_MOUSE_X, y=_MOUSE_Y) -> tuple:
     PIXEL = pyautogui.screenshot(region=(x, y, 1, 1))
     COLOR = PIXEL.getcolors()
     return COLOR[0][1]
-"""
-
 
 
 
@@ -551,11 +498,14 @@ from .Tuple_tools import *
 #from .RX_obj import *
 from .System import *
 #from .Date_Time import *
+write = files.write
+read  = files.read
 
 
 class random:
     '''
-    _RANDOM Variable Generator Class.
+    random Variable Generator Class.
+    (ALL FUNCTIONS ARE STATIC METHODS)
     '''
     
     @staticmethod
@@ -778,6 +728,28 @@ class Record:
         if reset_start:
             self.__start = time.time()
 record = Record
+
+class Terminal:
+    """
+    Run Terminal Commands with Terminal functions
+    (ALL FUNCTIONS ARE STATIC METHODS)
+    """
+    @staticmethod
+    def run(command:str) -> None:
+        '''
+        Execute the command in a subshell
+        (NO RETURN, LIVE EXECUTION, OUTPUT WILL BE PRINTED)
+        '''
+        os.system(command)
+
+    @staticmethod
+    def getoutput(command:str) -> str:
+        '''
+        Return output of executing command in a shell
+        (RETURN STR, RETURN AFTER EXECUTING CODE)
+        '''
+        return subprocess.getoutput(command)
+terminal = Terminal
 
 
 #END

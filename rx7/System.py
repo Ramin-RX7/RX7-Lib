@@ -4,14 +4,8 @@ So I recommend to use rx.system but no difference.
 '''
 
 import socket
-import sys
 import os
-import requests
-import re
 import psutil
-import urllib
-import shutil
-import subprocess
 
 from typing import Union
 
@@ -41,6 +35,7 @@ class system:
     Some system actions and information.
     - Information about ram, ip, terminal, etc.
     - Some System Actions like Shutdown and Restart
+    (ALL FUNCTIONS ARE STATIC METHODS)
     '''
     @staticmethod
     def accname():
@@ -96,8 +91,10 @@ class system:
         returns global ip as string
         """
         try:
+            import requests
             new_session = requests.session()
             response = new_session.get("http://ipinfo.io/ip")
+            import re
             ip_list = re.findall(r"(?:[0-9]{1,3}\.){3}[0-9]{1,3}", response.text)
             new_session.close()
             return ip_list[0]
@@ -133,6 +130,7 @@ class system:
             if ip and ip != "127.0.1.1":
                 return ip
             elif platform.system() != "Windows":
+                import subprocess
                 command = subprocess.Popen(["hostname", "-I"],stdout=subprocess.PIPE,stderr=subprocess.PIPE,stdin=subprocess.PIPE,shell=False)
                 response = list(command.communicate())
                 if len(response[0]) > 0:
@@ -205,8 +203,8 @@ class system:
         try:
             from win10toast import ToastNotifier
             ToastNotifier().show_toast(title,message,duration=duration)
-        except Exception as e:
-            raise e('Use "pip install win10toast" to install required module')
+        except:
+            raise ImportError('Use "pip install win10toast" to install required module')
     @staticmethod
     def cpu_count(logical=True):
         '''
@@ -225,8 +223,14 @@ class system:
         import struct
         return struct.calcsize("P") * 8
     @staticmethod
-    def pids():
+    def pids() -> list:
         '''Return a list of current running PIDs'''
         return psutil.pids()
-
-
+    @staticmethod
+    def cpu_percent() -> float:
+        '''
+        Return a float representing the current system-wide CPU utilization as a percentage.'''
+        return psutil.cpu_percent()
+    @staticmethod
+    def pid_exists(pid) -> bool:
+        return psutil.pid_exists(pid)

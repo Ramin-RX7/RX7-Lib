@@ -331,26 +331,6 @@ class File:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 '''
 This Module includes rx7_object.
 This object exists in rx7 module so I recommend to use  rx7.RX7_obj  
@@ -553,3 +533,40 @@ class RX7_obj:
  <p>&nbsp;</p>
 
 '''
+
+
+
+
+def _Check_Imports(module):
+    try:
+        if module == 'keyboard':
+            import keyboard
+            Module = keyboard
+        if module == 'pyautogui':
+            import pyautogui
+            Module = pyautogui
+        if module == 'psutil':
+            import psutil
+            Module = psutil
+        if module == 'colored':
+            import colored
+            Module = colored
+        if module == 'requests':
+            import requests
+            Module = requests
+        if module == 'mouse':
+            import mouse
+            Module = mouse
+        if module == 'whois':
+            import whois
+            Module = whois
+        if module == 'win10toast':
+            import win10toast
+            Module = win10toast
+        return Module
+    except:
+        raise ImportError(f"Package '{module}' is not installed (use 'pip install {module}')")
+
+
+
+

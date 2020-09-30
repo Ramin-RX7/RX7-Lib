@@ -1,6 +1,6 @@
 <p><img src="https://img.shields.io/badge/downloads-32k%2Fmonth-brightgreen?style=plastic" alt="PyPI - License" /> <img src="https://img.shields.io/pypi/l/rx7?color=orange&amp;style=plastic" alt="PyPI - License" /> <img src="https://img.shields.io/badge/status-stable-success?style=plastic" alt="PyPI - License" /></p>
 <h2>rx7 Library&nbsp; is here to help you make your code shorter!</h2>
-<h3>- High API</h3> 
+<h3>- High API</h3>
 <h3>- Special Features</h3>
 <h3>- Most Usefull function and methods are collected.</h3>
 <p>&nbsp;</p>
@@ -151,6 +151,22 @@
 </td>
 <td style="width: 396px;">Decorator that raise TypeError if function argument type is wrong (Read Help)</td>
 </tr>
+<tr>
+<td style="width: 155px;">
+<div>
+<div>Progressbar()</div>
+</div>
+</td>
+<td style="width: 396px;">Generator of progressbar() which you can use it to do some stuff between your delays (Read Help)</td>
+</tr>
+<tr>
+<td style="width: 155px;">
+<div>
+<div>pixel_color(X,Y)</div>
+</div>
+</td>
+<td style="width: 396px;">Return RGB color of pixel[X,Y]</td>
+</tr>
 </tbody>
 </table>
 <h2>&nbsp;</h2>
@@ -285,6 +301,22 @@
 <div>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;current&nbsp;running&nbsp;PIDs</div>
 </div>
 </div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 173px;">pid_exists(pid)</td>
+<td style="width: 387px;">Return True if pid exists else False</td>
+</tr>
+<tr>
+<td style="width: 173px;">
+<div>
+<div>cpu_percent()</div>
+</div>
+</td>
+<td style="width: 387px;">
+<div>
+<div>Return the&nbsp;current CPU&nbsp;utilization&nbsp;as&nbsp;a&nbsp;percentage</div>
 </div>
 </td>
 </tr>
@@ -525,6 +557,18 @@
 <td style="width: 119px; height: 42px; text-align: center;"><strong>Version</strong></td>
 <td style="width: 153px; height: 42px; text-align: center;"><strong>Release Date</strong></td>
 <td style="width: 513px; height: 42px; text-align: center;"><strong>New Features &amp; Changes</strong></td>
+</tr>
+<tr style="height: 25px;">
+<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+<p style="text-align: center;">2.6.0</p>
+</td>
+<td style="width: 153px; height: 25px; text-align: center;">10/1/2020</td>
+<td style="width: 513px; height: 25px; text-align: center;">
+<div style="text-align: left;">+ system.cpu_percent()</div>
+<div style="text-align: left;">+ system.pid_exists()</div>
+<div style="text-align: left;">+ Progressbar()&nbsp;<em>(Generator)</em></div>
+<div style="text-align: left;">+ pixel_color()</div>
+</td>
 </tr>
 <tr style="height: 25px;">
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
