@@ -1,0 +1,8 @@
+colored
+psutil
+requests
+pyautogui
+keyboard
+mouse
+pyscreeze
+whois

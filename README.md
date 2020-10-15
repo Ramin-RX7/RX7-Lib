@@ -1,13 +1,18 @@
-<p><img src="https://img.shields.io/badge/downloads-32k%2Fmonth-brightgreen?style=plastic" alt="PyPI - License" /> <img src="https://img.shields.io/pypi/l/rx7?color=orange&amp;style=plastic" alt="PyPI - License" /> <img src="https://img.shields.io/badge/status-stable-success?style=plastic" alt="PyPI - License" /></p>
-<h2>rx7 Library&nbsp; is here to help you make your code shorter!</h2>
-<h3>- High API</h3>
-<h3>- Special Features</h3>
-<h3>- Most Usefull function and methods are collected.</h3>
-<p>&nbsp;</p>
-<!--<h3>See Features Preview <a href="https://unequaledbirman.htmlpasta.com/">HERE</a></h3>-->
-<h3><strong>&nbsp;<em>Are you tired of importing lots of module in one script? rx7 can help you a lot</em></strong></h3>
-<p>&nbsp;</p>
-<h2>List of Functions:</h2>
+![PyPI - License](https://img.shields.io/badge/downloads-32k%2Fmonth-brightgreen?style=plastic) ![PyPI - License](https://img.shields.io/pypi/l/rx7?color=orange&style=plastic) ![PyPI - License](https://img.shields.io/badge/status-stable-success?style=plastic)
+
+rx7 Library  is here to help you make your code shorter!
+--------------------------------------------------------
+
+### \- High API
+
+### \- Special Features
+
+### \- Most Usefull function and methods are collected.
+
+###  **_Are you tired of importing lots of module in one script? rx7 can help you a lot_**
+
+List of Functions:
+------------------
 <table style="height: 471px; width: 567px;">
 <tbody>
 <tr>
@@ -166,6 +171,30 @@
 </div>
 </td>
 <td style="width: 396px;">Return RGB color of pixel[X,Y]</td>
+</tr>
+<tr>
+<td style="width: 155px;">
+<div>
+<div>getpass(prompt)</div>
+</div>
+</td>
+<td style="width: 396px;">
+<div>
+<div>Prompt&nbsp;for&nbsp;a&nbsp;password,&nbsp;with&nbsp;echo&nbsp;turned&nbsp;off.</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 155px;">
+<div>
+<div>import_module(path)</div>
+</div>
+</td>
+<td style="width: 396px;">
+<div>
+<div>Return given path (file with any extension) as a Module</div>
+</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -434,6 +463,58 @@
 <td style="width: 173px;">generate_tree(dir_path)</td>
 <td style="width: 387px;">Returns a visual tree of dir_path</td>
 </tr>
+<tr>
+<td style="width: 173px;"><strong>&nbsp; &nbsp; &nbsp; &nbsp; MEMBERS&nbsp;(<em>Family)</em></strong></td>
+<td style="width: 387px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="width: 193px;">MEMBERS.all_exactdir</td>
+<td style="width: 357px;">List of all&nbsp;things those are in exact directory</td>
+</tr>
+<tr>
+<td style="width: 193px;">
+<div>
+<div>MEMBERS.files_exactdir</div>
+</div>
+</td>
+<td style="width: 357px;">List of files which are in exact directory</td>
+</tr>
+<tr>
+<td style="width: 193px;">
+<div>
+<div>
+<div>
+<div>MEMBERS.dirs_exactdir</div>
+</div>
+</div>
+</div>
+</td>
+<td style="width: 357px;">List of dirs&nbsp; which are in exact directory</td>
+</tr>
+<tr>
+<td style="width: 193px;">MEMBERS.files_all</td>
+<td style="width: 357px;">List of files&nbsp;which are in exact directory and all sub-directories</td>
+</tr>
+<tr>
+<td style="width: 193px;">MEMBERS.files_all_sep</td>
+<td style="width: 357px;">List of files&nbsp;which are in exact directory and all sub-directories&nbsp;seprated by their directories</td>
+</tr>
+<tr>
+<td style="width: 193px;">
+<div>
+<div>
+<div>
+<div>MEMBERS.dirs_all</div>
+</div>
+</div>
+</div>
+</td>
+<td style="width: 357px;">List of&nbsp;directories (Exact dir and all sub-dirs)&nbsp;</td>
+</tr>
+<tr>
+<td style="width: 193px;">MEMBERS.all_all_sep</td>
+<td style="width: 357px;">List&nbsp; of everything thing in path (exact dir &amp; sub-dirs)</td>
+</tr>
 </tbody>
 </table>
 <p>&nbsp;</p>
@@ -457,6 +538,22 @@
 </div>
 </td>
 <td style="width: 387px; height: 18px;">Restore Terminal Attributes.</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 173px; height: 18px;">
+<div>
+<div>reset</div>
+</div>
+</td>
+<td style="width: 387px; height: 18px;">switch_default()</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 173px; height: 18px;">
+<div>
+<div>log_&nbsp; <em>(Family)</em></div>
+</div>
+</td>
+<td style="width: 387px; height: 18px;">5 Different Style.print with ready color and style</td>
 </tr>
 </tbody>
 </table>
@@ -483,6 +580,10 @@
 <tr style="height: 23.8125px;">
 <td style="width: 173px; height: 23.8125px;">self.reset(self, start=False)</td>
 <td style="width: 387px; height: 23.8125px;">Empty self.laps, if start is True: set start time to now</td>
+</tr>
+<tr style="height: 23.8125px;">
+<td style="width: 173px; height: 23.8125px;">self.last_lap(save=True)</td>
+<td style="width: 387px; height: 23.8125px;">Return elapsed time from last lap (save it in self.laps if save is true)</td>
 </tr>
 </tbody>
 </table>
@@ -526,37 +627,69 @@
 </tr>
 </tbody>
 </table>
-<h3>&nbsp;</h3>
 <p>&nbsp;</p>
 <h2>Recommended to:</h2>
-<p><span style="text-decoration: underline; color: #000080;"><strong>&nbsp; - Using an IDE that shows Function and Class Help is highly recommended.</strong></span>&nbsp;&nbsp;<strong>(<a title="Microsoft VS Code" href="https://code.visualstudio.com/" target="_blank" rel="noopener">VS Code</a>&nbsp;-<span style="color: #ff6600;">&nbsp;</span></strong><strong><a title="Microsoft Visual Studio Code" href="https://www.jetbrains.com/pycharm/" target="_blank" rel="noopener">PyCharm</a>)</strong></p>
-<h4>&nbsp;- Using "from rx7 import FUNC_or_CLASS"</h4>
-<h4>&nbsp;- Using "import rx7 as rx"</h4>
+
+ **- Using an IDE that shows Function and Class Help is highly recommended.**  **([VS Code](https://code.visualstudio.com/ "Microsoft VS Code") -** **[PyCharm](https://www.jetbrains.com/pycharm/ "Microsoft Visual Studio Code"))**
+
+####  - Using "from rx7 import FUNC\_or\_CLASS"
+
+####  - Using "import rx7 as rx"
 <p>&nbsp;</p>
-<h2>&nbsp;Upgrade:</h2>
-<h3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pip install --upgrade&nbsp;rx7</h3>
-<h2>&nbsp;Use These Commands in Terminal:</h2>
-<h3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$ rx7 color&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(To show help for style class)</h3>
-<h3>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$ rx7 help&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (To open this page that contains help)</h3>
-<p>&nbsp;</p>
-<h2>Versions Information:</h2>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; Releases are like this:&nbsp; &nbsp; &nbsp; &nbsp; 1.0.0</p>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1.1.1</p>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;⋮</p>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1.2.0</p>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; <span style="background-color: #ffffff; color: #000000;">First number is very important bacause it's for Realy Big new features and changes.</span></p>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; Second number is important but not like first number because it contains some changes and new features. (RECOMMENDED for upgrading package)</p>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; But 3rd number is not important because it's for changing packege codes order and you won't lose anything if you&nbsp; &nbsp; &nbsp; &nbsp; don't install it.</p>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; <em>Numbers are not always in order like: 1,2,3,4,...&nbsp; , Some times they are different like: 1.2.4.8,...</em></p>
-<p>&nbsp;</p>
-<h2>Releases:</h2>
-<h4>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(+ for new features, * for changes)</h4>
+ Upgrade:
+---------
+
+###&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pip install --upgrade rx7
+
+ Use These Commands in Terminal:
+--------------------------------
+
+###&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ rx7 color           (To show help for style class)
+
+###&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ rx7 help            (To open this page that contains help)
+
+Versions Information:
+---------------------
+
+        Releases are like this:        1.0.0
+
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.1
+
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   ⋮
+
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.0
+
+        First number is very important bacause it's for Realy Big new features and changes.
+
+        Second number is important but not like first number because it contains some changes and new features. (RECOMMENDED for upgrading package)
+
+        But 3rd number is not important because it's for changing packege codes order and you won't lose anything if you        don't install it.
+
+        _Numbers are not always in order like: 1,2,3,4,...  , Some times they are different like: 1.2.4.8,..._
+
+Releases:
+---------
+
+####          (+ for new features, \* for changes)
 <table style="height: 10px; margin-left: 10px; width: 519px;" cellpadding="5">
 <tbody>
 <tr style="height: 42px;">
 <td style="width: 119px; height: 42px; text-align: center;"><strong>Version</strong></td>
 <td style="width: 153px; height: 42px; text-align: center;"><strong>Release Date</strong></td>
 <td style="width: 513px; height: 42px; text-align: center;"><strong>New Features &amp; Changes</strong></td>
+</tr>
+<tr style="height: 25px;">
+<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+<p style="text-align: center;">2.7.0</p>
+</td>
+<td style="width: 153px; height: 25px; text-align: center;">10/15/2020</td>
+<td style="width: 513px; height: 25px; text-align: center;">
+<div style="text-align: left;">+ getpass()</div>
+<div style="text-align: left;">+ style.log_ Family</div>
+<div style="text-align: left;">+ style.reset() = style.switch_default()</div>
+<div style="text-align: left;">+ load_module()</div>
+<div style="text-align: left;">+ record.last_lap()</div>
+</td>
 </tr>
 <tr style="height: 25px;">
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">

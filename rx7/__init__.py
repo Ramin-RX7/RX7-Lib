@@ -9,26 +9,33 @@ Official Documention Will Be Added Soon.
 Written By RX
 Last Update: 10-01-2020
 '''
-
-__version__ = '2.6.0'
+__version__ = '2.7.0'
 
 '''
 TODO:
  - Screen recorder
+ - Make Sound
+ - time.process_time()
+ - tuple.pop()
+ - Tuple methods shouldnt be defined twice
+ - sys.argv
+ - style.log_ add time and prefix
+ - mp3 tags                                   (v 3.0)
+ - registery editor                           (v 3.0)
+ - re module                                  (v 3.0)
+ - Import of modules startswith _             (v 3.0)
+ - Developer:: reload_module -- Check_Type -- add_module_dir
+ - Shutil.copy
+ - Record: -EndError --- save last lap
+
+ - Check 3rd-party modules imports
+ - pip install update
  - Open Video
  - Open Audio
- - Make Sound
- - registery editor
- - pip install update
- - style defaults
- - time.process_time()
- - style.COLOR
- - mp3 tags
- - No_Error func
- - Style.print INFO WARNING
- - getpass.getpass
- - re module
- - CHECK 3rd-party Modules imports
+
+ - !No_Error func
+ - !style.COLOR
+ - !style defaults
 '''
 
 
@@ -480,6 +487,69 @@ def pixel_color(x=_MOUSE_X, y=_MOUSE_Y) -> tuple:
     COLOR = PIXEL.getcolors()
     return COLOR[0][1]
 
+def getpass(prompt):
+    '''
+    Prompt for a password, with echo turned off.
+    '''
+    import getpass as Getpass
+    return Getpass.getpass(prompt=prompt)
+password_input = getpass
+
+def import_module(path):
+    '''
+    Import modules from files even if they are not .py
+    path is path to file to import it
+    return module
+    '''
+    import importlib.machinery
+    import importlib.util
+    loader = importlib.machinery.SourceFileLoader('MOD', path)
+    spec = importlib.util.spec_from_loader(loader.name, loader)
+    mod = importlib.util.module_from_spec(spec)
+    loader.exec_module(mod)
+    return mod
+
+"""
+def screen_recorder():
+    from screen_recorder_sdk import screen_recorder
+    #screen_recorder.enable_dev_log ()
+    screen_recorder.disable_log()
+    pid = 2456
+    screen_recorder.init_resources(pid)
+    screen_recorder.start_video_recording ('video1.mp4', 30, 8000000, True)
+    time.sleep(10)
+    print('hello')
+    for i in range(100):
+        x= i**3
+    screen_recorder.stop_video_recording ()
+    screen_recorder.free_resources()
+
+class Error(Exception):
+    '''
+    This module is for creating you own Error and Exception!
+     Useage:
+     >>> MyError = Error(name='MyError', msg='An Error occurred')
+     Traceback (most recent call last):
+       File "<stdin>", line 1, in <module>
+     MyError: An Error occurred
+
+     Also You can raise it directly:
+     >>> raise Error(name='MyError', msg='An Error occurred')
+     Traceback (most recent call last):
+       File "<stdin>", line 1, in <module>
+     MyError: An Error occurred
+
+    '''
+    def __new__(cls, msg, name=''):
+        Error.__name__ = name
+        return super(Error, cls).__new__(cls, msg)
+
+    def __init__(self, **kwargs):
+        pass
+
+"""
+
+
 
 
 
@@ -590,7 +660,7 @@ class Style:
             self.BG = BG.lower()
             #style = style.lower()
         except:
-            pass        
+            pass
         if color == 'default':
             self.color = 7 #188
         self.text = text
@@ -605,14 +675,15 @@ class Style:
             return self.content+other
         else:
             return self.content+other.content
+    '''
     def __mul__(self, nom):
         return self.content*nom
     def __getitem__(self, index):
         return f'{fg(self.color)}{bg(self.BG)}{self.text}'+self.content[index]+attr(0)
-    
+    '''
 
     @staticmethod
-    def print(text='', color='default', BG='default', style='None', end='\n'):
+    def print(text='', color='default', BG='default', style=None, end='\n'):
         '''
         text(text='Hello World',color='red',BG='white')
         output ==> 'Hello World' (With red color and white BG)
@@ -622,7 +693,7 @@ class Style:
         try:
             color = color.lower()
             BG = BG.lower()
-            style = style.lower()
+            style = style.lower()  if style and type(style)==str  else 0
         except:
             raise
         
@@ -665,6 +736,25 @@ class Style:
     def switch_default():
         '''Switch Terminal Attributes to its defaults'''
         print('%s' % (attr(0)), end='')
+    reset = switch_default
+
+    @staticmethod
+    def log_success(text, color='green', BG='default', style=None):
+        globals()['style'].print(text, color, BG, style=style)
+    @staticmethod
+    def log_info(text, color='grey_93', BG='default', style=None):
+        globals()['style'].print(text, color, BG, style=style)
+    @staticmethod
+    def log_warning(text, color='gold_3a', BG='default', style=None):
+        globals()['style'].print(text, color, BG, style=style)
+    @staticmethod
+    def log_error(text, color='red', BG='default', style=None):
+        globals()['style'].print(text, color, BG, style=style)
+    @staticmethod
+    def log_critical(text, color='red_1', BG='default', style='bold'):
+        globals()['style'].print(text, color, BG, style=style)
+
+
 style = Style
 
 class Record:
@@ -727,6 +817,11 @@ class Record:
         self.laps = []
         if reset_start:
             self.__start = time.time()
+    def last_lap(self, save=True):
+        ret = (self.lap(False)-self.laps[-1]) if self.laps else self.lap(False)
+        if save:
+            self.laps.append(self.lap())
+        return ret
 record = Record
 
 class Terminal:
