@@ -630,23 +630,23 @@ List of Functions:
 <p>&nbsp;</p>
 <h2>Recommended to:</h2>
 
- **- Using an IDE that shows Function and Class Help is highly recommended.**  **([VS Code](https://code.visualstudio.com/ "Microsoft VS Code") -** **[PyCharm](https://www.jetbrains.com/pycharm/ "Microsoft Visual Studio Code"))**
+ **- Using an IDE that shows Function and Class Help is highly recommended.**  **([VS Code](https://code.visualstudio.com/ "Microsoft VS Code") -** **[PyCharm](https://www.jetbrains.com/pycharm/ "Microsoft Visual Studio Code"))**
 
-####  - Using "from rx7 import FUNC\_or\_CLASS"
+####  - Using "from rx7 import FUNC\_or\_CLASS"
 
-####  - Using "import rx7 as rx"
+####  - Using "import rx7 as rx"
 <p>&nbsp;</p>
  Upgrade:
 ---------
 
-###&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pip install --upgrade rx7
+###&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pip install --upgrade rx7
 
- Use These Commands in Terminal:
+ Use These Commands in Terminal:
 --------------------------------
 
-###&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ rx7 color           (To show help for style class)
+###&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ rx7 color           (To show help for style class)
 
-###&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ rx7 help            (To open this page that contains help)
+###&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ rx7 help            (To open this page that contains help)
 
 Versions Information:
 ---------------------
@@ -659,18 +659,18 @@ Versions Information:
 
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.0
 
-        First number is very important bacause it's for Realy Big new features and changes.
+        First number is very important bacause it's for Realy Big new features and changes.
 
-        Second number is important but not like first number because it contains some changes and new features. (RECOMMENDED for upgrading package)
+        Second number is important but not like first number because it contains some changes and new features (RECOMMENDED for upgrading package)
 
-        But 3rd number is not important because it's for changing packege codes order and you won't lose anything if you        don't install it.
+        But 3rd number is not important because it's for changing packege codes order and you won't lose anything if you        don't install it.
 
-        _Numbers are not always in order like: 1,2,3,4,...  , Some times they are different like: 1.2.4.8,..._
+        Numbers are not always in order like: 1,2,3,4,...  , Some times they are different like: 1.2.4.8,..._
 
 Releases:
 ---------
 
-####          (+ for new features, \* for changes)
+####        (+ for new features, \* for changes)
 <table style="height: 10px; margin-left: 10px; width: 519px;" cellpadding="5">
 <tbody>
 <tr style="height: 42px;">
