@@ -11,7 +11,7 @@ s = setup(
     url="http://rx7.ir",
     packages=find_packages(),
     install_requires=['colored','psutil','requests','pyautogui','keyboard',
-                      'mouse','pyscreeze','whois'], #'win10toast'
+                      'mouse','pyscreeze','whois'], #'win10toast' #'pywin32'
     python_requires = ">= 3.4",
     author="Ramin RX7",
     author_email="rawmin.rx@gmail.com",
