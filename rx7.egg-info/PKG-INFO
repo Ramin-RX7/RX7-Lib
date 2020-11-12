@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: rx7
-Version: 2.7.0
+Version: 2.8.0
 Summary: Shortcut for most usefull functions, High API, Special Features
 Home-page: http://rx7.ir
 Author: Ramin RX7
@@ -74,6 +74,10 @@ Description: ![PyPI - License](https://img.shields.io/badge/downloads-32k%2Fmont
         <tr>
         <td style="width: 155px;">insert(tpl,ind,var)</td>
         <td style="width: 396px;">Set tpl[ind] to var. (Note that tpl[ind] will be tpl[ind+1])</td>
+        </tr>
+        <tr>
+        <td style="width: 155px;">pop(tpl,index)</td>
+        <td style="width: 396px;">Remove member with index of 'index' from a tuple</td>
         </tr>
         <tr>
         <td style="width: 155px;">wait_for(button)</td>
@@ -629,6 +633,11 @@ Description: ![PyPI - License](https://img.shields.io/badge/downloads-32k%2Fmont
         <td style="width: 155px; height: 36px;">self.replace(ind,var)</td>
         <td style="width: 417px; height: 36px;">Replace self[index] with var. (index can be int or anything thats in self</td>
         </tr>
+        <tr style="height: 36px;">
+        <td style="width: 155px; height: 36px;">self.pop(ind)</td>
+        <td style="width: 417px; height: 36px;">Remove member with index of 'index' from self</td>
+        </tr>
+        </tr>
         <tr style="height: 19.5781px;">
         <td style="width: 155px; height: 19.5781px;">self[index]=var</td>
         <td style="width: 417px; height: 19.5781px;">Set self[index] to var. (Like lists) (it does not replace)</td>
@@ -638,23 +647,23 @@ Description: ![PyPI - License](https://img.shields.io/badge/downloads-32k%2Fmont
         <p>&nbsp;</p>
         <h2>Recommended to:</h2>
         
-         **- Using an IDE that shows Function and Class Help is highly recommended.**آ آ **([VS Code](https://code.visualstudio.com/ "Microsoft VS Code")آ -** **[PyCharm](https://www.jetbrains.com/pycharm/ "Microsoft Visual Studio Code"))**
+         **- Using an IDE that shows Function and Class Help is highly recommended.**  **([VS Code](https://code.visualstudio.com/ "Microsoft VS Code") -** **[PyCharm](https://www.jetbrains.com/pycharm/ "Microsoft Visual Studio Code"))**
         
-        #### آ - Using "from rx7 import FUNC\_or\_CLASS"
+        ####  - Using "from rx7 import FUNC\_or\_CLASS"
         
-        #### آ - Using "import rx7 as rx"
+        ####  - Using "import rx7 as rx"
         <p>&nbsp;</p>
         آ Upgrade:
         ---------
         
-        ###&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pip install --upgradeآ rx7
+        ### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pip install --upgrade rx7
         
-        آ Use These Commands in Terminal:
+         Use These Commands in Terminal:
         --------------------------------
         
-        ###&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;آ $ rx7 colorآ  آ  آ  آ  آ  آ (To show help for style class)
-        
-        ###&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;آ $ rx7 helpآ  آ  آ  آ  آ  آ  (To open this page that contains help)
+        ### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;آ $ rx7 color           (To show help for style class)
+         
+        ### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;آ $ rx7 help            (To open this page that contains help)
         
         Versions Information:
         ---------------------
@@ -667,24 +676,36 @@ Description: ![PyPI - License](https://img.shields.io/badge/downloads-32k%2Fmont
         
         آ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.0
         
-        آ  آ  آ  آ  First number is very important bacause it's for Realy Big new features and changes.
+                First number is very important bacause it's for Realy Big new features and changes.
         
-        آ  آ  آ  آ  Second number is important but not like first number because it contains some changes and new features. (RECOMMENDED for upgrading package)
+                Second number is important but not like first number because it contains some changes and new features (RECOMMENDED for upgrading package)
         
-        آ  آ  آ  آ  But 3rd number is not important because it's for changing packege codes order and you won't lose anything if youآ  آ  آ  آ  don't install it.
+                But 3rd number is not important because it's for changing packege codes order and you won't lose anything if youآ  آ  آ  آ  don't install it.
         
-        آ  آ  آ  آ  _Numbers are not always in order like: 1,2,3,4,...آ  , Some times they are different like: 1.2.4.8,..._
+                Numbers are not always in order like: 1,2,3,4,...آ  , Some times they are different like: 1.2.4.8,..._
         
         Releases:
         ---------
         
-        #### آ  آ  آ  آ  آ (+ for new features, \* for changes)
+        ####        (+ for new features, \* for changes)
         <table style="height: 10px; margin-left: 10px; width: 519px;" cellpadding="5">
         <tbody>
         <tr style="height: 42px;">
         <td style="width: 119px; height: 42px; text-align: center;"><strong>Version</strong></td>
         <td style="width: 153px; height: 42px; text-align: center;"><strong>Release Date</strong></td>
         <td style="width: 513px; height: 42px; text-align: center;"><strong>New Features &amp; Changes</strong></td>
+        </tr>
+        <tr style="height: 25px;">
+        <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+        <p style="text-align: center;">2.8.0</p>
+        </td>
+        <td style="width: 153px; height: 25px; text-align: center;">11/15/2020</td>
+        <td style="width: 513px; height: 25px; text-align: center;">
+        <div style="text-align: left;">+ Decorator Class (attach_to_all ---&nbsp;Check_Type)</div>
+        <div style="text-align: left;">+ pop()</div>
+        <div style="text-align: left;">+ Tuple.pop()</div>
+        <div style="text-align: left;">+ Record.timeit()</div>
+        </td>
         </tr>
         <tr style="height: 25px;">
         <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">

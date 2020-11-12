@@ -7,15 +7,16 @@ Official Documention Will Be Added Soon.
 '''
 '''
 Written By RX
-Last Update: 10-01-2020
+Last Update: 11-13-2020
 '''
-__version__ = '2.7.0'
+__version__ = '2.8.0'
 
 '''
 TODO:
+ - Ready-obj module
  - Screen recorder
  - Make Sound
- - time.process_time()
+ - {!}time.process_time()
  - tuple.pop()
  - Tuple methods shouldnt be defined twice
  - sys.argv
@@ -27,6 +28,9 @@ TODO:
  - Developer:: reload_module -- Check_Type -- add_module_dir
  - Shutil.copy
  - Record: -EndError --- save last lap
+ - Create Local Server
+ - Threading
+ - ( win32api.LoadLibrary() - ctypes.PyDLL() )
 
  - Check 3rd-party modules imports
  - pip install update
@@ -46,6 +50,7 @@ import os
 import time
 import sys
 import subprocess
+import abc
 import random as _RANDOM
 from typing import Any, Iterable, Optional, Callable
 
@@ -325,128 +330,6 @@ def func_info(func:Callable):
         _code_ += f' (I guess "{func}" is a built-in function)'
     print(_code_)
 
-class Check_Type:
-    """
-    Function decorator for developers\n
-    Use this decorator to check if user gives right argument type\n
-    You need to annotate argument type when defining it.\n
-    Supported Types:
-    * str
-    * list
-    * set
-    * dict
-    * tuple
-    * User-Defined Objects
-    Typing Module Supported Types:
-    * Iterable
-    * Callable
-    * Generatr
-    * Container
-    * Any
-    (MORE TYPES SOON ...)
-    """
-    auto_correct = False
-
-    def __init__(self, function): 
-        self.function = function
-
-
-    def __call__(self, *args, **kwargs): 
-        special_types = ('callable', 'iterable', 'generator','container', 'any')
-
-        i=-1
-        __local__= list(locals()['args'])
-        annots= list(self.function.__annotations__.keys())
-
-        def extra_remover(correct):
-            # Typing module annots check
-            if correct.startswith('typing.'):
-                correct = correct[7:].lower()
-
-            # built-in types check
-            elif correct.startswith('<class '):
-                correct = correct[8:-2]
-
-            return correct
-
-        def check_specials(TYPE, LOCAL_I):
-            import inspect
-            wrong = ''
-            if TYPE == 'generator':
-                if inspect.isgeneratorfunction(LOCAL_I) or inspect.isgenerator(LOCAL_I):
-                    return
-                else:
-                    correct = 'generator'
-
-            elif TYPE == 'callable':
-                if callable(LOCAL_I):
-                    return
-                else:
-                    correct = 'callable'
-            
-            elif TYPE == 'iterable':
-                if type(LOCAL_I) in (list, tuple, set, str):
-                    print(type(LOCAL_I))
-                    return
-                else:
-                    correct = 'iterable'
-
-            elif TYPE == 'container':
-                if type(LOCAL_I) in (list,set,dict,tuple):
-                    return
-                else:
-                    correct = 'container'
-
-            elif TYPE == 'any':
-                return
-
-            wrong = extra_remover(str(type(LOCAL_I))) if not wrong else wrong
-            func_name = self.function.__name__
-            Error= TypeError(f"'{func_name}()' argument '{ARG}' must be '{correct}' (not '{wrong}')")
-            raise Error
-
-        for ARG in annots:
-            i += 1
-            try:
-                LOCAL_I = __local__[i]
-                correct = str(self.function.__annotations__[ARG])
-                
-                '''if correct.startswith('typing.Union'):
-                    correct = eval(correct[12:])
-                if type(correct) != list:
-                    correct = [correct]'''
-
-                correct = extra_remover(correct)
-                
-                if correct in special_types:
-                    print(type(LOCAL_I))
-                    check_specials(correct,LOCAL_I)
-                
-                # Builtins and other Libraries objects
-                elif not eval(correct) == type(LOCAL_I):
-                    if Check_Type.auto_correct:
-                        try:
-                            __local__[i] = eval(correct)(LOCAL_I)
-                            continue
-                        except ValueError:
-                            pass
-
-                    wrong = extra_remover(str(type(LOCAL_I)))
-                    #correct = str(self.function.__annotations__[ARG])#[8:-2]
-                    correct = extra_remover(correct)
-                    func_name = self.function.__name__
-                    Error= TypeError(f"'{func_name}()' argument '{ARG}' must be '{correct}' (not '{wrong}')")
-                    raise Error
-            
-            except (ValueError,IndexError):
-                pass#raise
-            except NameError:
-                raise
-
-            
-        
-        return self.function(*__local__, **kwargs)
-
 def Progressbar(
     total=60, dashes_nom=30, dashes_shape=' ', complete_shape='█',
     pre_text='Loading: ', left_port='|', right_port='|'):
@@ -471,8 +354,8 @@ def Progressbar(
     echo.write("\n")
     echo.flush()
 
-_MOUSE_X = ''
-_MOUSE_Y = ''
+_MOUSE_X = 0
+_MOUSE_Y = 0
 def pixel_color(x=_MOUSE_X, y=_MOUSE_Y) -> tuple:
     '''
     Function to return color of pixel of screen in RGB
@@ -508,6 +391,8 @@ def import_module(path):
     mod = importlib.util.module_from_spec(spec)
     loader.exec_module(mod)
     return mod
+
+
 
 """
 def screen_recorder():
@@ -822,6 +707,11 @@ class Record:
         if save:
             self.laps.append(self.lap())
         return ret
+    @staticmethod
+    def timit(code,setup,timer,number,globals_):
+        import timeit
+        return timeit.timeit(code,setup,timer,number,globals_)
+
 record = Record
 
 class Terminal:
@@ -846,5 +736,159 @@ class Terminal:
         return subprocess.getoutput(command)
 terminal = Terminal
 
+class Decorator:
+
+    class Check_Type:
+        """
+         Function decorator for developers\n
+         Use this decorator to check if user gives right argument type\n
+         You need to annotate argument type when defining it.\n
+         Supported Types:
+         * str
+         * list
+         * set
+         * dict
+         * tuple
+         * User-Defined Objects
+         Typing Module Supported Types:
+         * Iterable
+         * Callable
+         * Generatr
+         * Container
+         * Any
+         (MORE TYPES SOON ...)
+         '''
+         sig = signature(foo)
+         print(str(sig))
+         print(str(sig.parameters['b']))
+         print(sig.parameters['b'].annotation)
+         ####
+         sig = signature(foo)
+         for param in sig.parameters.values():
+             if (param.kind == param.KEYWORD_ONLY and
+                             param.default is param.empty):
+                 print('Parameter:', param.annotation)    
+        '''
+        """
+        auto_correct = False
+
+        def __init__(self, function): 
+            self.function = function
+
+
+        def __call__(self, *args, **kwargs): 
+            special_types = ('callable', 'iterable', 'generator','container', 'any')
+
+            i=-1
+            __local__= list(locals()['args'])
+            annots= list(self.function.__annotations__.keys())
+
+            def extra_remover(correct):
+                # Typing module annots check
+                if correct.startswith('typing.'):
+                    correct = correct[7:].lower()
+
+                # built-in types check
+                elif correct.startswith('<class '):
+                    correct = correct[8:-2]
+
+                return correct
+
+            def check_specials(TYPE, LOCAL_I):
+                import inspect
+                wrong = ''
+                if TYPE == 'generator':
+                    if inspect.isgeneratorfunction(LOCAL_I) or inspect.isgenerator(LOCAL_I):
+                        return
+                    else:
+                        correct = 'generator'
+
+                elif TYPE == 'callable':
+                    if callable(LOCAL_I):
+                        return
+                    else:
+                        correct = 'callable'
+                
+                elif TYPE == 'iterable':
+                    if type(LOCAL_I) in (list, tuple, set, str):
+                        print(type(LOCAL_I))
+                        return
+                    else:
+                        correct = 'iterable'
+
+                elif TYPE == 'container':
+                    if type(LOCAL_I) in (list,set,dict,tuple):
+                        return
+                    else:
+                        correct = 'container'
+
+                elif TYPE == 'any':
+                    return
+
+                wrong = extra_remover(str(type(LOCAL_I))) if not wrong else wrong
+                func_name = self.function.__name__
+                Error= TypeError(f"'{func_name}()' argument '{ARG}' must be '{correct}' (not '{wrong}')")
+                raise Error
+
+            for ARG in annots:
+                i += 1
+                try:
+                    LOCAL_I = __local__[i]
+                    correct = str(self.function.__annotations__[ARG])
+                    
+                    '''if correct.startswith('typing.Union'):
+                        correct = eval(correct[12:])
+                    if type(correct) != list:
+                        correct = [correct]'''
+
+                    correct = extra_remover(correct)
+                    
+                    if correct in special_types:
+                        print(type(LOCAL_I))
+                        check_specials(correct,LOCAL_I)
+                    
+                    # Builtins and other Libraries objects
+                    elif not eval(correct) == type(LOCAL_I):
+                        if Check_Type.auto_correct:
+                            try:
+                                __local__[i] = eval(correct)(LOCAL_I)
+                                continue
+                            except ValueError:
+                                pass
+
+                        wrong = extra_remover(str(type(LOCAL_I)))
+                        #correct = str(self.function.__annotations__[ARG])#[8:-2]
+                        correct = extra_remover(correct)
+                        func_name = self.function.__name__
+                        Error= TypeError(f"'{func_name}()' argument '{ARG}' must be '{correct}' (not '{wrong}')")
+                        raise Error
+                
+                except (ValueError,IndexError):
+                    pass#raise
+                except NameError:
+                    raise
+
+                
+            
+            return self.function(*__local__, **kwargs)
+
+    decorator_all:Callable = None
+    @staticmethod
+    def attach_to_all(cls):
+        import inspect
+        for name, method in inspect.getmembers(cls):
+            if (not inspect.ismethod(method) and not inspect.isfunction(method)) or inspect.isbuiltin(method):
+                continue
+            #print("Decorating function %s" % name)
+            setattr(cls, name, Decorator.decorator_all(method))
+        return cls
+    
+    abstractclassmethod = abc.abstractclassmethod
+    abstractmethod = abc.abstractmethod
+    abstractstaticmethod = abc.abstractstaticmethod
+decorator = Decorator
+Check_Type = Decorator.Check_Type
+ABC     = abc.ABC
+ABCMeta = abc.ABCMeta
 
 #END
