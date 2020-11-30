@@ -21,3 +21,4 @@ elif args[1] in ('-h','--help','help'):
     webbrowser.open_new_tab(f'https://pypi.org/project/rx7')
 else:
     wrong()
+ 
