@@ -10,7 +10,7 @@ Written By RX
 Last Update: 12-01-2020
 '''
 __version__ = '2.9.0'
-
+ 
 
 # Decorator.attach_to_all in doc!!!  ---  sys.argv  ---  -record.EndError
 # (ABC/ABCMeta)?   ---   overload (decorator.overload)
