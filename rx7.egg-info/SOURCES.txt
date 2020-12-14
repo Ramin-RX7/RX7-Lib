@@ -2,9 +2,6 @@ COLORS.html
 MANIFEST.in
 README.md
 setup.py
-rx7/Filex.py
-rx7/System.py
-rx7/Tuple_tools.py
 rx7/__init__.py
 rx7/__main__.py
 rx7/removed.py

@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 s = setup(
     name="rx7",
-    version="2.8.0",
+    version="2.9.0",
     license="MIT",
     description="Shortcut for most usefull functions, High API, Special Features",
     url="http://rx7.ir",
