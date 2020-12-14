@@ -7,16 +7,14 @@ Official Documention Will Be Added Soon.
 '''
 '''
 Written By RX
-Last Update: 12-01-2020
+Last Update: 12-15-2020
 '''
 __version__ = '2.9.0'
 
 
-# Decorator.attach_to_all in doc!!!  ---  sys.argv  ---  -record.EndError
-# (ABC/ABCMeta)?   ---   overload (decorator.overload)
-
 '''
 TODO:
+ - getpass && Input  in  IO
  - socket.socket()
  - Error in MEMBERS.all_all_*
  - Screen recorder
@@ -57,9 +55,9 @@ import sys
 import subprocess
 import abc
 import shutil
-import random as _RANDOM
+import random as _random
 import typing as _typing
-from typing import Any,Iterable,Optional,Callable,List,Union
+from typing import (Any,Iterable,Optional,Callable,List,Union)
 
 import psutil
 
@@ -203,30 +201,6 @@ def convert_bytes(num:int) -> str :
         if num < 1024.0:
             return "%3.1f %s" % (num, x)
         num /= 1024.0
-
-def Input(prompt:str ='', default_value:str =''):
-    '''
-    Make Default Value For Your Input!  
-    (THIS ONLY WORK ON WINDOWS (SORRY))
-    prompt is what you want and it's input(prompt) .
-    default_value is what there should be after prompt.
-    E.g: 
-       >>> Input('Is rx7 Library Easy to Learn?  ', 'Yes')
-       Is rx7 Library Easy to Learn?  Yes
-    '''
-
-    import win32console
-    _stdin = win32console.GetStdHandle(win32console.STD_INPUT_HANDLE)
-    keys = []
-    for c in str(default_value):
-        evt = win32console.PyINPUT_RECORDType(win32console.KEY_EVENT)
-        evt.Char = c
-        evt.RepeatCount = 1
-        evt.KeyDown = True
-        keys.append(evt)
-    _stdin.WriteConsoleInput(keys)
-    return input(str(prompt))
-default_input = Input
 
 def restart_app(python3:bool = False):
     '''
@@ -391,14 +365,6 @@ def pixel_color(x=_MOUSE_X, y=_MOUSE_Y) -> tuple:
     COLOR = PIXEL.getcolors()
     return COLOR[0][1]
 
-def getpass(prompt):
-    '''
-    Prompt for a password, with echo turned off.
-    '''
-    import getpass as Getpass
-    return Getpass.getpass(prompt=prompt)
-password_input = getpass
-
 def import_module(path):
     '''
     Import modules from files even if they are not .py
@@ -544,35 +510,35 @@ class Random:
             raise TypeError('k must be integer.')
         
         if k == 1:
-            return _RANDOM.choice(iterator)
+            return _random.choice(iterator)
         elif k > 1:
             if duplicate:
-                return _RANDOM.choices(iterator,k=k)
+                return _random.choices(iterator,k=k)
             else:
-                return _RANDOM.sample(iterator,k=k)
+                return _random.sample(iterator,k=k)
         else:
             raise ValueError('k Must Be Higher 0')     
     
     @staticmethod
     def integer(first_number,last_number):
         '''
-        Return _RANDOM integer in range [a, b], including both end points.
+        Return random integer in range [a, b], including both end points.
         '''
-        return _RANDOM.randint(first_number,last_number)
+        return _random.randint(first_number,last_number)
     
     @staticmethod
     def O1(decimal_number=17):
         '''
         return x in the interval [0, 1)
         '''
-        return round(_RANDOM.random(),decimal_number)
+        return round(_random.random(),decimal_number)
     
     @staticmethod
     def number(first_number,last_number):
         '''
         return x in the interval [F, L]
         '''
-        return _RANDOM.uniform(first_number,last_number)
+        return _random.uniform(first_number,last_number)
 
     @staticmethod
     def shuffle(iterable):
@@ -582,7 +548,7 @@ class Random:
         real_type = type(iterable)
         new_iterable = list(iterable)
 
-        _RANDOM.shuffle(new_iterable)
+        _random.shuffle(new_iterable)
 
         if real_type in (set,tuple):
             return real_type(new_iterable)
@@ -1116,6 +1082,7 @@ class System:
         return psutil.pid_exists(pid)
 system = System
 
+
 from colored import fg, bg, attr
 class Style:
     '''
@@ -1457,9 +1424,7 @@ class Decorator:
             setattr(cls, name, Decorator.decorator_all(method))
         return cls
     
-    abstractclassmethod = abc.abstractclassmethod
     abstractmethod = abc.abstractmethod
-    abstractstaticmethod = abc.abstractstaticmethod
 
     _registered_functions = {}  #:Dict[str, Any]
     class _MultiMethod(object):
@@ -1488,7 +1453,7 @@ Check_Type = Decorator.Check_Type
 overload   = Decorator.overload
 
 
-class io:
+class IO:
     
     @staticmethod
     def wait_for_input(prompt,SS:list=[], ignore_case=False):
@@ -1524,29 +1489,41 @@ class io:
     def yesno_input(prompt,default=None):
         error= not bool(default)
         return io.selective_input(prompt,['y','yes','n','no'],default,error)
-IO = io
+    @staticmethod
+    def Input(prompt:str ='', default_value:str =''):
+        '''
+        Make Default Value For Your Input!  
+        (THIS ONLY WORK ON WINDOWS (SORRY))
+        prompt is what you want and it's input(prompt) .
+        default_value is what there should be after prompt.
+        E.g: 
+        >>> Input('Is rx7 Library Easy to Learn?  ', 'Yes')
+        Is rx7 Library Easy to Learn?  Yes
+        '''
+
+        import win32console
+        _stdin = win32console.GetStdHandle(win32console.STD_INPUT_HANDLE)
+        keys = []
+        for c in str(default_value):
+            evt = win32console.PyINPUT_RECORDType(win32console.KEY_EVENT)
+            evt.Char = c
+            evt.RepeatCount = 1
+            evt.KeyDown = True
+            keys.append(evt)
+        _stdin.WriteConsoleInput(keys)
+        return input(str(prompt))
+    @staticmethod
+    def getpass(prompt):
+        '''
+        Prompt for a password, with echo turned off.
+        '''
+        import getpass as Getpass
+        return Getpass.getpass(prompt=prompt)
+io = IO
+Input   = default_input  = io.Input
+getpass = password_input = io.getpass
 
 
-class Types:
-    Any         =  _typing.Any
-    Callable    =  _typing.Callable
-    Container   =  _typing.Container
-    Dict        =  _typing.Dict
-    Generator   =  _typing.Generator
-    Iterable    =  _typing.Iterable
-    Iterator    =  _typing.Iterator
-    List        =  _typing.List
-    Mapping     =  _typing.Mapping
-    NamedTuple  =  _typing.NamedTuple
-    NoReturn    =  _typing.NoReturn
-    Optional    =  _typing.Optional
-    OrderedDict =  _typing.OrderedDict
-    Set         =  _typing.Set
-    Text        =  _typing.Text
-    Tuple       =  _typing.Tuple
-    Type        =  _typing.Type
-types = Types
-    
 class Tuple:
     '''
     (Note That This is tuple of RX7 Module So it Has More Features!)\n
@@ -1635,6 +1612,7 @@ class Tuple:
     #############################
 
 
+_Auto = 0
 class _Lang:
 
     class Constant:
@@ -1672,10 +1650,10 @@ class _Lang:
             return obj in self.__members
         def __bool__(self):
             return bool(len(self.__members))
-        '''
+        #'''
         def __hash__(self):
-            return hash(self.__members)
-        '''
+            return hash(tuple(['Constant',len(self)]+list(self.__members)))
+        #'''
         def __len__(self):
             #if type(self.__members) == tuple:
                 return len(self.__members)
@@ -1699,12 +1677,20 @@ class _Lang:
 
         __Type_Error = "Array of type '{}' does not accept object with type '{}'"
 
-        def __init__(self,TYPE,*args):
+        def __init__(self,*args,type_=_Auto,size=_Auto):
             self.__members = []
-            self.__TYPE = TYPE
+            if type_:
+                self.__TYPE = type_
+            else:
+                self.__TYPE = type(args[0])
             self.__TYPE_NAME  = self.__TYPE.__name__
+            if size:
+                self.__SIZE = size
+            else:
+                self.__SIZE = len(args)
+
             for obj in args:
-                if type(obj) == TYPE:
+                if type(obj) == self.__TYPE:
                     self.__members.append(obj)
                 else:
                     raise ValueError(_Lang.Array.__Type_Error.format(self.__TYPE_NAME,type(obj).__name__))
@@ -1746,6 +1732,49 @@ class _Lang:
         def pop(self,index=-1):
             self.__members.pop(index)    
     array = Array
+
+
+    class Types:
+        Str         =  str
+        Int         =  int
+        Float       =  float
+        Set         =  set
+        Tuple       =  tuple
+        Dict        =  dict
+        List        =  list
+        Bool        =  bool
+        Bytes       =  bytes
+
+        Class       =  type
+        Type        =  type
+        Object      =  object
+
+        Lambda      =  type(lambda: None)
+        Function    =  Lambda #type(lambda: None)
+
+        #Constant   =  type(_Lang.Constant(1))
+        #Array      =  type(_Lang.Array(1,1))
+
+        Any         =   type#_typing.Any
+        Callable    =  _typing.Callable
+        Container   =  _typing.Container
+        Generator   =   Lambda #type(_f) #Not Built-in(s)   #_types.GeneratorType || _typing.Generator
+        Iterable    =  _typing.Iterable
+        Iterator    =  _typing.Iterator
+        NoReturn    =  _typing.NoReturn
+        Optional    =  _typing.Optional
+        BuiltinFunction = type(len)
+        BuiltinMethod   = type([].append)
+        Module = type(_typing)
+        Method = type(globals()['Tuple']().force)
+        #Mapping     =  _typing.Mapping
+        #OrderedDict =  _typing.OrderedDict
+        #Text        =  str
+        #Union  = _typing.Union
+        #_types.AsyncGeneratorType
+    types = Types
+setattr(_Lang,'Const',type(_Lang.Constant(1)))
+setattr(_Lang,'Array',type(_Lang.Array(1,1)))
 
 
 #END
