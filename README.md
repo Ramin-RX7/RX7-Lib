@@ -1,5 +1,11 @@
 ![PyPI - License](https://img.shields.io/badge/downloads-32k%2Fmonth-brightgreen?style=plastic) ![PyPI - License](https://img.shields.io/pypi/l/rx7?color=orange&style=plastic) ![PyPI - License](https://img.shields.io/badge/status-stable-success?style=plastic)
 
+## <i>rx7 v3.0 is out now!</i>
+### &nbsp;&nbsp;&nbsp; Class "Internet" and "DateTime" has been added
+### &nbsp;&nbsp;&nbsp; check it now with:
+      pip install --upgrade rx7
+-------------------------------------------------------- 
+
 rx7 Library  is here to help you make your code shorter!
 --------------------------------------------------------
 
@@ -9,9 +15,11 @@ rx7 Library  is here to help you make your code shorter!
 
 ### \- Most Usefull function and methods are collected.
 
-###  **_Are you tired of importing lots of module in one script? rx7 can help you a lot_**
+###  **_Are you tired of importing lots of module in one script? "rx7" can help you a lot_**
 
-List of Functions:
+
+<p>&nbsp;</p>
+List of Variables:
 ------------------
 <table style="height: 471px; width: 567px;">
   <tbody>
@@ -222,10 +230,12 @@ List of Functions:
   </tbody>
 </table>
 
-<h2>&nbsp;</h2>
-<h2>List of Classes:</h2>
-<h3>&nbsp;Class rand:&nbsp; &nbsp;<em>Random&nbsp;Variable&nbsp;Generator&nbsp;Class.</em></h3>
 
+<p>&nbsp;</p>
+
+<h2>List of Classes:</h2>
+
+<h3>&nbsp;Class random:&nbsp; &nbsp;<em>Random Variable Generator Class.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
   <tbody>
     <tr>
@@ -252,8 +262,8 @@ List of Functions:
 </table>
 
 <p>&nbsp;</p>
-<h3>&nbsp; Class system:&nbsp; &nbsp;<em>Some system actions and information.</em></h3>
 
+<h3>&nbsp; Class system:&nbsp; &nbsp;<em>Some system actions and information.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
   <tbody>
     <tr>
@@ -380,8 +390,8 @@ List of Functions:
 </table>
 
 <p>&nbsp;</p>
-<h3>&nbsp; Class files: (Static<strong style="font-size: 14px;">&nbsp;methods)&nbsp;</strong><em style="font-size: 14px;">Actions and information about files.</em></h3>
 
+<h3>&nbsp; Class files: (Static<strong style="font-size: 14px;">&nbsp;methods)&nbsp;</strong><em style="font-size: 14px;">Actions and information about files.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
   <tbody>
     <tr>
@@ -546,8 +556,10 @@ List of Functions:
     </tr>
     </tbody>
     </table>
-    <p>&nbsp;</p>
-    <h3>&nbsp;Class style:&nbsp; &nbsp; <em>Changing text Color,BG &amp; Style. (Read Doc String)</em></h3>
+
+<p>&nbsp;</p>
+
+<h3>&nbsp;Class style:&nbsp; &nbsp; <em>Changing text Color,BG &amp; Style. (Read Doc String)</em></h3>
     <table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
     <tbody>
     <tr style="height: 15.0625px;">
@@ -588,6 +600,7 @@ List of Functions:
 </table>
 
 <p>&nbsp;</p>
+
 <h3>&nbsp;Class record:&nbsp; &nbsp;<em>Record time of a certain actions. (Read Doc String)</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
   <tbody>
@@ -617,9 +630,35 @@ List of Functions:
     </tr>
     </tbody>
     </table>
-    <p>&nbsp;</p>
-    <h2>List of Objects:</h2>
-    <h3>&nbsp; &nbsp; &nbsp;object Tuple:<strong>&nbsp;</strong><em>It's like built-in tuple except it's faster and it has more features!</em></h3>
+
+<p>&nbsp;</p>
+<h3>&nbsp;Class Decorator:&nbsp; &nbsp;<em>Useful decorators you might want to use</em></h3>
+<table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
+  <tbody>
+    <tr style="height: 18px;">
+    <td style="width: 173px; height: 18px;">Check_Type</td>
+    <td style="width: 387px; height: 18px;">Decorator that raise TypeError if function argument type is wrong (Read Help)</td>
+    </tr>
+    <tr style="height: 18px;">
+    <td style="width: 173px; height: 18px;">overload</td>
+    <td style="width: 387px; height: 18px;">Make your function accept different kind of argument and structure with defining it more than once</td>
+    </tr>
+    <tr style="height: 18px;">
+    <td style="width: 173px; height: 18px;">attach_to_all</td>
+    <td style="width: 387px; height: 18px;">Attach Decorator.decorator_all to all functions of a class (Class decorator)</td>
+    <tr style="height: 18px;">
+    <td style="width: 173px; height: 18px;">abstractmethod</td>
+    <td style="width: 387px; height: 18px;">A decorator indicating abstract methods.</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>List of Objects:</h2>
+  
+<h3>&nbsp; &nbsp; &nbsp;object Tuple:<strong>&nbsp;</strong><em>It's like built-in tuple except it's faster and it has more features!</em></h3>
     <h4>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Descryption:</h4>
     <p><em>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</em>Tuple is here with built-in tuple object and much more features.</p>
     <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; You can add, remove, replace or even use __setitem__ Tuple object.</p>
@@ -664,26 +703,6 @@ List of Functions:
 </table>
 
 <p>&nbsp;</p>
-<h3>&nbsp;Class Decorator:&nbsp; &nbsp;<em>Useful decorators you might want to use</em></h3>
-<table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
-  <tbody>
-    <tr style="height: 18px;">
-    <td style="width: 173px; height: 18px;">Check_Type</td>
-    <td style="width: 387px; height: 18px;">Decorator that raise TypeError if function argument type is wrong (Read Help)</td>
-    </tr>
-    <tr style="height: 18px;">
-    <td style="width: 173px; height: 18px;">overload</td>
-    <td style="width: 387px; height: 18px;">Make your function accept different kind of argument and structure with defining it more than once</td>
-    </tr>
-    <tr style="height: 18px;">
-    <td style="width: 173px; height: 18px;">attach_to_all</td>
-    <td style="width: 387px; height: 18px;">Attach Decorator.decorator_all to all functions of a class (Class decorator)</td>
-    <tr style="height: 18px;">
-    <td style="width: 173px; height: 18px;">abstractmethod</td>
-    <td style="width: 387px; height: 18px;">A decorator indicating abstract methods.</td>
-    </tr>
-  </tbody>
-</table>
 
 <p>&nbsp;</p>
 <h2>Recommended to:</h2>
@@ -711,11 +730,11 @@ Versions Information:
 
         Releases are like this:        1.0.0
 
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.1
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.1
 
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   ⋮
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   ⋮
 
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.0
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.0
 
         First number is very important bacause it's for Realy Big new features and changes.
 
@@ -737,12 +756,28 @@ Releases:
 <td style="width: 513px; height: 42px; text-align: center;"><strong>New Features &amp; Changes</strong></td>
 </tr>
 
+
+<tr style="height: 25px;">
+<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+<p style="text-align: center;">3.0.0</p>
+</td>
+<td style="width: 153px; height: 25px; text-align: center;">01/09/2021</td>
+<td style="width: 513px; height: 25px; text-align: center;">
+<div style="text-align: left;"><b>+ class Internet</b></div>
+<div style="text-align: left;"><b>+ class DateTime</b></div>
+<div style="text-align: left;">+ "Style.log" now has time prefix</div>
+<div style="text-align: left;">+ call = call_later</div>
+<div style="text-align: left;">* io.selective_input choices can be dict</div>
+<div style="text-align: left;">+ System.mac_address()</div>
+</td>
 </tr>
+
+
 <tr style="height: 25px;">
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
 <p style="text-align: center;">2.9.0</p>
 </td>
-<td style="width: 153px; height: 25px; text-align: center;">12/15/2020</td>
+<td style="width: 153px; height: 25px; text-align: center;">15/12/2020</td>
 <td style="width: 513px; height: 25px; text-align: center;">
 <div style="text-align: left;">+ Decorator Class (attach_to_all ---&nbsp;Check_Type)</div>
 <div style="text-align: left;">* IMPORT SPEED IS 20x FASTER!</div>
@@ -757,7 +792,7 @@ Releases:
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
 <p style="text-align: center;">2.8.0</p>
 </td>
-<td style="width: 153px; height: 25px; text-align: center;">11/15/2020</td>
+<td style="width: 153px; height: 25px; text-align: center;">15/11/2020</td>
 <td style="width: 513px; height: 25px; text-align: center;">
 <div style="text-align: left;">+ Decorator Class (attach_to_all ---&nbsp;Check_Type)</div>
 <div style="text-align: left;">+ pop()</div>
@@ -769,7 +804,7 @@ Releases:
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
 <p style="text-align: center;">2.7.0</p>
 </td>
-<td style="width: 153px; height: 25px; text-align: center;">10/15/2020</td>
+<td style="width: 153px; height: 25px; text-align: center;">15/10/2020</td>
 <td style="width: 513px; height: 25px; text-align: center;">
 <div style="text-align: left;">+ getpass()</div>
 <div style="text-align: left;">+ style.log_ Family</div>
@@ -782,7 +817,7 @@ Releases:
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
 <p style="text-align: center;">2.6.0</p>
 </td>
-<td style="width: 153px; height: 25px; text-align: center;">10/1/2020</td>
+<td style="width: 153px; height: 25px; text-align: center;">01/10/2020</td>
 <td style="width: 513px; height: 25px; text-align: center;">
 <div style="text-align: left;">+ system.cpu_percent()</div>
 <div style="text-align: left;">+ system.pid_exists()</div>
@@ -794,7 +829,7 @@ Releases:
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
 <p style="text-align: center;">2.5.0</p>
 </td>
-<td style="width: 153px; height: 25px; text-align: center;">09/15/2020</td>
+<td style="width: 153px; height: 25px; text-align: center;">15/09/2020</td>
 <td style="width: 513px; height: 25px; text-align: center;">
 <div style="text-align: left;">+ Check_Type decorator</div>
 <div style="text-align: left;">+ system.pyshell_execute_bit()</div>
@@ -806,7 +841,7 @@ Releases:
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
 <p style="text-align: center;">2.4.0</p>
 </td>
-<td style="width: 153px; height: 25px; text-align: center;">09/01/2020</td>
+<td style="width: 153px; height: 25px; text-align: center;">01/09/2020</td>
 <td style="width: 513px; height: 25px; text-align: center;">
 <div style="text-align: left;">* rand -&gt; random</div>
 <div>
@@ -825,7 +860,7 @@ Releases:
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
 <p style="text-align: center;">2.3.0</p>
 </td>
-<td style="width: 153px; height: 25px; text-align: center;">08/19/2020</td>
+<td style="width: 153px; height: 25px; text-align: center;">19/08/2020</td>
 <td style="width: 513px; height: 25px; text-align: center;">
 <p style="text-align: left;">+ extract()</p>
 <p style="text-align: left;">+ screenshot()</p>
@@ -836,7 +871,7 @@ Releases:
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
 <p style="text-align: center;">2.2.0</p>
 </td>
-<td style="width: 153px; height: 25px; text-align: center;">08/03/2020</td>
+<td style="width: 153px; height: 25px; text-align: center;">03/08/2020</td>
 <td style="width: 513px; height: 25px; text-align: center;">
 <p style="text-align: left;">+ download()</p>
 <p style="text-align: left;">+ system.ip_website()</p>
@@ -847,7 +882,7 @@ Releases:
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
 <p style="text-align: center;">2.1.0</p>
 </td>
-<td style="width: 153px; height: 25px; text-align: center;">07/15/2020</td>
+<td style="width: 153px; height: 25px; text-align: center;">15/07/2020</td>
 <td style="width: 513px; height: 25px; text-align: center;">
 <p style="text-align: left;">* style class better performance in linux</p>
 <p style="text-align: left;">+&nbsp;<span style="text-align: center;">MEMBERS&nbsp;group&nbsp;in&nbsp;files&nbsp;class</span></p>
@@ -860,7 +895,7 @@ Releases:
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
 <p style="text-align: center;"><strong>2.0.0</strong></p>
 </td>
-<td style="width: 153px; height: 25px; text-align: center;"><strong>07/01/2020</strong></td>
+<td style="width: 153px; height: 25px; text-align: center;"><strong>01/07/2020</strong></td>
 <td style="width: 513px; height: 25px; text-align: center;">
 <p style="text-align: left;">+ <strong>Tuple object&nbsp; &nbsp;---&nbsp; &nbsp;rxobject</strong></p>
 <p style="text-align: left;">+ record.reset()&nbsp; &nbsp;---&nbsp; &nbsp;record.lap new arg</p>
@@ -878,7 +913,7 @@ Releases:
 </tr>
 <tr style="height: 25px;">
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.9.0</td>
-<td style="width: 153px; height: 25px;">&nbsp; 06/09/2020</td>
+<td style="width: 153px; height: 25px;">&nbsp; 09/06/2020</td>
 <td style="width: 513px; height: 25px; text-align: center;">
 <p style="text-align: left;">* re() --&gt; repeat()</p>
 <p style="text-align: left;">+ New Methods of System Class:&nbsp; ip_global(),&nbsp;ip_local(),&nbsp;ram_free(), ram_percent(),&nbsp;ram_total(),&nbsp;ram_used(), boot_time()</p>
@@ -887,7 +922,7 @@ Releases:
 </tr>
 <tr style="height: 25px;">
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.8.0</td>
-<td style="width: 153px; height: 25px; text-align: center;">05/24/2020</td>
+<td style="width: 153px; height: 25px; text-align: center;">24/05/2020</td>
 <td style="width: 513px; height: 25px; text-align: center;">
 <div style="text-align: left;">+ style.switch_default()</div>
 <div>
@@ -904,7 +939,7 @@ Releases:
 </tr>
 <tr style="height: 25px;">
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.7.0</td>
-<td style="width: 153px; height: 25px; text-align: center;">&nbsp; 05/08/2020</td>
+<td style="width: 153px; height: 25px; text-align: center;">&nbsp; 08/05/2020</td>
 <td style="width: 513px; height: 25px; text-align: center;">
 <div>
 <div style="text-align: left;">+ call_later()&nbsp;&nbsp;-&nbsp;&nbsp;wait_for()</div>
@@ -923,7 +958,7 @@ Releases:
 </tr>
 <tr style="height: 25px;">
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.5.0</td>
-<td style="width: 153px; height: 25px; text-align: center;">04/21/2020</td>
+<td style="width: 153px; height: 25px; text-align: center;">21/04/2020</td>
 <td style="width: 513px; height: 25px; text-align: left;">
 <div>
 <div>
@@ -939,7 +974,9 @@ Releases:
 </tr>
 <tr style="height: 25px;">
 <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.3.0</td>
-<td style="width: 153px; height: 25px;">&nbsp;04/08/2020</td>
+<td style="width: 153px; height: 25px;">
+<p style="text-align: center;">08/04/2020</p>
+</td>
 <td style="width: 513px; height: 25px; text-align: center;">
 <div style="text-align: left;">+ __init__ &amp; read &amp; write &amp; content&nbsp; func&nbsp;of&nbsp;file&nbsp;class</div>
 <div style="text-align: left;">* Prgoressbar&nbsp;default&nbsp;args</div>
@@ -950,7 +987,7 @@ Releases:
 <p style="text-align: center;">1.0.0</p>
 </td>
 <td style="width: 153px; height: 25px;">
-<p style="text-align: center;">03/18/2020</p>
+<p style="text-align: center;">18/03/2020</p>
 </td>
 <td style="width: 513px; height: 25px; text-align: center;">####</td>
 </tr>

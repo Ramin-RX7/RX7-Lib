@@ -7,41 +7,57 @@ Official Documention Will Be Added Soon.
 '''
 '''
 Written By RX
-Last Update: 12-15-2020
+Last Update: 1-15-2021
 '''
-__version__ = '2.9.0'
- 
+__version__ = '3.0.0'
+
+"""
+< Release Changes >
+  - style.log_ now have all time prefix by default
+  - call=call_later
+  - system.mac_address
+  - io.selective_input choices can be dict
+  - Class Internet
+  - class date_time
+"""
+
 
 '''
 TODO:
- - getpass && Input  in  IO
+ - average()
+ DATETIME:
+     X calendar_month_st replace day will be all noms
+     - Passed Time func
+
+ - System.(copy_to_clipboard & paste_from_clipboard)
+ - Other archive files in extract
+ - Call_later **kwargs
+ - Internet:
+     default_timeout
+ - files:
+     - files.join files.dirname
+     - Error in files.MEMBERS.all_all_*
  - socket.socket()
- - Error in MEMBERS.all_all_*
  - Screen recorder
  - Make Sound
- - tuple.pop()
- - Tuple methods shouldnt be defined twice
- - style.log_ add time and prefix
- - mp3 tags                                   (v 3.0)
- - registery editor                           (v 3.0)
- - re module                                  (v 3.0)
- - Import of modules startswith _             (v 3.0)
- - Developer:: reload_module -- Check_Type -- add_module_dir
- - Record: save last lap
+ - mp3 tags                                   (v 3.x)
+ - registery editor                           (v 3.x)
+ - re module                                  (v 3.x)
+ - Developer:
+        reload_module
+        Check_Type
+        add_module_dir
  - Create Local Server
- - Threading
  - ( win32api.LoadLibrary() - ctypes.PyDLL() )
+
+ X Threading
+ - Ready-obj module
+ - !style defaults
 
  - Check 3rd-party modules imports
  - pip install update
  - Open Video
  - Open Audio
-
- - Ready-obj module
- - !No_Error func
- - !style.COLOR
- - !style defaults
- - {!}time.process_time()
 '''
 
 
@@ -49,24 +65,33 @@ TODO:
 
 #START
 
-import os
-import time
-import sys
-import subprocess
-import abc
-import shutil
-import random as _random
+import os  as _os
+import re  as _re
+import sys as _sys
+import abc as _abc
+import time   as _time
+import socket as _socket
 import typing as _typing
+import urllib as _urllib
+import shutil as _shutil
+import random as _random
+import datetime as _datetime
+import calendar as _calendar
+import requests as _requests
+import subprocess as _subprocess
+from bs4    import  BeautifulSoup
 from typing import (Any,Iterable,Optional,Callable,List,Union)
 
-import psutil
+import psutil as _psutil
 
 
 
-argv    = sys.argv
-ABC     = abc.ABC
-ABCMeta = abc.ABCMeta
 
+
+
+argv    = _sys.argv
+ABC     = _abc.ABC
+ABCMeta = _abc.ABCMeta
 
 
 
@@ -104,12 +129,14 @@ def repeat(function, n: int, **kwargs):
 
 def wait(seconds):
     '''
-    Use this if you want your program wait for a certain time.
-    Example:
-        wait(3)
-        ==> "Nothing happen and there will be no calculation for 3 seconds"
+    Use this if you want your program wait for a certain _time.
+
+    Parameters
+    ----------
+    seconds : [int/float]
+        time to sleep program in seconds
     '''
-    time.sleep(seconds)
+    _time.sleep(seconds)
 sleep = wait
 
 def cls():
@@ -118,9 +145,9 @@ def cls():
     '''
     import platform
     if platform.system() == "Windows":
-        os.system('cls')
+        _os.system('cls')
     else:
-        os.system('clear')
+        _os.system('clear')
 clear = cls
 
 def progressbar(
@@ -135,7 +162,7 @@ def progressbar(
             Complete_Shape='#', Pre_Text='Loading')
         ==>   Loading|####------| 40/100
     '''
-    def Progressbar(it, prefix="", size=60, file=sys.stdout):
+    def Progressbar(it, prefix="", size=60, file=_sys.stdout):
         count = len(it)
         def show(j):
             x = int(size*j/count)
@@ -151,10 +178,20 @@ def progressbar(
         wait(delay)
 
 def wait_for(button:str):
-    '''
+    """
     If You Want to Wait For the User to Press a Key (Keyboard/Mouse)
      Use This Function.
-    '''
+
+    Parameters
+    ----------
+    button : str
+        Button to click
+
+    Raises
+    ------
+    ValueError
+        It will be raised when invalid button is given
+    """
     button = button.lower()
     if button.lower() in ('middle', 'left', 'right', 'back', 'forward'):
         if button == 'back':
@@ -171,25 +208,41 @@ def wait_for(button:str):
             raise ValueError('Incorrect Button Name.')
 
 def call_later(function:Callable, *args, delay=0.001):
-    '''
-    Do You Want to Call Your Function Later Even Between Other Operations?
-    call_later() will help you to do that!
-    First arg should be your function name,
-    After That (*args) you can add any args that your function need,
-    And last arg is delay for calling your function in seconds.
+    """
+    Call Your Function Later Even Between Other Operations
     (This function uses threading module so be careful about 
      how, when, and on what object you are going to operate on)
-    '''
+
+    Parameters
+    ----------
+    function : Callable
+        this should be your function name 
+    
+    delay : float,int
+        delay before calling function in seconds, by default 0.001
+    """
     import threading
     thread = threading.Thread(target=lambda: (sleep(delay), function(*args)))
     thread.start()
     #keyboard.call_later(function, args, delay)
+call = call_later
 
-def convert_bytes(num:int) -> str :
+def convert_bytes(num:int) -> str:
     """
     Convert num to idiomatic byte unit.
-    num is the input number (bytes).
-    
+
+    Parameters
+    ----------
+    num : int
+        number you want to convert (in Byte)
+
+    Returns
+    -------
+    str
+        number + unit
+
+    Examples
+    --------
     >>> convert_bytes(200)
     '200.0 bytes'
     >>> convert_bytes(6000)
@@ -197,43 +250,68 @@ def convert_bytes(num:int) -> str :
     >>> convert_bytes(80000)
     '78.1 KB'
     """
+    '''
+    
+
+    '''
     for x in ['bytes', 'KB', 'MB', 'GB', 'TB']:
         if num < 1024.0:
             return "%3.1f %s" % (num, x)
         num /= 1024.0
 
 def restart_app(python3:bool = False):
-    '''
+    """
     This Function Close App and Recall it From Terminal
-    '''
-    os.system('clear')
-    os.execv(sys.executable, ['python3' if python3 else 'python'] + sys.argv)
+    (It uses terminal.run to run command 'python[3] *argv')
 
-def active_window_title():
-    '''
+    Parameters
+    ----------
+    python3 : bool, optional
+        use 'python' or 'python3', by default False
+    """
+    _os.execv(_sys.executable, ['python3' if python3 else 'python'] + _sys.argv)
+    _sys.exit()
+
+def active_window_title() -> str:
+    """
     Get active windows title  
     (Usually terminal is active window title 
-    but if during executing your script if you change window 
+    but if during executing your script you change window 
     this will return new window title)
-    '''
+
+    Returns
+    -------
+    str
+        string of active window title
+    """
     import pyautogui
     return pyautogui.getActiveWindowTitle()
 
-def open_image(path:str):
-    '''
+def open_image(path:str) -> None:
+    """
     Open image file with default image viewer.  
     (Mac OS is not supported yet)
-    '''
+
+    Parameters
+    ----------
+    path : str
+        path to the image file
+
+    Raises
+    ------
+    OSError
+        It will be raised when you run this function in not supported OS
+    """
     import platform
     if platform.system() == 'Windows':
-        os.system(path)
+        _os.system(path)
     elif platform.system() == 'Linux':
-        subprocess.getoutput(f'xdg-open {path}')
+        _subprocess.getoutput(f'xdg-open {path}')
     else:
-        raise OSError('OS X is not supported for this function.')
+        raise OSError('Only Windows and Linux are supported for this function.')
 
-BASENAME=''
-def download(url:str, filename:str =BASENAME, save_memory:bool=True,
+_BASENAME=''
+def download(url:str, filename:str=_BASENAME, save_memory:bool=True,
              progressbar:bool =True, prefix:str='Downloading'):
     '''
     Use this function to download files.  
@@ -248,11 +326,11 @@ def download(url:str, filename:str =BASENAME, save_memory:bool=True,
 
     if save_memory:
         '''
-        with urllib.request.urlopen(url) as response, open(filename, 'wb') as f:
-            shutil.copyfileobj(response, f)
+        with _urllib.request.urlopen(url) as response, open(filename, 'wb') as f:
+            _shutil.copyfileobj(response, f)
         '''
         '''
-        r = requests.get(url, stream = True)
+        r = _requests.get(url, stream = True)
         with open(filename,"wb") as f:
             for chunk in r.iter_content(chunk_size=1024):
                 if chunk:
@@ -260,7 +338,7 @@ def download(url:str, filename:str =BASENAME, save_memory:bool=True,
         '''
         if progressbar:
             with open(filename, "wb") as f:
-                response = requests.get(url, stream=True)
+                response = _requests.get(url, stream=True)
                 total_length = response.headers.get('content-length')
                 if total_length is None:
                     f.write(response.content)
@@ -272,39 +350,48 @@ def download(url:str, filename:str =BASENAME, save_memory:bool=True,
                         dl += len(data)
                         f.write(data)
                         done = int(33 * dl / total_length)
-                        sys.stdout.write(f"\r{prefix} {filename}: |{'█' * done}{' ' * (33-done)}| {100-((33-done)*3)}%")
-                        sys.stdout.flush()
+                        _sys.stdout.write(f"\r{prefix} {filename}: |{'█' * done}{' ' * (33-done)}| {100-((33-done)*3)}%")
+                        _sys.stdout.flush()
                     if 100-((33-done)*3) == 96:
-                        sys.stdout.write(f"\r{prefix} {filename}: |{'█' * done}{' ' * (33-done)}| 100%")
-                        sys.stdout.flush()
+                        _sys.stdout.write(f"\r{prefix} {filename}: |{'█' * done}{' ' * (33-done)}| 100%")
+                        _sys.stdout.flush()
         else:
             with open(filename, "wb") as f:
-                response = requests.get(url, stream=True)
+                response = _requests.get(url, stream=True)
                 for data in response.iter_content(chunk_size=4096):
                     f.write(data)               
     else:
         def report(blocknr, blocksize, size):
             if progressbar:
                 current = blocknr*blocksize
-                sys.stdout.write("\rDownloading {1}:  {0:.2f}%".format(100.0*current/size,filename))
+                _sys.stdout.write("\rDownloading {1}:  {0:.2f}%".format(100.0*current/size,filename))
         def downloadFile(url):
-            urllib.request.urlretrieve(url, filename, report)
+            _urllib.request.urlretrieve(url, filename, report)
         downloadFile(url)
     pass
     if progressbar: print()
 
-def extract(
-    filename:str, path:Optional[str]=None,
-    files:Optional[Iterable[str]]=None, password:Optional[str]=None) -> None: 
-    '''
-    Extract Files from Zip File.\n
-    If files parameter is None it will extract all files.\n
-    path is path to extract
-    '''
+def extract(filename:str, path:Optional[str]=None,files:Optional[Iterable[str]]=None, 
+            password:Optional[str]=None) -> None: 
+    """
+    Extract Files from Zip files
+    By default it extracts all files
+
+    Parameters
+    ----------
+    filename : str
+        path to .zip file
+    path : str, optional
+        path to extract files (by default: folder in current working directory)
+    files : Iterable[str], optional
+        Iterable of files you want to extract, by default None
+    password : str, optional
+        password if your .zip file is password protected, by default None
+    """
     import zipfile
     zipfile.ZipFile(filename, 'r').extractall(path=path,members= files,pwd=password)
 
-def screenshot(image_name:str ='Screenshot.png'):
+def screenshot(image_name:str='Screenshot.png'):
     '''
     This function will take a screenshot and save it as image_name
     '''
@@ -312,7 +399,14 @@ def screenshot(image_name:str ='Screenshot.png'):
     return pyscreeze.screenshot(image_name)
 
 def func_info(func:Callable):
+    """
+    print some information about 'func'
 
+    Parameters
+    ----------
+    func : Callable
+        function you want to get its information
+    """
     help(func) #func.__doc__
     print('-'*30)
     print('Module  ', func.__module__)
@@ -336,7 +430,7 @@ def Progressbar(
                 do_that()
         Loading: |████      | 40/100
     '''
-    echo = sys.stdout
+    echo = _sys.stdout
     def show(j):
         x = int(dashes_nom*j/total)
         echo.write(
@@ -352,10 +446,21 @@ def Progressbar(
 _MOUSE_X = 0
 _MOUSE_Y = 0
 def pixel_color(x=_MOUSE_X, y=_MOUSE_Y) -> tuple:
-    '''
-    Function to return color of pixel of screen in RGB
-    By default x and y are last mouse position
-    '''
+    """
+    Function to return color of pixel of screen in tuple of RGB
+
+    Parameters
+    ----------
+    x : int
+        pixel of column x, by default last x of mouse
+    y : int
+        pixel of row y, by default last y of mouse
+
+    Returns
+    -------
+    tuple
+        tuple with 3 integers: (RED,GREEN,BLUE)
+    """
     import pyautogui
     if not x:
         x = pyautogui.position()[0]
@@ -365,12 +470,20 @@ def pixel_color(x=_MOUSE_X, y=_MOUSE_Y) -> tuple:
     COLOR = PIXEL.getcolors()
     return COLOR[0][1]
 
-def import_module(path):
-    '''
+def import_module(path:str):
+    """
     Import modules from files even if they are not .py
-    path is path to file to import it
-    return module
-    '''
+
+    Parameters
+    ----------
+    path : str
+        path to file to import it
+
+    Returns
+    -------
+    ModuleType
+        return module
+    """
     import importlib.machinery
     import importlib.util
     loader = importlib.machinery.SourceFileLoader('MOD', path)
@@ -441,7 +554,7 @@ def pop(tuple,index=-1):
     pid = 2456
     screen_recorder.init_resources(pid)
     screen_recorder.start_video_recording ('video1.mp4', 30, 8000000, True)
-    time.sleep(10)
+    _time.sleep(10)
     print('hello')
     for i in range(100):
         x= i**3
@@ -485,14 +598,6 @@ def pop(tuple,index=-1):
 ####          888    888  888  888  .d888888  "Y8888b.  "Y8888b.  88888888  "Y8888b.          #### 
 ####          Y88b  d88P  888  888  888  888       X88       X88  Y8b.           X88          #### 
 #######        "Y8888P"   888  888  "Y888888   88888P'   88888P'   "Y8888    88888P'       ####### 
-
-
-#from .Filex import *
-#from .Tuple_tools import *
-#from .RX_obj import *
-#from .System import *
-#from .Date_Time import *
-#from .Lang import Lang as _Lang
 
 
 class Random:
@@ -597,7 +702,7 @@ class Files:
         return size of the file in byte(s).
         Also work on directories.
         '''
-        return os.path.getsize(path)
+        return _os.path.getsize(path)
         #rooye pooshe emtehan she
     @staticmethod
     def remove(path,force=False):
@@ -605,27 +710,28 @@ class Files:
         Use this to delete a file or a directory.
         If force is True it will delete non-empty directories.
         '''
-        if os.path.isfile(path):
-            os.remove(path)
+        if _os.path.isfile(path):
+            _os.remove(path)
         else:
             if force: 
-                shutil.rmtree(path)
+                _shutil.rmtree(path)
             else:
                 try:
-                    os.rmdir(path)
+                    _os.rmdir(path)
                 except OSError:
                     raise OSError(f"[WinError 145] The directory is not empty: '{path}'" + '\n' + ' '*23 + 
                                    '(Use force=True as an argument of remove function to remove non-empty directories.)') from None
+    delete = remove
     @staticmethod
     def rename(old_name,new_name):
         '''Rename files with this function.'''
-        os.rename(old_name,new_name)
+        _os.rename(old_name,new_name)
     @staticmethod
     def abspath(path):
         '''
         return absolute path of given path.
         '''
-        return os.path.abspath(path)
+        return _os.path.abspath(path)
     @staticmethod
     def exists(path):
         '''
@@ -633,26 +739,26 @@ class Files:
         if file exists: True
         else: False
         '''
-        return os.path.exists(path)
+        return _os.path.exists(path)
     @staticmethod
     def mdftime(path):
         '''
         Get last modify time of the path.
         '''
-        return os.path.getmtime(path)
+        return _os.path.getmtime(path)
     @staticmethod
     def acstime(path):    
         '''
         Get last access time of the path.
         '''
-        return os.path.getatime(path)
+        return _os.path.getatime(path)
         # change to date bayad biad
     @staticmethod
     def move(src,dst):
         '''
         Move (cut) file/directory from crs to dst.
         '''
-        shutil.move(src,dst)
+        _shutil.move(src,dst)
         #live_path= dst
         #Baraye folder hast ya na?
     @staticmethod
@@ -667,10 +773,10 @@ class Files:
          )
         '''
         if files.isdir(src):
-            shutil.copytree(src,dest)
+            _shutil.copytree(src,dest)
         else:
-            if preserve_metadata: shutil.copy2(src,dest)
-            else: shutil.copy(src,dest)
+            if preserve_metadata: _shutil.copy2(src,dest)
+            else: _shutil.copy(src,dest)
 
     @staticmethod
     def hide(path,mode=True):
@@ -696,9 +802,9 @@ class Files:
         if type(mode)==bool:
             from stat import S_IREAD,S_IWUSR
             if mode==True:
-                os.chmod(path, S_IREAD)
+                _os.chmod(path, S_IREAD)
             elif mode==False:
-                os.chmod(path, S_IWUSR)
+                _os.chmod(path, S_IWUSR)
         else:
             raise Exception('Second argumant (mode) should be boolean.')
     @staticmethod
@@ -742,17 +848,17 @@ class Files:
             raise ValueError('mode can only be: replace(default) or continue Not "{0}"'.format(mode))
     @staticmethod
     def isdir(path):
-        return os.path.isdir(path)
+        return _os.path.isdir(path)
     @staticmethod
     def isfile(path):
-        return os.path.isfile(path)
+        return _os.path.isfile(path)
     @staticmethod
     def is_readonly(path):
         '''
         Return True if path is readonly else False.
         (May Not Work in Linux)
         '''
-        return subprocess.getoutput(f'dir /ar {path} >nul 2>nul && echo True || echo False')
+        return _subprocess.getoutput(f'dir /ar {path} >nul 2>nul && echo True || echo False')
     @staticmethod
     def is_hidden(path):
         """
@@ -763,8 +869,8 @@ class Files:
         (Work on both Linux and Windows)
         """
         import platform
-        full_path = os.path.abspath(path)
-        name = os.path.basename(full_path)
+        full_path = _os.path.abspath(path)
+        name = _os.path.basename(full_path)
         def no(path): return False
         platform_hidden = globals().get('is_hidden_' + platform.system(), no)
         return name.startswith('.') or platform_hidden(full_path)
@@ -775,7 +881,7 @@ class Files:
         assert res != -1
         return bool(res & 2)
     @staticmethod
-    def search_file(pattern, path='.\\',return_mode: Union['list','generator']= 'list'):
+    def search_file(pattern, path='.\\',return_mode: Union['list','Generator']= 'list'):
         '''
         Search for files in path.
         Return list or generator.
@@ -789,16 +895,17 @@ class Files:
         '''
         import glob
         if str(return_mode).lower() in ('list','generator'):
-            if return_mode=='list': return glob.glob(pattern, recursive=True)
-            else: return glob.iglob(pattern, recursive=True)
+            #print(_os.path.join(path,pattern))
+            if return_mode=='list': return glob.glob(_os.path.join(path,pattern), recursive=True)
+            else: return glob.iglob(_os.path.join(path,pattern), recursive=True)
         else:
             if type(return_mode)==str:
                 raise ValueError(f"return_mode van be  'list'  or  'generator'  not {return_mode}")
             else:
-                raise TypeError(f"return_mode type should be str and it should be in ['list', 'generator']")
+                raise TypeError(f"return_mode type should be 'str' and it should be in ['list', 'generator']")
     @staticmethod
     def search_content(path,word):
-        ALL= [val for sublist in [[os.path.join(i[0], j) for j in i[2]] for i in os.walk(path)] for val in sublist]
+        ALL= [val for sublist in [[_os.path.join(i[0], j) for j in i[2]] for i in _os.walk(path)] for val in sublist]
         '''lst=[]
         for file in ALL:
             if word in rx.read(file):
@@ -807,11 +914,11 @@ class Files:
         return [file for file in ALL if word in open(file).read()]
     @staticmethod
     def mkdir(path):
-        path = os.path.normpath(path)
+        path = _os.path.normpath(path)
         NEW= ''
         for FILE in path.split('\\'):
             NEW+= FILE+'\\'
-            try: os.mkdir(NEW)
+            try: _os.mkdir(NEW)
             except (FileExistsError,FileNotFoundError): pass
     @staticmethod
     def generate_tree(dir_path, level: int=-1, limit_to_directories: bool=False,
@@ -849,25 +956,31 @@ class Files:
     class MEMBERS:
         @staticmethod
         def all_exactdir(dir):
-            return os.listdir(dir)
+            return _os.listdir(dir)
         @staticmethod
         def all_all_sep(dir):
-            return [i for i in os.walk(dir)]
+            return [i for i in _os.walk(dir)]
         @staticmethod
-        def files_exactdir(dir):
-            return [i for i in os.walk(dir)][0][2]
+        def files_exactdir(dir,abspath=True):
+            if abspath:
+                return [dir+'/'+file_ for file_ in [i for i in _os.walk(dir)][0][2]]
+            return [i for i in _os.walk(dir)][0][2]
         @staticmethod
         def files_all(dir):
-            return [val for sublist in [[os.path.join(i[0], j) for j in i[2]] for i in os.walk(dir)] for val in sublist]
+            return [val for sublist in [[_os.path.join(i[0], j) for j in i[2]] for i in _os.walk(dir)] for val in sublist]
         @staticmethod
         def files_all_sep(dir):
-            return [[os.path.join(i[0], j) for j in i[2]] for i in os.walk(dir)]
+            return [[_os.path.join(i[0], j) for j in i[2]] for i in _os.walk(dir)]
         @staticmethod
-        def dirs_exactdir(dir):
-            return sorted([i for i in os.listdir(dir) if i not in [i for i in os.walk(dir)][0][2]])
+        def dirs_exactdir(dir, abspath=True):
+            if dir.endswith('/'): dir=dir[:-1]
+            elif dir.endswith('\\'): dir=dir[:-1]
+            if abspath:
+                return [dir+'/'+folder for folder in [i for i in _os.walk(dir)][0][1]]
+            return [i for i in _os.walk(dir)][0][1]
         @staticmethod
         def dirs_all(dir):
-            return [TPL[0] for TPL in [i for i in os.walk(dir)]]
+            return [TPL[0] for TPL in [i for i in _os.walk(dir)]]
 files = Files
 write = files.write
 read  = files.read
@@ -885,48 +998,48 @@ class System:
         '''
         return account username you have logged in.
         '''
-        return os.getlogin()
+        return _os.getlogin()
     @staticmethod
     def pid():
         '''
         Get pid number of terminal and return it.
         '''
-        return os.getpid()
+        return _os.getpid()
     '''@staticmethod
     def disk_usage(path):
         ####
-        return shutil.disk_usage(path)'''
+        return _shutil.disk_usage(path)'''
     @staticmethod
     def chdir(path):
         '''
         Change directory of terminal.
         '''
-        os.chdir(path)
+        _os.chdir(path)
     @staticmethod
     def SHUT_DOWN():
         '''
         Shut down the PC. (WINDOWS)
         '''
-        os.system("shutdown /s /t 1")
+        _os.system("shutdown /s /t 1")
     @staticmethod
     def RESTART():
         '''
         Restart the PC. (WINDOWS)
         '''
-        os.system("shutdown /r /t 1")
+        _os.system("shutdown /r /t 1")
     @staticmethod
     def terminal_size() -> tuple:
         '''
         Return terminal size in tuple (columns,rows)
         '''
-        size= os.get_terminal_size()
+        size= _os.get_terminal_size()
         return (size.columns,size.lines)
     @staticmethod
     def cwd():
         '''
         Return a unicode string representing the current working directory.
         '''
-        return os.getcwd()
+        return _os.getcwd()
     @staticmethod
     def ip_global():
         """
@@ -935,26 +1048,24 @@ class System:
         """
         try:
             import requests
-            new_session = requests.session()
+            new_session = _requests.session()
             response = new_session.get("http://ipinfo.io/ip")
             import re
-            ip_list = re.findall(r"(?:[0-9]{1,3}\.){3}[0-9]{1,3}", response.text)
+            ip_list = _re.findall(r"(?:[0-9]{1,3}\.){3}[0-9]{1,3}", response.text)
             new_session.close()
             return ip_list[0]
         except:
-            class ConnectionError(requests.exceptions.ConnectionError):
-                def __init__(self, message): super().__init__(message)
-            raise ConnectionError('No Internet Connection')
+            raise ConnectionError('No Internet Connection') from None
     """ip_global= internet.ip_global"""
     @staticmethod
     def ip_local():
         """
-        Return local ip of computer in windows by socket module
+        Return local ip of computer in windows by _socket. module
         and in unix with hostname command in shell.
         """
-        #return [l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) if l][0][0]
+        #return [l for l in ([ip for ip in _socket.gethostbyname_ex(_socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [_socket._socket.(_socket.AF_INET, _socket.SOCK_DGRAM)]][0][1]]) if l][0][0]
         '''
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s = _socket._socket.(_socket.AF_INET, _socket.SOCK_DGRAM)
         try:
             # doesn't even have to be reachable
             s.connect(('10.255.255.255', 1))
@@ -969,13 +1080,12 @@ class System:
         class NetworkError(Exception):
             def __init__(self, message): super().__init__(message)
         try:
-            import socket
-            ip = socket.gethostbyname(socket.gethostname())
+            ip = _socket.gethostbyname(_socket.gethostname())
             if ip and ip != "127.0.1.1":
                 return ip
             elif platform.system() != "Windows":
                 import subprocess
-                command = subprocess.Popen(["hostname", "-I"],stdout=subprocess.PIPE,stderr=subprocess.PIPE,stdin=subprocess.PIPE,shell=False)
+                command = _subprocess.Popen(["hostname", "-I"],stdout=_subprocess.PIPE,stderr=_subprocess.PIPE,stdin=_subprocess.PIPE,shell=False)
                 response = list(command.communicate())
                 if len(response[0]) > 0:
                     return str(response[0])[2:-4]
@@ -990,7 +1100,7 @@ class System:
         Return total ram of board as string
         parameter convert: flag for convert mode (using of convert_byte function)
         """
-        response = list(psutil.virtual_memory())
+        response = list(_psutil.virtual_memory())
         if convert:
             return convert_bytes(int(response[0]))
         return str(response[0])
@@ -1000,7 +1110,7 @@ class System:
         Return how much ram is using.
         parameter convert: flag for convert mode (convert with convert_byte function)
         """
-        response = list(psutil.virtual_memory())
+        response = list(_psutil.virtual_memory())
         if convert:
             return convert_bytes(int(response[3]))
         return str(response[3])
@@ -1010,7 +1120,7 @@ class System:
         Return how much ram is available.
         parameter convert: flag for convert mode (convert with convert_byte function)
         """
-        response = list(psutil.virtual_memory())
+        response = list(_psutil.virtual_memory())
         if convert:
             return convert_bytes(int(response[1]))
         return str(response[1])
@@ -1020,7 +1130,7 @@ class System:
         Return available ram percentage as an integer if ONLY_NOM, as string with % if not ONLY_NOM
         Parameter ONLY_NOM: flag for return type and value.
         """
-        response = list(psutil.virtual_memory())
+        response = list(_psutil.virtual_memory())
         if ONLY_NOM:
             return response[2]    
         return str(response[2]) + " %"
@@ -1029,22 +1139,20 @@ class System:
         '''
         Return the system boot time expressed in seconds since the epoch.
         '''
-        return psutil.boot_time()
+        return _psutil.boot_time()
     @staticmethod
     def device_name():
-        import socket
-        return socket.gethostname()
+        return _socket.gethostname()
     @staticmethod
     def ip_website(url):
         '''get IP address of Web Site'''
-        import socket
-        return socket.gethostbyname(url)
+        return _socket.gethostbyname(url)
     """ip_webs= internet.ip_website"""
     @staticmethod
     def win10_notification(title,message,icon=None, duration=5) -> None:
         '''
         (THIS ONLY WORKS FOR "WINDOWS 10")\n
-        Display Notification with title, message and icon for speciefic time.
+        Display Notification with title, message and icon for speciefic _time.
         '''
         try:
             from win10toast import ToastNotifier
@@ -1055,12 +1163,12 @@ class System:
     def cpu_count(logical=True):
         '''
         Return the number of logical CPUs in the system
-         (same as os.cpu_count() in Python 3.4).
+         (same as _os.cpu_count() in Python 3.4).
         If *logical* is False return the number of physical cores only
          (e.g. hyper thread CPUs are excluded).
         Return None if undetermined.
         '''
-        return psutil.cpu_count(logical)
+        return _psutil.cpu_count(logical)
     @staticmethod
     def pyshell_execute_bit():
         '''to determine whether a Python shell is executing in 32bit or 64bit'''
@@ -1071,19 +1179,29 @@ class System:
     @staticmethod
     def pids() -> list:
         '''Return a list of current running PIDs'''
-        return psutil.pids()
+        return _psutil.pids()
     @staticmethod
     def cpu_percent() -> float:
         '''
         Return a float representing the current system-wide CPU utilization as a percentage.'''
-        return psutil.cpu_percent()
+        return _psutil.cpu_percent()
     @staticmethod
     def pid_exists(pid) -> bool:
-        return psutil.pid_exists(pid)
+        return _psutil.pid_exists(pid)
+    @staticmethod
+    def mac_address(formatted=False):
+        import uuid
+        mac = uuid.getnode()
+        if formatted:
+            return ':'.join(['{:02x}'.format((mac >> ele) & 0xff) for ele in range(0,8*6,8)][::-1])
+        return hex(mac) 
+        
 system = System
 
 
-from colored import fg, bg, attr
+from colored import fg   as  _fg
+from colored import bg   as  _bg
+from colored import attr as  _attr
 class Style:
     '''
     This class is for Changing text Color,BG & Style.
@@ -1107,7 +1225,7 @@ class Style:
         if color == 'default':
             self.color = 7 #188
         self.text = text
-        self.content = f"{fg(color)}{bg(BG)}{text}{attr(0)}"
+        self.content = f"{_fg(color)}{_bg(BG)}{text}{_attr(0)}"
     def __str__(self):
         return self.content
     def __repr__(self):
@@ -1118,12 +1236,7 @@ class Style:
             return self.content+other
         else:
             return self.content+other.content
-    '''
-    def __mul__(self, nom):
-        return self.content*nom
-    def __getitem__(self, index):
-        return f'{fg(self.color)}{bg(self.BG)}{self.text}'+self.content[index]+attr(0)
-    '''
+
 
     @staticmethod
     def print(text='', color='default', BG='default', style=None, end='\n'):
@@ -1144,17 +1257,17 @@ class Style:
         if style == 'none':
             style = 0
 
-        if color=='default' and BG!='default':  # bg & !clr
-            print(f'{attr(style)}{bg(BG)}{text}{attr(0)}', end=end)
+        if color=='default' and BG!='default':  # _bg & !clr
+            print(f'{_attr(style)}{_bg(BG)}{text}{_attr(0)}', end=end)
 
-        elif color!='default' and BG=='default':  # !bg & clr
-            print(f'{attr(style)}{fg(color)}{text}{attr(0)}', end=end)
+        elif color!='default' and BG=='default':  # !_bg & clr
+            print(f'{_attr(style)}{_fg(color)}{text}{_attr(0)}', end=end)
 
-        elif color=='default' and BG=='default':  # !bg & !clr
-            print(f'{attr(style)}{text}{attr(0)}', end=end)
+        elif color=='default' and BG=='default':  # !_bg & !clr
+            print(f'{_attr(style)}{text}{_attr(0)}', end=end)
 
-        elif color!='default' and BG!='default':  # bg & clr
-            print(f'{attr(style)}{bg(BG)}{fg(color)}{text}{attr(0)}', end=end)
+        elif color!='default' and BG!='default':  # _bg & clr
+            print(f'{_attr(style)}{_bg(BG)}{_fg(color)}{text}{_attr(0)}', end=end)
 
     @staticmethod
     def switch(color='default', BG='black', style='None'):
@@ -1173,28 +1286,39 @@ class Style:
         if color == 'default':
             color = 7
 
-        print(f'{attr(style)}{bg(BG)}{fg(color)}', end='')
+        print(f'{_attr(style)}{_bg(BG)}{_fg(color)}', end='')
 
     @staticmethod
     def switch_default():
         '''Switch Terminal Attributes to its defaults'''
-        print('%s' % (attr(0)), end='')
+        print(f'{_attr(0)}', end='')
     reset = switch_default
 
     @staticmethod
-    def log_success(text, color='green', BG='default', style=None):
+    def log_success(text, color='green', BG='default', style=None, add_time=True):
+        #globals()['style'].print(text, color, BG, style=style)
+        NOW = _time.strftime('%H:%M:%S',_time.localtime()) if add_time else ''
+        globals()['style'].print(NOW, color, BG,end='  ')
         globals()['style'].print(text, color, BG, style=style)
     @staticmethod
-    def log_info(text, color='grey_93', BG='default', style=None):
+    def log_info(text, color='grey_93', BG='default', style=None, add_time=True):
+        NOW = _time.strftime('%H:%M:%S',_time.localtime()) if add_time else ''
+        globals()['style'].print(NOW, color, BG,end='  ')
         globals()['style'].print(text, color, BG, style=style)
     @staticmethod
-    def log_warning(text, color='gold_3a', BG='default', style=None):
+    def log_warning(text, color='gold_3a', BG='default', style=None, add_time=True):
+        NOW = _time.strftime('%H:%M:%S',_time.localtime()) if add_time else ''
+        globals()['style'].print(NOW, color, BG,end='  ')
         globals()['style'].print(text, color, BG, style=style)
     @staticmethod
-    def log_error(text, color='red', BG='default', style=None):
+    def log_error(text, color='red', BG='default', style=None, add_time=True):
+        NOW = _time.strftime('%H:%M:%S',_time.localtime()) if add_time else ''
+        globals()['style'].print(NOW, color, BG,end='  ')
         globals()['style'].print(text, color, BG, style=style)
     @staticmethod
-    def log_critical(text, color='red_1', BG='default', style='bold'):
+    def log_critical(text, color='red_1', BG='default', style='bold', add_time=True):
+        NOW = _time.strftime('%H:%M:%S',_time.localtime()) if add_time else ''
+        globals()['style'].print(NOW, color, BG,end='  ')
         globals()['style'].print(text, color, BG, style=style)
 style = Style
 
@@ -1214,7 +1338,7 @@ class Record:
     (after self.stop() using self.lap will cause error.)
     '''
     def __init__(self):
-        self.__start = time.time()
+        self.__start = _time.time()
         self.laps = []
     def __call__(self):
         return f'Laps: {self.laps}'
@@ -1227,7 +1351,7 @@ class Record:
         (Read 'record' Doc String)
         If save is True, time will be added to self.laps
         '''        
-        lp = time.time() - self.__start
+        lp = _time.time() - self.__start
         lp = round(lp,Round)
         if save:
             self.laps.append(lp)
@@ -1239,16 +1363,24 @@ class Record:
         '''
         self.laps = []
         if reset_start:
-            self.__start = time.time()
+            self.__start = _time.time()
     def last_lap(self, save=True):
+        '''
+        Return time passed from last lap
+        (If self.laps is False then from start_time)
+        '''
         ret = (self.lap(False)-self.laps[-1]) if self.laps else self.lap(False)
         if save:
             self.laps.append(self.lap())
         return ret
     @staticmethod
-    def timit(code,setup,timer,number,globals_):
+    def timit(code,setup,times,globals_):
+        '''
+        Run the 'code' for 'times' times and return time it needs (all, not once)
+        (If you need any initialization for your 'code', put it in setup arg)
+        '''
         import timeit
-        return timeit.timeit(code,setup,timer,number,globals_)
+        return timeit.timeit(stmt=code,setup=setup,number=times,globals=globals_)
 record = Record
 
 
@@ -1263,7 +1395,7 @@ class Terminal:
         Execute the command in a subshell
         (NO RETURN, LIVE EXECUTION, OUTPUT WILL BE PRINTED)
         '''
-        os.system(command)
+        _os.system(command)
 
     @staticmethod
     def getoutput(command:str) -> str:
@@ -1271,7 +1403,7 @@ class Terminal:
         Return output of executing command in a shell
         (RETURN STR, RETURN AFTER EXECUTING CODE)
         '''
-        return subprocess.getoutput(command)
+        return _subprocess.getoutput(command)
 terminal = Terminal
 
 
@@ -1424,7 +1556,7 @@ class Decorator:
             setattr(cls, name, Decorator.decorator_all(method))
         return cls
     
-    abstractmethod = abc.abstractmethod
+    abstractmethod = _abc.abstractmethod
 
     _registered_functions = {}  #:Dict[str, Any]
     class _MultiMethod(object):
@@ -1453,42 +1585,52 @@ Check_Type = Decorator.Check_Type
 overload   = Decorator.overload
 
 
+
 class IO:
     
     @staticmethod
-    def wait_for_input(prompt,SS:list=[], ignore_case=False):
+    def wait_for_input(prompt,SS:list=[]):
         answer= ''
         try:
             while not answer:
                 answer = input(prompt).strip()
-                if ignore_case:
-                    answer = answer.lower()
-                if answer and SS:
-                    if not (answer in (SS if not ignore_case else [item.lower() for item in SS])):
-                        style.print('Invalid Input','red')
-                        answer = ''
         except (EOFError,KeyboardInterrupt):
             style.print('EXITING...','red')
             exit()
         return answer
 
     @staticmethod
-    def selective_input(prompt,choices,default=None,error=False):
+    def selective_input(prompt,choices,default=None,ignore_case=False,error=True,invalid='Invalid input'):
+        if type(choices) == dict:
+            Choices = list(choices.keys())+list(choices.values())
+        pass
+
+        if ignore_case:
+            Choices = [item.lower() for item in Choices]
         while True:
             inp = input(prompt)
-            if not inp  or  inp not in choices:
+            inp = inp.lower() if ignore_case else inp
+            if not inp  or  inp not in Choices:
                 if error:
-                    style.print('Invalid input', 'red')
+                    style.print(invalid, 'red')
                 else:
-                    inp = default
-                    break
+                    if default:
+                        inp = default
+                        break
             else:
                 break
+        if type(choices) == dict:
+            try:
+                inp = choices[inp]
+            except KeyError:
+                pass
         return inp
+
     @staticmethod
     def yesno_input(prompt,default=None):
         error= not bool(default)
         return io.selective_input(prompt,['y','yes','n','no'],default,error)
+    
     @staticmethod
     def Input(prompt:str ='', default_value:str =''):
         '''
@@ -1512,6 +1654,7 @@ class IO:
             keys.append(evt)
         _stdin.WriteConsoleInput(keys)
         return input(str(prompt))
+    
     @staticmethod
     def getpass(prompt):
         '''
@@ -1522,6 +1665,7 @@ class IO:
 io = IO
 Input   = default_input  = io.Input
 getpass = password_input = io.getpass
+
 
 
 class Tuple:
@@ -1588,7 +1732,7 @@ class Tuple:
         if not replace:
             tpl=list(self.__content)
             if type(index) == str:
-                ind= tpl.index(ind)
+                ind= tpl.index(index)
             tpl.insert(index,value)
             self.__content= tuple(tpl)            
         else:
@@ -1611,6 +1755,430 @@ class Tuple:
     #############################
     #############################
 
+
+
+_ReqConErr = _requests.exceptions.ConnectionError
+class Internet:
+    
+    @staticmethod
+    def is_connected(website='http://x.com/'):
+        '''
+        Check for internet connection with trying to connect to web-site
+         ( Maybe you want to know why i used http://x.com/ as default web-site
+           The reason is there's no extra code to load
+           (compare x.com and google.com html source code)
+           And this make it a lot faster for checking.
+          )
+        '''
+        try:
+            _urllib.request.urlopen(website)
+            return True
+        except:
+            return False
+
+    def connection_checker(func):
+        """Decaorator Which Checks Internet Connection before calling a function
+
+        Parameters
+        ----------
+        func : Function
+            function which you are going to check if 
+             there is internet connection before call it
+        """
+        def inside(*args,**kwargs):
+            if not internet.is_connected():
+                raise ConnectionError('No internet connection') from None
+            return func(*args,**kwargs)
+        return inside
+    
+    @staticmethod
+    def ip_global() -> str:
+        """
+        Return your global ip by http://ipinfo.io/ip api.
+        """
+        new_session = _requests.session()
+        response = new_session.get("http://ipinfo.io/ip")
+        ip_list = _re.findall(r"(?:[0-9]{1,3}\.){3}[0-9]{1,3}", response.text)
+        new_session.close()
+        return ip_list[0]
+    
+    @staticmethod
+    def ip_local() -> str:
+        """
+        Return local ip of computer in windows by _socket. module 
+        and in linux with hostname command in shell.
+        """
+        #return [l for l in ([ip for ip in _socket.gethostbyname_ex(_socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [_socket._socket.(_socket.AF_INET, _socket.SOCK_DGRAM)]][0][1]]) if l][0][0]
+        '''
+        s = _socket._socket.(_socket.AF_INET, _socket.SOCK_DGRAM)
+        try:
+            # doesn't even have to be reachable
+            s.connect(('10.255.255.255', 1))
+            IP = s.getsockname()[0]
+        except Exception:
+            IP = '127.0.0.1'
+        finally:
+            s.close()
+        return IP
+        '''
+        import platform
+        class NetworkError(Exception):
+            def __init__(self, message): super().__init__(message)
+        try:
+            ip = _socket.gethostbyname(_socket.gethostname())
+            if ip and ip not in ("127.0.1.1","127.0.0.1"):
+                return ip
+            elif platform.system() != "Windows":
+                command = _subprocess.Popen(["hostname", "-I"],stdout=_subprocess.PIPE,stderr=_subprocess.PIPE,stdin=_subprocess.PIPE,shell=False)
+                response = list(command.communicate())
+                if len(response[0]) > 0:
+                    return str(response[0])[2:-4]
+                raise NetworkError('No Network Connection')
+            raise NetworkError('No Network Connection')
+        except:
+            raise
+    
+    @staticmethod
+    def url_exists(URL) -> bool:
+        '''
+        check if url exists (with 'requests' module)
+        (NEED HTTP[S])
+        '''
+        try:
+            request = _requests.get(URL)
+        except _ReqConErr:
+            raise ConnectionError('No internet connection') from None
+        #print(response.status_code < 400)
+        if request.status_code == 200:
+            return True
+        else:
+            return False
+    
+    @staticmethod
+    def ip_website(URL) -> str:
+        '''
+        get IP address of Web Site\n
+        (Without http[s])
+        '''
+        try:
+            return _socket.gethostbyname(URL)
+        except _socket.gaierror:
+            if internet.is_connected():
+                class NotExistsError(Exception):
+                    def __init__(self):
+                        super().__init__('URL Does Not Exists')
+                raise NotExistsError from None
+            else:
+                raise ConnectionError from None
+    
+    @staticmethod
+    def url_links(URL) -> list:
+        '''
+        Get all links that are used in a specifiec url
+        (All "a" tags from html source)
+        (Needs 'http[s]')
+        ''' #html.parser
+        try:
+            soup= BeautifulSoup(_requests.get(URL).text,features="lxml")
+            LINKS= []
+            for link in soup.find_all('a'):
+                LINKS.append(link.get('href'))
+            return LINKS
+        except _ReqConErr:
+            raise ConnectionError('No internet connection') from None
+    
+    @staticmethod
+    def find_urls(string) -> list:
+        '''
+        find all urls in a string and returns list of them
+         (urls should start with http[s])
+        '''
+        url = _re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', string) 
+        return url
+
+    @staticmethod
+    def is_url(URL) -> bool:
+        '''
+        check if a string is url (WITH HTTP[S])
+        '''
+        search= _re.search('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', URL)
+        '(http[s]?://)?([Ww]{3}\.)?(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
+        if search and len(search.group())==len(URL):
+            return True
+        else:
+            return False
+    
+    @staticmethod
+    def open_browser(url,new_tab=True):
+        import webbrowser
+        if new_tab:
+            webbrowser.open_new_tab(url)
+        else:
+            webbrowser.open(url)
+
+    """
+    @staticmethod
+    def whois(URL):
+        '''
+         return whois lookup of a website
+         (WITHOUT HTTPS)
+        '''
+        try:
+            import whois
+            WHO = whois.query(URL)
+            WHOIS = WHO.dict
+            return {i:WHOIS[i] for i in WHOIS}
+        except _socket.gaierror:
+            raise ConnectionError('No internet connection') from None
+    """
+internet = Internet
+
+
+
+class DateTime:
+    
+    _NOW=        0
+    _NOW_YEAR=   0
+    _NOW_MONTH=  0
+    _NOW_DAY=    0
+    _NOW_HOUR=   -1
+    _NOW_MINUTE= -1
+    _NOW_SECOND= -1
+    def NOW():
+        _NOW= _time.localtime()
+        _NOW_YEAR= _NOW.tm_year
+        _NOW_MONTH= _NOW.tm_mon
+        _NOW_DAY= _NOW.tm_mday
+        _NOW_HOUR= _NOW.tm_hour
+        _NOW_MINUTE= _NOW.tm_min
+        _NOW_SECOND= _NOW.tm_sec
+        return _datetime.datetime(_NOW_YEAR,_NOW_MONTH,_NOW_DAY,_NOW_HOUR,_NOW_MINUTE,_NOW_SECOND)
+    now = NOW
+    def normalize(date=[],time=[]):
+        now = date_time.NOW()
+        try:
+            if not date[0]:  date[0]= now.year
+            if type(date[1]) == str: 
+                try:
+                    date[1]= date_time.month_dic[date[1].lower()]
+                except KeyError:
+                    raise ValueError("Wrong Month Name") from None
+            if not date[1]:  date[1]= now.month
+            if not date[2]:  date[2]= now.day
+        except IndexError:
+            pass
+        try:
+            if time[0]<0: now.hour
+            if time[1]<0: now.minute
+            if time[2]<0: now.second
+        except IndexError:
+            pass
+        return [date,time]
+    Weekday_Names= ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    month_lst= ['january','february','march','april','may','june',
+                'july','august','september','october','november','december']    
+    month_dic= {month:month_nom for month in month_lst for month_nom in range(1,13)}                
+    
+    def __init__(self,year=_NOW_YEAR,month=_NOW_MONTH,day=_NOW_DAY,hour=_NOW_HOUR,minute=_NOW_MINUTE,second=_NOW_SECOND,first_week_day=0):
+        '''
+        .: Working With Date and Time :.
+        - Include Both Static Methods and Class Methods
+        - Get NOW Time
+        - Show in Calendar
+        - Next and Previous Months in Calendar
+        - Determine Time Passed From Specific Date
+        - Calendar Supports Setting First Day of the Week
+        '''
+
+        """
+        Now = date_time.NOW()
+         if not year :  year=Now.year
+         if not month:  month=Now.month
+         if not day  :  day=Now.day
+         if hour<0   :  hour=Now.hour
+         if minute<0 :  minute=Now.minute
+         if second<0 :  second=Now.second
+         """
+        _norm = date_time.normalize([year,month,day],[hour,minute,second])
+        year,month,day = _norm[0]
+        hour,minute,second = _norm[1]
+
+        if type(month)==str:
+            try:
+                month= date_time.month_dic[month.lower()]
+            except KeyError:
+                raise ValueError("Wrong Month Name") from None
+    
+        self.date= _datetime.date(year,month,day)
+        self.year=year; self.month=month; self.day=day
+        self.time= (hour,minute,second)
+        self.hour=hour; self.minute=minute; self.second=second
+
+        self.weekday= date_time.get_weekday(self.year,self.month,self.day)
+        self.weekday_name= date_time.get_weekday(self.year,self.month,self.day,True)
+        self.week_nom= date_time.get_weeknom(self.year,self.month,self.day)
+
+        #self.first_week_day= first_week_day
+        _calendar.setfirstweekday(first_week_day)
+        self.calendar= str(_calendar.month(year, month)).replace(str(day),style(str(day),'green').content)
+        self.calendar_month= str(_calendar.month(year, month))
+        self.calendar_year_all=str(_calendar.calendar(year))
+        self.calendar_year= [_calendar.month(year,i) for i in range(1,13)]
+        self.calendar_next_all= [_calendar.month(year,i) for i in range(self.month+1,13)]
+        self.calendar_prev_all= [_calendar.month(year,i) for i in range(1,self.month)]
+        self.calendar_position_next_year= str(_calendar.month(year+1, month)).replace(str(day),style(str(day),'green').content)
+        self.calendar_position_prev_year= str(_calendar.month(year-1, month)).replace(str(day),style(str(day),'green').content)
+        
+    def setfirstweekday(self,day):
+        if type(day)==int and day<7:
+            date_time.Weekday_Names= date_time.Weekday_Names[day:]+date_time.Weekday_Names[:day]
+        elif type(day)==str:
+            day= date_time.Weekday_Names.index(day)
+            date_time.Weekday_Names= date_time.Weekday_Names[day:]+date_time.Weekday_Names[:day]
+        else:
+            if type(day)==int:
+                raise ValueError('Invalid Nomber. Day number should be in range(7)')
+            else:
+                raise TypeError(f"Inappropriate Type For 'day'.  day can be 'str' or 'int' not {type(day)}")
+        _calendar.setfirstweekday(day)
+        self.calendar= str(_calendar.month(self.year, self.month)).replace(str(day),style(str(day),'green').content)
+        self.calendar_month= str(_calendar.month(self.year, self.month))
+        self.calendar_year_all=str(_calendar.calendar(self.year))
+        self.calendar_year= [_calendar.month(self.year,i) for i in range(1,13)]
+        self.calendar_next_all= [_calendar.month(self.year,i) for i in range(self.month+1,13)]
+        self.calendar_prev_all= [_calendar.month(self.year,i) for i in range(1,self.month)]
+        self.calendar_position_next_year= str(_calendar.month(self.year+1, self.month)).replace(str(day),style(str(day),'green').content)
+        self.calendar_position_prev_year= str(_calendar.month(self.year-1, self.month)).replace(str(day),style(str(day),'green').content)
+
+        self.weekday= date_time.get_weekday(self.year,self.month,self.day)
+        self.weekday_name= date_time.get_weekday(self.year,self.month,self.day,True)
+        self.week_nom= date_time.get_weeknom(self.year,self.month,self.day)
+
+    @staticmethod
+    def today():
+        dt = date_time.NOW()
+        return (dt.year,dt.month,dt.day)
+    @staticmethod
+    def calender_year(year=_NOW_YEAR):
+        if not year: year=date_time.NOW().year
+        return [_calendar.month(year,i) for i in range(1,13)]
+    @staticmethod
+    def calendar_month_st(month=_NOW_MONTH,year=_NOW_YEAR,day=0):
+        year,month = date_time.normalize([year,month])[0]
+
+        if not day:
+            return str(_calendar.month(year, month))
+        else:
+            return str(_calendar.month(year, month)).replace(str(day),style(str(day),'green').content)
+    @staticmethod
+    def passed_date(f_date,l_date=_NOW,return_time='day'):
+        if not l_date: l_date=date_time.NOW()
+        f_date = _datetime.datetime(*f_date)
+        return_time= return_time.lower()
+        if return_time in ('day','month','year','hour','minute','second'):
+            DELTA=  l_date - f_date
+            if return_time == 'year':
+                try:
+                    _return = _re.search(r'(?P<X>(-)?\w+) day',str(DELTA/365)).group('X')
+                except:
+                    _return = None
+                #_return = str(DELTA/365)
+            elif return_time == 'month':
+                _return = _re.search(r'\w+',str(DELTA/30)).group()
+            elif return_time == 'day':
+                _return = str(DELTA)[:-14]
+            elif return_time =='hour':
+                _return = str(DELTA*24)[:-14]
+            elif return_time == 'minute':
+                _return = str(DELTA*1440)[:-14]
+            elif return_time == 'second':
+                _return = str(DELTA*3600)[:-14]
+            
+            if _return:  return _return
+            else: return 0
+        else:
+            raise ValueError("return_time should be in  ('year', 'month', 'day', 'hour', 'minute', 'second')")
+    passed_time = passed_date
+    '''@staticmethod
+     def passed_time(year=1970,month=1,day=1,hour=0,minute=0,second=0,return_time='second'):
+        pass'''
+    @staticmethod
+    def convert_epoch_to_local(second=_time.time()):
+        return _time.ctime(second)
+    @staticmethod
+    def get_weekday(year=_NOW_YEAR,month=_NOW_MONTH,day=_NOW_DAY,return_name=False):
+        """
+        First day is Monday and the numbers starts from 0
+        """
+        year,month,day = date_time.normalize([year,month,day])[0]
+        if return_name:
+            return date_time.Weekday_Names[_datetime.date(year,month,day).weekday()]
+        else:
+            return _datetime.date(year,month,day).weekday()
+    @staticmethod
+    def get_weeknom(year=_NOW_YEAR,month=_NOW_MONTH,day=_NOW_DAY):
+        """
+        Returns 53 if First week is from last year
+        """
+        year,month,day = date_time.normalize([year,month,day])[0]
+        return _datetime.date(year,month,day).isocalendar()[1]
+    @staticmethod
+    def calendar_show_week(week_nom,year=_NOW_YEAR):
+        year = date_time.normalize([year])[0][0]
+        week= week_nom
+        for i in list(range(1,8))[::-1]:
+            if date_time.get_weeknom(year,1,i)==1:
+                FIRST_WEEK_DAYS= len(list(range(i)))
+                break
+
+        day= (week-1)*7 - (6-FIRST_WEEK_DAYS)
+        mnth= 1
+        true=False
+        while not true:
+            try:
+                if _calendar.monthrange(year,mnth)[1]<day:
+                    mnth+=1
+                    day-= _calendar.monthrange(year,mnth)[1]
+                else:
+                    true= True
+            except _calendar.IllegalMonthError:
+                class BadWeekNumber(Exception):
+                    def __init__(self, message='Week Number is Higher Than Year Weeks.'): super().__init__(message)
+                raise BadWeekNumber from None
+        new= date_time(year,mnth,day)
+
+        cal= new.calendar_month.splitlines()
+        for item in cal:
+            if str(new.day) in item and item != cal[0]:
+                INDEX= cal.index(item);COLORED_WEEK= style(item,'green');break
+
+        WEEK_WITH_COLOR= '\n'.join(cal[:INDEX]+[str(COLORED_WEEK)]+cal[INDEX+1:])
+        return WEEK_WITH_COLOR
+    @staticmethod
+    def get_year():
+        return _time.localtime().tm_year
+    @staticmethod
+    def get_month():
+        return _time.localtime().tm_mon
+    @staticmethod
+    def get_day_of_month():
+        return _time.localtime().tm_mday
+    @staticmethod
+    def get_day_of_week():
+        return _time.localtime().tm_wday
+    @staticmethod
+    def get_day_of_year():
+        return _time.localtime().tm_yday
+    @staticmethod
+    def get_hour():
+        return _time.localtime().tm_hour
+    @staticmethod
+    def get_minute():
+        return _time.localtime().tm_min
+    @staticmethod
+    def get_second():
+        return _time.localtime().tm_sec
+date_time = DateTime
 
 _Auto = 0
 class _Lang:
@@ -1638,11 +2206,11 @@ class _Lang:
         def __repr__(self):
             return '<'+str(self.__members)[1:-1]+'>'
 
-        def __setattr__(self,attr,value):
+        def __setattr__(self,_attr,value):
             if self._init:
                 raise AttributeError(f"'Constant' object does not support item assignment")
             else:
-                super(_Lang.Constant,self).__setattr__(attr,value)
+                super(_Lang.Constant,self).__setattr__(_attr,value)
 
         def __getitem__(self,index):
             return self.__members[index]
@@ -1773,8 +2341,8 @@ class _Lang:
         #Union  = _typing.Union
         #_types.AsyncGeneratorType
     types = Types
-setattr(_Lang,'Const',type(_Lang.Constant(1)))
-setattr(_Lang,'Array',type(_Lang.Array(1,1)))
+#setattr(_Lang,'Const',type(_Lang.Constant(1)))
+#setattr(_Lang,'Array',type(_Lang.Array(1,1)))
 
 
 #END
