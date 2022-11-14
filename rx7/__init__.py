@@ -9,16 +9,12 @@ Official Documention Will Be Added Soon.
 Written By RX
 Last Update: 1-15-2021
 '''
-__version__ = '3.0.0'
+__version__ = '3.1.0'
 
 """
 < Release Changes >
-  - style.log_ now have all time prefix by default
-  - call=call_later
-  - system.mac_address
-  - io.selective_input choices can be dict
-  - Class Internet
-  - class date_time
+  {!!!}
+  - Record.timeit has default parameters now
 """
 
 
@@ -77,9 +73,9 @@ import shutil as _shutil
 import random as _random
 import datetime as _datetime
 import calendar as _calendar
-import requests as _requests
+# import requests as _requests    
+    # imported requests in any method that uses to improve importing speed
 import subprocess as _subprocess
-from bs4    import  BeautifulSoup
 from typing import (Any,Iterable,Optional,Callable,List,Union)
 
 import psutil as _psutil
@@ -320,7 +316,7 @@ def download(url:str, filename:str=_BASENAME, save_memory:bool=True,
     save_memory parameter is used to save memory in large files
     (save directly to storage)
     '''
-    import requests, urllib
+    import requests as _requests
     if not filename:
         filename = url.split('/')[-1]
 
@@ -608,9 +604,21 @@ class Random:
     
     @staticmethod
     def choose(iterator,k: int =1,duplicate=True):
-        '''
+        """
         Return a random element from a non-empty sequence.
-        '''
+    
+        Args:
+            iterator (Iterator): The iterator you wanna choose a random member of it
+            k (int): number of items to randomly get from iterator
+            duplicate (bool): wether or not getting duplicate items (if k>1)
+        
+        Returns:
+            Any: one of members of iterator if k=1
+            List[Any]: if k>1
+    
+        Raise:
+            ValueError: Occurs when k<1
+        """
         if type(k) != int:
             raise TypeError('k must be integer.')
         
@@ -626,30 +634,56 @@ class Random:
     
     @staticmethod
     def integer(first_number,last_number):
-        '''
+        """
         Return random integer in range [a, b], including both end points.
-        '''
+
+        Args:
+            first_number (int):  a
+            last_number  (int):  b
+
+        Return:
+            int: a random number in [a, b] range
+        """
         return _random.randint(first_number,last_number)
     
     @staticmethod
     def O1(decimal_number=17):
-        '''
-        return x in the interval [0, 1)
-        '''
+        """
+        Return x in the interval [0, 1)
+
+        Arg:
+            decimal_number (int): how many decimal numbers to round
+
+        Return:
+            float: random number in interval [0,1)
+        """
         return round(_random.random(),decimal_number)
     
     @staticmethod
     def number(first_number,last_number):
-        '''
-        return x in the interval [F, L]
-        '''
+        """
+        Return x in the interval [a, b]
+
+        Args:
+            first_number (float):  a
+            last_number  (float):  b
+
+        Return:
+            flaot: a random number in interval [a, b]
+        """
         return _random.uniform(first_number,last_number)
 
     @staticmethod
     def shuffle(iterable):
-        '''
+        """
         Return shuffled version of iterable
-        '''
+    
+        Arg:
+            iterable (Iterable): The iterable you want to shuffle it's items
+    
+        Return:
+            Iterable[Any]: shuffled version of given iterable
+        """
         real_type = type(iterable)
         new_iterable = list(iterable)
 
@@ -1046,8 +1080,8 @@ class System:
         Return ip with by http://ipinfo.io/ip api.
         returns global ip as string
         """
+        import requests as _requests
         try:
-            import requests
             new_session = _requests.session()
             response = new_session.get("http://ipinfo.io/ip")
             import re
@@ -1195,7 +1229,6 @@ class System:
         if formatted:
             return ':'.join(['{:02x}'.format((mac >> ele) & 0xff) for ele in range(0,8*6,8)][::-1])
         return hex(mac) 
-        
 system = System
 
 
@@ -1345,7 +1378,7 @@ class Record:
     def __repr__(self):
         return f'Laps: {self.laps}'
 
-    def lap(self, save=True, Round=15):
+    def lap(self, save=True, Round=15) -> float:
         '''
         Return time passed from creating time of self.
         (Read 'record' Doc String)
@@ -1374,7 +1407,7 @@ class Record:
             self.laps.append(self.lap())
         return ret
     @staticmethod
-    def timit(code,setup,times,globals_):
+    def timeit(code="pass",setup="pass",times=1_000_000,globals_=None):
         '''
         Run the 'code' for 'times' times and return time it needs (all, not once)
         (If you need any initialization for your 'code', put it in setup arg)
@@ -1591,12 +1624,13 @@ class IO:
     @staticmethod
     def wait_for_input(prompt,SS:list=[]):
         answer= ''
-        try:
-            while not answer:
-                answer = input(prompt).strip()
-        except (EOFError,KeyboardInterrupt):
-            style.print('EXITING...','red')
-            exit()
+        # try:
+        while not answer:
+            answer = input(prompt).strip()
+        
+        # except (EOFError,KeyboardInterrupt):
+            # style.print('EXITING...','red')
+            # exit()
         return answer
 
     @staticmethod
@@ -1610,7 +1644,7 @@ class IO:
         while True:
             inp = input(prompt)
             inp = inp.lower() if ignore_case else inp
-            if not inp  or  inp not in Choices:
+            if not inp  or  inp not in choices:
                 if error:
                     style.print(invalid, 'red')
                 else:
@@ -1757,7 +1791,6 @@ class Tuple:
 
 
 
-_ReqConErr = _requests.exceptions.ConnectionError
 class Internet:
     
     @staticmethod
@@ -1791,6 +1824,7 @@ class Internet:
             return func(*args,**kwargs)
         return inside
     
+    '''
     @staticmethod
     def ip_global() -> str:
         """
@@ -1801,7 +1835,9 @@ class Internet:
         ip_list = _re.findall(r"(?:[0-9]{1,3}\.){3}[0-9]{1,3}", response.text)
         new_session.close()
         return ip_list[0]
-    
+    '''
+    ip_global = system.ip_global
+
     @staticmethod
     def ip_local() -> str:
         """
@@ -1844,6 +1880,8 @@ class Internet:
         check if url exists (with 'requests' module)
         (NEED HTTP[S])
         '''
+        import requests as _requests
+        _ReqConErr = _requests.exceptions.ConnectionError
         try:
             request = _requests.get(URL)
         except _ReqConErr:
@@ -1878,7 +1916,10 @@ class Internet:
         (All "a" tags from html source)
         (Needs 'http[s]')
         ''' #html.parser
+        import requests as _requests
+        _ReqConErr = _requests.exceptions.ConnectionError
         try:
+            from bs4 import BeautifulSoup
             soup= BeautifulSoup(_requests.get(URL).text,features="lxml")
             LINKS= []
             for link in soup.find_all('a'):
@@ -2178,7 +2219,13 @@ class DateTime:
     @staticmethod
     def get_second():
         return _time.localtime().tm_sec
-date_time = DateTime
+date_time = datetime = DateTime
+
+
+
+
+
+
 
 _Auto = 0
 class _Lang:

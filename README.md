@@ -19,8 +19,8 @@ rx7 Library  is here to help you make your code shorter!
 
 
 <p>&nbsp;</p>
-List of Variables:
-------------------
+<h2>List of Classes:</h2>
+
 <table style="height: 471px; width: 567px;">
   <tbody>
     <tr>
