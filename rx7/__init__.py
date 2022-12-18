@@ -7,7 +7,7 @@ Official Documention Will Be Added Soon.
 '''
 '''
 Written By RX
-Last Update: 1-15-2021
+Last Update: 12-18-2022
 '''
 __version__ = '3.1.0'
 
@@ -15,27 +15,37 @@ __version__ = '3.1.0'
 < Release Changes >
   {!!!}
   - Record.timeit has default parameters now
+  - removed progressbar()
+  - Improved Style object creation
+  - Improved Style.print:
+        Simpler implementation
+        Now style.print is more like built-in print function.
+          Takes more than just one argument to print and all of styled parameters
+            are now keyword-only arguments
+  - Improved Style.log_ methods
 """
 
 
 '''
 TODO:
- - average()
+ - type annotation for all functions and classes
+ ? itertools & functools
  DATETIME:
      X calendar_month_st replace day will be all noms
      - Passed Time func
-
- - System.(copy_to_clipboard & paste_from_clipboard)
- - Other archive files in extract
  - Call_later **kwargs
  - Internet:
      default_timeout
  - files:
      - files.join files.dirname
      - Error in files.MEMBERS.all_all_*
+ - System.(copy_to_clipboard & paste_from_clipboard)
+
+ - Make Sound
+ - Other archive files in extract
+ - average()
  - socket.socket()
  - Screen recorder
- - Make Sound
  - mp3 tags                                   (v 3.x)
  - registery editor                           (v 3.x)
  - re module                                  (v 3.x)
@@ -73,9 +83,9 @@ import shutil as _shutil
 import random as _random
 import datetime as _datetime
 import calendar as _calendar
+import subprocess as _subprocess
 # import requests as _requests    
     # imported requests in any method that uses to improve importing speed
-import subprocess as _subprocess
 from typing import (Any,Iterable,Optional,Callable,List,Union)
 
 import psutil as _psutil
@@ -137,7 +147,7 @@ sleep = wait
 
 def cls():
     '''
-    You can use this function if you want to clear the environment.
+    You can use this function if you want to clear the terminal environment.
     '''
     import platform
     if platform.system() == "Windows":
@@ -145,33 +155,6 @@ def cls():
     else:
         _os.system('clear')
 clear = cls
-
-def progressbar(
-    total=100, dashes_nom=100, delay=1, dashes_shape=' ', complete_shape='█',
-    pre_text='Loading: ', left_port='|', right_port='|'):
-    '''
-    Use this function to make a custom in-app progress bar (Not Very Usefull).
-    (Use Progressbar() Generator instead to do your stuffs while updating progressbar)
-    Example:
-        progressbar(
-            Total=100,Dashes_Nom=10,Time=1,Dashes_Shape='-',
-            Complete_Shape='#', Pre_Text='Loading')
-        ==>   Loading|####------| 40/100
-    '''
-    def Progressbar(it, prefix="", size=60, file=_sys.stdout):
-        count = len(it)
-        def show(j):
-            x = int(size*j/count)
-            file.write(f"{prefix}{right_port}{complete_shape*x}{dashes_shape*(size-x)}{left_port} {j}/{count}\r")
-            file.flush()        
-        show(0)
-        for i, item in enumerate(it):
-            yield item
-            show(i+1)
-        file.write("\n")
-        file.flush()
-    for _ in Progressbar(range(total), pre_text, dashes_nom):
-        wait(delay)
 
 def wait_for(button:str):
     """
@@ -306,8 +289,7 @@ def open_image(path:str) -> None:
     else:
         raise OSError('Only Windows and Linux are supported for this function.')
 
-_BASENAME=''
-def download(url:str, filename:str=_BASENAME, save_memory:bool=True,
+def download(url:str, filename:str="auto", save_memory:bool=True,
              progressbar:bool =True, prefix:str='Downloading'):
     '''
     Use this function to download files.  
@@ -317,7 +299,7 @@ def download(url:str, filename:str=_BASENAME, save_memory:bool=True,
     (save directly to storage)
     '''
     import requests as _requests
-    if not filename:
+    if filename=='auto':
         filename = url.split('/')[-1]
 
     if save_memory:
@@ -490,9 +472,9 @@ def import_module(path:str):
 
 
 
-######################
-#     TUPLE FUNC     #
-######################
+#######################
+#     TUPLE FUNCS     #
+#######################
 def force(tpl: Any, *var: Any) -> tuple:
     '''
     (TUPLE FUNCTION)
@@ -594,6 +576,7 @@ def pop(tuple,index=-1):
 ####          888    888  888  888  .d888888  "Y8888b.  "Y8888b.  88888888  "Y8888b.          #### 
 ####          Y88b  d88P  888  888  888  888       X88       X88  Y8b.           X88          #### 
 #######        "Y8888P"   888  888  "Y888888   88888P'   88888P'   "Y8888    88888P'       ####### 
+
 
 
 class Random:
@@ -701,6 +684,7 @@ class Random:
         else:
             return new_iterable
 random = Random
+
 
 
 class Files:
@@ -1020,6 +1004,7 @@ write = files.write
 read  = files.read
 
 
+
 class System:
     '''
     Some system actions and information.
@@ -1232,6 +1217,7 @@ class System:
 system = System
 
 
+
 from colored import fg   as  _fg
 from colored import bg   as  _bg
 from colored import attr as  _attr
@@ -1248,59 +1234,54 @@ class Style:
     - Because it returns string You can Add it to other strings
     - Slicing and indexing (Without Color)
     '''
-    def __init__(self, text, color='default', BG='black'):
-        try:
-            self.color = color.lower()
-            self.BG = BG.lower()
-            #style = style.lower()
-        except:
-            pass
-        if color == 'default':
-            self.color = 7 #188
+    def __init__(self, text, color='default', BG='default',style=0):
         self.text = text
-        self.content = f"{_fg(color)}{_bg(BG)}{text}{_attr(0)}"
+        self.styled = ""
+        if color != 'default':
+            self.styled += f"{_fg(color)}"
+        if BG    != 'default':
+            self.styled += f"{_bg(BG)}"
+        if style:
+            self.styled += f"{_attr(style)}"
+        self.styled += f"{text}"
+        self.styled += f"{_attr(0)}"
+
     def __str__(self):
-        return self.content
+        return self.styled
     def __repr__(self):
-        return self.content
+        return self.styled
     def __add__(self, other):
         #print(type(other))
         if type(other)!=style:
-            return self.content+other
+            return self.styled+other
         else:
-            return self.content+other.content
+            return self.styled+other.styled
+    # def __iter__(self):  return iter(self.content)
 
 
     @staticmethod
-    def print(text='', color='default', BG='default', style=None, end='\n'):
+    def print(*values,color='default', BG='default', style=None, end='\n', sep=" "):
         '''
         text(text='Hello World',color='red',BG='white')
         output ==> 'Hello World' (With red color and white BG)
-        Styles: bold - underline - reverse - hidden
-         *bold and underline may not work. (Depends on terminal and OS)
+        Styles: bold - underlined - reverse - hidden
+         *bold and underlined may not work. (Depends on terminal and OS)
         '''
-        try:
-            color = color.lower()
-            BG = BG.lower()
-            style = style.lower()  if style and type(style)==str  else 0
-        except:
-            raise
-        
+        text = ""
+        if color != 'default':
+            text += f"{_fg(color)}"
+        if BG    != 'default':
+            text += f"{_bg(BG)}"
+        if style:
+            text += f"{_attr(style)}"
 
-        if style == 'none':
-            style = 0
+        if len(values):
+            text = values[0]
+        for t in values[1:]:
+            text += f"{sep}{t}{_attr(0)}"
 
-        if color=='default' and BG!='default':  # _bg & !clr
-            print(f'{_attr(style)}{_bg(BG)}{text}{_attr(0)}', end=end)
+        print(text,end=end)
 
-        elif color!='default' and BG=='default':  # !_bg & clr
-            print(f'{_attr(style)}{_fg(color)}{text}{_attr(0)}', end=end)
-
-        elif color=='default' and BG=='default':  # !_bg & !clr
-            print(f'{_attr(style)}{text}{_attr(0)}', end=end)
-
-        elif color!='default' and BG!='default':  # _bg & clr
-            print(f'{_attr(style)}{_bg(BG)}{_fg(color)}{text}{_attr(0)}', end=end)
 
     @staticmethod
     def switch(color='default', BG='black', style='None'):
@@ -1327,33 +1308,32 @@ class Style:
         print(f'{_attr(0)}', end='')
     reset = switch_default
 
+
+    def _get_now(add_time):
+        return _time.strftime('%H:%M:%S',_time.localtime()) if add_time else ''
+    def _log(text, color='green', BG='default', style=None, add_time=True):
+        #globals()['style'].print(text, color, BG, style=style)
+        NOW = Style._get_now(add_time)
+        Style.switch(color=color, BG=BG)
+        Style.print(f"[{NOW}]  {text}")
+        Style.switch_default()
     @staticmethod
     def log_success(text, color='green', BG='default', style=None, add_time=True):
-        #globals()['style'].print(text, color, BG, style=style)
-        NOW = _time.strftime('%H:%M:%S',_time.localtime()) if add_time else ''
-        globals()['style'].print(NOW, color, BG,end='  ')
-        globals()['style'].print(text, color, BG, style=style)
+        Style._log(text,color,BG,style,add_time)
     @staticmethod
     def log_info(text, color='grey_93', BG='default', style=None, add_time=True):
-        NOW = _time.strftime('%H:%M:%S',_time.localtime()) if add_time else ''
-        globals()['style'].print(NOW, color, BG,end='  ')
-        globals()['style'].print(text, color, BG, style=style)
+        Style._log(text,color,BG,style,add_time)
     @staticmethod
     def log_warning(text, color='gold_3a', BG='default', style=None, add_time=True):
-        NOW = _time.strftime('%H:%M:%S',_time.localtime()) if add_time else ''
-        globals()['style'].print(NOW, color, BG,end='  ')
-        globals()['style'].print(text, color, BG, style=style)
+        Style._log(text,color,BG,style,add_time)
     @staticmethod
     def log_error(text, color='red', BG='default', style=None, add_time=True):
-        NOW = _time.strftime('%H:%M:%S',_time.localtime()) if add_time else ''
-        globals()['style'].print(NOW, color, BG,end='  ')
-        globals()['style'].print(text, color, BG, style=style)
+        Style._log(text,color,BG,style,add_time)
     @staticmethod
     def log_critical(text, color='red_1', BG='default', style='bold', add_time=True):
-        NOW = _time.strftime('%H:%M:%S',_time.localtime()) if add_time else ''
-        globals()['style'].print(NOW, color, BG,end='  ')
-        globals()['style'].print(text, color, BG, style=style)
+        Style._log(text,color,BG,style,add_time)
 style = Style
+
 
 
 class Record:
@@ -1417,6 +1397,7 @@ class Record:
 record = Record
 
 
+
 class Terminal:
     """
     Run Terminal Commands with Terminal functions
@@ -1438,6 +1419,7 @@ class Terminal:
         '''
         return _subprocess.getoutput(command)
 terminal = Terminal
+
 
 
 class Decorator:
@@ -1637,7 +1619,6 @@ class IO:
     def selective_input(prompt,choices,default=None,ignore_case=False,error=True,invalid='Invalid input'):
         if type(choices) == dict:
             Choices = list(choices.keys())+list(choices.values())
-        pass
 
         if ignore_case:
             Choices = [item.lower() for item in Choices]
@@ -1786,8 +1767,6 @@ class Tuple:
         return hash(self.__content)
     def __len__(self):
         return len(self.__content)
-    #############################
-    #############################
 
 
 
@@ -2061,14 +2040,14 @@ class DateTime:
 
         #self.first_week_day= first_week_day
         _calendar.setfirstweekday(first_week_day)
-        self.calendar= str(_calendar.month(year, month)).replace(str(day),style(str(day),'green').content)
+        self.calendar= str(_calendar.month(year, month)).replace(str(day),style(str(day),'green').styled)
         self.calendar_month= str(_calendar.month(year, month))
         self.calendar_year_all=str(_calendar.calendar(year))
         self.calendar_year= [_calendar.month(year,i) for i in range(1,13)]
         self.calendar_next_all= [_calendar.month(year,i) for i in range(self.month+1,13)]
         self.calendar_prev_all= [_calendar.month(year,i) for i in range(1,self.month)]
-        self.calendar_position_next_year= str(_calendar.month(year+1, month)).replace(str(day),style(str(day),'green').content)
-        self.calendar_position_prev_year= str(_calendar.month(year-1, month)).replace(str(day),style(str(day),'green').content)
+        self.calendar_position_next_year= str(_calendar.month(year+1, month)).replace(str(day),style(str(day),'green').styled)
+        self.calendar_position_prev_year= str(_calendar.month(year-1, month)).replace(str(day),style(str(day),'green').styled)
         
     def setfirstweekday(self,day):
         if type(day)==int and day<7:
@@ -2082,14 +2061,14 @@ class DateTime:
             else:
                 raise TypeError(f"Inappropriate Type For 'day'.  day can be 'str' or 'int' not {type(day)}")
         _calendar.setfirstweekday(day)
-        self.calendar= str(_calendar.month(self.year, self.month)).replace(str(day),style(str(day),'green').content)
+        self.calendar= str(_calendar.month(self.year, self.month)).replace(str(day),style(str(day),'green').styled)
         self.calendar_month= str(_calendar.month(self.year, self.month))
         self.calendar_year_all=str(_calendar.calendar(self.year))
         self.calendar_year= [_calendar.month(self.year,i) for i in range(1,13)]
         self.calendar_next_all= [_calendar.month(self.year,i) for i in range(self.month+1,13)]
         self.calendar_prev_all= [_calendar.month(self.year,i) for i in range(1,self.month)]
-        self.calendar_position_next_year= str(_calendar.month(self.year+1, self.month)).replace(str(day),style(str(day),'green').content)
-        self.calendar_position_prev_year= str(_calendar.month(self.year-1, self.month)).replace(str(day),style(str(day),'green').content)
+        self.calendar_position_next_year= str(_calendar.month(self.year+1, self.month)).replace(str(day),style(str(day),'green').styled)
+        self.calendar_position_prev_year= str(_calendar.month(self.year-1, self.month)).replace(str(day),style(str(day),'green').styled)
 
         self.weekday= date_time.get_weekday(self.year,self.month,self.day)
         self.weekday_name= date_time.get_weekday(self.year,self.month,self.day,True)
@@ -2110,7 +2089,7 @@ class DateTime:
         if not day:
             return str(_calendar.month(year, month))
         else:
-            return str(_calendar.month(year, month)).replace(str(day),style(str(day),'green').content)
+            return str(_calendar.month(year, month)).replace(str(day),style(str(day),'green').styled)
     @staticmethod
     def passed_date(f_date,l_date=_NOW,return_time='day'):
         if not l_date: l_date=date_time.NOW()
