@@ -1,34 +1,27 @@
-'''
+"""
 This Module is One to Make Your Code Shorter.
 High API Will Make You Feel You're Ordering And Machine Is Doing!
 Also There is Collection of most usefull function and methods from popular modules of python.
 (Read Help of Functions)
-Official Documention Will Be Added Soon.
-'''
+Official documentation in https://github.com/Ramin-RX7/RX7-Lib
+"""
 '''
 Written By RX
-Last Update: 12-18-2022
+Last Update: 12-20-2022
 '''
 __version__ = '3.1.0'
 
 """
 < Release Changes >
-  {!!!}
-  - Record.timeit has default parameters now
-  - removed progressbar()
-  - Improved Style object creation
-  - Improved Style.print:
-        Simpler implementation
-        Now style.print is more like built-in print function.
-          Takes more than just one argument to print and all of styled parameters
-            are now keyword-only arguments
-  - Improved Style.log_ methods
+
 """
 
 
 '''
 TODO:
- - type annotation for all functions and classes
+ ? Some of "Files" methods parameters should be "file" instead of "path"
+ - Random.shuffle better implementation
+ ? type annotation for all functions and classes
  ? itertools & functools
  DATETIME:
      X calendar_month_st replace day will be all noms
@@ -71,25 +64,25 @@ TODO:
 
 #START
 
-import os  as _os
-import re  as _re
-import sys as _sys
-import abc as _abc
-import time   as _time
-import socket as _socket
-import typing as _typing
-import urllib as _urllib
-import shutil as _shutil
-import random as _random
+import os   as _os
+import re   as _re
+import sys  as _sys
+import abc  as _abc
+import time as _time
+import socket   as _socket
+import typing   as _typing
+import urllib   as _urllib
+import shutil   as _shutil
+import random   as _random
 import datetime as _datetime
 import calendar as _calendar
 import subprocess as _subprocess
 # import requests as _requests    
     # imported requests in any method that uses to improve importing speed
-from typing import (Any,Iterable,Optional,Callable,List,Union)
-
 import psutil as _psutil
 
+from typing import (Any,Iterable,Optional,Callable,
+                    Union,Text,Generator,Literal)
 
 
 
@@ -97,7 +90,6 @@ import psutil as _psutil
 
 argv    = _sys.argv
 ABC     = _abc.ABC
-ABCMeta = _abc.ABCMeta
 
 
 
@@ -112,7 +104,7 @@ ABCMeta = _abc.ABCMeta
 #######       888      "Y88888 888  888  "Y8888P  "Y888 888  "Y88P"  888  888  88888P'       ####### 
 
 
-def p(text='', end='\n'):
+def p(text:str='', end='\n'):
     '''
     p is print!
     But because we use it a lot, we\'ve decided to make it one letter.
@@ -122,7 +114,7 @@ def p(text='', end='\n'):
     '''
     print(text, end=end)
 
-def repeat(function, n: int, **kwargs):
+def repeat(function:Callable, n: int, **kwargs):
     '''
     Repeat function for n times with given parameters
     for more info see the example below.
@@ -133,7 +125,7 @@ def repeat(function, n: int, **kwargs):
     for _ in range(n):
         function(**kwargs)
 
-def wait(seconds):
+def wait(seconds:int):
     '''
     Use this if you want your program wait for a certain _time.
 
@@ -398,7 +390,7 @@ def func_info(func:Callable):
     print(_code_)
 
 def Progressbar(
-    total=60, dashes_nom=30, dashes_shape=' ', complete_shape='█',
+    total=60, dashes_nom=30, empty_shape=' ', complete_shape='█',
     pre_text='Loading: ', left_port='|', right_port='|'):
     '''
     Make your code more beautiful with progressbars!
@@ -412,7 +404,7 @@ def Progressbar(
     def show(j):
         x = int(dashes_nom*j/total)
         echo.write(
-            f"{pre_text}{right_port}{complete_shape*x}{dashes_shape*(dashes_nom-x)}{left_port} {j}/{total}\r")
+            f"{pre_text}{right_port}{complete_shape*x}{empty_shape*(dashes_nom-x)}{left_port} {j}/{total}\r")
         echo.flush()        
     show(0)
     for i, item in enumerate(range(total)):
@@ -494,26 +486,26 @@ def erase(tpl: tuple, *var: Any) -> tuple:
         lstt.remove(th)
     return tuple(lstt)
 
-def replace(tpl: tuple, ind, var: Any) -> tuple:
+def replace(tpl: tuple, index:int, var: Any) -> tuple:
     '''
     (TUPLE FUNCTION)
     Replace tpl[ind] with var
     '''
     tpl=list(tpl)
-    if type(ind) == str:
-        ind= tpl.index(ind)
-    tpl[ind]=var
+    if type(index) == str:
+        index= tpl.index(index)
+    tpl[index]=var
     return tuple(tpl)
 
-def insert(tpl: tuple, ind, var: Any) -> tuple:
+def insert(tpl: tuple, index:int, var: Any) -> tuple:
     '''
     (TUPLE FUNCTION)
     Exactly like tpl[ind]=var in lists but for tuples.
     '''
     tpl=list(tpl)
-    if type(ind) == str:
-        ind= tpl.index(ind)
-    tpl.insert(ind,var)
+    if type(index) == str:
+        index= tpl.index(index)
+    tpl.insert(index,var)
     return tuple(tpl)   
 
 def pop(tuple,index=-1):
@@ -586,7 +578,7 @@ class Random:
     '''
     
     @staticmethod
-    def choose(iterator,k: int =1,duplicate=True):
+    def choose(iterable:Iterable, k:int=1, duplicate=True):
         """
         Return a random element from a non-empty sequence.
     
@@ -606,17 +598,17 @@ class Random:
             raise TypeError('k must be integer.')
         
         if k == 1:
-            return _random.choice(iterator)
+            return _random.choice(iterable)
         elif k > 1:
             if duplicate:
-                return _random.choices(iterator,k=k)
+                return _random.choices(iterable,k=k)
             else:
-                return _random.sample(iterator,k=k)
+                return _random.sample(iterable,k=k)
         else:
             raise ValueError('k Must Be Higher 0')     
     
     @staticmethod
-    def integer(first_number,last_number):
+    def integer(first_number:int, last_number:int):
         """
         Return random integer in range [a, b], including both end points.
 
@@ -630,7 +622,7 @@ class Random:
         return _random.randint(first_number,last_number)
     
     @staticmethod
-    def O1(decimal_number=17):
+    def O1(decimal_number:int = 17):
         """
         Return x in the interval [0, 1)
 
@@ -643,7 +635,7 @@ class Random:
         return round(_random.random(),decimal_number)
     
     @staticmethod
-    def number(first_number,last_number):
+    def number(first_number:float, last_number:float):
         """
         Return x in the interval [a, b]
 
@@ -657,7 +649,7 @@ class Random:
         return _random.uniform(first_number,last_number)
 
     @staticmethod
-    def shuffle(iterable):
+    def shuffle(iterable:Iterable):
         """
         Return shuffled version of iterable
     
@@ -715,7 +707,7 @@ class Files:
       - write()
     '''
     @staticmethod
-    def size(path):
+    def size(path:str) -> int:
         '''
         return size of the file in byte(s).
         Also work on directories.
@@ -723,7 +715,7 @@ class Files:
         return _os.path.getsize(path)
         #rooye pooshe emtehan she
     @staticmethod
-    def remove(path,force=False):
+    def remove(path:str,force:bool=False) -> None:
         '''
         Use this to delete a file or a directory.
         If force is True it will delete non-empty directories.
@@ -741,17 +733,17 @@ class Files:
                                    '(Use force=True as an argument of remove function to remove non-empty directories.)') from None
     delete = remove
     @staticmethod
-    def rename(old_name,new_name):
+    def rename(old_name:str, new_name:str) -> None:
         '''Rename files with this function.'''
         _os.rename(old_name,new_name)
     @staticmethod
-    def abspath(path):
+    def abspath(path:str) -> str:
         '''
         return absolute path of given path.
         '''
         return _os.path.abspath(path)
     @staticmethod
-    def exists(path):
+    def exists(path:str) -> bool:
         '''
         Search for the file And Returns a boolean.
         if file exists: True
@@ -759,28 +751,28 @@ class Files:
         '''
         return _os.path.exists(path)
     @staticmethod
-    def mdftime(path):
+    def mdftime(path:str) -> float:
         '''
         Get last modify time of the path.
         '''
         return _os.path.getmtime(path)
     @staticmethod
-    def acstime(path):    
+    def acstime(path:str) -> float:    
         '''
         Get last access time of the path.
         '''
         return _os.path.getatime(path)
         # change to date bayad biad
     @staticmethod
-    def move(src,dst):
+    def move(src:str, dst:str) -> None:
         '''
         Move (cut) file/directory from crs to dst.
         '''
         _shutil.move(src,dst)
         #live_path= dst
-        #Baraye folder hast ya na?
+        #works for dirs too or not?
     @staticmethod
-    def copy(src,dest,preserve_metadata= True):
+    def copy(src:str, dest:str, preserve_metadata:bool=True) -> None:
         '''
         Copy the file from src to destination.  
         preserve_metadata is for preserving metadata of file when copying.
@@ -797,7 +789,7 @@ class Files:
             else: _shutil.copy(src,dest)
 
     @staticmethod
-    def hide(path,mode=True):
+    def hide(path:str, mode:bool=True) -> None:
         '''
         Hide file or folder.
         If mode==False: makes 'not hide'
@@ -812,7 +804,7 @@ class Files:
         else:
             win32api.SetFileAttributes(path,win32con.FILE_ATTRIBUTE_NORMAL)
     @staticmethod
-    def read_only(path,mode=True):
+    def read_only(path:str, mode:bool=True) -> None:
         '''
         Make file attribute read_only.
         If mode==False: makes 'not read_only'
@@ -826,7 +818,7 @@ class Files:
         else:
             raise Exception('Second argumant (mode) should be boolean.')
     @staticmethod
-    def read(path):
+    def read(path:str) -> str:
         '''
         This can help you to read your file faster.
         Example:
@@ -837,7 +829,7 @@ class Files:
             FileR= f.read()
         return FileR
     @staticmethod
-    def write(file_path,text=None,mode='replace',start=''):
+    def write(file_path:str, text:Text=None, mode='replace', start='') -> None:
         '''
         With this method you can change content of the file.  
         file:   File you want to change its content.
@@ -865,20 +857,20 @@ class Files:
         else:
             raise ValueError('mode can only be: replace(default) or continue Not "{0}"'.format(mode))
     @staticmethod
-    def isdir(path):
+    def isdir(path:str) -> bool:
         return _os.path.isdir(path)
     @staticmethod
-    def isfile(path):
+    def isfile(path:str):
         return _os.path.isfile(path)
     @staticmethod
-    def is_readonly(path):
+    def is_readonly(path:str):
         '''
         Return True if path is readonly else False.
         (May Not Work in Linux)
         '''
         return _subprocess.getoutput(f'dir /ar {path} >nul 2>nul && echo True || echo False')
     @staticmethod
-    def is_hidden(path):
+    def is_hidden(path:str):
         """
         Check whether a file is presumed hidden, either because
         the pathname starts with dot or because the platform
@@ -893,13 +885,13 @@ class Files:
         platform_hidden = globals().get('is_hidden_' + platform.system(), no)
         return name.startswith('.') or platform_hidden(full_path)
     @staticmethod
-    def is_hidden_Windows(path):
+    def is_hidden_Windows(path:str):
         import ctypes
         res = ctypes.windll.kernel32.GetFileAttributesW(path)
         assert res != -1
         return bool(res & 2)
     @staticmethod
-    def search_file(pattern, path='.\\',return_mode: Union['list','Generator']= 'list'):
+    def search_file(pattern:str, path:str='.\\', return_mode:Literal[list,Generator]=list):
         '''
         Search for files in path.
         Return list or generator.
@@ -911,18 +903,14 @@ class Files:
         -  '**/*.py:    search for all python files in path and also sub-directories.
         -  'mydir/**/*.py'   :    search for all python files in path/mydir/ and all of its sub-directories.
         '''
+        if return_mode not in (list,Generator):    
+            raise ValueError(f"return_mode should be either 'list' or 'generator'  not {return_mode}")
         import glob
-        if str(return_mode).lower() in ('list','generator'):
-            #print(_os.path.join(path,pattern))
-            if return_mode=='list': return glob.glob(_os.path.join(path,pattern), recursive=True)
-            else: return glob.iglob(_os.path.join(path,pattern), recursive=True)
-        else:
-            if type(return_mode)==str:
-                raise ValueError(f"return_mode van be  'list'  or  'generator'  not {return_mode}")
-            else:
-                raise TypeError(f"return_mode type should be 'str' and it should be in ['list', 'generator']")
+        #print(_os.path.join(path,pattern))
+        if return_mode=='list': return glob.glob(_os.path.join(path,pattern), recursive=True)
+        else: return glob.iglob(_os.path.join(path,pattern), recursive=True)
     @staticmethod
-    def search_content(path,word):
+    def search_content(path:str,word:str):
         ALL= [val for sublist in [[_os.path.join(i[0], j) for j in i[2]] for i in _os.walk(path)] for val in sublist]
         '''lst=[]
         for file in ALL:
@@ -931,7 +919,7 @@ class Files:
         return lst'''
         return [file for file in ALL if word in open(file).read()]
     @staticmethod
-    def mkdir(path):
+    def mkdir(path:str):
         path = _os.path.normpath(path)
         NEW= ''
         for FILE in path.split('\\'):
@@ -939,8 +927,8 @@ class Files:
             try: _os.mkdir(NEW)
             except (FileExistsError,FileNotFoundError): pass
     @staticmethod
-    def generate_tree(dir_path, level: int=-1, limit_to_directories: bool=False,
-            length_limit: int=1000, print_info: bool=True):
+    def generate_tree(dir_path:str, level: int=-1, limit_to_directories: bool=False,
+                      length_limit: int=1000, print_info: bool=True):
         """Given a directory Path object return a visual tree structure"""
         from pathlib import Path
         from itertools import islice
@@ -973,31 +961,31 @@ class Files:
 
     class MEMBERS:
         @staticmethod
-        def all_exactdir(dir):
+        def all_exactdir(dir:str):
             return _os.listdir(dir)
         @staticmethod
-        def all_all_sep(dir):
+        def all_all_sep(dir:str):
             return [i for i in _os.walk(dir)]
         @staticmethod
-        def files_exactdir(dir,abspath=True):
+        def files_exactdir(dir:str, abspath:bool=True):
             if abspath:
                 return [dir+'/'+file_ for file_ in [i for i in _os.walk(dir)][0][2]]
             return [i for i in _os.walk(dir)][0][2]
         @staticmethod
-        def files_all(dir):
+        def files_all(dir:str):
             return [val for sublist in [[_os.path.join(i[0], j) for j in i[2]] for i in _os.walk(dir)] for val in sublist]
         @staticmethod
-        def files_all_sep(dir):
+        def files_all_sep(dir:str):
             return [[_os.path.join(i[0], j) for j in i[2]] for i in _os.walk(dir)]
         @staticmethod
-        def dirs_exactdir(dir, abspath=True):
+        def dirs_exactdir(dir:str, abspath:str=True):
             if dir.endswith('/'): dir=dir[:-1]
             elif dir.endswith('\\'): dir=dir[:-1]
             if abspath:
                 return [dir+'/'+folder for folder in [i for i in _os.walk(dir)][0][1]]
             return [i for i in _os.walk(dir)][0][1]
         @staticmethod
-        def dirs_all(dir):
+        def dirs_all(dir:str):
             return [TPL[0] for TPL in [i for i in _os.walk(dir)]]
 files = Files
 write = files.write
@@ -1013,13 +1001,13 @@ class System:
     (ALL FUNCTIONS ARE STATIC METHODS)
     '''
     @staticmethod
-    def accname():
+    def accname() -> str:
         '''
         return account username you have logged in.
         '''
         return _os.getlogin()
     @staticmethod
-    def pid():
+    def pid() -> int:
         '''
         Get pid number of terminal and return it.
         '''
@@ -1029,7 +1017,7 @@ class System:
         ####
         return _shutil.disk_usage(path)'''
     @staticmethod
-    def chdir(path):
+    def chdir(path:str) -> None:
         '''
         Change directory of terminal.
         '''
@@ -1054,13 +1042,13 @@ class System:
         size= _os.get_terminal_size()
         return (size.columns,size.lines)
     @staticmethod
-    def cwd():
+    def cwd() -> str:
         '''
         Return a unicode string representing the current working directory.
         '''
         return _os.getcwd()
     @staticmethod
-    def ip_global():
+    def ip_global() -> str:
         """
         Return ip with by http://ipinfo.io/ip api.
         returns global ip as string
@@ -1077,7 +1065,7 @@ class System:
             raise ConnectionError('No Internet Connection') from None
     """ip_global= internet.ip_global"""
     @staticmethod
-    def ip_local():
+    def ip_local() -> str:
         """
         Return local ip of computer in windows by _socket. module
         and in unix with hostname command in shell.
@@ -1114,7 +1102,7 @@ class System:
             raise  
     """ip_local= internet.ip_local"""
     @staticmethod
-    def ram_total(convert=True):
+    def ram_total(convert:bool=True) -> str:
         """
         Return total ram of board as string
         parameter convert: flag for convert mode (using of convert_byte function)
@@ -1124,7 +1112,7 @@ class System:
             return convert_bytes(int(response[0]))
         return str(response[0])
     @staticmethod
-    def ram_used(convert=True):
+    def ram_used(convert:bool=True) -> str:
         """
         Return how much ram is using.
         parameter convert: flag for convert mode (convert with convert_byte function)
@@ -1134,7 +1122,7 @@ class System:
             return convert_bytes(int(response[3]))
         return str(response[3])
     @staticmethod
-    def ram_free(convert=True):
+    def ram_free(convert:bool=True) -> str:
         """
         Return how much ram is available.
         parameter convert: flag for convert mode (convert with convert_byte function)
@@ -1144,7 +1132,7 @@ class System:
             return convert_bytes(int(response[1]))
         return str(response[1])
     @staticmethod
-    def ram_percent(ONLY_NOM=False):
+    def ram_percent(ONLY_NOM:bool=False) -> str:
         """
         Return available ram percentage as an integer if ONLY_NOM, as string with % if not ONLY_NOM
         Parameter ONLY_NOM: flag for return type and value.
@@ -1154,21 +1142,21 @@ class System:
             return response[2]    
         return str(response[2]) + " %"
     @staticmethod
-    def boot_time():
+    def boot_time() -> str:
         '''
         Return the system boot time expressed in seconds since the epoch.
         '''
         return _psutil.boot_time()
     @staticmethod
-    def device_name():
+    def device_name() -> str:
         return _socket.gethostname()
     @staticmethod
-    def ip_website(url):
+    def ip_website(url:str) -> str:
         '''get IP address of Web Site'''
         return _socket.gethostbyname(url)
     """ip_webs= internet.ip_website"""
     @staticmethod
-    def win10_notification(title,message,icon=None, duration=5) -> None:
+    def win10_notification(title:str, message:str, icon=None, duration:int=5) -> None:
         '''
         (THIS ONLY WORKS FOR "WINDOWS 10")\n
         Display Notification with title, message and icon for speciefic _time.
@@ -1179,7 +1167,7 @@ class System:
         except:
             raise ImportError('Use "pip install win10toast" to install required module')
     @staticmethod
-    def cpu_count(logical=True):
+    def cpu_count(logical=True) -> int:
         '''
         Return the number of logical CPUs in the system
          (same as _os.cpu_count() in Python 3.4).
@@ -1189,7 +1177,7 @@ class System:
         '''
         return _psutil.cpu_count(logical)
     @staticmethod
-    def pyshell_execute_bit():
+    def pyshell_execute_bit() -> int:
         '''to determine whether a Python shell is executing in 32bit or 64bit'''
         #return platform.architecture()[0][:2]     # SLOW
         #return ctypes.sizeof(ctypes.c_voidp)*8
@@ -1205,10 +1193,10 @@ class System:
         Return a float representing the current system-wide CPU utilization as a percentage.'''
         return _psutil.cpu_percent()
     @staticmethod
-    def pid_exists(pid) -> bool:
+    def pid_exists(pid:int) -> bool:
         return _psutil.pid_exists(pid)
     @staticmethod
-    def mac_address(formatted=False):
+    def mac_address(formatted:bool=False) -> str:
         import uuid
         mac = uuid.getnode()
         if formatted:
@@ -1276,9 +1264,10 @@ class Style:
             text += f"{_attr(style)}"
 
         if len(values):
-            text = values[0]
+            text += f"{values[0]}"
         for t in values[1:]:
-            text += f"{sep}{t}{_attr(0)}"
+            text += f"{sep}{t}"
+        text += f"{_attr(0)}"
 
         print(text,end=end)
 
@@ -1409,7 +1398,7 @@ class Terminal:
         Execute the command in a subshell
         (NO RETURN, LIVE EXECUTION, OUTPUT WILL BE PRINTED)
         '''
-        _os.system(command)
+        return _os.system(command)
 
     @staticmethod
     def getoutput(command:str) -> str:
@@ -1606,28 +1595,24 @@ class IO:
     @staticmethod
     def wait_for_input(prompt,SS:list=[]):
         answer= ''
-        # try:
         while not answer:
             answer = input(prompt).strip()
-        
-        # except (EOFError,KeyboardInterrupt):
-            # style.print('EXITING...','red')
-            # exit()
         return answer
 
     @staticmethod
     def selective_input(prompt,choices,default=None,ignore_case=False,error=True,invalid='Invalid input'):
+        Choices = choices
         if type(choices) == dict:
             Choices = list(choices.keys())+list(choices.values())
-
         if ignore_case:
-            Choices = [item.lower() for item in Choices]
+            Choices = [item.lower() for item in choices]
+
         while True:
             inp = input(prompt)
             inp = inp.lower() if ignore_case else inp
-            if not inp  or  inp not in choices:
+            if not inp  or  inp not in Choices:
                 if error:
-                    style.print(invalid, 'red')
+                    style.print(invalid, color='red')
                 else:
                     if default:
                         inp = default
@@ -1680,93 +1665,6 @@ class IO:
 io = IO
 Input   = default_input  = io.Input
 getpass = password_input = io.getpass
-
-
-
-class Tuple:
-    '''
-    (Note That This is tuple of RX7 Module So it Has More Features!)\n
-    (This is Not Built-in immutable sequence.)\n
-    If no argument is given, the constructor returns an empty tuple.\n
-    There is *var argumant that you can add object as much as you need.\n
-    Any Built-in object is accepted. (Not tested on third-party objects.)\n
-    Beside built-in features of tuple, this supports:
-    + You Can Add objects to your tuple now.
-    + Also You Can Delete Them.
-    + Replace Them.
-    + Like lists, Tuple supports item assigning. ( tpl[2]='hello' )
-    (Tuple Unpacking is Supported.)
-    '''
-    #############################
-    def __init__(self,*var: Any, one_item=False):
-        if not one_item:
-            self.__content= tuple(var)
-        else:
-            self.__content=[]
-            for item in var:
-                for member in item:
-                    self.__content.append(member)
-            self.__content= tuple(self.__content)
-    def __str__(self):
-        return str(self.__content)
-    def __repr__(self):
-        return str(self.__content)
-    #############################
-    #############################
-    def add(self,*var: Any):
-        '''
-        This will add var(s) to self.
-        '''
-        self.__content= tuple(list(self.__content)+[v for v in var])
-        #force= lambda tpl,*var: tuple(list(tpl)+[v for v in var])
-    force= add
-    def remove(self,*var: Any):
-        '''
-        It will remove var(s) from self.
-        '''
-        #lstv= [v for v in var if v in tpl]
-        lstt= list(self.__content)
-        for th in [v for v in var if v in self.__content]:
-            lstt.remove(th)
-        self.__content= tuple(lstt)
-    erase= remove
-    def pop(self,index):
-        return pop(self.__content)
-    #############################
-    #############################
-    def replace(self, ind: Union[int,Any], var: Any):
-        '''
-        Replace self[ind] with var.
-        '''
-        tpl=list(self.__content)
-        if type(ind) == str:
-            ind= tpl.index(ind)
-        tpl[ind]=var
-        self.__content= tuple(tpl)
-    def __setitem__(self,index,value,replace=False):
-        if not replace:
-            tpl=list(self.__content)
-            if type(index) == str:
-                ind= tpl.index(index)
-            tpl.insert(index,value)
-            self.__content= tuple(tpl)            
-        else:
-            self.replace(index,value)
-    def __getitem__(self,index):
-        return self.__content[index]
-    #############################
-    def __add__(self,other):
-        return self.__content + other
-    def __contains__(self,var):
-        return var in self.__content
-    #############################
-    #############################
-    def __bool__(self):
-        return bool(len(self.__content))
-    def __hash__(self):
-        return hash(self.__content)
-    def __len__(self):
-        return len(self.__content)
 
 
 
@@ -2360,7 +2258,7 @@ class _Lang:
         BuiltinFunction = type(len)
         BuiltinMethod   = type([].append)
         Module = type(_typing)
-        Method = type(globals()['Tuple']().force)
+        Method = type(globals()['Record']().lap)
         #Mapping     =  _typing.Mapping
         #OrderedDict =  _typing.OrderedDict
         #Text        =  str

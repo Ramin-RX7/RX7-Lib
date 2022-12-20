@@ -1,12 +1,7 @@
 ![PyPI - License](https://img.shields.io/badge/downloads-32k%2Fmonth-brightgreen?style=plastic) ![PyPI - License](https://img.shields.io/pypi/l/rx7?color=orange&style=plastic) ![PyPI - License](https://img.shields.io/badge/status-stable-success?style=plastic)
-
-## <i>rx7 v3.0 is out now!</i>
-### &nbsp;&nbsp;&nbsp; Class "Internet" and "DateTime" has been added
-### &nbsp;&nbsp;&nbsp; check it now with:
-      pip install --upgrade rx7
 -------------------------------------------------------- 
 
-rx7 Library  is here to help you make your code shorter!
+"rx7" library is here to help you make your code shorter!
 --------------------------------------------------------
 
 ### \- High API
@@ -15,11 +10,17 @@ rx7 Library  is here to help you make your code shorter!
 
 ### \- Most Usefull function and methods are collected.
 
-###  **_Are you tired of importing lots of module in one script? "rx7" can help you a lot_**
+<hr />
+<br />
+
+# Here is the brief documentaion:
+### *(Complete documentation with details will be added soon in the Wiki section)*
+<!--### *if you need more info about variables, functions and classes of rx7-lib, check out the full Documentaion in [Here](https://github.com/Ramin-RX7/RX7-Lib/wiki)*
+-->
 
 
 <p>&nbsp;</p>
-<h2>List of Classes:</h2>
+<h2>List of Variables:</h2>
 
 <table style="height: 471px; width: 567px;">
   <tbody>
@@ -30,10 +31,6 @@ rx7 Library  is here to help you make your code shorter!
     <tr>
     <td style="width: 155px;">ABC</td>
     <td style="width: 396px;">Parent for classes which have abstractmethods</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">ABCMeta</td>
-    <td style="width: 396px;">Metaclass for classes which have abstractmethods</td>
     </tr>
   </tbody>
 </table>
@@ -71,7 +68,7 @@ List of Functions:
     <td style="width: 396px;">It Clears the Terminal</td>
     </tr>
     <tr>
-    <td style="width: 155px;">progressbar()</td>
+    <td style="width: 155px;">progressbar() (*removed in v3.1)</td>
     <td style="width: 396px;">In-App Progressbar. (Read Doc String)</td>
     </tr>
     <tr>
@@ -564,7 +561,7 @@ List of Functions:
     <tbody>
     <tr style="height: 15.0625px;">
     <td style="width: 173px; height: 15.0625px;">
-    <p>print(txt,clr,BG,style,end)<br />(from v1.5.0)</p>
+    <p>print(*values, color, BG, style, end, sep)</p>
     </td>
     <td style="width: 387px; height: 15.0625px;">Print txt with selected color,BG,style.(Read Doc String)</td>
     </tr>
@@ -586,7 +583,7 @@ List of Functions:
     <div>reset</div>
     </div>
     </td>
-    <td style="width: 387px; height: 18px;">switch_default()</td>
+    <td style="width: 387px; height: 18px;">=switch_default</td>
     </tr>
     <tr style="height: 18px;">
     <td style="width: 173px; height: 18px;">
@@ -628,6 +625,11 @@ List of Functions:
     <td style="width: 173px; height: 23.8125px;">self.last_lap(save=True)</td>
     <td style="width: 387px; height: 23.8125px;">Return elapsed time from last lap (save it in self.laps if save is true)</td>
     </tr>
+    <tr style="height: 23.8125px;">
+    <td style="width: 173px; height: 23.8125px;">timeit(code="pass",setup="pass",
+    times=1_000_000,globals_=None)</td>
+    <td style="width: 387px; height: 23.8125px;">Run the 'code' for 'times' times and return time it needs (all, not once)</td>
+    </tr>
     </tbody>
     </table>
 
@@ -654,87 +656,39 @@ List of Functions:
 </table>
 
 
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>List of Objects:</h2>
-  
-<h3>&nbsp; &nbsp; &nbsp;object Tuple:<strong>&nbsp;</strong><em>It's like built-in tuple except it's faster and it has more features!</em></h3>
-    <h4>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Descryption:</h4>
-    <p><em>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</em>Tuple is here with built-in tuple object and much more features.</p>
-    <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; You can add, remove, replace or even use __setitem__ Tuple object.</p>
-    <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I recommend using <em><strong>tuple= rx.Tuple</strong></em> that can make it relay easier for you o work.</p>
-    <h4>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Supports:<em>&nbsp; &nbsp;indexing - len - hash&nbsp; - bool - __add__&nbsp;</em></h4>
-    <table style="height: 196px; width: 588px; margin-left: 45px;">
-    <tbody>
-    <tr style="height: 18px;">
-    <td style="width: 155px; height: 18px;"><strong>Tuple(*var,one=False)</strong></td>
-    <td style="width: 417px; height: 18px;"><strong>Create Tuple object with *var members</strong></td>
-    </tr>
-    <tr style="height: 18px;">
-    <td style="width: 155px; height: 18px;">self.add(*vars)</td>
-    <td style="width: 417px; height: 18px;">Add *vars to self</td>
-    </tr>
-    <tr style="height: 18px;">
-    <td style="width: 155px; height: 18px;">self.force(*vars)</td>
-    <td style="width: 417px; height: 18px;">self.add</td>
-    </tr>
-    <tr style="height: 18px;">
-    <td style="width: 155px; height: 18px;">self.remove(*vars)</td>
-    <td style="width: 417px; height: 18px;">Remove *vars from self (Ignore it if it's not in self).</td>
-    </tr>
-    <tr style="height: 18px;">
-    <td style="width: 155px; height: 18px;">self.erase(*vars)</td>
-    <td style="width: 417px; height: 18px;">self.remove</td>
-    </tr>
-    <tr style="height: 36px;">
-    <td style="width: 155px; height: 36px;">self.replace(ind,var)</td>
-    <td style="width: 417px; height: 36px;">Replace self[index] with var. (index can be int or anything thats in self</td>
-    </tr>
-    <tr style="height: 36px;">
-    <td style="width: 155px; height: 36px;">self.pop(ind)</td>
-    <td style="width: 417px; height: 36px;">Remove member with index of 'index' from self</td>
-    </tr>
-    </tr>
-    <tr style="height: 19.5781px;">
-    <td style="width: 155px; height: 19.5781px;">self[index]=var</td>
-    <td style="width: 417px; height: 19.5781px;">Set self[index] to var. (Like lists) (it does not replace)</td>
-    </tr>
-  </tbody>
-</table>
+<br />
+<br />
+<br />
 
-<p>&nbsp;</p>
 
-<p>&nbsp;</p>
-<h2>Recommended to:</h2>
+## Recommendations:
 
- **- Using an IDE that shows Function and Class Help is highly recommended.**  **([VS Code](https://code.visualstudio.com/ "Microsoft VS Code") -** **[PyCharm](https://www.jetbrains.com/pycharm/ "Microsoft Visual Studio Code"))**
+ - Using an IDE that shows Function and Class Help is highly recommended. *([VS Code](https://code.visualstudio.com/ "Microsoft VS Code")* -- *[PyCharm](https://www.jetbrains.com/pycharm/ "Microsoft Visual Studio Code"))*
 
-####  - Using "from rx7 import FUNC\_or\_CLASS"
+ - Using `from rx7 import FUNC_or_CLASS`
 
-####  - Using "import rx7 as rx"
-<p>&nbsp;</p>
- Upgrade:
----------
+ - Using `import rx7 as rx`
 
-### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pip install --upgrade rx7
+<br />
+
+Upgrade
+--------------------------------
+    pip install --upgrade rx7
+
+<br />
 
  Use These Commands in Terminal:
 --------------------------------
 
-### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ rx7 color           (To show help for style class)
- 
-### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ rx7 help            (To open this page that contains help)
+    $ rx7 color           (To show help for style class)
+    $ rx7 help            (To open this page that contains help)
+
+<br />
 
 Versions Information:
 ---------------------
 
-        Releases are like this:        1.0.0
-
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.1
-
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   ⋮
-
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.0
+        Releases are like this:        1.0.0 , 1.1.1 , 1.2.0
 
         First number is very important bacause it's for Realy Big new features and changes.
 
@@ -744,16 +698,35 @@ Versions Information:
 
         Numbers are not always in order like: 1,2,3,4,...  , Some times they are different like: 1.2.4.8,..._
 
-Releases:
+<br />
+
+Releases and Changelog:
 ---------
 
-####        (+ for new features, \* for changes)
+####        (+ for new features, \* for changes, - for removed features)
 <table style="height: 10px; margin-left: 10px; width: 519px;" cellpadding="5">
 <tbody>
 <tr style="height: 42px;">
 <td style="width: 119px; height: 42px; text-align: center;"><strong>Version</strong></td>
 <td style="width: 153px; height: 42px; text-align: center;"><strong>Release Date</strong></td>
 <td style="width: 513px; height: 42px; text-align: center;"><strong>New Features &amp; Changes</strong></td>
+</tr>
+
+
+<tr style="height: 25px;">
+<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+<p style="text-align: center;">3.1.0</p>
+</td>
+<td style="width: 153px; height: 25px; text-align: center;">23/12/2022</td>
+<td style="width: 513px; height: 25px; text-align: center;">
+<div style="text-align: left;">+ Record.timeit has default parameters now</div>
+<div style="text-align: left;">- removed progressbar()</div>
+<div style="text-align: left;">* Improved Style object creation</div>
+<div style="text-align: left;">* Improved Style.print implementation</div>
+<div style="text-align: left;">* Improved Style.log_ methods implementation</div>
+<div style="text-align: left;">* Terminal.run() now return exit code</div>
+<div style="text-align: left;">- Removed "Tuple" object</div>
+</td>
 </tr>
 
 
