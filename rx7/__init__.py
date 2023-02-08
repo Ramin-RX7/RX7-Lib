@@ -11,54 +11,52 @@ Last Update: 12-20-2022
 '''
 __version__ = '3.1.0'
 
+
 """
 < Release Changes >
 
+* Fixed files.size() for directories
+* files.is_readonly now also works on Unix
++ files.get_drives()
 """
 
 
-'''
+"""
 TODO:
- f"{c}:/" for c in "CDEFGHIJKLMNOPQRSTUVWXYZ" if rx.files.exists(f"{c}:/")
- ? Some of "Files" methods parameters should be "file" instead of "path"
- - Random.shuffle better implementation
- ? type annotation for all functions and classes
+ ? Classes accept both normal methods and static methods
  ? itertools & functools
+ - System.(copy_to_clipboard & paste_from_clipboard)
+ - Play Sound
+ - Call_later **kwargs
  DATETIME:
      X calendar_month_st replace day will be all noms
      - Passed Time func
- - Call_later **kwargs
  - Internet:
      default_timeout
  - files:
      - files.join files.dirname
      - Error in files.MEMBERS.all_all_*
- - System.(copy_to_clipboard & paste_from_clipboard)
-
- - Make Sound
  - Other archive files in extract
- - average()
- - socket.socket()
- - Screen recorder
- - mp3 tags                                   (v 3.x)
- - registery editor                           (v 3.x)
  - re module                                  (v 3.x)
  - Developer:
         reload_module
-        Check_Type
         add_module_dir
+ - socket.socket()
+ - Screen recorder
  - Create Local Server
  - ( win32api.LoadLibrary() - ctypes.PyDLL() )
-
- X Threading
- - Ready-obj module
- - !style defaults
-
+ - Threading
+ - registery editor                           (v 3.x)
+ - mp3 tags                                   (v 3.x)
+ ! Random.shuffle better implementation
  - Check 3rd-party modules imports
  - pip install update
- - Open Video
- - Open Audio
-'''
+ X average()
+ ^ type annotation for all functions and classes
+ X Ready-obj module
+ X Open Video
+ X Open Audio
+"""
 
 
 
@@ -92,6 +90,13 @@ from typing import (Any,Iterable,Optional,Callable,
 argv    = _sys.argv
 ABC     = _abc.ABC
 
+write = ...
+read  = ...
+decorator  = ...
+Check_Type = ...
+overload   = ...
+Input   = default_input  = ...
+getpass = password_input = ...
 
 
 
@@ -713,8 +718,18 @@ class Files:
         return size of the file in byte(s).
         Also work on directories.
         '''
+        if Files.isdir:
+            total_size = 0
+            for dirpath, dirnames, filenames in _os.walk(path):
+                for f in filenames:
+                    fp = _os.path.join(dirpath, f)
+                    # skip if it is symbolic link
+                    if not _os.path.islink(fp):
+                        total_size += _os.path.getsize(fp)
+            return total_size
         return _os.path.getsize(path)
         #rooye pooshe emtehan she
+
     @staticmethod
     def remove(path:str,force:bool=False) -> None:
         '''
@@ -733,16 +748,19 @@ class Files:
                     raise OSError(f"[WinError 145] The directory is not empty: '{path}'" + '\n' + ' '*23 + 
                                    '(Use force=True as an argument of remove function to remove non-empty directories.)') from None
     delete = remove
+
     @staticmethod
     def rename(old_name:str, new_name:str) -> None:
         '''Rename files with this function.'''
         _os.rename(old_name,new_name)
+
     @staticmethod
     def abspath(path:str) -> str:
         '''
         return absolute path of given path.
         '''
         return _os.path.abspath(path)
+
     @staticmethod
     def exists(path:str) -> bool:
         '''
@@ -751,12 +769,14 @@ class Files:
         else: False
         '''
         return _os.path.exists(path)
+
     @staticmethod
     def mdftime(path:str) -> float:
         '''
         Get last modify time of the path.
         '''
         return _os.path.getmtime(path)
+
     @staticmethod
     def acstime(path:str) -> float:    
         '''
@@ -764,14 +784,16 @@ class Files:
         '''
         return _os.path.getatime(path)
         # change to date bayad biad
+
     @staticmethod
-    def move(src:str, dst:str) -> None:
+    def move(src:str, dest:str) -> None:
         '''
-        Move (cut) file/directory from crs to dst.
+        Move (cut) file/directory from src to dst.
         '''
-        _shutil.move(src,dst)
+        _shutil.move(src,dest)
         #live_path= dst
         #works for dirs too or not?
+
     @staticmethod
     def copy(src:str, dest:str, preserve_metadata:bool=True) -> None:
         '''
@@ -794,7 +816,7 @@ class Files:
         '''
         Hide file or folder.
         If mode==False: makes 'not hide'
-        (ONLY WINDOWS)
+        (WINDOWS ONLY)
         '''
         try:
             import win32api, win32con
@@ -804,6 +826,7 @@ class Files:
             win32api.SetFileAttributes(path,win32con.FILE_ATTRIBUTE_HIDDEN)
         else:
             win32api.SetFileAttributes(path,win32con.FILE_ATTRIBUTE_NORMAL)
+
     @staticmethod
     def read_only(path:str, mode:bool=True) -> None:
         '''
@@ -818,17 +841,19 @@ class Files:
                 _os.chmod(path, S_IWUSR)
         else:
             raise Exception('Second argumant (mode) should be boolean.')
+
     @staticmethod
-    def read(path:str) -> str:
+    def read(file_path:str) -> str:
         '''
         This can help you to read your file faster.
         Example:
             read('C:\\users\\Jack\\test.txt')
             ==> "Content of 'test.txt' will be shown."
         '''
-        with open(path) as f:
+        with open(file_path) as f:
             FileR= f.read()
         return FileR
+
     @staticmethod
     def write(file_path:str, text:Text=None, mode='replace', start='') -> None:
         '''
@@ -840,36 +865,37 @@ class Files:
              'w' or 'replace'  for overwriting to file content.
         start: I use this when I use mode='continue'
         '''  
-        if mode=='replace':
+        if mode in ("w",'replace'):
             op= open(file_path,mode='w')
             if text==None:
                 text= input('Type what you want.\n\n')
             op.write(text)
             op.close()
-        elif mode=='continue':
-            '''opr= open(file,mode='r')
-            FileR= opr.read()
-            op= open(file,mode='w')'''
+        elif mode in ("a",'continue'):
             op=open(file_path,'a')
             if text==None:
                 text= input('Type what you want to add in the end of the file.\n\n')
-            op.write(start+text)
+            op.write(text)
             op.close() 
         else:
             raise ValueError('mode can only be: replace(default) or continue Not "{0}"'.format(mode))
+
     @staticmethod
     def isdir(path:str) -> bool:
         return _os.path.isdir(path)
+
     @staticmethod
     def isfile(path:str):
         return _os.path.isfile(path)
+
     @staticmethod
     def is_readonly(path:str):
         '''
         Return True if path is readonly else False.
         (May Not Work in Linux)
         '''
-        return _subprocess.getoutput(f'dir /ar {path} >nul 2>nul && echo True || echo False')
+        return  not _os.access(path, _os.R_OK)
+
     @staticmethod
     def is_hidden(path:str):
         """
@@ -885,12 +911,14 @@ class Files:
         def no(path): return False
         platform_hidden = globals().get('is_hidden_' + platform.system(), no)
         return name.startswith('.') or platform_hidden(full_path)
+
     @staticmethod
     def is_hidden_Windows(path:str):
         import ctypes
         res = ctypes.windll.kernel32.GetFileAttributesW(path)
         assert res != -1
         return bool(res & 2)
+
     @staticmethod
     def search_file(pattern:str, path:str='.\\', return_mode:Literal[list,Generator]=list):
         '''
@@ -910,6 +938,7 @@ class Files:
         #print(_os.path.join(path,pattern))
         if return_mode=='list': return glob.glob(_os.path.join(path,pattern), recursive=True)
         else: return glob.iglob(_os.path.join(path,pattern), recursive=True)
+
     @staticmethod
     def search_content(path:str,word:str):
         ALL= [val for sublist in [[_os.path.join(i[0], j) for j in i[2]] for i in _os.walk(path)] for val in sublist]
@@ -919,14 +948,18 @@ class Files:
                 lst.append(file)
         return lst'''
         return [file for file in ALL if word in open(file).read()]
+
     @staticmethod
     def mkdir(path:str):
         path = _os.path.normpath(path)
         NEW= ''
         for FILE in path.split('\\'):
             NEW+= FILE+'\\'
-            try: _os.mkdir(NEW)
-            except (FileExistsError,FileNotFoundError): pass
+            try:
+                _os.mkdir(NEW)
+            except (FileExistsError,FileNotFoundError):
+                pass
+
     @staticmethod
     def generate_tree(dir_path:str, level: int=-1, limit_to_directories: bool=False,
                       length_limit: int=1000, print_info: bool=True):
@@ -959,6 +992,14 @@ class Files:
         if next(iterator, None): RETURN+=f'... length_limit, {length_limit}, reached, counted:'
         if print_info: RETURN+=f'\n{directories} directories' + (f', {files} files' if files else '')
         return RETURN
+
+    @staticmethod
+    def get_drives():
+        """WINDOWS ONLY
+        
+        Gets devices and drives in windows
+        """
+        return [drive for drive in "CDEFGHIJKLMNOPQRSTUVWXYZ" if files.exists(f"{drive}:/")]
 
     class MEMBERS:
         @staticmethod
@@ -1359,6 +1400,7 @@ class Record:
         if save:
             self.laps.append(lp)
         return lp
+    
     def reset(self, reset_start=False):
         '''
         This will erase self.laps 
@@ -1367,6 +1409,7 @@ class Record:
         self.laps = []
         if reset_start:
             self.__start = _time.time()
+    
     def last_lap(self, save=True):
         '''
         Return time passed from last lap
@@ -1376,6 +1419,7 @@ class Record:
         if save:
             self.laps.append(self.lap())
         return ret
+    
     @staticmethod
     def timeit(code="pass",setup="pass",times=1_000_000,globals_=None):
         '''
@@ -1688,6 +1732,7 @@ class Internet:
         except:
             return False
 
+    @staticmethod
     def connection_checker(func):
         """Decaorator Which Checks Internet Connection before calling a function
 
@@ -1703,18 +1748,7 @@ class Internet:
             return func(*args,**kwargs)
         return inside
     
-    '''
-    @staticmethod
-    def ip_global() -> str:
-        """
-        Return your global ip by http://ipinfo.io/ip api.
-        """
-        new_session = _requests.session()
-        response = new_session.get("http://ipinfo.io/ip")
-        ip_list = _re.findall(r"(?:[0-9]{1,3}\.){3}[0-9]{1,3}", response.text)
-        new_session.close()
-        return ip_list[0]
-    '''
+
     ip_global = system.ip_global
 
     @staticmethod
