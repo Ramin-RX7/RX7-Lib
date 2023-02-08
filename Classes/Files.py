@@ -1,18 +1,10 @@
-'''
-Filex Module is Sub-Module of rx7 library.
-It contains 2 classes:  
-1- files: Static method
-2- File: create File object and use its methods.  
-(If you are using rx7 module, don't use this and directly use rx7.files and rx7.File)
-(Usually I use first one when I need a file only one time in my code  
-and use 2nd one when i'm working with a file more than 1 time.)
+import os as _os
+import shutil as _shutil
+import subprocess as _subprocess
+from typing import Literal,Text,Generator
 
-'''
 
-import os,shutil,subprocess
-from typing import Union
-
-class files:
+class Files:
     '''
     (STATIC METHODS)\n
     Actions and information about files.\n
@@ -40,71 +32,72 @@ class files:
       - write()
     '''
     @staticmethod
-    def size(path):
+    def size(path:str) -> int:
         '''
         return size of the file in byte(s).
         Also work on directories.
         '''
-        return os.path.getsize(path)
+        return _os.path.getsize(path)
         #rooye pooshe emtehan she
     @staticmethod
-    def remove(path,force=False):
+    def remove(path:str,force:bool=False) -> None:
         '''
         Use this to delete a file or a directory.
         If force is True it will delete non-empty directories.
         '''
-        if os.path.isfile(path):
-            os.remove(path)
+        if _os.path.isfile(path):
+            _os.remove(path)
         else:
             if force: 
-                shutil.rmtree(path)
+                _shutil.rmtree(path)
             else:
                 try:
-                    os.rmdir(path)
+                    _os.rmdir(path)
                 except OSError:
                     raise OSError(f"[WinError 145] The directory is not empty: '{path}'" + '\n' + ' '*23 + 
                                    '(Use force=True as an argument of remove function to remove non-empty directories.)') from None
+    delete = remove
     @staticmethod
-    def rename(old_name,new_name):
+    def rename(old_name:str, new_name:str) -> None:
         '''Rename files with this function.'''
-        os.rename(old_name,new_name)
+        _os.rename(old_name,new_name)
     @staticmethod
-    def abspath(path):
+    def abspath(path:str) -> str:
         '''
         return absolute path of given path.
         '''
-        return os.path.abspath(path)
+        return _os.path.abspath(path)
     @staticmethod
-    def exists(path):
+    def exists(path:str) -> bool:
         '''
         Search for the file And Returns a boolean.
         if file exists: True
         else: False
         '''
-        return os.path.exists(path)
+        return _os.path.exists(path)
     @staticmethod
-    def mdftime(path):
+    def mdftime(path:str) -> float:
         '''
         Get last modify time of the path.
         '''
-        return os.path.getmtime(path)
+        return _os.path.getmtime(path)
     @staticmethod
-    def acstime(path):    
+    def acstime(path:str) -> float:    
         '''
         Get last access time of the path.
         '''
-        return os.path.getatime(path)
+        return _os.path.getatime(path)
         # change to date bayad biad
     @staticmethod
-    def move(src,dst):
+    def move(src:str, dst:str) -> None:
         '''
         Move (cut) file/directory from crs to dst.
         '''
-        shutil.move(src,dst)
+        _shutil.move(src,dst)
         #live_path= dst
-        #Baraye folder hast ya na?
+        #works for dirs too or not?
     @staticmethod
-    def copy(src,dest,preserve_metadata= True):
+    def copy(src:str, dest:str, preserve_metadata:bool=True) -> None:
         '''
         Copy the file from src to destination.  
         preserve_metadata is for preserving metadata of file when copying.
@@ -115,13 +108,13 @@ class files:
          )
         '''
         if files.isdir(src):
-            shutil.copytree(src,dest)
+            _shutil.copytree(src,dest)
         else:
-            if preserve_metadata: shutil.copy2(src,dest)
-            else: shutil.copy(src,dest)
+            if preserve_metadata: _shutil.copy2(src,dest)
+            else: _shutil.copy(src,dest)
 
     @staticmethod
-    def hide(path,mode=True):
+    def hide(path:str, mode:bool=True) -> None:
         '''
         Hide file or folder.
         If mode==False: makes 'not hide'
@@ -136,7 +129,7 @@ class files:
         else:
             win32api.SetFileAttributes(path,win32con.FILE_ATTRIBUTE_NORMAL)
     @staticmethod
-    def read_only(path,mode=True):
+    def read_only(path:str, mode:bool=True) -> None:
         '''
         Make file attribute read_only.
         If mode==False: makes 'not read_only'
@@ -144,13 +137,13 @@ class files:
         if type(mode)==bool:
             from stat import S_IREAD,S_IWUSR
             if mode==True:
-                os.chmod(path, S_IREAD)
+                _os.chmod(path, S_IREAD)
             elif mode==False:
-                os.chmod(path, S_IWUSR)
+                _os.chmod(path, S_IWUSR)
         else:
             raise Exception('Second argumant (mode) should be boolean.')
     @staticmethod
-    def read(path):
+    def read(path:str) -> str:
         '''
         This can help you to read your file faster.
         Example:
@@ -161,7 +154,7 @@ class files:
             FileR= f.read()
         return FileR
     @staticmethod
-    def write(file_path,text=None,mode='replace',start=''):
+    def write(file_path:str, text:Text=None, mode='replace', start='') -> None:
         '''
         With this method you can change content of the file.  
         file:   File you want to change its content.
@@ -189,20 +182,20 @@ class files:
         else:
             raise ValueError('mode can only be: replace(default) or continue Not "{0}"'.format(mode))
     @staticmethod
-    def isdir(path):
-        return os.path.isdir(path)
+    def isdir(path:str) -> bool:
+        return _os.path.isdir(path)
     @staticmethod
-    def isfile(path):
-        return os.path.isfile(path)
+    def isfile(path:str):
+        return _os.path.isfile(path)
     @staticmethod
-    def is_readonly(path):
+    def is_readonly(path:str):
         '''
         Return True if path is readonly else False.
         (May Not Work in Linux)
         '''
-        return subprocess.getoutput(f'dir /ar {path} >nul 2>nul && echo True || echo False')
+        return _subprocess.getoutput(f'dir /ar {path} >nul 2>nul && echo True || echo False')
     @staticmethod
-    def is_hidden(path):
+    def is_hidden(path:str):
         """
         Check whether a file is presumed hidden, either because
         the pathname starts with dot or because the platform
@@ -211,19 +204,19 @@ class files:
         (Work on both Linux and Windows)
         """
         import platform
-        full_path = os.path.abspath(path)
-        name = os.path.basename(full_path)
+        full_path = _os.path.abspath(path)
+        name = _os.path.basename(full_path)
         def no(path): return False
         platform_hidden = globals().get('is_hidden_' + platform.system(), no)
         return name.startswith('.') or platform_hidden(full_path)
     @staticmethod
-    def is_hidden_Windows(path):
+    def is_hidden_Windows(path:str):
         import ctypes
         res = ctypes.windll.kernel32.GetFileAttributesW(path)
         assert res != -1
         return bool(res & 2)
     @staticmethod
-    def search_file(pattern, path='.\\',return_mode: List['list','generator']= 'list'):
+    def search_file(pattern:str, path:str='.\\', return_mode:Literal[list,Generator]=list):
         '''
         Search for files in path.
         Return list or generator.
@@ -235,18 +228,15 @@ class files:
         -  '**/*.py:    search for all python files in path and also sub-directories.
         -  'mydir/**/*.py'   :    search for all python files in path/mydir/ and all of its sub-directories.
         '''
+        if return_mode not in (list,Generator):    
+            raise ValueError(f"return_mode should be either 'list' or 'generator'  not {return_mode}")
         import glob
-        if str(return_mode).lower() in ('list','generator'):
-            if return_mode=='list': return glob.glob(pattern, recursive=True)
-            else: return glob.iglob(pattern, recursive=True)
-        else:
-            if type(return_mode)==str:
-                raise ValueError(f"return_mode van be  'list'  or  'generator'  not {return_mode}")
-            else:
-                raise TypeError(f"return_mode type should be str and it should be in ['list', 'generator']")
+        #print(_os.path.join(path,pattern))
+        if return_mode=='list': return glob.glob(_os.path.join(path,pattern), recursive=True)
+        else: return glob.iglob(_os.path.join(path,pattern), recursive=True)
     @staticmethod
-    def search_content(path,word):
-        ALL= [val for sublist in [[os.path.join(i[0], j) for j in i[2]] for i in os.walk(path)] for val in sublist]
+    def search_content(path:str,word:str):
+        ALL= [val for sublist in [[_os.path.join(i[0], j) for j in i[2]] for i in _os.walk(path)] for val in sublist]
         '''lst=[]
         for file in ALL:
             if word in rx.read(file):
@@ -254,16 +244,16 @@ class files:
         return lst'''
         return [file for file in ALL if word in open(file).read()]
     @staticmethod
-    def mkdir(path):
-        path = os.path.normpath(path)
+    def mkdir(path:str):
+        path = _os.path.normpath(path)
         NEW= ''
         for FILE in path.split('\\'):
             NEW+= FILE+'\\'
-            try: os.mkdir(NEW)
+            try: _os.mkdir(NEW)
             except (FileExistsError,FileNotFoundError): pass
     @staticmethod
-    def generate_tree(dir_path, level: int=-1, limit_to_directories: bool=False,
-            length_limit: int=1000, print_info: bool=True):
+    def generate_tree(dir_path:str, level: int=-1, limit_to_directories: bool=False,
+                      length_limit: int=1000, print_info: bool=True):
         """Given a directory Path object return a visual tree structure"""
         from pathlib import Path
         from itertools import islice
@@ -296,24 +286,32 @@ class files:
 
     class MEMBERS:
         @staticmethod
-        def all_exactdir(dir):
-            return os.listdir(dir)
+        def all_exactdir(dir:str):
+            return _os.listdir(dir)
         @staticmethod
-        def all_all_sep(dir):
-            return [i for i in os.walk(dir)]
+        def all_all_sep(dir:str):
+            return [i for i in _os.walk(dir)]
         @staticmethod
-        def files_exactdir(dir):
-            return [i for i in os.walk(dir)][0][2]
+        def files_exactdir(dir:str, abspath:bool=True):
+            if abspath:
+                return [dir+'/'+file_ for file_ in [i for i in _os.walk(dir)][0][2]]
+            return [i for i in _os.walk(dir)][0][2]
         @staticmethod
-        def files_all(dir):
-            return [val for sublist in [[os.path.join(i[0], j) for j in i[2]] for i in os.walk(dir)] for val in sublist]
+        def files_all(dir:str):
+            return [val for sublist in [[_os.path.join(i[0], j) for j in i[2]] for i in _os.walk(dir)] for val in sublist]
         @staticmethod
-        def files_all_sep(dir):
-            return [[os.path.join(i[0], j) for j in i[2]] for i in os.walk(dir)]
+        def files_all_sep(dir:str):
+            return [[_os.path.join(i[0], j) for j in i[2]] for i in _os.walk(dir)]
         @staticmethod
-        def dirs_exactdir(dir):
-            return sorted([i for i in os.listdir(dir) if i not in [i for i in os.walk(dir)][0][2]])
+        def dirs_exactdir(dir:str, abspath:str=True):
+            if dir.endswith('/'): dir=dir[:-1]
+            elif dir.endswith('\\'): dir=dir[:-1]
+            if abspath:
+                return [dir+'/'+folder for folder in [i for i in _os.walk(dir)][0][1]]
+            return [i for i in _os.walk(dir)][0][1]
         @staticmethod
-        def dirs_all(dir):
-            return [TPL[0] for TPL in [i for i in os.walk(dir)]]
-
+        def dirs_all(dir:str):
+            return [TPL[0] for TPL in [i for i in _os.walk(dir)]]
+files = Files
+write = files.write
+read  = files.read

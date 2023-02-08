@@ -19,6 +19,7 @@ __version__ = '3.1.0'
 
 '''
 TODO:
+ f"{c}:/" for c in "CDEFGHIJKLMNOPQRSTUVWXYZ" if rx.files.exists(f"{c}:/")
  ? Some of "Files" methods parameters should be "file" instead of "path"
  - Random.shuffle better implementation
  ? type annotation for all functions and classes
@@ -198,7 +199,7 @@ def call_later(function:Callable, *args, delay=0.001):
     #keyboard.call_later(function, args, delay)
 call = call_later
 
-def convert_bytes(num:int) -> str:
+def convert_bytes(nom:int) -> str:
     """
     Convert num to idiomatic byte unit.
 
@@ -361,7 +362,7 @@ def extract(filename:str, path:Optional[str]=None,files:Optional[Iterable[str]]=
     import zipfile
     zipfile.ZipFile(filename, 'r').extractall(path=path,members= files,pwd=password)
 
-def screenshot(image_name:str='Screenshot.png'):
+def screenshot(image_name:str = 'Screenshot.png'):
     '''
     This function will take a screenshot and save it as image_name
     '''
@@ -1396,7 +1397,8 @@ class Terminal:
     def run(command:str) -> None:
         '''
         Execute the command in a subshell
-        (NO RETURN, LIVE EXECUTION, OUTPUT WILL BE PRINTED)
+        Returns exit code
+        (LIVE EXECUTION, OUTPUT WILL BE PRINTED)
         '''
         return _os.system(command)
 
