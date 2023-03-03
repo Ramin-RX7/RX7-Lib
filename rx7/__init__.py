@@ -1,13 +1,16 @@
 """
 This Module is One to Make Your Code Shorter.
+
 High API Will Make You Feel You're Ordering And Machine Is Doing!
+
 Also There is Collection of most usefull function and methods from popular modules of python.
 (Read Help of Functions)
+
 Official documentation in https://github.com/Ramin-RX7/RX7-Lib
 """
 '''
 Written By RX
-Last Update: 12-20-2022
+Last Update: 03-03-2023
 '''
 __version__ = '3.1.0'
 
@@ -18,11 +21,16 @@ __version__ = '3.1.0'
 * Fixed files.size() for directories
 * files.is_readonly now also works on Unix
 + files.get_drives()
++ IO.selective_input choices argument can be a function that returns True if given input is valid
++ IO.selective_input `action` parameter is a function that takes the given input (if valid)
+    and returns the converted
+- IO.selective_input error parameter is removed
 """
 
 
 """
 TODO:
+ - Validator function for `IO` methods
  ? Classes accept both normal methods and static methods
  ? itertools & functools
  - System.(copy_to_clipboard & paste_from_clipboard)
@@ -76,7 +84,7 @@ import random   as _random
 import datetime as _datetime
 import calendar as _calendar
 import subprocess as _subprocess
-# import requests as _requests    
+# import requests as _requests
     # imported requests in any method that uses to improve importing speed
 import psutil as _psutil
 
@@ -100,14 +108,14 @@ getpass = password_input = ...
 
 
 
-#######       8888888888                         888    d8b                                  ####### 
-####          888                                888    Y8P                                     #### 
-####          888                                888                                            #### 
-####          8888888 888  888 88888b.   .d8888b 888888 888  .d88b.  88888b.  .d8888b           #### 
-####          888     888  888 888 "88b d88P"    888    888 d88""88b 888 "88b 88K               #### 
-####          888     888  888 888  888 888      888    888 888  888 888  888 "Y8888b.          #### 
-####          888     Y88b 888 888  888 Y88b.    Y88b.  888 Y88..88P 888  888      X88          #### 
-#######       888      "Y88888 888  888  "Y8888P  "Y888 888  "Y88P"  888  888  88888P'       ####### 
+#######       8888888888                         888    d8b                                  #######
+####          888                                888    Y8P                                     ####
+####          888                                888                                            ####
+####          8888888 888  888 88888b.   .d8888b 888888 888  .d88b.  88888b.  .d8888b           ####
+####          888     888  888 888 "88b d88P"    888    888 d88""88b 888 "88b 88K               ####
+####          888     888  888 888  888 888      888    888 888  888 888  888 "Y8888b.          ####
+####          888     Y88b 888 888  888 Y88b.    Y88b.  888 Y88..88P 888  888      X88          ####
+#######       888      "Y88888 888  888  "Y8888P  "Y888 888  "Y88P"  888  888  88888P'       #######
 
 
 def p(text:str='', end='\n'):
@@ -187,14 +195,14 @@ def wait_for(button:str):
 def call_later(function:Callable, *args, delay=0.001):
     """
     Call Your Function Later Even Between Other Operations
-    (This function uses threading module so be careful about 
+    (This function uses threading module so be careful about
      how, when, and on what object you are going to operate on)
 
     Parameters
     ----------
     function : Callable
-        this should be your function name 
-    
+        this should be your function name
+
     delay : float,int
         delay before calling function in seconds, by default 0.001
     """
@@ -228,13 +236,13 @@ def convert_bytes(nom:int) -> str:
     '78.1 KB'
     """
     '''
-    
+
 
     '''
     for x in ['bytes', 'KB', 'MB', 'GB', 'TB']:
-        if num < 1024.0:
-            return "%3.1f %s" % (num, x)
-        num /= 1024.0
+        if nom < 1024.0:
+            return "%3.1f %s" % (nom, x)
+        nom /= 1024.0
 
 def restart_app(python3:bool = False):
     """
@@ -251,9 +259,9 @@ def restart_app(python3:bool = False):
 
 def active_window_title() -> str:
     """
-    Get active windows title  
-    (Usually terminal is active window title 
-    but if during executing your script you change window 
+    Get active windows title
+    (Usually terminal is active window title
+    but if during executing your script you change window
     this will return new window title)
 
     Returns
@@ -266,7 +274,7 @@ def active_window_title() -> str:
 
 def open_image(path:str) -> None:
     """
-    Open image file with default image viewer.  
+    Open image file with default image viewer.
     (Mac OS is not supported yet)
 
     Parameters
@@ -290,9 +298,9 @@ def open_image(path:str) -> None:
 def download(url:str, filename:str="auto", save_memory:bool=True,
              progressbar:bool =True, prefix:str='Downloading'):
     '''
-    Use this function to download files.  
-    if filename is not given, it will be last part of the url.  
-    filename can be path for saving file.  
+    Use this function to download files.
+    if filename is not given, it will be last part of the url.
+    filename can be path for saving file.
     save_memory parameter is used to save memory in large files
     (save directly to storage)
     '''
@@ -335,7 +343,7 @@ def download(url:str, filename:str="auto", save_memory:bool=True,
             with open(filename, "wb") as f:
                 response = _requests.get(url, stream=True)
                 for data in response.iter_content(chunk_size=4096):
-                    f.write(data)               
+                    f.write(data)
     else:
         def report(blocknr, blocksize, size):
             if progressbar:
@@ -347,8 +355,8 @@ def download(url:str, filename:str="auto", save_memory:bool=True,
     pass
     if progressbar: print()
 
-def extract(filename:str, path:Optional[str]=None,files:Optional[Iterable[str]]=None, 
-            password:Optional[str]=None) -> None: 
+def extract(filename:str, path:Optional[str]=None,files:Optional[Iterable[str]]=None,
+            password:Optional[str]=None) -> None:
     """
     Extract Files from Zip files
     By default it extracts all files
@@ -411,7 +419,7 @@ def Progressbar(
         x = int(dashes_nom*j/total)
         echo.write(
             f"{pre_text}{right_port}{complete_shape*x}{empty_shape*(dashes_nom-x)}{left_port} {j}/{total}\r")
-        echo.flush()        
+        echo.flush()
     show(0)
     for i, item in enumerate(range(total)):
         yield item
@@ -512,7 +520,7 @@ def insert(tpl: tuple, index:int, var: Any) -> tuple:
     if type(index) == str:
         index= tpl.index(index)
     tpl.insert(index,var)
-    return tuple(tpl)   
+    return tuple(tpl)
 
 def pop(tuple,index=-1):
     '''
@@ -536,7 +544,7 @@ def pop(tuple,index=-1):
         x= i**3
     screen_recorder.stop_video_recording ()
     screen_recorder.free_resources()
- 
+
  class Error(Exception):
     '''
     This module is for creating you own Error and Exception!
@@ -566,14 +574,14 @@ def pop(tuple,index=-1):
 
 
 
-#######        .d8888b.   888  888                                                         ####### 
-####          d88P  Y88b  888  888                                                            #### 
-####          888    888  888  888                                                            #### 
-####          888         888  888   8888b.   .d8888b   .d8888b    .d88b.   .d8888b           #### 
-####          888         888  888      "88b  88K       88K       d8P  Y8b  88K               #### 
-####          888    888  888  888  .d888888  "Y8888b.  "Y8888b.  88888888  "Y8888b.          #### 
-####          Y88b  d88P  888  888  888  888       X88       X88  Y8b.           X88          #### 
-#######        "Y8888P"   888  888  "Y888888   88888P'   88888P'   "Y8888    88888P'       ####### 
+#######        .d8888b.   888  888                                                         #######
+####          d88P  Y88b  888  888                                                            ####
+####          888    888  888  888                                                            ####
+####          888         888  888   8888b.   .d8888b   .d8888b    .d88b.   .d8888b           ####
+####          888         888  888      "88b  88K       88K       d8P  Y8b  88K               ####
+####          888    888  888  888  .d888888  "Y8888b.  "Y8888b.  88888888  "Y8888b.          ####
+####          Y88b  d88P  888  888  888  888       X88       X88  Y8b.           X88          ####
+#######        "Y8888P"   888  888  "Y888888   88888P'   88888P'   "Y8888    88888P'       #######
 
 
 
@@ -582,27 +590,27 @@ class Random:
     random Variable Generator Class.
     (ALL FUNCTIONS ARE STATIC METHODS)
     '''
-    
+
     @staticmethod
     def choose(iterable:Iterable, k:int=1, duplicate=True):
         """
         Return a random element from a non-empty sequence.
-    
+
         Args:
             iterator (Iterator): The iterator you wanna choose a random member of it
             k (int): number of items to randomly get from iterator
             duplicate (bool): wether or not getting duplicate items (if k>1)
-        
+
         Returns:
             Any: one of members of iterator if k=1
             List[Any]: if k>1
-    
+
         Raise:
             ValueError: Occurs when k<1
         """
         if type(k) != int:
             raise TypeError('k must be integer.')
-        
+
         if k == 1:
             return _random.choice(iterable)
         elif k > 1:
@@ -611,8 +619,8 @@ class Random:
             else:
                 return _random.sample(iterable,k=k)
         else:
-            raise ValueError('k Must Be Higher 0')     
-    
+            raise ValueError('k Must Be Higher 0')
+
     @staticmethod
     def integer(first_number:int, last_number:int):
         """
@@ -626,7 +634,7 @@ class Random:
             int: a random number in [a, b] range
         """
         return _random.randint(first_number,last_number)
-    
+
     @staticmethod
     def O1(decimal_number:int = 17):
         """
@@ -639,7 +647,7 @@ class Random:
             float: random number in interval [0,1)
         """
         return round(_random.random(),decimal_number)
-    
+
     @staticmethod
     def number(first_number:float, last_number:float):
         """
@@ -658,10 +666,10 @@ class Random:
     def shuffle(iterable:Iterable):
         """
         Return shuffled version of iterable
-    
+
         Arg:
             iterable (Iterable): The iterable you want to shuffle it's items
-    
+
         Return:
             Iterable[Any]: shuffled version of given iterable
         """
@@ -739,13 +747,13 @@ class Files:
         if _os.path.isfile(path):
             _os.remove(path)
         else:
-            if force: 
+            if force:
                 _shutil.rmtree(path)
             else:
                 try:
                     _os.rmdir(path)
                 except OSError:
-                    raise OSError(f"[WinError 145] The directory is not empty: '{path}'" + '\n' + ' '*23 + 
+                    raise OSError(f"[WinError 145] The directory is not empty: '{path}'" + '\n' + ' '*23 +
                                    '(Use force=True as an argument of remove function to remove non-empty directories.)') from None
     delete = remove
 
@@ -778,7 +786,7 @@ class Files:
         return _os.path.getmtime(path)
 
     @staticmethod
-    def acstime(path:str) -> float:    
+    def acstime(path:str) -> float:
         '''
         Get last access time of the path.
         '''
@@ -797,7 +805,7 @@ class Files:
     @staticmethod
     def copy(src:str, dest:str, preserve_metadata:bool=True) -> None:
         '''
-        Copy the file from src to destination.  
+        Copy the file from src to destination.
         preserve_metadata is for preserving metadata of file when copying.
         (You can use it instead of rename too.
          e.g:
@@ -857,14 +865,14 @@ class Files:
     @staticmethod
     def write(file_path:str, text:Text=None, mode='replace', start='') -> None:
         '''
-        With this method you can change content of the file.  
+        With this method you can change content of the file.
         file:   File you want to change its content.
         content:   Content you want to add to file.
         mode:   Type of writing method.
-             'a' or 'continue' for add content to end of the file. 
+             'a' or 'continue' for add content to end of the file.
              'w' or 'replace'  for overwriting to file content.
         start: I use this when I use mode='continue'
-        '''  
+        '''
         if mode in ("w",'replace'):
             op= open(file_path,mode='w')
             if text==None:
@@ -876,7 +884,7 @@ class Files:
             if text==None:
                 text= input('Type what you want to add in the end of the file.\n\n')
             op.write(text)
-            op.close() 
+            op.close()
         else:
             raise ValueError('mode can only be: replace(default) or continue Not "{0}"'.format(mode))
 
@@ -932,7 +940,7 @@ class Files:
         -  '**/*.py:    search for all python files in path and also sub-directories.
         -  'mydir/**/*.py'   :    search for all python files in path/mydir/ and all of its sub-directories.
         '''
-        if return_mode not in (list,Generator):    
+        if return_mode not in (list,Generator):
             raise ValueError(f"return_mode should be either 'list' or 'generator'  not {return_mode}")
         import glob
         #print(_os.path.join(path,pattern))
@@ -980,7 +988,7 @@ class Files:
                 if path.is_dir():
                     yield prefix + pointer + path.name
                     directories += 1
-                    extension = branch if pointer == tee else space 
+                    extension = branch if pointer == tee else space
                     yield from inner(path, prefix=prefix+extension, level=level-1)
                 elif not limit_to_directories:
                     yield prefix + pointer + path.name
@@ -996,7 +1004,7 @@ class Files:
     @staticmethod
     def get_drives():
         """WINDOWS ONLY
-        
+
         Gets devices and drives in windows
         """
         return [drive for drive in "CDEFGHIJKLMNOPQRSTUVWXYZ" if files.exists(f"{drive}:/")]
@@ -1141,7 +1149,7 @@ class System:
                 raise NetworkError('No Network Connection')
             raise NetworkError('No Network Connection')
         except:
-            raise  
+            raise
     """ip_local= internet.ip_local"""
     @staticmethod
     def ram_total(convert:bool=True) -> str:
@@ -1181,7 +1189,7 @@ class System:
         """
         response = list(_psutil.virtual_memory())
         if ONLY_NOM:
-            return response[2]    
+            return response[2]
         return str(response[2]) + " %"
     @staticmethod
     def boot_time() -> str:
@@ -1243,7 +1251,7 @@ class System:
         mac = uuid.getnode()
         if formatted:
             return ':'.join(['{:02x}'.format((mac >> ele) & 0xff) for ele in range(0,8*6,8)][::-1])
-        return hex(mac) 
+        return hex(mac)
 system = System
 
 
@@ -1259,7 +1267,7 @@ class Style:
     - style.switch to change terminal colors.
     - style.switch_default for making everything default.
 
-    Also You Can Create style object.  
+    Also You Can Create style object.
     This will allow you to:
     - Because it returns string You can Add it to other strings
     - Slicing and indexing (Without Color)
@@ -1394,22 +1402,22 @@ class Record:
         Return time passed from creating time of self.
         (Read 'record' Doc String)
         If save is True, time will be added to self.laps
-        '''        
+        '''
         lp = _time.time() - self.__start
         lp = round(lp,Round)
         if save:
             self.laps.append(lp)
         return lp
-    
+
     def reset(self, reset_start=False):
         '''
-        This will erase self.laps 
+        This will erase self.laps
         If reset_start is True, start time will reset too.
         '''
         self.laps = []
         if reset_start:
             self.__start = _time.time()
-    
+
     def last_lap(self, save=True):
         '''
         Return time passed from last lap
@@ -1419,7 +1427,7 @@ class Record:
         if save:
             self.laps.append(self.lap())
         return ret
-    
+
     @staticmethod
     def timeit(code="pass",setup="pass",times=1_000_000,globals_=None):
         '''
@@ -1488,16 +1496,16 @@ class Decorator:
          for param in sig.parameters.values():
              if (param.kind == param.KEYWORD_ONLY and
                              param.default is param.empty):
-                 print('Parameter:', param.annotation)    
+                 print('Parameter:', param.annotation)
         '''
         """
         auto_correct = False
 
-        def __init__(self, function): 
+        def __init__(self, function):
             self.function = function
 
 
-        def __call__(self, *args, **kwargs): 
+        def __call__(self, *args, **kwargs):
             special_types = ('callable', 'iterable', 'generator','container', 'any')
 
             i=-1
@@ -1529,7 +1537,7 @@ class Decorator:
                         return
                     else:
                         correct = 'callable'
-                
+
                 elif TYPE == 'iterable':
                     if type(LOCAL_I) in (list, tuple, set, str):
                         print(type(LOCAL_I))
@@ -1556,18 +1564,18 @@ class Decorator:
                 try:
                     LOCAL_I = __local__[i]
                     correct = str(self.function.__annotations__[ARG])
-                    
+
                     '''if correct.startswith('typing.Union'):
                         correct = eval(correct[12:])
                     if type(correct) != list:
                         correct = [correct]'''
 
                     correct = extra_remover(correct)
-                    
+
                     if correct in special_types:
                         print(type(LOCAL_I))
                         check_specials(correct,LOCAL_I)
-                    
+
                     # Builtins and other Libraries objects
                     elif not eval(correct) == type(LOCAL_I):
                         if Check_Type.auto_correct:
@@ -1583,14 +1591,14 @@ class Decorator:
                         func_name = self.function.__name__
                         Error= TypeError(f"'{func_name}()' argument '{ARG}' must be '{correct}' (not '{wrong}')")
                         raise Error
-                
+
                 except (ValueError,IndexError):
                     pass#raise
                 except NameError:
                     raise
 
-                
-            
+
+
             return self.function(*__local__, **kwargs)
 
     decorator_all:Callable = None
@@ -1598,14 +1606,14 @@ class Decorator:
     def attach_to_all(cls):
         import inspect
         for name, method in inspect.getmembers(cls):
-            if (not inspect.ismethod(method) and 
+            if (not inspect.ismethod(method) and
                 not inspect.isfunction(method) ) or (
                inspect.isbuiltin(method)):
                 continue
             #print("Decorating function %s" % name)
             setattr(cls, name, Decorator.decorator_all(method))
         return cls
-    
+
     abstractmethod = _abc.abstractmethod
 
     _registered_functions = {}  #:Dict[str, Any]
@@ -1637,32 +1645,41 @@ overload   = Decorator.overload
 
 
 class IO:
-    
+
     @staticmethod
-    def wait_for_input(prompt,SS:list=[]):
+    def wait_for_input(prompt):
         answer= ''
         while not answer:
             answer = input(prompt).strip()
         return answer
 
     @staticmethod
-    def selective_input(prompt,choices,default=None,ignore_case=False,error=True,invalid='Invalid input'):
-        Choices = choices
-        if type(choices) == dict:
-            Choices = list(choices.keys())+list(choices.values())
-        if ignore_case:
-            Choices = [item.lower() for item in choices]
+    def selective_input(prompt:Any, choices:Iterable|Callable=None, default=None,
+                        ignore_case:bool=False, invalid_message:Any='Invalid input',
+                        action:Callable=None):
+        if not callable(choices):
+            Choices = choices
+            if type(choices) == dict:
+                Choices = list(choices.keys())+list(choices.values())
+            if ignore_case:
+                Choices = [item.lower() for item in Choices]
 
         while True:
             inp = input(prompt)
             inp = inp.lower() if ignore_case else inp
-            if not inp  or  inp not in Choices:
-                if error:
-                    style.print(invalid, color='red')
+            if callable(choices):
+                if choices(inp):
+                    break
+            elif not inp:
+                if default:
+                    inp = default
+                    break
                 else:
-                    if default:
-                        inp = default
-                        break
+                    if invalid_message:
+                        style.print(invalid_message, color='red')
+            elif inp not in Choices:
+                if invalid_message:
+                    style.print(invalid_message, color='red')
             else:
                 break
         if type(choices) == dict:
@@ -1670,21 +1687,23 @@ class IO:
                 inp = choices[inp]
             except KeyError:
                 pass
+        if action and callable(action):
+            inp = action(inp)
         return inp
 
     @staticmethod
     def yesno_input(prompt,default=None):
-        error= not bool(default)
-        return io.selective_input(prompt,['y','yes','n','no'],default,error)
-    
+        error= "Invalid Input" if bool(default) else ""
+        return io.selective_input(prompt,['y','yes','n','no'],default,True,error)
+
     @staticmethod
     def Input(prompt:str ='', default_value:str =''):
         '''
-        Make Default Value For Your Input!  
+        Make Default Value For Your Input!
         (THIS ONLY WORK ON WINDOWS (SORRY))
         prompt is what you want and it's input(prompt) .
         default_value is what there should be after prompt.
-        E.g: 
+        E.g:
         >>> Input('Is rx7 Library Easy to Learn?  ', 'Yes')
         Is rx7 Library Easy to Learn?  Yes
         '''
@@ -1700,7 +1719,7 @@ class IO:
             keys.append(evt)
         _stdin.WriteConsoleInput(keys)
         return input(str(prompt))
-    
+
     @staticmethod
     def getpass(prompt):
         '''
@@ -1715,7 +1734,7 @@ getpass = password_input = io.getpass
 
 
 class Internet:
-    
+
     @staticmethod
     def is_connected(website='http://x.com/'):
         '''
@@ -1739,7 +1758,7 @@ class Internet:
         Parameters
         ----------
         func : Function
-            function which you are going to check if 
+            function which you are going to check if
              there is internet connection before call it
         """
         def inside(*args,**kwargs):
@@ -1747,14 +1766,14 @@ class Internet:
                 raise ConnectionError('No internet connection') from None
             return func(*args,**kwargs)
         return inside
-    
+
 
     ip_global = system.ip_global
 
     @staticmethod
     def ip_local() -> str:
         """
-        Return local ip of computer in windows by _socket. module 
+        Return local ip of computer in windows by _socket. module
         and in linux with hostname command in shell.
         """
         #return [l for l in ([ip for ip in _socket.gethostbyname_ex(_socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [_socket._socket.(_socket.AF_INET, _socket.SOCK_DGRAM)]][0][1]]) if l][0][0]
@@ -1786,7 +1805,7 @@ class Internet:
             raise NetworkError('No Network Connection')
         except:
             raise
-    
+
     @staticmethod
     def url_exists(URL) -> bool:
         '''
@@ -1804,7 +1823,7 @@ class Internet:
             return True
         else:
             return False
-    
+
     @staticmethod
     def ip_website(URL) -> str:
         '''
@@ -1821,7 +1840,7 @@ class Internet:
                 raise NotExistsError from None
             else:
                 raise ConnectionError from None
-    
+
     @staticmethod
     def url_links(URL) -> list:
         '''
@@ -1840,14 +1859,14 @@ class Internet:
             return LINKS
         except _ReqConErr:
             raise ConnectionError('No internet connection') from None
-    
+
     @staticmethod
     def find_urls(string) -> list:
         '''
         find all urls in a string and returns list of them
          (urls should start with http[s])
         '''
-        url = _re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', string) 
+        url = _re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', string)
         return url
 
     @staticmethod
@@ -1861,7 +1880,7 @@ class Internet:
             return True
         else:
             return False
-    
+
     @staticmethod
     def open_browser(url,new_tab=True):
         import webbrowser
@@ -1890,7 +1909,7 @@ internet = Internet
 
 
 class DateTime:
-    
+
     _NOW=        0
     _NOW_YEAR=   0
     _NOW_MONTH=  0
@@ -1912,7 +1931,7 @@ class DateTime:
         now = date_time.NOW()
         try:
             if not date[0]:  date[0]= now.year
-            if type(date[1]) == str: 
+            if type(date[1]) == str:
                 try:
                     date[1]= date_time.month_dic[date[1].lower()]
                 except KeyError:
@@ -1930,9 +1949,9 @@ class DateTime:
         return [date,time]
     Weekday_Names= ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     month_lst= ['january','february','march','april','may','june',
-                'july','august','september','october','november','december']    
-    month_dic= {month:month_nom for month in month_lst for month_nom in range(1,13)}                
-    
+                'july','august','september','october','november','december']
+    month_dic= {month:month_nom for month in month_lst for month_nom in range(1,13)}
+
     def __init__(self,year=_NOW_YEAR,month=_NOW_MONTH,day=_NOW_DAY,hour=_NOW_HOUR,minute=_NOW_MINUTE,second=_NOW_SECOND,first_week_day=0):
         '''
         .: Working With Date and Time :.
@@ -1962,7 +1981,7 @@ class DateTime:
                 month= date_time.month_dic[month.lower()]
             except KeyError:
                 raise ValueError("Wrong Month Name") from None
-    
+
         self.date= _datetime.date(year,month,day)
         self.year=year; self.month=month; self.day=day
         self.time= (hour,minute,second)
@@ -1982,7 +2001,7 @@ class DateTime:
         self.calendar_prev_all= [_calendar.month(year,i) for i in range(1,self.month)]
         self.calendar_position_next_year= str(_calendar.month(year+1, month)).replace(str(day),style(str(day),'green').styled)
         self.calendar_position_prev_year= str(_calendar.month(year-1, month)).replace(str(day),style(str(day),'green').styled)
-        
+
     def setfirstweekday(self,day):
         if type(day)==int and day<7:
             date_time.Weekday_Names= date_time.Weekday_Names[day:]+date_time.Weekday_Names[:day]
@@ -2047,7 +2066,7 @@ class DateTime:
                 _return = str(DELTA*1440)[:-14]
             elif return_time == 'second':
                 _return = str(DELTA*3600)[:-14]
-            
+
             if _return:  return _return
             else: return 0
         else:
@@ -2200,7 +2219,7 @@ class _Lang:
 
 
     class Array:
-        
+
         # Sized Array
 
         __Type_Error = "Array of type '{}' does not accept object with type '{}'"
@@ -2258,7 +2277,7 @@ class _Lang:
         def remove(self,obj):
             self.__members.remove(obj)
         def pop(self,index=-1):
-            self.__members.pop(index)    
+            self.__members.pop(index)
     array = Array
 
 
