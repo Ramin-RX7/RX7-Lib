@@ -4,14 +4,22 @@
 "rx7" library is here to help you make your code shorter!
 --------------------------------------------------------
 
-### \- High API
+### \- Most Usefull function and mexthods are collected.
 
 ### \- Special Features
 
-### \- Most Usefull function and methods are collected.
+### \- Simple and easy to understad API
 
 <hr />
+
+### Install
+    pip install rx7
+### Upgrade
+    pip install --upgrade rx7
+
+
 <br />
+
 
 # Here is the brief documentaion:
 ### *(Complete documentation with details will be added soon in the Wiki section)*
@@ -19,18 +27,25 @@
 -->
 
 
-<p>&nbsp;</p>
 <h2>List of Variables:</h2>
 
 <table style="height: 471px; width: 567px;">
   <tbody>
     <tr>
-    <td style="width: 155px;">argv</td>
-    <td style="width: 396px;">sys.argv (return list of given arguments from terminal)</td>
+      <td style="width: 155px;">argv</td>
+      <td style="width: 396px;">sys.argv (return list of given arguments from terminal)</td>
     </tr>
     <tr>
-    <td style="width: 155px;">ABC</td>
-    <td style="width: 396px;">Parent for classes which have abstractmethods</td>
+      <td style="width: 155px;">ABC</td>
+      <td style="width: 396px;">Parent for classes which have abstractmethods</td>
+    </tr>
+    <tr>
+      <td style="width: 155px;">exit</td>
+      <td style="width: 396px;">Equivalent sys.exit (returning exit code to terminal)</td>
+    </tr>
+    <tr>
+      <td style="width: 155px;">environ</td>
+      <td style="width: 396px;">Returns environment variables in a dictionary format</td>
     </tr>
   </tbody>
 </table>
@@ -227,9 +242,7 @@ List of Functions:
   </tbody>
 </table>
 
-
-
-<p>&nbsp;</p>
+<br>
 
 
 
@@ -261,7 +274,8 @@ List of Functions:
   </tbody>
 </table>
 
-<p>&nbsp;</p>
+<br>
+
 
 <h3>&nbsp; Class System:&nbsp; &nbsp;<em>Some system actions and information.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
@@ -389,7 +403,8 @@ List of Functions:
   </tbody>
 </table>
 
-<p>&nbsp;</p>
+<br>
+
 
 <h3>&nbsp; Class Files: (Static<strong style="font-size: 14px;">&nbsp;methods)&nbsp;</strong><em style="font-size: 14px;">Actions and information about files.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
@@ -561,7 +576,8 @@ List of Functions:
     </tbody>
     </table>
 
-<p>&nbsp;</p>
+<br>
+
 
 <h3>&nbsp;Class Style:&nbsp; &nbsp; <em>Changing text Color,BG &amp; Style. (Read Doc String)</em></h3>
     <table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
@@ -603,7 +619,8 @@ List of Functions:
   </tbody>
 </table>
 
-<p>&nbsp;</p>
+<br>
+
 
 <h3>&nbsp;Class Record:&nbsp; &nbsp;<em>Record time of a certain actions. (Read Doc String)</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
@@ -640,38 +657,49 @@ List of Functions:
     </tbody>
     </table>
 
-<p>&nbsp;</p>
+<br>
+
 
 <h3>&nbsp;Class Decorator:&nbsp; &nbsp;<em>Useful decorators you might want to use</em></h3>
-<table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
-  <tbody>
-    <tr style="height: 18px;">
-    <td style="width: 173px; height: 18px;">Check_Type</td>
-    <td style="width: 387px; height: 18px;">Decorator that raise TypeError if function argument type is wrong (Read Help)</td>
-    </tr>
-    <tr style="height: 18px;">
-    <td style="width: 173px; height: 18px;">overload</td>
-    <td style="width: 387px; height: 18px;">Make your function accept different kind of argument and structure with defining it more than once</td>
-    </tr>
-    <tr style="height: 18px;">
-    <td style="width: 173px; height: 18px;">attach_to_all</td>
-    <td style="width: 387px; height: 18px;">Attach Decorator.decorator_all to all functions of a class (Class decorator)</td>
-    <tr style="height: 18px;">
-    <td style="width: 173px; height: 18px;">abstractmethod</td>
-    <td style="width: 387px; height: 18px;">A decorator indicating abstract methods.</td>
-    </tr>
-  </tbody>
-</table>
+
+| **Method**     | **Description**                                                                                    |
+|----------------|----------------------------------------------------------------------------------------------------|
+| Check_Type     | Decorator that raise TypeError if function argument type is wrong (Read Help)                      |
+| overload       | Make your function accept different kind of argument and structure with defining it more than once |
+| attach_to_all  | Attach Decorator.decorator_all to all functions of a class (Class decorator)                       |
+| abstractmethod | A decorator indicating abstract methods.                                                           |
+<br />
 
 
-<br />
-<br />
+<h3>&nbsp;Class Terminal:&nbsp; &nbsp;<em>functions related to working with terminal</em></h3>
+
+| **Method**          | **Description**                                             |
+|:------------------- |:----------------------------------------------------------- |
+| run(command)        | executes `command` live in terminal                         |
+| getoutput(commands) | runs the `command` in the background and returns the output |
+| size()              | Returns the size of terminal in tuple (columns,rows)        |
+<br>
+
+
+<h3>&nbsp;Class IO:&nbsp; &nbsp;<em>Useful methods when working with user input</em></h3>
+
+| **Method**                   | **Description**                                                          |
+|------------------------------|--------------------------------------------------------------------------|
+| wait_for_input(prompt)       | Asks for user input, until they enter something else than whitespaces    |
+| selective_input()            | Check repository wiki for full documentation                             |
+| yesno_input(prompt, default) | wait for user to enter one of (`yes`,`no`, `y`, `n`). (Case insensitive) |
+| Input(prompt, default_value) | (Windows only) Types default value before getting user's input           |
+| getpass(prompt)              | Gets users input without showing their input (`getpass.getpass()`)       |
+<br>
+
+
+
 <br />
 
 
 ## Recommendations:
 
- - Using an IDE that shows Function and Class Help is highly recommended. *([VS Code](https://code.visualstudio.com/ "Microsoft VS Code")* -- *[PyCharm](https://www.jetbrains.com/pycharm/ "Microsoft Visual Studio Code"))*
+ - Using an IDE that shows Function and Class Help is highly recommended. *([VS Code](https://code.visualstudio.com/ "Microsoft VS Code")* -- *[PyCharm](https://www.jetbrains.com/pycharm/ "Jetbrains PyCharm"))*
 
  - Using `from rx7 import FUNC_or_CLASS`
 
@@ -679,11 +707,6 @@ List of Functions:
 
 <br />
 
-Upgrade
---------------------------------
-    pip install --upgrade rx7
-
-<br />
 
  Use These Commands in Terminal:
 --------------------------------
@@ -693,20 +716,7 @@ Upgrade
 
 <br />
 
-Versions Information:
----------------------
 
-        Releases are like this:        1.0.0 , 1.1.1 , 1.2.0
-
-        First number is very important bacause it's for Realy Big new features and changes.
-
-        Second number is important but not like first number because it contains some changes and new features (RECOMMENDED for upgrading package)
-
-        But 3rd number is not important because it's for changing packege codes order and you won't lose anything if you        don't install it.
-
-        Numbers are not always in order like: 1,2,3,4,...  , Some times they are different like: 1.2.4.8,..._
-
-<br />
 
 Releases and Changelog:
 ---------
@@ -714,286 +724,284 @@ Releases and Changelog:
 ####        (+ for new features, \* for changes, - for removed features)
 
 <table style="height: 10px; margin-left: 10px; width: 519px;" cellpadding="5">
-<tbody>
-<tr style="height: 42px;">
-<td style="width: 119px; height: 42px; text-align: center;"><strong>Version</strong></td>
-<td style="width: 153px; height: 42px; text-align: center;"><strong>Release Date</strong></td>
-<td style="width: 513px; height: 42px; text-align: center;"><strong>New Features &amp; Changes</strong></td>
-</tr>
+  <tbody>
+
+  <tr style="height: 42px;">
+    <td style="width: 119px; height: 42px; text-align: center;"><strong>Version</strong></td>
+    <td style="width: 153px; height: 42px; text-align: center;"><strong>Release Date</strong></td>
+    <td style="width: 513px; height: 42px; text-align: center;"><strong>New Features &amp; Changes</strong></td>
+  </tr>
 
 
-<tr style="height: 25px;">
+  <tr style="height: 25px;">
+    <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+      <p style="text-align: center;">3.2.0</p>
+    </td>
+    <td style="width: 153px; height: 25px; text-align: center;">10/03/2023</td>
+    <td style="width: 513px; height: 25px; text-align: center;">
+      <div style="text-align: left;">+ environ: environment variables as a dict</div>
+      <div style="text-align: left;">+ Terminal.get_size()</div>
+      <div style="text-align: left;">+ exit: sys.exit</div>
+      <div style="text-align: left;">+ files.get_drives()</div>
+      <div style="text-align: left;">+ IO.selective_input `choices` argument upgrade</div>
+      <div style="text-align: left;">+ IO.selective_input `action` parameter</div>
+      <div style="text-align: left;">- IO.selective_input error parameter is removed</div>
+      <div style="text-align: left;">* Fixed files.size() for directories</div>
+      <div style="text-align: left;">* files.is_readonly now also works on Unix</div>
+    </td>
+  </tr>
+
+
+  <tr style="height: 25px;">
   <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
-    <p style="text-align: center;">3.2.0</p>
+  <p style="text-align: center;">3.1.0</p>
   </td>
-  <td style="width: 153px; height: 25px; text-align: center;">10/03/2023</td>
+  <td style="width: 153px; height: 25px; text-align: center;">23/12/2022</td>
   <td style="width: 513px; height: 25px; text-align: center;">
-    <div style="text-align: left;">+ environ: environment variables as a dict</div>
-    <div style="text-align: left;">+ Terminal.get_size()</div>
-    <div style="text-align: left;">+ exit: sys.exit</div>
-    <div style="text-align: left;">+ files.get_drives()</div>
-    <div style="text-align: left;">+ IO.selective_input `choices` argument upgrade</div>
-    <div style="text-align: left;">+ IO.selective_input `action` parameter</div>
-    <div style="text-align: left;">- IO.selective_input error parameter is removed</div>
-    <div style="text-align: left;">* Fixed files.size() for directories</div>
-    <div style="text-align: left;">* files.is_readonly now also works on Unix</div>
+  <div style="text-align: left;">+ Record.timeit has default parameters now</div>
+  <div style="text-align: left;">- removed progressbar()</div>
+  <div style="text-align: left;">* Improved Style object creation</div>
+  <div style="text-align: left;">* Improved Style.print implementation</div>
+  <div style="text-align: left;">* Improved Style.log_ methods implementation</div>
+  <div style="text-align: left;">* Terminal.run() now return exit code</div>
+  <div style="text-align: left;">- Removed "Tuple" object</div>
   </td>
-</tr>
+  </tr>
 
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+  <p style="text-align: center;">3.0.0</p>
+  </td>
+  <td style="width: 153px; height: 25px; text-align: center;">01/09/2021</td>
+  <td style="width: 513px; height: 25px; text-align: center;">
+  <div style="text-align: left;"><b>+ class Internet</b></div>
+  <div style="text-align: left;"><b>+ class DateTime</b></div>
+  <div style="text-align: left;">+ "Style.log" now has time prefix</div>
+  <div style="text-align: left;">+ call = call_later</div>
+  <div style="text-align: left;">+ IO.Input()</div>
+  <div style="text-align: left;">+ IO.getpass()</div>
+  <div style="text-align: left;">* io.selective_input choices can be dict</div>
+  <div style="text-align: left;">+ System.mac_address()</div>
+  </td>
+  </tr>
 
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
-<p style="text-align: center;">3.1.0</p>
-</td>
-<td style="width: 153px; height: 25px; text-align: center;">23/12/2022</td>
-<td style="width: 513px; height: 25px; text-align: center;">
-<div style="text-align: left;">+ Record.timeit has default parameters now</div>
-<div style="text-align: left;">- removed progressbar()</div>
-<div style="text-align: left;">* Improved Style object creation</div>
-<div style="text-align: left;">* Improved Style.print implementation</div>
-<div style="text-align: left;">* Improved Style.log_ methods implementation</div>
-<div style="text-align: left;">* Terminal.run() now return exit code</div>
-<div style="text-align: left;">- Removed "Tuple" object</div>
-</td>
-</tr>
-
-
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
-<p style="text-align: center;">3.0.0</p>
-</td>
-<td style="width: 153px; height: 25px; text-align: center;">01/09/2021</td>
-<td style="width: 513px; height: 25px; text-align: center;">
-<div style="text-align: left;"><b>+ class Internet</b></div>
-<div style="text-align: left;"><b>+ class DateTime</b></div>
-<div style="text-align: left;">+ "Style.log" now has time prefix</div>
-<div style="text-align: left;">+ call = call_later</div>
-<div style="text-align: left;">+ IO.Input()</div>
-<div style="text-align: left;">+ IO.getpass()</div>
-<div style="text-align: left;">* io.selective_input choices can be dict</div>
-<div style="text-align: left;">+ System.mac_address()</div>
-</td>
-</tr>
-
-
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
-<p style="text-align: center;">2.9.0</p>
-</td>
-<td style="width: 153px; height: 25px; text-align: center;">15/12/2020</td>
-<td style="width: 513px; height: 25px; text-align: center;">
-<div style="text-align: left;">+ <b>IO Class</b>(wait_for_input() - selective_input() - yesno_input())</div>
-<div style="text-align: left;">+ <b>Decorator Class</b> (attach_to_all ---&nbsp;Check_Type)</div>
-<div style="text-align: left;">* IMPORT SPEED IS 20x FASTER!</div>
-<div style="text-align: left;">+ argv (sys.argv)</div>
-<div style="text-align: left;">- Record.EndError</div>
-<div style="text-align: left;">+ overload (Decorator.overload)</div>
-<div style="text-align: left;">+ ABC,ABCMeta</div>
-</td>
-</tr>
-
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
-<p style="text-align: center;">2.8.0</p>
-</td>
-<td style="width: 153px; height: 25px; text-align: center;">15/11/2020</td>
-<td style="width: 513px; height: 25px; text-align: center;">
-<div style="text-align: left;">+ Decorator Class (attach_to_all ---&nbsp;Check_Type)</div>
-<div style="text-align: left;">+ pop()</div>
-<div style="text-align: left;">+ Tuple.pop()</div>
-<div style="text-align: left;">+ Record.timeit()</div>
-</td>
-</tr>
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
-<p style="text-align: center;">2.7.0</p>
-</td>
-<td style="width: 153px; height: 25px; text-align: center;">15/10/2020</td>
-<td style="width: 513px; height: 25px; text-align: center;">
-<div style="text-align: left;">+ getpass()</div>
-<div style="text-align: left;">+ style.log_ Family</div>
-<div style="text-align: left;">+ style.reset() = style.switch_default()</div>
-<div style="text-align: left;">+ load_module()</div>
-<div style="text-align: left;">+ record.last_lap()</div>
-</td>
-</tr>
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
-<p style="text-align: center;">2.6.0</p>
-</td>
-<td style="width: 153px; height: 25px; text-align: center;">01/10/2020</td>
-<td style="width: 513px; height: 25px; text-align: center;">
-<div style="text-align: left;">+ system.cpu_percent()</div>
-<div style="text-align: left;">+ system.pid_exists()</div>
-<div style="text-align: left;">+ Progressbar()&nbsp;<em>(Generator)</em></div>
-<div style="text-align: left;">+ pixel_color()</div>
-</td>
-</tr>
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
-<p style="text-align: center;">2.5.0</p>
-</td>
-<td style="width: 153px; height: 25px; text-align: center;">15/09/2020</td>
-<td style="width: 513px; height: 25px; text-align: center;">
-<div style="text-align: left;">+ Check_Type decorator</div>
-<div style="text-align: left;">+ system.pyshell_execute_bit()</div>
-<div style="text-align: left;">+ system.pids()</div>
-<div style="text-align: left;">+ record.lap&nbsp;round&nbsp;arg</div>
-</td>
-</tr>
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
-<p style="text-align: center;">2.4.0</p>
-</td>
-<td style="width: 153px; height: 25px; text-align: center;">01/09/2020</td>
-<td style="width: 513px; height: 25px; text-align: center;">
-<div style="text-align: left;">* rand -&gt; random</div>
-<div>
-<div style="text-align: left;">+ random.shuffle()</div>
-<div>
-<div style="text-align: left;">+ repeat function supports parameters</div>
-<div>
-<div style="text-align: left;">+ sleep = wait&nbsp; &nbsp;---&nbsp; &nbsp;clear = cls&nbsp; &nbsp;---&nbsp; &nbsp;default_input = Input</div>
-<div style="text-align: left;">+ system.cpu_count()</div>
-</div>
-</div>
-</div>
-</td>
-</tr>
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
-<p style="text-align: center;">2.3.0</p>
-</td>
-<td style="width: 153px; height: 25px; text-align: center;">19/08/2020</td>
-<td style="width: 513px; height: 25px; text-align: center;">
-<p style="text-align: left;">+ extract()</p>
-<p style="text-align: left;">+ screenshot()</p>
-<p style="text-align: left;">+ func_info()</p>
-</td>
-</tr>
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
-<p style="text-align: center;">2.2.0</p>
-</td>
-<td style="width: 153px; height: 25px; text-align: center;">03/08/2020</td>
-<td style="width: 513px; height: 25px; text-align: center;">
-<p style="text-align: left;">+ download()</p>
-<p style="text-align: left;">+ system.ip_website()</p>
-<p style="text-align: left;">+ system.win10_notification</p>
-</td>
-</tr>
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
-<p style="text-align: center;">2.1.0</p>
-</td>
-<td style="width: 153px; height: 25px; text-align: center;">15/07/2020</td>
-<td style="width: 513px; height: 25px; text-align: center;">
-<p style="text-align: left;">* style class better performance in linux</p>
-<p style="text-align: left;">+&nbsp;<span style="text-align: center;">MEMBERS&nbsp;group&nbsp;in&nbsp;files&nbsp;class</span></p>
-<p style="text-align: left;"><span style="text-align: center;">+ File object:&nbsp; self.basename, self.ext</span></p>
-<p style="text-align: left;"><span style="text-align: center;">+ system.device_name()</span></p>
-<p style="text-align: left;"><span style="text-align: center;">+&nbsp;</span><span style="text-align: center;">active_window_title() --- open_image()</span></p>
-</td>
-</tr>
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
-<p style="text-align: center;"><strong>2.0.0</strong></p>
-</td>
-<td style="width: 153px; height: 25px; text-align: center;"><strong>01/07/2020</strong></td>
-<td style="width: 513px; height: 25px; text-align: center;">
-<p style="text-align: left;">+ <strong>Tuple object&nbsp; &nbsp;---&nbsp; &nbsp;rxobject</strong></p>
-<p style="text-align: left;">+ record.reset()&nbsp; &nbsp;---&nbsp; &nbsp;record.lap new arg</p>
-<p style="text-align: left;">+ New methods of files</p>
-<p style="text-align: left;">&nbsp; &nbsp; &nbsp; files.is_readonly()&nbsp; &nbsp;---&nbsp; &nbsp;files.is_hidden()</p>
-<p style="text-align: left;"><strong>&nbsp; &nbsp; &nbsp; files.search_file()&nbsp; &nbsp;---&nbsp; &nbsp;files.search_content()</strong></p>
-<p style="text-align: left;">&nbsp; &nbsp; &nbsp; files.copy new arg</p>
-<p style="text-align: left;"><strong>&nbsp; &nbsp; &nbsp; files.generate_tree()</strong></p>
-<p style="text-align: left;"><strong>+ File.MEMBERS </strong>(when in File(path), path is a directory&nbsp; (self.MEMBERS.TYPE_PATH)</p>
-<p style="text-align: left;"><strong>+ File.tree&nbsp; &nbsp; ---&nbsp; &nbsp; &nbsp;File.tree_dirs</strong></p>
-<p style="text-align: left;"><strong>+ Input()</strong>&nbsp; <em>(Only on windows)</em></p>
-<p style="text-align: left;">+ restart_app()</p>
-<p style="text-align: left;">&nbsp;</p>
-</td>
-</tr>
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.9.0</td>
-<td style="width: 153px; height: 25px;">&nbsp; 09/06/2020</td>
-<td style="width: 513px; height: 25px; text-align: center;">
-<p style="text-align: left;">* re() --&gt; repeat()</p>
-<p style="text-align: left;">+ New Methods of System Class:&nbsp; ip_global(),&nbsp;ip_local(),&nbsp;ram_free(), ram_percent(),&nbsp;ram_total(),&nbsp;ram_used(), boot_time()</p>
-<p style="text-align: left;">+ convert_bytes()</p>
-</td>
-</tr>
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.8.0</td>
-<td style="width: 153px; height: 25px; text-align: center;">24/05/2020</td>
-<td style="width: 513px; height: 25px; text-align: center;">
-<div style="text-align: left;">+ style.switch_default()</div>
-<div>
-<div style="text-align: left;">+ Now Linux&nbsp;supports&nbsp;cls()</div>
-<div>
-<div style="text-align: left;">+ style&nbsp;object:&nbsp;supports&nbsp;multiply,add,index</div>
-<div>
-<div style="text-align: left;">+ rand.choice Choose &gt;1 &amp; duplicate</div>
-<div style="text-align: left;">* rand.choice --&gt; rand.choose</div>
-</div>
-</div>
-</div>
-</td>
-</tr>
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.7.0</td>
-<td style="width: 153px; height: 25px; text-align: center;">&nbsp; 08/05/2020</td>
-<td style="width: 513px; height: 25px; text-align: center;">
-<div>
-<div style="text-align: left;">+ call_later()&nbsp;&nbsp;-&nbsp;&nbsp;wait_for()</div>
-<div style="text-align: left;">+ terminal_size()&nbsp;&nbsp;-&nbsp;&nbsp;cwd()</div>
-<div style="text-align: left;">+ right_port,left_port arg for progressbar()</div>
-<div style="text-align: left;">+ file.remove() for static usage</div>
-<div style="text-align: left;">+ self.type in file class</div>
-<div style="text-align: left;">+ if in file(x), x is a directory:<br />x.files , x.file_list , x.all_files , x.all_files_sep</div>
-<div style="text-align: left;">+ file.isdir() , file.isfile() for static usage.</div>
-<div style="text-align: left;">* string() =&gt; cons_int()</div>
-<div style="text-align: left;">* progressbar() arg names</div>
-<div style="text-align: left;">* file.delete() and file.delete_dir()&nbsp;=&gt;&nbsp;delete()</div>
-<div style="text-align: left;">* Change replace() and insert() args oreder</div>
-</div>
-</td>
-</tr>
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.5.0</td>
-<td style="width: 153px; height: 25px; text-align: center;">21/04/2020</td>
-<td style="width: 513px; height: 25px; text-align: left;">
-<div>
-<div>
-<div>+ 'replace' and insert 'functions' for tuples</div>
-<div>+ 'end' arg for style.print()</div>
-<div>+ 'self.laps' in record class will display all laps</div>
-<div>* style.text =&gt; style.print</div>
-<div>* record.stop =&gt; record.lap</div>
-<div>* now 'record.stop()' will stop recording.</div>
-</div>
-</div>
-</td>
-</tr>
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.3.0</td>
-<td style="width: 153px; height: 25px;">
-<p style="text-align: center;">08/04/2020</p>
-</td>
-<td style="width: 513px; height: 25px; text-align: center;">
-<div style="text-align: left;">+ __init__ &amp; read &amp; write &amp; content&nbsp; func&nbsp;of&nbsp;file&nbsp;class</div>
-<div style="text-align: left;">* Prgoressbar&nbsp;default&nbsp;args</div>
-</td>
-</tr>
-<tr style="height: 25px;">
-<td style="width: 119px; height: 25px; text-align-last: center;">
-<p style="text-align: center;">1.0.0</p>
-</td>
-<td style="width: 153px; height: 25px;">
-<p style="text-align: center;">18/03/2020</p>
-</td>
-<td style="width: 513px; height: 25px; text-align: center;">####</td>
-</tr>
-</tbody>
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+  <p style="text-align: center;">2.9.0</p>
+  </td>
+  <td style="width: 153px; height: 25px; text-align: center;">15/12/2020</td>
+  <td style="width: 513px; height: 25px; text-align: center;">
+  <div style="text-align: left;">+ <b>IO Class</b>(wait_for_input() - selective_input() - yesno_input())</div>
+  <div style="text-align: left;">+ <b>Decorator Class</b> (attach_to_all ---&nbsp;Check_Type)</div>
+  <div style="text-align: left;">* IMPORT SPEED IS 20x FASTER!</div>
+  <div style="text-align: left;">+ argv (sys.argv)</div>
+  <div style="text-align: left;">- Record.EndError</div>
+  <div style="text-align: left;">+ overload (Decorator.overload)</div>
+  <div style="text-align: left;">+ ABC,ABCMeta</div>
+  </td>
+  </tr>
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+  <p style="text-align: center;">2.8.0</p>
+  </td>
+  <td style="width: 153px; height: 25px; text-align: center;">15/11/2020</td>
+  <td style="width: 513px; height: 25px; text-align: center;">
+  <div style="text-align: left;">+ Decorator Class (attach_to_all ---&nbsp;Check_Type)</div>
+  <div style="text-align: left;">+ pop()</div>
+  <div style="text-align: left;">+ Tuple.pop()</div>
+  <div style="text-align: left;">+ Record.timeit()</div>
+  </td>
+  </tr>
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+  <p style="text-align: center;">2.7.0</p>
+  </td>
+  <td style="width: 153px; height: 25px; text-align: center;">15/10/2020</td>
+  <td style="width: 513px; height: 25px; text-align: center;">
+  <div style="text-align: left;">+ getpass()</div>
+  <div style="text-align: left;">+ style.log_ Family</div>
+  <div style="text-align: left;">+ style.reset() = style.switch_default()</div>
+  <div style="text-align: left;">+ load_module()</div>
+  <div style="text-align: left;">+ record.last_lap()</div>
+  </td>
+  </tr>
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+  <p style="text-align: center;">2.6.0</p>
+  </td>
+  <td style="width: 153px; height: 25px; text-align: center;">01/10/2020</td>
+  <td style="width: 513px; height: 25px; text-align: center;">
+  <div style="text-align: left;">+ system.cpu_percent()</div>
+  <div style="text-align: left;">+ system.pid_exists()</div>
+  <div style="text-align: left;">+ Progressbar()&nbsp;<em>(Generator)</em></div>
+  <div style="text-align: left;">+ pixel_color()</div>
+  </td>
+  </tr>
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+  <p style="text-align: center;">2.5.0</p>
+  </td>
+  <td style="width: 153px; height: 25px; text-align: center;">15/09/2020</td>
+  <td style="width: 513px; height: 25px; text-align: center;">
+  <div style="text-align: left;">+ Check_Type decorator</div>
+  <div style="text-align: left;">+ system.pyshell_execute_bit()</div>
+  <div style="text-align: left;">+ system.pids()</div>
+  <div style="text-align: left;">+ record.lap&nbsp;round&nbsp;arg</div>
+  </td>
+  </tr>
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+  <p style="text-align: center;">2.4.0</p>
+  </td>
+  <td style="width: 153px; height: 25px; text-align: center;">01/09/2020</td>
+  <td style="width: 513px; height: 25px; text-align: center;">
+  <div style="text-align: left;">* rand -&gt; random</div>
+  <div>
+  <div style="text-align: left;">+ random.shuffle()</div>
+  <div>
+  <div style="text-align: left;">+ repeat function supports parameters</div>
+  <div>
+  <div style="text-align: left;">+ sleep = wait&nbsp; &nbsp;---&nbsp; &nbsp;clear = cls&nbsp; &nbsp;---&nbsp; &nbsp;default_input = Input</div>
+  <div style="text-align: left;">+ system.cpu_count()</div>
+  </div>
+  </div>
+  </div>
+  </td>
+  </tr>
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+  <p style="text-align: center;">2.3.0</p>
+  </td>
+  <td style="width: 153px; height: 25px; text-align: center;">19/08/2020</td>
+  <td style="width: 513px; height: 25px; text-align: center;">
+  <p style="text-align: left;">+ extract()</p>
+  <p style="text-align: left;">+ screenshot()</p>
+  <p style="text-align: left;">+ func_info()</p>
+  </td>
+  </tr>
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+  <p style="text-align: center;">2.2.0</p>
+  </td>
+  <td style="width: 153px; height: 25px; text-align: center;">03/08/2020</td>
+  <td style="width: 513px; height: 25px; text-align: center;">
+  <p style="text-align: left;">+ download()</p>
+  <p style="text-align: left;">+ system.ip_website()</p>
+  <p style="text-align: left;">+ system.win10_notification</p>
+  </td>
+  </tr>
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+  <p style="text-align: center;">2.1.0</p>
+  </td>
+  <td style="width: 153px; height: 25px; text-align: center;">15/07/2020</td>
+  <td style="width: 513px; height: 25px; text-align: center;">
+  <p style="text-align: left;">* style class better performance in linux</p>
+  <p style="text-align: left;">+&nbsp;<span style="text-align: center;">MEMBERS&nbsp;group&nbsp;in&nbsp;files&nbsp;class</span></p>
+  <p style="text-align: left;"><span style="text-align: center;">+ File object:&nbsp; self.basename, self.ext</span></p>
+  <p style="text-align: left;"><span style="text-align: center;">+ system.device_name()</span></p>
+  <p style="text-align: left;"><span style="text-align: center;">+&nbsp;</span><span style="text-align: center;">active_window_title() --- open_image()</span></p>
+  </td>
+  </tr>
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+  <p style="text-align: center;"><strong>2.0.0</strong></p>
+  </td>
+  <td style="width: 153px; height: 25px; text-align: center;"><strong>01/07/2020</strong></td>
+  <td style="width: 513px; height: 25px; text-align: center;">
+  <p style="text-align: left;">+ <strong>Tuple object&nbsp; &nbsp;---&nbsp; &nbsp;rxobject</strong></p>
+  <p style="text-align: left;">+ record.reset()&nbsp; &nbsp;---&nbsp; &nbsp;record.lap new arg</p>
+  <p style="text-align: left;">+ New methods of files</p>
+  <p style="text-align: left;">&nbsp; &nbsp; &nbsp; files.is_readonly()&nbsp; &nbsp;---&nbsp; &nbsp;files.is_hidden()</p>
+  <p style="text-align: left;"><strong>&nbsp; &nbsp; &nbsp; files.search_file()&nbsp; &nbsp;---&nbsp; &nbsp;files.search_content()</strong></p>
+  <p style="text-align: left;">&nbsp; &nbsp; &nbsp; files.copy new arg</p>
+  <p style="text-align: left;"><strong>&nbsp; &nbsp; &nbsp; files.generate_tree()</strong></p>
+  <p style="text-align: left;"><strong>+ File.MEMBERS </strong>(when in File(path), path is a directory&nbsp; (self.MEMBERS.TYPE_PATH)</p>
+  <p style="text-align: left;"><strong>+ File.tree&nbsp; &nbsp; ---&nbsp; &nbsp; &nbsp;File.tree_dirs</strong></p>
+  <p style="text-align: left;"><strong>+ Input()</strong>&nbsp; <em>(Only on windows)</em></p>
+  <p style="text-align: left;">+ restart_app()</p>
+  <p style="text-align: left;">&nbsp;</p>
+  </td>
+  </tr>
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.9.0</td>
+  <td style="width: 153px; height: 25px;">&nbsp; 09/06/2020</td>
+  <td style="width: 513px; height: 25px; text-align: center;">
+  <p style="text-align: left;">* re() --&gt; repeat()</p>
+  <p style="text-align: left;">+ New Methods of System Class:&nbsp; ip_global(),&nbsp;ip_local(),&nbsp;ram_free(), ram_percent(),&nbsp;ram_total(),&nbsp;ram_used(), boot_time()</p>
+  <p style="text-align: left;">+ convert_bytes()</p>
+  </td>
+  </tr>
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.8.0</td>
+  <td style="width: 153px; height: 25px; text-align: center;">24/05/2020</td>
+  <td style="width: 513px; height: 25px; text-align: center;">
+  <div style="text-align: left;">+ style.switch_default()</div>
+  <div>
+  <div style="text-align: left;">+ Now Linux&nbsp;supports&nbsp;cls()</div>
+  <div>
+  <div style="text-align: left;">+ style&nbsp;object:&nbsp;supports&nbsp;multiply,add,index</div>
+  <div>
+  <div style="text-align: left;">+ rand.choice Choose &gt;1 &amp; duplicate</div>
+  <div style="text-align: left;">* rand.choice --&gt; rand.choose</div>
+  </div>
+  </div>
+  </div>
+  </td>
+  </tr>
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.7.0</td>
+  <td style="width: 153px; height: 25px; text-align: center;">&nbsp; 08/05/2020</td>
+  <td style="width: 513px; height: 25px; text-align: center;">
+  <div>
+  <div style="text-align: left;">+ call_later()&nbsp;&nbsp;-&nbsp;&nbsp;wait_for()</div>
+  <div style="text-align: left;">+ terminal_size()&nbsp;&nbsp;-&nbsp;&nbsp;cwd()</div>
+  <div style="text-align: left;">+ right_port,left_port arg for progressbar()</div>
+  <div style="text-align: left;">+ file.remove() for static usage</div>
+  <div style="text-align: left;">+ self.type in file class</div>
+  <div style="text-align: left;">+ if in file(x), x is a directory:<br />x.files , x.file_list , x.all_files , x.all_files_sep</div>
+  <div style="text-align: left;">+ file.isdir() , file.isfile() for static usage.</div>
+  <div style="text-align: left;">* string() =&gt; cons_int()</div>
+  <div style="text-align: left;">* progressbar() arg names</div>
+  <div style="text-align: left;">* file.delete() and file.delete_dir()&nbsp;=&gt;&nbsp;delete()</div>
+  <div style="text-align: left;">* Change replace() and insert() args oreder</div>
+  </div>
+  </td>
+  </tr>
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.5.0</td>
+  <td style="width: 153px; height: 25px; text-align: center;">21/04/2020</td>
+  <td style="width: 513px; height: 25px; text-align: left;">
+  <div>
+  <div>
+  <div>+ 'replace' and insert 'functions' for tuples</div>
+  <div>+ 'end' arg for style.print()</div>
+  <div>+ 'self.laps' in record class will display all laps</div>
+  <div>* style.text =&gt; style.print</div>
+  <div>* record.stop =&gt; record.lap</div>
+  <div>* now 'record.stop()' will stop recording.</div>
+  </div>
+  </div>
+  </td>
+  </tr>
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.3.0</td>
+  <td style="width: 153px; height: 25px;">
+  <p style="text-align: center;">08/04/2020</p>
+  </td>
+  <td style="width: 513px; height: 25px; text-align: center;">
+  <div style="text-align: left;">+ __init__ &amp; read &amp; write &amp; content&nbsp; func&nbsp;of&nbsp;file&nbsp;class</div>
+  <div style="text-align: left;">* Prgoressbar&nbsp;default&nbsp;args</div>
+  </td>
+  </tr>
+  <tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center;">
+  <p style="text-align: center;">1.0.0</p>
+  </td>
+  <td style="width: 153px; height: 25px;">
+  <p style="text-align: center;">18/03/2020</p>
+  </td>
+  <td style="width: 513px; height: 25px; text-align: center;">####</td>
+  </tr>
+  </tbody>
 </table>

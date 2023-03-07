@@ -12,9 +12,7 @@ Official documentation in https://github.com/Ramin-RX7/RX7-Lib
 Written By RX
 Last Update: 03-07-2022
 '''
-__version__ = '3.1.0'
-
-
+__version__ = '3.2.0'
 """
 < Release Changes >
 

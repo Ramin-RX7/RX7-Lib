@@ -1,6 +1,6 @@
 [MAIN]
-    ? Logging class
-    ? itertools & functools
+    ?  Logging class
+    ?  itertools & functools
     ☐ System.(copy_to_clipboard & paste_from_clipboard)
     ☐ Play Sound
     ☐ Call_later **kwargs
@@ -10,30 +10,30 @@
     ☐ ( win32api.LoadLibrary() - ctypes.PyDLL() )
     ☐ Threading
     ☐ mp3 tags
-    ! Random.shuffle better implementation
+    !  Random.shuffle better implementation
     ☐ socket.socket()
     ☐ Check 3rd-party modules imports
     ☐ pip install update
-    ✘  Classes accept both normal methods and static methods
-    ✘  re module                                  (v 3.x)
-    ✘  average()
+    ✘ Classes accept both normal methods and static methods
+    ✘ re module                                  (v 3.x)
+    ✘ average()
     ^ type annotation for all functions and classes
-    ✘  Ready-obj module
-    ✘  Open Video
-    ✘  Open Audio
+    ✘ Ready-obj module
+    ✘ Open Video
+    ✘ Open Audio
 
 
 [README]
-    ☐ IO Class
-    ☐ Terminal Class
-    ☐ Date_Time Class
-    ☐ Internet Class
+    ☐ @high IO Class
+    ☐ @high Terminal Class
+    ☐ @high Date_Time Class
+    ☐ @high Internet Class
 
 
 [NEW CLASSES]
     Developer:
-        reload_module
-        add_module_dir
+        ✔ reload_module
+        ✔ add_module_dir
 
 
 [TERMINAL]
@@ -41,7 +41,7 @@
 
 
 [DATETIME]
-    ✘  calendar_month_st replace day will be all noms
+    ✘ calendar_month_st replace day will be all noms
     ☐ Passed Time func
 
 
