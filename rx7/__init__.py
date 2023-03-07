@@ -10,7 +10,7 @@ Official documentation in https://github.com/Ramin-RX7/RX7-Lib
 """
 '''
 Written By RX
-Last Update: 03-03-2023
+Last Update: 03-07-2022
 '''
 __version__ = '3.1.0'
 
@@ -25,17 +25,24 @@ __version__ = '3.1.0'
 + IO.selective_input `action` parameter is a function that takes the given input (if valid)
     and returns the converted
 - IO.selective_input error parameter is removed
++ exit: sys.exit
++ environ: environment variables as a dict
++ Terminal.get_size(): same as system.get_terminal_size()
 """
 
 
 """
 TODO:
- - Validator function for `IO` methods
- ? Classes accept both normal methods and static methods
+ ? Logging class
  ? itertools & functools
  - System.(copy_to_clipboard & paste_from_clipboard)
  - Play Sound
  - Call_later **kwargs
+ - Developer:
+        reload_module
+        add_module_dir
+ TERMINAL:
+    set_size: sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=32, cols=100))
  DATETIME:
      X calendar_month_st replace day will be all noms
      - Passed Time func
@@ -45,11 +52,6 @@ TODO:
      - files.join files.dirname
      - Error in files.MEMBERS.all_all_*
  - Other archive files in extract
- - re module                                  (v 3.x)
- - Developer:
-        reload_module
-        add_module_dir
- - socket.socket()
  - Screen recorder
  - Create Local Server
  - ( win32api.LoadLibrary() - ctypes.PyDLL() )
@@ -57,8 +59,11 @@ TODO:
  - registery editor                           (v 3.x)
  - mp3 tags                                   (v 3.x)
  ! Random.shuffle better implementation
+ - socket.socket()
  - Check 3rd-party modules imports
  - pip install update
+ x Classes accept both normal methods and static methods
+ x re module                                  (v 3.x)
  X average()
  ^ type annotation for all functions and classes
  X Ready-obj module
@@ -85,7 +90,7 @@ import datetime as _datetime
 import calendar as _calendar
 import subprocess as _subprocess
 # import requests as _requests
-    # imported requests in any method that uses to improve importing speed
+    # imported requests in any method that uses it to improve importing speed
 import psutil as _psutil
 
 from typing import (Any,Iterable,Optional,Callable,
@@ -94,9 +99,10 @@ from typing import (Any,Iterable,Optional,Callable,
 
 
 
-
 argv    = _sys.argv
 ABC     = _abc.ABC
+exit = _sys.exit
+environ = _os.environ
 
 write = ...
 read  = ...
@@ -1289,12 +1295,10 @@ class Style:
     def __repr__(self):
         return self.styled
     def __add__(self, other):
-        #print(type(other))
         if type(other)!=style:
             return self.styled+other
         else:
             return self.styled+other.styled
-    # def __iter__(self):  return iter(self.content)
 
 
     @staticmethod
@@ -1317,29 +1321,26 @@ class Style:
             text += f"{values[0]}"
         for t in values[1:]:
             text += f"{sep}{t}"
+
         text += f"{_attr(0)}"
 
         print(text,end=end)
 
 
     @staticmethod
-    def switch(color='default', BG='black', style='None'):
+    def switch(color='default', BG='default', style=''):
         '''
         Change color,BG and style untill you call it again and change them.
         '''
-        try:
-            color = color.lower()
-            BG = BG.lower()
-            style = style.lower()
-        except:
-            pass
+        text = ""
+        if color != 'default':
+            text += f"{_fg(color)}"
+        if BG    != 'default':
+            text += f"{_bg(BG)}"
+        if style:
+            text += f"{_attr(style)}"
 
-        if style == 'none':
-            style = 0
-        if color == 'default':
-            color = 7
-
-        print(f'{_attr(style)}{_bg(BG)}{_fg(color)}', end='')
+        print(f"{text}", end='')
 
     @staticmethod
     def switch_default():
@@ -1461,6 +1462,12 @@ class Terminal:
         (RETURN STR, RETURN AFTER EXECUTING CODE)
         '''
         return _subprocess.getoutput(command)
+    @staticmethod
+    def size() -> tuple:
+        '''
+        Return terminal size in tuple (columns,rows)
+        '''
+        return _os.get_terminal_size()
 terminal = Terminal
 
 
