@@ -1,5 +1,5 @@
 ![PyPI - License](https://img.shields.io/badge/downloads-32k%2Fmonth-brightgreen?style=plastic) ![PyPI - License](https://img.shields.io/pypi/l/rx7?color=orange&style=plastic) ![PyPI - License](https://img.shields.io/badge/status-stable-success?style=plastic)
--------------------------------------------------------- 
+--------------------------------------------------------
 
 "rx7" library is here to help you make your code shorter!
 --------------------------------------------------------
@@ -228,11 +228,14 @@ List of Functions:
 </table>
 
 
+
 <p>&nbsp;</p>
+
+
 
 <h2>List of Classes:</h2>
 
-<h3>&nbsp;Class random:&nbsp; &nbsp;<em>Random Variable Generator Class.</em></h3>
+<h3>&nbsp;Class Random:&nbsp; &nbsp;<em>Random Variable Generator Class.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
   <tbody>
     <tr>
@@ -260,7 +263,7 @@ List of Functions:
 
 <p>&nbsp;</p>
 
-<h3>&nbsp; Class system:&nbsp; &nbsp;<em>Some system actions and information.</em></h3>
+<h3>&nbsp; Class System:&nbsp; &nbsp;<em>Some system actions and information.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
   <tbody>
     <tr>
@@ -388,7 +391,7 @@ List of Functions:
 
 <p>&nbsp;</p>
 
-<h3>&nbsp; Class files: (Static<strong style="font-size: 14px;">&nbsp;methods)&nbsp;</strong><em style="font-size: 14px;">Actions and information about files.</em></h3>
+<h3>&nbsp; Class Files: (Static<strong style="font-size: 14px;">&nbsp;methods)&nbsp;</strong><em style="font-size: 14px;">Actions and information about files.</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
   <tbody>
     <tr>
@@ -500,6 +503,10 @@ List of Functions:
     <td style="width: 387px;">Returns a visual tree of dir_path</td>
     </tr>
     <tr>
+    <td style="width: 193px;">get_drives()</td>
+    <td style="width: 357px;">(Windows only) Get currently available drives</td>
+    </tr>
+    <tr>
     <td style="width: 173px;"><strong>&nbsp; &nbsp; &nbsp; &nbsp; MEMBERS&nbsp;(<em>Family)</em></strong></td>
     <td style="width: 387px;">&nbsp;</td>
     </tr>
@@ -556,7 +563,7 @@ List of Functions:
 
 <p>&nbsp;</p>
 
-<h3>&nbsp;Class style:&nbsp; &nbsp; <em>Changing text Color,BG &amp; Style. (Read Doc String)</em></h3>
+<h3>&nbsp;Class Style:&nbsp; &nbsp; <em>Changing text Color,BG &amp; Style. (Read Doc String)</em></h3>
     <table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
     <tbody>
     <tr style="height: 15.0625px;">
@@ -598,7 +605,7 @@ List of Functions:
 
 <p>&nbsp;</p>
 
-<h3>&nbsp;Class record:&nbsp; &nbsp;<em>Record time of a certain actions. (Read Doc String)</em></h3>
+<h3>&nbsp;Class Record:&nbsp; &nbsp;<em>Record time of a certain actions. (Read Doc String)</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
   <tbody>
     <tr style="height: 18px;">
@@ -634,6 +641,7 @@ List of Functions:
     </table>
 
 <p>&nbsp;</p>
+
 <h3>&nbsp;Class Decorator:&nbsp; &nbsp;<em>Useful decorators you might want to use</em></h3>
 <table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
   <tbody>
@@ -704,12 +712,32 @@ Releases and Changelog:
 ---------
 
 ####        (+ for new features, \* for changes, - for removed features)
+
 <table style="height: 10px; margin-left: 10px; width: 519px;" cellpadding="5">
 <tbody>
 <tr style="height: 42px;">
 <td style="width: 119px; height: 42px; text-align: center;"><strong>Version</strong></td>
 <td style="width: 153px; height: 42px; text-align: center;"><strong>Release Date</strong></td>
 <td style="width: 513px; height: 42px; text-align: center;"><strong>New Features &amp; Changes</strong></td>
+</tr>
+
+
+<tr style="height: 25px;">
+  <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">
+    <p style="text-align: center;">3.2.0</p>
+  </td>
+  <td style="width: 153px; height: 25px; text-align: center;">10/03/2023</td>
+  <td style="width: 513px; height: 25px; text-align: center;">
+    <div style="text-align: left;">+ environ: environment variables as a dict</div>
+    <div style="text-align: left;">+ Terminal.get_size()</div>
+    <div style="text-align: left;">+ exit: sys.exit</div>
+    <div style="text-align: left;">+ files.get_drives()</div>
+    <div style="text-align: left;">+ IO.selective_input `choices` argument upgrade</div>
+    <div style="text-align: left;">+ IO.selective_input `action` parameter</div>
+    <div style="text-align: left;">- IO.selective_input error parameter is removed</div>
+    <div style="text-align: left;">* Fixed files.size() for directories</div>
+    <div style="text-align: left;">* files.is_readonly now also works on Unix</div>
+  </td>
 </tr>
 
 
@@ -740,6 +768,8 @@ Releases and Changelog:
 <div style="text-align: left;"><b>+ class DateTime</b></div>
 <div style="text-align: left;">+ "Style.log" now has time prefix</div>
 <div style="text-align: left;">+ call = call_later</div>
+<div style="text-align: left;">+ IO.Input()</div>
+<div style="text-align: left;">+ IO.getpass()</div>
 <div style="text-align: left;">* io.selective_input choices can be dict</div>
 <div style="text-align: left;">+ System.mac_address()</div>
 </td>
@@ -752,7 +782,8 @@ Releases and Changelog:
 </td>
 <td style="width: 153px; height: 25px; text-align: center;">15/12/2020</td>
 <td style="width: 513px; height: 25px; text-align: center;">
-<div style="text-align: left;">+ Decorator Class (attach_to_all ---&nbsp;Check_Type)</div>
+<div style="text-align: left;">+ <b>IO Class</b>(wait_for_input() - selective_input() - yesno_input())</div>
+<div style="text-align: left;">+ <b>Decorator Class</b> (attach_to_all ---&nbsp;Check_Type)</div>
 <div style="text-align: left;">* IMPORT SPEED IS 20x FASTER!</div>
 <div style="text-align: left;">+ argv (sys.argv)</div>
 <div style="text-align: left;">- Record.EndError</div>

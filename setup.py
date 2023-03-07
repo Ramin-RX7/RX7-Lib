@@ -5,11 +5,11 @@ with open("README.md", "r") as fh:
 
 s = setup(
     name = "rx7",
-    version = "3.1.0",
+    version = "3.2.0",
     license = "LGPL",
     description = "Shortcut for most usefull functions, High API, Special Features",
     url = "https://github.com/Ramin-RX7/RX7-Lib",
-    packages = find_packages(),
+    packages = find_packages(), # ['rx7']
     install_requires = ['colored','psutil','requests'],
        # 'pyscreeze','keyboard', 'mouse','pyautogui'
        # 'whois','win10toast' #'pywin32'

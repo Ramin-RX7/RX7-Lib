@@ -1,0 +1,58 @@
+[MAIN]
+    ? Logging class
+    ? itertools & functools
+    ☐ System.(copy_to_clipboard & paste_from_clipboard)
+    ☐ Play Sound
+    ☐ Call_later **kwargs
+    ☐ Other archive files in extract
+    ☐ Screen recorder
+    ☐ Create Local Server
+    ☐ ( win32api.LoadLibrary() - ctypes.PyDLL() )
+    ☐ Threading
+    ☐ mp3 tags
+    ! Random.shuffle better implementation
+    ☐ socket.socket()
+    ☐ Check 3rd-party modules imports
+    ☐ pip install update
+    ✘  Classes accept both normal methods and static methods
+    ✘  re module                                  (v 3.x)
+    ✘  average()
+    ^ type annotation for all functions and classes
+    ✘  Ready-obj module
+    ✘  Open Video
+    ✘  Open Audio
+
+
+[README]
+    ☐ IO Class
+    ☐ Terminal Class
+    ☐ Date_Time Class
+    ☐ Internet Class
+
+
+[NEW CLASSES]
+    Developer:
+        reload_module
+        add_module_dir
+
+
+[TERMINAL]
+   set_size: sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=32, cols=100))
+
+
+[DATETIME]
+    ✘  calendar_month_st replace day will be all noms
+    ☐ Passed Time func
+
+
+[Internet]
+    default_timeout
+
+
+[Files]
+    ☐ files.join files.dirname
+    ☐ Error in files.MEMBERS.all_all_*
+
+
+[System]
+    ☐ registery editor

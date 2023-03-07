@@ -31,46 +31,6 @@ __version__ = '3.1.0'
 """
 
 
-"""
-TODO:
- ? Logging class
- ? itertools & functools
- - System.(copy_to_clipboard & paste_from_clipboard)
- - Play Sound
- - Call_later **kwargs
- - Developer:
-        reload_module
-        add_module_dir
- TERMINAL:
-    set_size: sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=32, cols=100))
- DATETIME:
-     X calendar_month_st replace day will be all noms
-     - Passed Time func
- - Internet:
-     default_timeout
- - files:
-     - files.join files.dirname
-     - Error in files.MEMBERS.all_all_*
- - Other archive files in extract
- - Screen recorder
- - Create Local Server
- - ( win32api.LoadLibrary() - ctypes.PyDLL() )
- - Threading
- - registery editor                           (v 3.x)
- - mp3 tags                                   (v 3.x)
- ! Random.shuffle better implementation
- - socket.socket()
- - Check 3rd-party modules imports
- - pip install update
- x Classes accept both normal methods and static methods
- x re module                                  (v 3.x)
- X average()
- ^ type annotation for all functions and classes
- X Ready-obj module
- X Open Video
- X Open Audio
-"""
-
 
 
 
