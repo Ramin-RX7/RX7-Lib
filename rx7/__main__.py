@@ -1,23 +1,40 @@
 import sys
+import webbrowser
+import argparse
 
-args = sys.argv
-length = len(args)
 
-def wrong():
+parser = argparse.ArgumentParser(
+    "RX7 module",
+    add_help = False
+    # allow_abbrev=True
+)
+
+parser.add_argument(
+    "--help","-h",
+    action="store_true",
+    help="Shows this help message and exit"
+)
+parser.add_argument(
+    "--wiki","--docs",
+    action = "store_true",
+    help = "Opens official documentation of `rx7` module"
+)
+parser.add_argument(
+    "--colors", "--color", "-c",
+    action = "store_true",
+    help = "Open a html Page That Contains All Colors and Information About style Class"
+)
+
+args = parser.parse_args()
+
+if args.help or (not any(args.wiki,args.colors)):
     print('Available Arguments:')
-    print('  [-h, --help, help]       Open rx7 Documention Page (pypi Page)')
-    print('  [color, colors]          Open a html Page That Contains All Colors and Information About style Class')
-    print('                             (Works  Offline & Online)')
+    print('  [-h, --help]       Open rx7 Documention Page (pypi Page)')
+    print('  [--colors]          Open a html Page That Contains All Colors and Information About style Class')
     print('-------')
-    print('More Features Will be Added Soon...')
-
-if length != 2:   #not length  or
-    wrong()
-elif args[1] in ('color','colors'): 
-    import webbrowser
-    webbrowser.open_new_tab(f'{str(__file__)[:-11]}COLORS.html')
-elif args[1] in ('-h','--help','help'):
-    import webbrowser
-    webbrowser.open_new_tab(f'https://pypi.org/project/rx7')
+elif args.wiki:
+    webbrowser.open_new_tab(f'./../COLORS.html')
+elif args.colors:
+    webbrowser.open_new_tab('https://github.com/Ramin-RX7/RX7-Lib')
 else:
-    wrong()
+    ...#print('Wrong command. use "python -m rx7 --help"')

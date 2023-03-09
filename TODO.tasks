@@ -7,7 +7,7 @@
     ☐ Other archive files in extract
     ☐ Screen recorder
     ☐ Create Local Server
-    ☐ ( win32api.LoadLibrary() - ctypes.PyDLL() )
+    ☐ win32api.LoadLibrary() - ctypes.PyDLL()
     ☐ Threading
     ☐ mp3 tags
     !  Random.shuffle better implementation
@@ -24,10 +24,10 @@
 
 
 [README]
-    ☐ @high IO Class
-    ☐ @high Terminal Class
+    ✔ @high IO Class
+    ✔ @high Terminal Class
     ☐ @high Date_Time Class
-    ☐ @high Internet Class
+    ✔ @high Internet Class
 
 
 [NEW CLASSES]

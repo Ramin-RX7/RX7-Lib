@@ -693,6 +693,25 @@ List of Functions:
 <br>
 
 
+<h3>&nbsp;Class Internet:&nbsp; &nbsp;<em>Methods for working with network and internet related stuffs</em></h3>
+
+| **METHOD**            | **DESCRIPTION**                                                                                 |
+|-----------------------|-------------------------------------------------------------------------------------------------|
+| is_connected(website) | Check for internet connection with trying to connect to `website`                               |
+| connection_checker    | Decorator to check if internet is connected before calling the function                         |
+| ip_local()            | Returns local ip                                                                                |
+| ip_global()           | Returns global ip                                                                               |
+| ip_global(website)    | returns ip of the given website                                                                 |
+| url_exists(url)       | Checks if a url exists (with requests module) (needs http[s])                                   |
+| url_links(URL)        | Get all links that are used in a specific URL (All "a" tags from html source) (Needs 'http[s]') |
+| find_urls(text)       | returns list of all urls in a string using regex                                                |
+| is_url(URL)           | checks if the string has the expression of a real url                                           |
+| open_browser(url)     | opens given url in the new tab of default browser                                               |
+<br>
+
+
+
+
 
 <br />
 
