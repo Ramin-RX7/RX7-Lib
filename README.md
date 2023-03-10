@@ -29,638 +29,174 @@
 
 <h2>List of Variables:</h2>
 
-<table style="height: 471px; width: 567px;">
-  <tbody>
-    <tr>
-      <td style="width: 155px;">argv</td>
-      <td style="width: 396px;">sys.argv (return list of given arguments from terminal)</td>
-    </tr>
-    <tr>
-      <td style="width: 155px;">ABC</td>
-      <td style="width: 396px;">Parent for classes which have abstractmethods</td>
-    </tr>
-    <tr>
-      <td style="width: 155px;">exit</td>
-      <td style="width: 396px;">Equivalent sys.exit (returning exit code to terminal)</td>
-    </tr>
-    <tr>
-      <td style="width: 155px;">environ</td>
-      <td style="width: 396px;">Returns environment variables in a dictionary format</td>
-    </tr>
-  </tbody>
-</table>
+|         |                                                         |
+|---------|---------------------------------------------------------|
+| argv    | sys.argv (return list of given arguments from terminal) |
+| ABC     | Parent for classes which have abstractmethods           |
+| exit    | Equivalent sys.exit (returning exit code to terminal)   |
+| environ | Returns environment variables in a dictionary format    |
 
-List of Functions:
-------------------
-<table style="height: 471px; width: 567px;">
-  <tbody>
-    <tr>
-    <td style="width: 155px;">p()</td>
-    <td style="width: 396px;">print() function. (Read Doc String)</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">repeat(function,n)</td>
-    <td style="width: 396px;">Repeat F_Name function for n times.</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">rev(v)&nbsp; <em>(REMOVED 2.4.0)</em></td>
-    <td style="width: 396px;">Reverse v and returns it. (Everything like str,list,int)&nbsp; &nbsp;</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">read(file)</td>
-    <td style="width: 396px;">Return content of the file.</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">write(file,mode,text)</td>
-    <td style="width: 396px;">Write things you want in file content.&nbsp;(Read Doc String)</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">wait(n)<br />sleep(n)</td>
-    <td style="width: 396px;">Stop code executing for n seconds</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">cls()<br />clear()</td>
-    <td style="width: 396px;">It Clears the Terminal</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">progressbar() (*removed in v3.1)</td>
-    <td style="width: 396px;">In-App Progressbar. (Read Doc String)</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">cons_integer(Frst,Lst)</td>
-    <td style="width: 396px;">Return string from Frst to Lst (Read Doc String) (v1.7)</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">force(tpl,*var)</td>
-    <td style="width: 396px;">Return tpl with adding var(s) to it.</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">erase(tpl,*var)</td>
-    <td style="width: 396px;">Return tpl with removing var(s) from it.</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">replace(tpl,ind,var)</td>
-    <td style="width: 396px;">Replace tpl[ind] with var</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">insert(tpl,ind,var)</td>
-    <td style="width: 396px;">Set tpl[ind] to var. (Note that tpl[ind] will be tpl[ind+1])</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">pop(tpl,index)</td>
-    <td style="width: 396px;">Remove member with index of 'index' from a tuple</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">wait_for(button)</td>
-    <td style="width: 396px;">Waits for user to press specific button.&nbsp;</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">call_later(func,args,delay)</td>
-    <td style="width: 396px;">Call func(args) after delay time.&nbsp;</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">
-    <div>
-    <div>convert_bytes(num)</div>
-    </div>
-    </td>
-    <td style="width: 396px;">convert bytes to (KB,MB,GB,TB)</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">
-    <div>
-    <div>Input(prompt,default)</div>
-    <div>default_input()</div>
-    </div>
-    </td>
-    <td style="width: 396px;">Prompt an input message with default answer (value) <em>(ONLY ON WINDOWS)&nbsp;</em></td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">
-    <div>
-    <div>restart_app()</div>
-    </div>
-    </td>
-    <td style="width: 396px;">Restart running python program</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">
-    <div>
-    <div>active_window_title()</div>
-    </div>
-    </td>
-    <td style="width: 396px;">Return Active Window Title</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">
-    <div>
-    <div>open_image(path)</div>
-    </div>
-    </td>
-    <td style="width: 396px;">Open image with default image viewer (Mac OS is not supported)</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">
-    <div>
-    <div>download(url)</div>
-    </div>
-    </td>
-    <td style="width: 396px;">To download files with memory saver and progressbar</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">
-    <div>
-    <div>extract(file,path,pwd)</div>
-    </div>
-    </td>
-    <td style="width: 396px;">Extract Zip file with password to path</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">
-    <div>
-    <div>screenshot(name)</div>
-    </div>
-    </td>
-    <td style="width: 396px;">Take a screenshot and save it.</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">
-    <div>
-    <div>func_info(function)</div>
-    </div>
-    </td>
-    <td style="width: 396px;">Print information of function</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">
-    <div>
-    <div>Check_Type</div>
-    </div>
-    </td>
-    <td style="width: 396px;">Decorator that raise TypeError if function argument type is wrong (Read Help)</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">
-    <div>
-    <div>Progressbar()</div>
-    </div>
-    </td>
-    <td style="width: 396px;">Generator of progressbar() which you can use it to do some stuff between your delays (Read Help)</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">
-    <div>
-    <div>pixel_color(X,Y)</div>
-    </div>
-    </td>
-    <td style="width: 396px;">Return RGB color of pixel[X,Y]</td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">
-    <div>
-    <div>getpass(prompt)</div>
-    </div>
-    </td>
-    <td style="width: 396px;">
-    <div>
-    <div>Prompt&nbsp;for&nbsp;a&nbsp;password,&nbsp;with&nbsp;echo&nbsp;turned&nbsp;off.</div>
-    </div>
-    </td>
-    </tr>
-    <tr>
-    <td style="width: 155px;">
-    <div>
-    <div>import_module(path)</div>
-    </div>
-    </td>
-    <td style="width: 396px;">
-    <div>
-    <div>Return given path (file with any extension) as a Module</div>
-    </div>
-    </td>
-    </tr>
-  </tbody>
-</table>
 
 <br>
 
 
+List of Functions:
+------------------
+|                                                          |                                                                                                  |
+|----------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| p()                                                      | print() function.                                                                                |
+| repeat(function,n)                                       | Repeat F_Name function for n times.                                                              |
+| rev(v)  (REMOVED 2.4.0)                                  | Reverse v and returns it. (Everything like str,list,int)                                         |
+| read(file)                                               | Return content of the file.                                                                      |
+| write(file,mode,text)                                    | Write things you want in file content. (Read Doc String)                                         |
+| wait(n)sleep(n)                                          | Stop code executing for n seconds                                                                |
+| cls()clear()                                             | It Clears the Terminal                                                                           |
+| progressbar() (*removed in v3.1)                         | In-App Progressbar. (Read Doc String)                                                            |
+| cons_integer(Frst,Lst)                                   | Return string from Frst to Lst (Read Doc String) (v1.7)                                          |
+| force(tpl,*var)                                          | Return tpl with adding var(s) to it.                                                             |
+| erase(tpl,*var)                                          | Return tpl with removing var(s) from it.                                                         |
+| replace(tpl,ind,var)                                     | Replace tpl[ind] with var                                                                        |
+| insert(tpl,ind,var)                                      | Set tpl[ind] to var. (Note that tpl[ind] will be tpl[ind+1])                                     |
+| pop(tpl,index)                                           | Remove member with index of 'index' from a tuple                                                 |
+| wait_for(button)                                         | Waits for user to press specific button.                                                         |
+| call_later(func,args,delay)                              | Call func(args) after delay time.                                                                |
+| convert_bytes(num)                                       | convert bytes to (KB,MB,GB,TB)                                                                   |
+| Input(prompt,default)                                    | Prompt an input message with default answer (value) (ONLY ON WINDOWS)                            |
+| default_input()                                          | Same as `default_input`                                                                          |
+| restart_app()                                            | Restart running python program                                                                   |
+| active_window_title()                                    | Return Active Window Title                                                                       |
+| open_image(path)                                         | Open image with default image viewer (Mac OS is not supported)                                   |
+| download(url)                                            | To download files with memory saver and progressbar                                              |
+| extract(file,path,pwd)                                   | Extract Zip file with password to path                                                           |
+| screenshot(name)                                         | Take a screenshot and save it.                                                                   |
+| func_info(function)                                      | Print information of function                                                                    |
+| Check_Type                                               | Decorator that raise TypeError if function argument type is wrong (Read Help)                    |
+| Progressbar()                                            | Generator of progressbar() which you can use it to do some stuff between your delays (Read Help) |
+| pixel_color(X,Y)                                         | Return RGB color of pixel[X,Y]                                                                   |
+| getpass(prompt)                                          | Prompt for a password, with echo turned off.                                                     |
+| import_module(path)                                      | Return given path (file with any extension) as a Module                                          |
+
+
+<br>
+
 
 <h2>List of Classes:</h2>
 
-<h3>&nbsp;Class Random:&nbsp; &nbsp;<em>Random Variable Generator Class.</em></h3>
-<table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
-  <tbody>
-    <tr>
-    <td style="width: 173px;">choose(iter,k,duplicate)</td>
-    <td style="width: 387px;">Choose k random items from iterable or string.</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">integer(Frst,Lst)</td>
-    <td style="width: 387px;">Choose integer in range [Frst,Lst]</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">O1(decimal_nom=17)</td>
-    <td style="width: 387px;">Return x in interval [0,1)</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">number(Frst,Lst)</td>
-    <td style="width: 387px;">Return x in interval [Frst,Lst]</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">shuffle(iterable)</td>
-    <td style="width: 387px;">Return shuffled version of iterable</td>
-    </tr>
-  </tbody>
-</table>
+<h3>&nbsp; Class Random:&nbsp; &nbsp;<em>Random Variable Generator Class.</em></h3>
+
+|                          |                                                |
+|--------------------------|------------------------------------------------|
+| choose(iter,k,duplicate) | Choose k random items from iterable or string. |
+| integer(Frst,Lst)        | Choose integer in range [Frst,Lst]             |
+| O1(decimal_nom=17)       | Return x in interval [0,1)                     |
+| number(Frst,Lst)         | Return x in interval [Frst,Lst]                |
+| shuffle(iterable)        | Return shuffled version of iterable            |
 
 <br>
 
 
 <h3>&nbsp; Class System:&nbsp; &nbsp;<em>Some system actions and information.</em></h3>
-<table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
-  <tbody>
-    <tr>
-    <td style="width: 173px;">accname()</td>
-    <td style="width: 387px;">
-    <div>
-    <div>return&nbsp;account&nbsp;username&nbsp;you&nbsp;have&nbsp;logged&nbsp;in.</div>
-    </div>
-    </td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">pid()</td>
-    <td style="width: 387px;">
-    <div>
-    <div>Get&nbsp;pid&nbsp;number&nbsp;of&nbsp;terminal&nbsp;and&nbsp;return&nbsp;it.</div>
-    </div>
-    </td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">disk_usage(path)</td>
-    <td style="width: 387px;">########</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">chdir</td>
-    <td style="width: 387px;">Change directory of terminal.</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">SHUT_DOWN()</td>
-    <td style="width: 387px;">Shut Down the PC.</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">RESTART()</td>
-    <td style="width: 387px;">Restart the PC.</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">terminal_size()</td>
-    <td style="width: 387px;">Return terminal size in tuple&nbsp; (columns,lines).&nbsp;</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">cwd()</td>
-    <td style="width: 387px;">Return Carrent Working Directory.&nbsp;</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">ip_global()</td>
-    <td style="width: 387px;">Returns Global IP.</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">ip_local()</td>
-    <td style="width: 387px;">Returns Local IP.</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">ram_total()</td>
-    <td style="width: 387px;">Returns total ram of the system.</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">ram_used()</td>
-    <td style="width: 387px;">Returns Used Space of the ram of the system.</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">ram_free()</td>
-    <td style="width: 387px;">Returns Available (Free) space of system ram.</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">boot_time()</td>
-    <td style="width: 387px;">Return system boot time in seconds since the epoch.</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">device_name()</td>
-    <td style="width: 387px;">Returns Device Name</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">ip_website(url)</td>
-    <td style="width: 387px;">Returns url ip address</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">win10_notification()</td>
-    <td style="width: 387px;">Display windows 10 notification (READ DOCSTRING) (ONLY WIN10 SUPPORTED)</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">cpu_count(logical=True)</td>
-    <td style="width: 387px;">
-    <div>
-    <div>Return&nbsp;the&nbsp;number&nbsp;of&nbsp;logical/physical CPUs&nbsp;in&nbsp;the&nbsp;system</div>
-    </div>
-    </td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">pyshell_execute_bit()</td>
-    <td style="width: 387px;">
-    <div>
-    <div>To&nbsp;determine&nbsp;whether Python&nbsp;shell&nbsp;is&nbsp;executing&nbsp;in&nbsp;32bit&nbsp;or&nbsp;64bit</div>
-    </div>
-    </td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">pids()</td>
-    <td style="width: 387px;">
-    <div>
-    <div>
-    <div>
-    <div>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;current&nbsp;running&nbsp;PIDs</div>
-    </div>
-    </div>
-    </div>
-    </td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">pid_exists(pid)</td>
-    <td style="width: 387px;">Return True if pid exists else False</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">
-    <div>
-    <div>cpu_percent()</div>
-    </div>
-    </td>
-    <td style="width: 387px;">
-    <div>
-    <div>Return the&nbsp;current CPU&nbsp;utilization&nbsp;as&nbsp;a&nbsp;percentage</div>
-    </div>
-    </td>
-    </tr>
-  </tbody>
-</table>
+
+|                               |                                                                                  |
+|-------------------------------|----------------------------------------------------------------------------------|
+| accname()                     |         return account username you have logged in.                              |
+| pid()                         |         Get pid number of terminal and return it.                                |
+| disk_usage(path)              | ########                                                                         |
+| chdir                         | Change directory of terminal.                                                    |
+| SHUT_DOWN()                   | Shut Down the PC.                                                                |
+| RESTART()                     | Restart the PC.                                                                  |
+| terminal_size()               | Return terminal size in tuple  (columns,lines).                                  |
+| cwd()                         | Return Carrent Working Directory.                                                |
+| ip_global()                   | Returns Global IP.                                                               |
+| ip_local()                    | Returns Local IP.                                                                |
+| ram_total()                   | Returns total ram of the system.                                                 |
+| ram_used()                    | Returns Used Space of the ram of the system.                                     |
+| ram_free()                    | Returns Available (Free) space of system ram.                                    |
+| boot_time()                   | Return system boot time in seconds since the epoch.                              |
+| device_name()                 | Returns Device Name                                                              |
+| ip_website(url)               | Returns url ip address                                                           |
+| win10_notification()          | Display windows 10 notification (READ DOCSTRING) (ONLY WIN10 SUPPORTED)          |
+| cpu_count(logical=True)       |         Return the number of logical/physical CPUs in the system                 |
+| pyshell_execute_bit()         |         To determine whether Python shell is executing in 32bit or 64bit         |
+| pids()                        |                 Return a list of current running PIDs                            |
+| pid_exists(pid)               | Return True if pid exists else False                                             |
+|         cpu_percent()         |         Return the current CPU utilization as a percentage                       |
+
+
 
 <br>
 
 
 <h3>&nbsp; Class Files: (Static<strong style="font-size: 14px;">&nbsp;methods)&nbsp;</strong><em style="font-size: 14px;">Actions and information about files.</em></h3>
-<table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
-  <tbody>
-    <tr>
-    <td style="width: 173px;">size(path)</td>
-    <td style="width: 387px;">
-    <div>
-    <div>Return&nbsp;size&nbsp;of&nbsp;the&nbsp;file&nbsp;in&nbsp;byte(s).&nbsp;Also&nbsp;work&nbsp;on&nbsp;directories.</div>
-    </div>
-    </td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">delete(path)</td>
-    <td style="width: 387px;">
-    <div>
-    <div>Use&nbsp;this&nbsp;to&nbsp;delete&nbsp;a&nbsp;file&nbsp;(Not&nbsp;folder).</div>
-    </div>
-    </td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">rename(path)</td>
-    <td style="width: 387px;">
-    <div>
-    <div>Rename&nbsp;files&nbsp;with&nbsp;this&nbsp;function.</div>
-    </div>
-    </td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">abspath(path)</td>
-    <td style="width: 387px;">
-    <div>
-    <div>Return&nbsp;absolute&nbsp;path&nbsp;of&nbsp;given&nbsp;path.</div>
-    </div>
-    </td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">exists(path)</td>
-    <td style="width: 387px;">Return Boolean. If exists True, else: False</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">mdftime(path)</td>
-    <td style="width: 387px;">
-    <div>
-    <div>Get&nbsp;last&nbsp;modify&nbsp;time&nbsp;of&nbsp;the&nbsp;file.</div>
-    </div>
-    </td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">acstime(path)</td>
-    <td style="width: 387px;">
-    <div>
-    <div>Get&nbsp;last&nbsp;access&nbsp;time&nbsp;of&nbsp;the&nbsp;file.</div>
-    </div>
-    </td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">move(src,dst)</td>
-    <td style="width: 387px;">Move file from src to dst. (Read Doc String of copy func)</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">copy(src,dst,metadata=True)</td>
-    <td style="width: 387px;">Copy file (with metadata) from src to dst. (Also work on folders)</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">hide(path)</td>
-    <td style="width: 387px;">Hide given path. (It can be file or directory.)</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">read_only(path,mode=True)</td>
-    <td style="width: 387px;">Make file or folder read-only. (Read Doc String)</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">read(path)</td>
-    <td style="width: 387px;">Return content of the path</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">write(path,text='',...)</td>
-    <td style="width: 387px;">Same as write function.</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">isdir(path)</td>
-    <td style="width: 387px;">Return True for directory and False for others.</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">isfile(path)</td>
-    <td style="width: 387px;">Return True for file and False for others.</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">is_hidden(path)</td>
-    <td style="width: 387px;">Check whether path is hidden or not</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">is_readonly(path)</td>
-    <td style="width: 387px;">Check whether path is readonly or not</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">search_file(pattern,path,mode)</td>
-    <td style="width: 387px;">search for pattern in path (Read function doc string)</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">search_content(path,word)</td>
-    <td style="width: 387px;">Search for word in <span style="text-decoration: underline;">all</span> files in path, return list of files that contain word</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">mkdir(path)</td>
-    <td style="width: 387px;">Make directory (More than one if its possible!)</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;">generate_tree(dir_path)</td>
-    <td style="width: 387px;">Returns a visual tree of dir_path</td>
-    </tr>
-    <tr>
-    <td style="width: 193px;">get_drives()</td>
-    <td style="width: 357px;">(Windows only) Get currently available drives</td>
-    </tr>
-    <tr>
-    <td style="width: 173px;"><strong>&nbsp; &nbsp; &nbsp; &nbsp; MEMBERS&nbsp;(<em>Family)</em></strong></td>
-    <td style="width: 387px;">&nbsp;</td>
-    </tr>
-    <tr>
-    <td style="width: 193px;">MEMBERS.all_exactdir</td>
-    <td style="width: 357px;">List of all&nbsp;things those are in exact directory</td>
-    </tr>
-    <tr>
-    <td style="width: 193px;">
-    <div>
-    <div>MEMBERS.files_exactdir</div>
-    </div>
-    </td>
-    <td style="width: 357px;">List of files which are in exact directory</td>
-    </tr>
-    <tr>
-    <td style="width: 193px;">
-    <div>
-    <div>
-    <div>
-    <div>MEMBERS.dirs_exactdir</div>
-    </div>
-    </div>
-    </div>
-    </td>
-    <td style="width: 357px;">List of dirs&nbsp; which are in exact directory</td>
-    </tr>
-    <tr>
-    <td style="width: 193px;">MEMBERS.files_all</td>
-    <td style="width: 357px;">List of files&nbsp;which are in exact directory and all sub-directories</td>
-    </tr>
-    <tr>
-    <td style="width: 193px;">MEMBERS.files_all_sep</td>
-    <td style="width: 357px;">List of files&nbsp;which are in exact directory and all sub-directories&nbsp;seprated by their directories</td>
-    </tr>
-    <tr>
-    <td style="width: 193px;">
-    <div>
-    <div>
-    <div>
-    <div>MEMBERS.dirs_all</div>
-    </div>
-    </div>
-    </div>
-    </td>
-    <td style="width: 357px;">List of&nbsp;directories (Exact dir and all sub-dirs)&nbsp;</td>
-    </tr>
-    <tr>
-    <td style="width: 193px;">MEMBERS.all_all_sep</td>
-    <td style="width: 357px;">List&nbsp; of everything thing in path (exact dir &amp; sub-dirs)</td>
-    </tr>
-    </tbody>
-    </table>
+
+| METHOD                                                        | DESCRIPTION                                                                   |
+|---------------------------------------------------------------|-------------------------------------------------------------------------------|
+| size(path)                                                    | Return size of the file in byte(s). Also work on                              |
+| delete(path)                                                  | Use this to delete a file (Not folder).                                       |
+| rename(path)                                                  | Rename files with this function.                                              |
+| abspath(path)                                                 | Return absolute path of given path.                                           |
+| exists(path)                                                  | Return Boolean. If exists True, else: False                                   |
+| mdftime(path)                                                 | Get last modify time of the file.                                             |
+| acstime(path)                                                 | Get last access time of the file.                                             |
+| move(src,dst)                                                 | Move file from src to dst. (Read Doc String of copy func)                     |
+| copy(src,dst,metadata=True)                                   | Copy file (with metadata) from src to dst. (Also work on folders)             |
+| hide(path)                                                    | Hide given path. (It can be file or directory.)                               |
+| read_only(path,mode=True)                                     | Make file or folder read-only. (Read Doc String)                              |
+| read(path)                                                    | Return content of the path                                                    |
+| write(path,text='',...)                                       | Same as write function.                                                       |
+| isdir(path)                                                   | Return True for directory and False for others.                               |
+| isfile(path)                                                  | Return True for file and False for others.                                    |
+| is_hidden(path)                                               | Check whether path is hidden or not                                           |
+| is_readonly(path)                                             | Check whether path is readonly or not                                         |
+| search_file(pattern,path,mode)                                | search for pattern in path (Read function doc string)                         |
+| search_content(path,word)                                     | Search for word in all files in path, return list of files that contain word  |
+| mkdir(path)                                                   | Make directory (More than one if its possible!)                               |
+| generate_tree(dir_path)                                       | Returns a visual tree of dir_path                                             |
+| get_drives()                                                  | (Windows only) Get currently available drives                                 |
+| &nbsp; &nbsp; &nbsp; &nbsp; MEMBERS (Family)                  |                                                                               |
+| MEMBERS.all_exactdir                                          | List of all things those are in exact directory                               |
+| MEMBERS.files_exactdir                                        | List of files which are in exact directory                                    |
+| MEMBERS.dirs_exactdir                                         | List of dirs which are in exact directory                                     |
+| MEMBERS.files_all                                             | List of files which are in exact directory and all sub-directories            |
+| MEMBERS.files_all_sep                                         | List of files which are in exact directory and all sub-directories seprated by their directories |
+| MEMBERS.dirs_all                                              | List of directories (Exact dir and all sub-dirs)                              |
+| MEMBERS.all_all_sep                                           | List of everything thing in path (exact dir &amp; sub-dirs)                   |
+
 
 <br>
 
 
-<h3>&nbsp;Class Style:&nbsp; &nbsp; <em>Changing text Color,BG &amp; Style. (Read Doc String)</em></h3>
-    <table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
-    <tbody>
-    <tr style="height: 15.0625px;">
-    <td style="width: 173px; height: 15.0625px;">
-    <p>print(*values, color, BG, style, end, sep)</p>
-    </td>
-    <td style="width: 387px; height: 15.0625px;">Print txt with selected color,BG,style.(Read Doc String)</td>
-    </tr>
-    <tr style="height: 18px;">
-    <td style="width: 173px; height: 18px;">switch(color,BG,style)</td>
-    <td style="width: 387px; height: 18px;">Change Terminal Attributes Until another Call.</td>
-    </tr>
-    <tr style="height: 18px;">
-    <td style="width: 173px; height: 18px;">
-    <div>
-    <div>switch_default()</div>
-    </div>
-    </td>
-    <td style="width: 387px; height: 18px;">Restore Terminal Attributes.</td>
-    </tr>
-    <tr style="height: 18px;">
-    <td style="width: 173px; height: 18px;">
-    <div>
-    <div>reset</div>
-    </div>
-    </td>
-    <td style="width: 387px; height: 18px;">=switch_default</td>
-    </tr>
-    <tr style="height: 18px;">
-    <td style="width: 173px; height: 18px;">
-    <div>
-    <div>log_&nbsp; <em>(Family)</em></div>
-    </div>
-    </td>
-    <td style="width: 387px; height: 18px;">5 Different Style.print with ready color and style</td>
-    </tr>
-  </tbody>
-</table>
+<h3>&nbsp; Class Style:&nbsp; &nbsp; <em>Changing text Color,BG &amp; Style. (Read Doc String)</em></h3>
+
+|                                                         |                                                             |
+|---------------------------------------------------------|-------------------------------------------------------------|
+| print\(\*values, color, BG, style, end, sep\)           | Print txt with selected color,BG,style\.\(Read Doc String\) |
+| switch\(color,BG,style\)                                | Change Terminal Attributes Until another Call\.             |
+| switch\_default\(\)                                     | Restore Terminal Attributes\.                               |
+| reset                                                   | =switch\_default                                            |
+| log\_&nbsp; \(Family\)                                  | 5 Different Style\.print with ready color and style         |
+
 
 <br>
 
 
-<h3>&nbsp;Class Record:&nbsp; &nbsp;<em>Record time of a certain actions. (Read Doc String)</em></h3>
-<table style="height: 100px; width: 574px; margin-left: 10px;" cellpadding="5px">
-  <tbody>
-    <tr style="height: 18px;">
-    <td style="width: 173px; height: 18px;">__init__()</td>
-    <td style="width: 387px; height: 18px;">Set Start Time.</td>
-    </tr>
-    <tr style="height: 30px;">
-    <td style="width: 173px; height: 30px;">self.stop(self)</td>
-    <td style="width: 387px; height: 30px;">Stops Recording (You can not lap anymore)</td>
-    </tr>
-    <tr style="height: 23.8125px;">
-    <td style="width: 173px; height: 23.8125px;">self.lap(self, save=True, round=15)</td>
-    <td style="width: 387px; height: 23.8125px;">Rreturn time between start time. if save==True: add that time to self.laps</td>
-    </tr>
-    <tr style="height: 23.8125px;">
-    <td style="width: 173px; height: 23.8125px;">self.laps</td>
-    <td style="width: 387px; height: 23.8125px;">A list that contains all laps you have done</td>
-    </tr>
-    <tr style="height: 23.8125px;">
-    <td style="width: 173px; height: 23.8125px;">self.reset(self, start=False)</td>
-    <td style="width: 387px; height: 23.8125px;">Empty self.laps, if start is True: set start time to now</td>
-    </tr>
-    <tr style="height: 23.8125px;">
-    <td style="width: 173px; height: 23.8125px;">self.last_lap(save=True)</td>
-    <td style="width: 387px; height: 23.8125px;">Return elapsed time from last lap (save it in self.laps if save is true)</td>
-    </tr>
-    <tr style="height: 23.8125px;">
-    <td style="width: 173px; height: 23.8125px;">timeit(code="pass",setup="pass",
-    times=1_000_000,globals_=None)</td>
-    <td style="width: 387px; height: 23.8125px;">Run the 'code' for 'times' times and return time it needs (all, not once)</td>
-    </tr>
-    </tbody>
-    </table>
+<h3>&nbsp; Class Record:&nbsp; &nbsp;<em>Record time of a certain actions. (Read Doc String)</em></h3>
+
+|                                                                     |                                                                            |
+|---------------------------------------------------------------------|----------------------------------------------------------------------------|
+| __init__()                                                          | Set Start Time.                                                            |
+| self.stop(self)                                                     | Stops Recording (You can not lap anymore)                                  |
+| self.lap(self, save=True, round=15)                                 | Rreturn time between start time. if save==True: add that time to self.laps |
+| self.laps                                                           | A list that contains all laps you have done                                |
+| self.reset(self, start=False)                                       | Empty self.laps, if start is True: set start time to now                   |
+| self.last_lap(save=True)                                            | Return elapsed time from last lap (save it in self.laps if save is true)   |
+| timeit(code,setup, times,globals_) | Run the 'code' for 'times' times and return time it needs (all, not once)  |
+
 
 <br>
 
 
-<h3>&nbsp;Class Decorator:&nbsp; &nbsp;<em>Useful decorators you might want to use</em></h3>
+<h3>&nbsp; Class Decorator:&nbsp; &nbsp;<em>Useful decorators you might want to use</em></h3>
 
 | **Method**     | **Description**                                                                                    |
 |----------------|----------------------------------------------------------------------------------------------------|
@@ -671,7 +207,7 @@ List of Functions:
 <br />
 
 
-<h3>&nbsp;Class Terminal:&nbsp; &nbsp;<em>functions related to working with terminal</em></h3>
+<h3>&nbsp; Class Terminal:&nbsp; &nbsp;<em>functions related to working with terminal</em></h3>
 
 | **Method**          | **Description**                                             |
 |:------------------- |:----------------------------------------------------------- |
@@ -681,7 +217,7 @@ List of Functions:
 <br>
 
 
-<h3>&nbsp;Class IO:&nbsp; &nbsp;<em>Useful methods when working with user input</em></h3>
+<h3>&nbsp; Class IO:&nbsp; &nbsp;<em>Useful methods when working with user input</em></h3>
 
 | **Method**                   | **Description**                                                          |
 |------------------------------|--------------------------------------------------------------------------|
@@ -693,7 +229,7 @@ List of Functions:
 <br>
 
 
-<h3>&nbsp;Class Internet:&nbsp; &nbsp;<em>Methods for working with network and internet related stuffs</em></h3>
+<h3>&nbsp; Class Internet:&nbsp; &nbsp;<em>Methods for working with network and internet related stuffs</em></h3>
 
 | **METHOD**            | **DESCRIPTION**                                                                                 |
 |-----------------------|-------------------------------------------------------------------------------------------------|
@@ -711,27 +247,20 @@ List of Functions:
 
 
 
-
-
-<br />
-
-
 ## Recommendations:
 
- - Using an IDE that shows Function and Class Help is highly recommended. *([VS Code](https://code.visualstudio.com/ "Microsoft VS Code")* -- *[PyCharm](https://www.jetbrains.com/pycharm/ "Jetbrains PyCharm"))*
+ <!-- - Using an IDE that shows Function and Class Help is highly recommended. *([VS Code](https://code.visualstudio.com/ "Microsoft VS Code")* -- *[PyCharm](https://www.jetbrains.com/pycharm/ "Jetbrains PyCharm"))* -->
 
  - Using `from rx7 import FUNC_or_CLASS`
-
  - Using `import rx7 as rx`
-
 <br />
 
 
- Use These Commands in Terminal:
+Commands in Terminal:
 --------------------------------
-
-    $ rx7 color           (To show help for style class)
-    $ rx7 help            (To open this page that contains help)
+    $ python -m rx7 --wiki          (To open wiki page in browser)
+    $ python -m rx7 --colors        (To show help for style class)
+    $ python -m rx7 --help          (To open help menu)
 
 <br />
 
@@ -758,15 +287,16 @@ Releases and Changelog:
     </td>
     <td style="width: 153px; height: 25px; text-align: center;">10/03/2023</td>
     <td style="width: 513px; height: 25px; text-align: center;">
-      <div style="text-align: left;">+ environ: environment variables as a dict</div>
-      <div style="text-align: left;">+ Terminal.get_size()</div>
-      <div style="text-align: left;">+ exit: sys.exit</div>
-      <div style="text-align: left;">+ files.get_drives()</div>
+      <div style="text-align: left;">+ `environ` variable: environment variables as a dict</div>
+      <div style="text-align: left;">+ `Terminal.get_size()`</div>
+      <div style="text-align: left;">+ `exit()`: sys.exit()</div>
+      <div style="text-align: left;">+ `files.get_drives()`</div>
       <div style="text-align: left;">+ IO.selective_input `choices` argument upgrade</div>
       <div style="text-align: left;">+ IO.selective_input `action` parameter</div>
-      <div style="text-align: left;">- IO.selective_input error parameter is removed</div>
-      <div style="text-align: left;">* Fixed files.size() for directories</div>
-      <div style="text-align: left;">* files.is_readonly now also works on Unix</div>
+      <div style="text-align: left;">- IO.selective_input `error` parameter is removed</div>
+      <div style="text-align: left;">* Fixed `files.size()` for directories</div>
+      <div style="text-align: left;">* `files.is_readonly()` now also works on Unix</div>
+      <div style="text-align: left;">* Improved module call</div>
     </td>
   </tr>
 
@@ -939,7 +469,6 @@ Releases and Changelog:
   <p style="text-align: left;"><strong>+ File.tree&nbsp; &nbsp; ---&nbsp; &nbsp; &nbsp;File.tree_dirs</strong></p>
   <p style="text-align: left;"><strong>+ Input()</strong>&nbsp; <em>(Only on windows)</em></p>
   <p style="text-align: left;">+ restart_app()</p>
-  <p style="text-align: left;">&nbsp;</p>
   </td>
   </tr>
   <tr style="height: 25px;">

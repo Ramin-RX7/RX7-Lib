@@ -16,7 +16,8 @@ s = setup(
     python_requires = ">= 3.7",
     author = "Ramin RX7",
     author_email = "rawmin.rx@gmail.com",
-    classifiers = ['Programming Language :: Python :: 3',
+    classifiers = [
+        'Programming Language :: Python :: 3',
     ],
     long_description = long_descriptions,
     long_description_content_type = "text/markdown",
