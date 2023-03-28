@@ -13,19 +13,11 @@ Written By RX
 Last Update: 03-07-2022
 '''
 __version__ = '3.2.0'
+
+
 """
 < Release Changes >
 
-* Fixed files.size() for directories
-* files.is_readonly now also works on Unix
-+ files.get_drives()
-+ IO.selective_input choices argument can be a function that returns True if given input is valid
-+ IO.selective_input `action` parameter is a function that takes the given input (if valid)
-    and returns the converted
-- IO.selective_input error parameter is removed
-+ exit: sys.exit
-+ environ: environment variables as a dict
-+ Terminal.get_size(): same as system.get_terminal_size()
 """
 
 
@@ -495,6 +487,8 @@ def pop(tuple,index=-1):
 
 
 """
+Terminal title in mac: "\033]0;{}\007".format(title)
+
  def screen_recorder():
     from screen_recorder_sdk import screen_recorder
     #screen_recorder.enable_dev_log ()
@@ -1307,29 +1301,30 @@ class Style:
     reset = switch_default
 
 
-    def _get_now(add_time):
-        return _time.strftime('%H:%M:%S',_time.localtime()) if add_time else ''
-    def _log(text, color='green', BG='default', style=None, add_time=True):
+    def _get_now():
+        return _time.strftime('%H:%M:%S',_time.localtime())
+    def _log(pre, text, color='', BG='default', style=None, add_time=True):
         #globals()['style'].print(text, color, BG, style=style)
-        NOW = Style._get_now(add_time)
-        Style.switch(color=color, BG=BG)
-        Style.print(f"[{NOW}]  {text}")
-        Style.switch_default()
+        if add_time:
+            NOW = f"[{Style._get_now(add_time)}]  "
+        else:
+            NOW = ""
+        Style.print(f"{NOW}{text}", color=color, BG=BG, style=style)
     @staticmethod
     def log_success(text, color='green', BG='default', style=None, add_time=True):
-        Style._log(text,color,BG,style,add_time)
+        Style._log("[+]",text,color,BG,style,add_time)
     @staticmethod
-    def log_info(text, color='grey_93', BG='default', style=None, add_time=True):
-        Style._log(text,color,BG,style,add_time)
+    def log_info(text, color='dodger_blue_1', BG='default', style=None, add_time=True):
+        Style._log("[*]",text,color,BG,style,add_time)
     @staticmethod
     def log_warning(text, color='gold_3a', BG='default', style=None, add_time=True):
-        Style._log(text,color,BG,style,add_time)
+        Style._log("[*]",text,color,BG,style,add_time)
     @staticmethod
     def log_error(text, color='red', BG='default', style=None, add_time=True):
-        Style._log(text,color,BG,style,add_time)
+        Style._log("[!]",text,color,BG,style,add_time)
     @staticmethod
     def log_critical(text, color='red_1', BG='default', style='bold', add_time=True):
-        Style._log(text,color,BG,style,add_time)
+        Style._log("[!]",text,color,BG,style,add_time)
 style = Style
 
 
@@ -1619,15 +1614,18 @@ class IO:
         return answer
 
     @staticmethod
-    def selective_input(prompt:Any, choices:Iterable|Callable=None, default=None,
+    def selective_input(prompt:Any, choices:Iterable|Callable[[str],bool], default:Any=None,
                         ignore_case:bool=False, invalid_message:Any='Invalid input',
                         action:Callable=None):
+
+        assert (callable(action) or action==None)
+
         if not callable(choices):
             Choices = choices
             if type(choices) == dict:
                 Choices = list(choices.keys())+list(choices.values())
             if ignore_case:
-                Choices = [item.lower() for item in Choices]
+                Choices = [item.lower() for item in Choices if isinstance(item,str)]
 
         while True:
             inp = input(prompt)
@@ -1635,6 +1633,8 @@ class IO:
             if callable(choices):
                 if choices(inp):
                     break
+                elif invalid_message:
+                    style.print(invalid_message, color='red')
             elif not inp:
                 if default:
                     inp = default
@@ -1642,24 +1642,32 @@ class IO:
                 else:
                     if invalid_message:
                         style.print(invalid_message, color='red')
-            elif inp not in Choices:
+            elif inp in Choices:
+                break
+            else:
                 if invalid_message:
                     style.print(invalid_message, color='red')
-            else:
-                break
+
         if type(choices) == dict:
             try:
                 inp = choices[inp]
             except KeyError:
                 pass
-        if action and callable(action):
+
+        if action:
             inp = action(inp)
+
         return inp
 
     @staticmethod
     def yesno_input(prompt,default=None):
         error= "Invalid Input" if bool(default) else ""
-        return io.selective_input(prompt,['y','yes','n','no'],default,True,error)
+        def action(inp):
+            if inp.lower() in ("yes","y"):
+                return True
+            elif inp.lower() in ("no","n"):
+                return False
+        return IO.selective_input(prompt,['y','yes','n','no'],default,True,error,action)
 
     @staticmethod
     def Input(prompt:str ='', default_value:str =''):
@@ -1672,7 +1680,6 @@ class IO:
         >>> Input('Is rx7 Library Easy to Learn?  ', 'Yes')
         Is rx7 Library Easy to Learn?  Yes
         '''
-
         import win32console
         _stdin = win32console.GetStdHandle(win32console.STD_INPUT_HANDLE)
         keys = []
@@ -2119,6 +2126,21 @@ class DateTime:
 date_time = datetime = DateTime
 
 
+
+'''
+class Developer:
+
+    @staticmethod
+    def reload(module):
+        import importlib
+        importlib.reload(module)
+    @staticmethod
+    def add_module_dir(path:str):
+        _sys.path.append(path)
+    @staticmethod
+    def path():
+        return _sys.path
+'''
 
 
 

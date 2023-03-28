@@ -1,4 +1,6 @@
 [MAIN]
+    ☐ @future Separate classes files
+        ?  for variables and functions?
     ?  Logging class
     ?  itertools & functools
     ☐ System.(copy_to_clipboard & paste_from_clipboard)
@@ -15,7 +17,7 @@
     ☐ Check 3rd-party modules imports
     ☐ pip install update
     ✘ Classes accept both normal methods and static methods
-    ✘ re module                                  (v 3.x)
+    ✘ re module
     ✘ average()
     ^ type annotation for all functions and classes
     ✘ Ready-obj module
@@ -24,10 +26,10 @@
 
 
 [README]
-    ✔ @high IO Class
-    ✔ @high Terminal Class
     ☐ @high Date_Time Class
     ✔ @high Internet Class
+    ✔ @high IO Class
+    ✔ @high Terminal Class
 
 
 [NEW CLASSES]
@@ -56,3 +58,11 @@
 
 [System]
     ☐ registery editor
+
+
+[IO]
+    ?  modify_input(prompt, modifier:Callable): returns modifier(prompt)
+    ☐ regex_input
+        (prompt, regex, ?type)
+                            type:(search,match,fullmatch,split,sub,findall)
+    ☐ `pre_action` and `post_action`
