@@ -3,23 +3,22 @@
         ?  for variables and functions?
     ?  Logging class
     ?  itertools & functools
-    ☐ System.(copy_to_clipboard & paste_from_clipboard)
     ☐ Play Sound
     ☐ Call_later **kwargs
-    ☐ Other archive files in extract
+    ☐ Other archive file extensions in `extract`
     ☐ Screen recorder
     ☐ Create Local Server
-    ☐ win32api.LoadLibrary() - ctypes.PyDLL()
     ☐ Threading
     ☐ mp3 tags
-    !  Random.shuffle better implementation
+    ☐ win32api.LoadLibrary() - ctypes.PyDLL()
     ☐ socket.socket()
     ☐ Check 3rd-party modules imports
     ☐ pip install update
+    ^  Random.shuffle better implementation
+    ^ type annotation for all functions and classes
     ✘ Classes accept both normal methods and static methods
     ✘ re module
     ✘ average()
-    ^ type annotation for all functions and classes
     ✘ Ready-obj module
     ✘ Open Video
     ✘ Open Audio
@@ -27,9 +26,6 @@
 
 [README]
     ☐ @high Date_Time Class
-    ✔ @high Internet Class
-    ✔ @high IO Class
-    ✔ @high Terminal Class
 
 
 [NEW CLASSES]
@@ -58,6 +54,7 @@
 
 [System]
     ☐ registery editor
+    ☐ copy_to_clipboard & paste_from_clipboard
 
 
 [IO]
