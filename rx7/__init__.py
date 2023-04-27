@@ -10,7 +10,7 @@ Official documentation in https://github.com/Ramin-RX7/RX7-Lib
 """
 '''
 Written By RX
-Last Update: 03-07-2022
+Last Update: 04-28-2022
 '''
 __version__ = '3.2.0'
 
@@ -1277,6 +1277,7 @@ class Style:
         else:
             return self.styled+other.styled
 
+    from pprint import pprint,pformat
 
     @staticmethod
     def print(*values,color='default', BG='default', style=None, end='\n', sep=" "):
