@@ -1,5 +1,5 @@
 [MAIN]
-    ☐ @future Separate classes files
+    ☐ @v4 Separate classes files
         ?  for variables and functions?
     ?  Logging class
     ?  itertools & functools
@@ -35,7 +35,8 @@
 
 
 [TERMINAL]
-   set_size: sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=32, cols=100))
+    set_size: sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=32, cols=100))
+    ☐ clear
 
 
 [DATETIME]
@@ -48,7 +49,7 @@
 
 
 [Files]
-    ☐ files.join files.dirname
+    ✔ files.join files.dirname
     ☐ Error in files.MEMBERS.all_all_*
 
 
@@ -63,3 +64,11 @@
         (prompt, regex, ?type)
                             type:(search,match,fullmatch,split,sub,findall)
     ☐ `pre_action` and `post_action`
+
+
+[Style]
+    ☐ pprint() and pformat()
+
+
+[Record]
+    ☐ `timer` decorator

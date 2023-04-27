@@ -18,6 +18,9 @@ __version__ = '3.2.0'
 """
 < Release Changes >
 
++ Files.basename()
++ Files.dirname()
++ Files.join_paths()
 """
 
 
@@ -32,7 +35,6 @@ import sys  as _sys
 import abc  as _abc
 import time as _time
 import socket   as _socket
-import typing   as _typing
 import urllib   as _urllib
 import shutil   as _shutil
 import random   as _random
@@ -49,6 +51,9 @@ from typing import (Any,Iterable,Optional,Callable,
 
 
 
+
+
+
 argv    = _sys.argv
 ABC     = _abc.ABC
 exit = _sys.exit
@@ -61,6 +66,8 @@ Check_Type = ...
 overload   = ...
 Input   = default_input  = ...
 getpass = password_input = ...
+
+
 
 
 
@@ -957,18 +964,33 @@ class Files:
         RETURN=''
         RETURN+=dir_path.name+'\n'
         iterator = inner(dir_path, level=level)
-        for line in islice(iterator, length_limit): RETURN+=line+'\n'
-        if next(iterator, None): RETURN+=f'... length_limit, {length_limit}, reached, counted:'
-        if print_info: RETURN+=f'\n{directories} directories' + (f', {files} files' if files else '')
+        for line in islice(iterator, length_limit):
+            RETURN+=line+'\n'
+        if next(iterator, None):
+            RETURN+=f'... length_limit, {length_limit}, reached, counted:'
+        if print_info:
+            RETURN+=f'\n{directories} directories' + (f', {files} files' if files else '')
         return RETURN
 
     @staticmethod
-    def get_drives():
+    def get_drives() -> tuple:
         """WINDOWS ONLY
 
         Gets devices and drives in windows
         """
-        return [drive for drive in "CDEFGHIJKLMNOPQRSTUVWXYZ" if files.exists(f"{drive}:/")]
+        return (drive for drive in "CDEFGHIJKLMNOPQRSTUVWXYZ" if files.exists(f"{drive}:/"))
+
+    @staticmethod
+    def basename(path:str) -> str:
+        return _os.path.basename(path)
+
+    @staticmethod
+    def join_paths(path:str, *paths) -> str:
+        return _os.path.join(path,*paths)
+
+    @staticmethod
+    def dirname(path:str) -> str:
+        return _os.path.dirname(path)
 
     class MEMBERS:
         @staticmethod
@@ -1309,7 +1331,7 @@ class Style:
     def _log(pre, text, color='', BG='default', style=None, add_time=True):
         #globals()['style'].print(text, color, BG, style=style)
         if add_time:
-            NOW = f"[{Style._get_now(add_time)}]  "
+            NOW = f"[{Style._get_now()}]  "
         else:
             NOW = ""
         Style.print(f"{NOW}{text}", color=color, BG=BG, style=style)
@@ -1610,7 +1632,7 @@ overload   = Decorator.overload
 class IO:
 
     @staticmethod
-    def wait_for_input(prompt):
+    def wait_for_input(prompt=""):
         answer= ''
         while not answer:
             answer = input(prompt).strip()
@@ -1675,8 +1697,8 @@ class IO:
     @staticmethod
     def Input(prompt:str ='', default_value:str =''):
         '''
+        (WINDOWS ONLY)
         Make Default Value For Your Input!
-        (THIS ONLY WORK ON WINDOWS (SORRY))
         prompt is what you want and it's input(prompt) .
         default_value is what there should be after prompt.
         E.g:
@@ -1696,12 +1718,12 @@ class IO:
         return input(str(prompt))
 
     @staticmethod
-    def getpass(prompt):
+    def getpass(prompt:str="Password: "):
         '''
         Prompt for a password, with echo turned off.
         '''
-        import getpass as Getpass
-        return Getpass.getpass(prompt=prompt)
+        import getpass
+        return getpass.getpass(prompt=prompt)
 io = IO
 Input   = default_input  = io.Input
 getpass = password_input = io.getpass
