@@ -21,6 +21,7 @@ __version__ = '3.2.0'
 + Files.basename()
 + Files.dirname()
 + Files.join_paths()
++ `pre_action` and `post_action` in IO.selective_input
 """
 
 
@@ -1729,6 +1730,20 @@ class IO:
         '''
         import getpass
         return getpass.getpass(prompt=prompt)
+
+    @staticmethod
+    def regex_input(prompt,pattern,method="match"):
+        """Checks the """
+        inp = input(prompt)
+        if method == "match":
+            result = _re.match(pattern,inp)
+        elif method == "search":
+            result = _re.search(pattern,inp)
+        else:
+            raise ValueError
+        if result:
+            return True
+        return False
 io = IO
 Input   = default_input  = io.Input
 getpass = password_input = io.getpass
