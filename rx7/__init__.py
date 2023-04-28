@@ -1642,9 +1642,11 @@ class IO:
     @staticmethod
     def selective_input(prompt:Any, choices:Iterable|Callable[[str],bool], default:Any=None,
                         ignore_case:bool=False, invalid_message:Any='Invalid input',
-                        action:Callable=None):
+                        pre_action:Callable=...,post_action:Callable=...):
 
-        assert (callable(action) or action==None)
+        assert (callable(pre_action )  or  pre_action==...)
+        assert (callable(post_action)  or  post_action==...)
+
 
         if not callable(choices):
             Choices = choices
@@ -1655,6 +1657,8 @@ class IO:
 
         while True:
             inp = input(prompt)
+            if pre_action != ...:
+                inp = pre_action(inp)
             inp = inp.lower() if ignore_case else inp
             if callable(choices):
                 if choices(inp):
@@ -1680,8 +1684,8 @@ class IO:
             except KeyError:
                 pass
 
-        if action:
-            inp = action(inp)
+        if post_action != ...:
+            inp = post_action(inp)
 
         return inp
 

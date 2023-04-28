@@ -13,7 +13,7 @@ s = setup(
     install_requires = ['colored','psutil','requests'],
        # 'pyscreeze','keyboard', 'mouse','pyautogui'
        # 'whois','win10toast' #'pywin32'
-    python_requires = ">= 3.7",
+    python_requires = ">= 3.8",
     author = "Ramin RX7",
     author_email = "rawmin.rx@gmail.com",
     classifiers = [

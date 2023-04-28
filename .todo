@@ -1,11 +1,13 @@
 [MAIN]
+    ☐ @v4 `pypackage.toml` instead of `setup.py`
+    ☐ @high @norm Improve docstrings
     ☐ @v4 Separate classes files
         ?  for variables and functions?
     ?  Logging class
     ?  itertools & functools
     ☐ Play Sound
-    ☐ Call_later **kwargs
-    ☐ Other archive file extensions in `extract`
+    ☐ @high @norm Call_later **kwargs
+    ☐ @low Other archive file extensions in `extract`
     ☐ Screen recorder
     ☐ Create Local Server
     ☐ Threading
@@ -67,7 +69,7 @@
 
 
 [Style]
-    ☐ pprint() and pformat()
+    ✔ pprint() and pformat()
 
 
 [Record]
