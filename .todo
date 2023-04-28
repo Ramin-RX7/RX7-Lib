@@ -1,6 +1,6 @@
 [MAIN]
     ☐ @v4 `pypackage.toml` instead of `setup.py`
-    ☐ @high @norm Improve docstrings
+    ☐ @v4 @high @norm Improve docstrings
     ☐ @v4 Separate classes files
         ?  for variables and functions?
     ?  Logging class
@@ -14,10 +14,10 @@
     ☐ mp3 tags
     ☐ win32api.LoadLibrary() - ctypes.PyDLL()
     ☐ socket.socket()
-    ☐ Check 3rd-party modules imports
-    ☐ pip install update
-    ^  Random.shuffle better implementation
-    ^ type annotation for all functions and classes
+    ☐  Random.shuffle better implementation
+    ☐ type annotation for all functions and classes
+    ✘ pip install update
+    ✘ Check 3rd-party modules imports
     ✘ Classes accept both normal methods and static methods
     ✘ re module
     ✘ average()
@@ -32,13 +32,15 @@
 
 [NEW CLASSES]
     Developer:
+        ✔ run file using `runpy`
+        ✔ python version
         ✔ reload_module
         ✔ add_module_dir
 
 
 [TERMINAL]
     set_size: sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=32, cols=100))
-    ☐ clear
+    ✔ clear
 
 
 [DATETIME]
@@ -58,11 +60,12 @@
 [System]
     ☐ registery editor
     ☐ copy_to_clipboard & paste_from_clipboard
+    ✔ OS
 
 
 [IO]
-    ?  modify_input(prompt, modifier:Callable): returns modifier(prompt)
-    ☐ regex_input methods: fullmatch,split,sub,findall
+    ?  regex_input methods: fullmatch,split,sub,findall
+    ✘  modify_input(prompt, modifier:Callable): returns modifier(prompt)
     ✔ `pre_action` and `post_action`
 
 

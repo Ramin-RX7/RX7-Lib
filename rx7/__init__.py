@@ -43,6 +43,7 @@ import random   as _random
 import datetime as _datetime
 import calendar as _calendar
 import subprocess as _subprocess
+import platform as _platform
 # import requests as _requests
     # imported requests in any method that uses it to improve importing speed
 import psutil as _psutil
@@ -1121,13 +1122,12 @@ class System:
         '''
         import platform
         class NetworkError(Exception):
-            def __init__(self, message): super().__init__(message)
+            pass
         try:
             ip = _socket.gethostbyname(_socket.gethostname())
             if ip and ip != "127.0.1.1":
                 return ip
             elif platform.system() != "Windows":
-                import subprocess
                 command = _subprocess.Popen(["hostname", "-I"],stdout=_subprocess.PIPE,stderr=_subprocess.PIPE,stdin=_subprocess.PIPE,shell=False)
                 response = list(command.communicate())
                 if len(response[0]) > 0:
@@ -1238,6 +1238,9 @@ class System:
         if formatted:
             return ':'.join(['{:02x}'.format((mac >> ele) & 0xff) for ele in range(0,8*6,8)][::-1])
         return hex(mac)
+    @staticmethod
+    def os_name():
+        return _platform.system()
 system = System
 
 
@@ -1461,6 +1464,9 @@ class Terminal:
         Return terminal size in tuple (columns,rows)
         '''
         return _os.get_terminal_size()
+
+    def clear():
+        clear()
 terminal = Terminal
 
 
@@ -2198,5 +2204,14 @@ class Developer:
     @staticmethod
     def path():
         return _sys.path
+    @staticmethod
+    def python_version(sep=False):
+        if sep:
+            return _platform.python_version_tuple()
+        return _platform.python_version()
+    def run_path(path):
+        import runpy
+        return runpy.runpath(path)
+
 '''
 #END
