@@ -62,10 +62,8 @@
 
 [IO]
     ?  modify_input(prompt, modifier:Callable): returns modifier(prompt)
-    ☐ regex_input
-        (prompt, regex, ?type)
-                            type:(search,match,fullmatch,split,sub,findall)
-    ☐ `pre_action` and `post_action`
+    ☐ regex_input methods: fullmatch,split,sub,findall
+    ✔ `pre_action` and `post_action`
 
 
 [Style]
@@ -73,4 +71,4 @@
 
 
 [Record]
-    ☐ `timer` decorator
+    ✔ `timer` decorator

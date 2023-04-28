@@ -22,6 +22,7 @@ __version__ = '3.2.0'
 + Files.dirname()
 + Files.join_paths()
 + `pre_action` and `post_action` in IO.selective_input
++ Record.timer decorator
 """
 
 
@@ -46,6 +47,7 @@ import subprocess as _subprocess
     # imported requests in any method that uses it to improve importing speed
 import psutil as _psutil
 
+from functools import wraps
 from typing import (Any,Iterable,Optional,Callable,
                     Union,Text,Generator,Literal)
 
@@ -1408,6 +1410,17 @@ class Record:
         if save:
             self.laps.append(self.lap())
         return ret
+
+    @staticmethod
+    def timer(function):
+        @wraps(function)
+        def wrapper(*args, **kwargs):
+            t1 = _time.time()
+            result = function(*args, **kwargs)
+            t2 = _time.time()
+            print(f"{function.__name__} : {t2-t1}")
+            return result
+        return wrapper
 
     @staticmethod
     def timeit(code="pass",setup="pass",times=1_000_000,globals_=None):
