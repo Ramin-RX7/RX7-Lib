@@ -1,7 +1,8 @@
-#
-__init__.py
-pyproject.toml
+# Custom
 .vscode/
+Releases/
+__init__.py
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

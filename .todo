@@ -1,7 +1,8 @@
 [MAIN]
-    ☐ @v4 `pypackage.toml` instead of `setup.py`
+    ☐ @high @easy Add old releases to Github releases and delete their file
+    ☐ @v4 @easy `pypackage.toml` instead of `setup.py`
     ☐ @v4 @high @norm Improve docstrings
-    ☐ @v4 Separate classes files
+    ☐ @v4 @norm Separate classes files
         ?  for variables and functions?
     ?  Logging class
     ?  itertools & functools
@@ -31,6 +32,11 @@
 
 
 [NEW CLASSES]
+    KeyboardMouse:
+        ☐ Move mouse
+        ☐ Write with keyboard
+        ☐ Press button
+        ☐ Use scroll
     Developer:
         ✔ run file using `runpy`
         ✔ python version

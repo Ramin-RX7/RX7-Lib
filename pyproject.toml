@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "rx7"
+version = "3.3.0"
+description = "Useful functions and methods are all gathered in one module"
+license = {text = "LGPL"}
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    'colored','psutil','requests'
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+authors = [
+    {name = "Ramin-RX7", email = "rawmin.rx@gmail.com"},
+]
+keywords = ["shortcut", "collection"]
+
+
+[project.optional-dependencies]
+all = [
+    'pyautogui',
+    'keyboard',
+    'mouse',
+    'pyscreeze',
+    'pywin32    ;  platform_system=="Windows"'
+    'win10toast ;  platform_system=="Windows"',
+    # 'whois',
+]
+
+[tool.setuptools]
+packages = ["rx7"]
+
+[project.urls]
+"Homepage" = "https://github.com/Ramin-RX7/RX7-Lib"
+"Bug Tracker" = "https://github.com/Ramin-RX7/RX7-Lib/issues"
+documentation = "https://github.com/Ramin-RX7/RX7-Lib/wiki"
+repository = "https://github.com/Ramin-RX7/RX7-Lib"
+changelog = "https://github.com/Ramin-RX7/RX7-Lib/blob/master/CHANGELOG.md"
