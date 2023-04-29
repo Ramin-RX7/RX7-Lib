@@ -12,17 +12,12 @@ Official documentation in https://github.com/Ramin-RX7/RX7-Lib
 Written By RX
 Last Update: 04-28-2022
 '''
-__version__ = '3.2.0'
+__version__ = '3.3.0'
 
 
 """
 < Release Changes >
 
-+ Files.basename()
-+ Files.dirname()
-+ Files.join_paths()
-+ `pre_action` and `post_action` in IO.selective_input
-+ Record.timer decorator
 """
 
 
@@ -672,25 +667,27 @@ class Files:
     (READ FUNCTIONS DOCSTRING)
 
     GET INFORMATION:
-      - exists()
-      - size()
-      - abspath()
-      - mdftime()
-      - acstime()
-      - content (read function)()
-      - is file()
-      - is dir()
-      - is readonly()
-      - is hidden()
+      - exists
+      - size
+      - abspath
+      - mdftime
+      - acstime
+      - basename
+      - dirname
+      - content
+      - is_file
+      - is_dir
+      - is_readonly
+      - is_hidden
 
     ACTIONS:
-      - remove()
-      - rename()
-      - move()
-      - copy()
-      - hide()
-      - read only()
-      - write()
+      - remove
+      - rename
+      - move
+      - copy
+      - hide
+      - read only
+      - write
     '''
     @staticmethod
     def size(path:str) -> int:
@@ -795,7 +792,7 @@ class Files:
     def hide(path:str, mode:bool=True) -> None:
         '''
         Hide file or folder.
-        If mode==False: makes 'not hide'
+        If mode==False: unhides the file/folder
         (WINDOWS ONLY)
         '''
         try:
@@ -986,6 +983,7 @@ class Files:
 
     @staticmethod
     def basename(path:str) -> str:
+        """Returns the final component of a pathname"""
         return _os.path.basename(path)
 
     @staticmethod
@@ -994,6 +992,7 @@ class Files:
 
     @staticmethod
     def dirname(path:str) -> str:
+        """Returns the directory component of a pathname"""
         return _os.path.dirname(path)
 
     class MEMBERS:

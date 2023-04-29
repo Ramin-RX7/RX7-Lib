@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 s = setup(
     name = "rx7",
-    version = "3.2.0",
+    version = "3.3.0",
     license = "LGPL",
     description = "Shortcut for most usefull functions, High API, Special Features",
     url = "https://github.com/Ramin-RX7/RX7-Lib",
