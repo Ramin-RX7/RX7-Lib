@@ -15,7 +15,7 @@ GET INFORMATION:
   - is_readonly
   - is_hidden
 
-  ACTIONS:
+ACTIONS:
   - remove
   - rename
   - move
@@ -25,7 +25,6 @@ GET INFORMATION:
   - write
 '''
 
-import os as _os
 import os as _os
 import shutil as _shutil
 from typing import Text,Literal,Generator

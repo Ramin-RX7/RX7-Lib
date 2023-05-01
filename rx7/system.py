@@ -3,12 +3,11 @@ System actions and information.
 - Information about ram, ip, terminal, etc.
 - Some System Actions like change terminal dir, send notification
 '''
-
 import os as _os
 import re as _re
-import subprocess as _subprocess
 import socket as _socket
 import psutil as _psutil
+import subprocess as _subprocess
 
 
 

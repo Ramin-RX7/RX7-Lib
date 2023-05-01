@@ -1,7 +1,7 @@
-import datetime as _datetime
+import re as _re
 import time as _time
 import calendar as _calendar
-import re as _re
+import datetime as _datetime
 
 from .style import Styled
 

@@ -1,10 +1,13 @@
-import socket as _socket
 import re as _re
-import subprocess as _subprocess
 import urllib as _urllib
+import socket as _socket
+import subprocess as _subprocess
 
 from . import system
 
+
+
+ip_global = system.ip_global
 
 
 def is_connected(website='http://x.com/'):
@@ -22,6 +25,7 @@ def is_connected(website='http://x.com/'):
     except:
         return False
 
+
 def connection_checker(func):
     """Decaorator Which Checks Internet Connection before calling a function
     Parameters
@@ -35,7 +39,7 @@ def connection_checker(func):
             raise ConnectionError('No internet connection') from None
         return func(*args,**kwargs)
     return inside
-ip_global = system.ip_global
+
 
 def ip_local() -> str:
     """
@@ -72,6 +76,7 @@ def ip_local() -> str:
     except:
         raise
 
+
 def url_exists(URL) -> bool:
     '''
     check if url exists (with 'requests' module)
@@ -89,6 +94,7 @@ def url_exists(URL) -> bool:
     else:
         return False
 
+
 def ip_website(URL) -> str:
     '''
     get IP address of Web Site\n
@@ -104,6 +110,7 @@ def ip_website(URL) -> str:
             raise NotExistsError from None
         else:
             raise ConnectionError from None
+
 
 def url_links(URL) -> list:
     '''
@@ -123,6 +130,7 @@ def url_links(URL) -> list:
     except _ReqConErr:
         raise ConnectionError('No internet connection') from None
 
+
 def find_urls(string) -> list:
     '''
     find all urls in a string and returns list of them
@@ -130,6 +138,7 @@ def find_urls(string) -> list:
     '''
     url = _re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', string)
     return url
+
 
 def is_url(URL) -> bool:
     '''
@@ -142,14 +151,15 @@ def is_url(URL) -> bool:
     else:
         return False
 
+
 def open_browser(url,new_tab=True):
     import webbrowser
     if new_tab:
         webbrowser.open_new_tab(url)
     else:
         webbrowser.open(url)
-"""
 
+"""
 def whois(URL):
     '''
      return whois lookup of a website

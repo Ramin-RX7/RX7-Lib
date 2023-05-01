@@ -2,6 +2,7 @@ import abc as _abc
 from typing import Callable
 
 
+
 class Check_Type:
     """
      Function decorator for developers\n
@@ -113,7 +114,6 @@ class Check_Type:
                 raise
         return self.function(*__local__, **kwargs)
 decorator_all:Callable = None
-
 
 
 def attach_to_all(cls):

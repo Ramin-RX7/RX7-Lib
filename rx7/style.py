@@ -9,8 +9,8 @@ This will allow you to:
 - Because it returns string You can Add it to other strings
 - Slicing and indexing (Without Color)
 '''
+import builtins as _builtins
 import time as _time
-import builtins
 
 from colored import fg   as  _fg
 from colored import bg   as  _bg
@@ -77,12 +77,12 @@ def switch(color='default', BG='default', style=''):
         text += f"{_bg(BG)}"
     if style:
         text += f"{_attr(style)}"
-    builtins.print(f"{text}", end='')
+    _builtins.print(f"{text}", end='')
 
 
 def switch_default():
     '''Switch Terminal Attributes to its defaults'''
-    builtins.print(f'{_attr(0)}', end='')
+    _builtins.print(f'{_attr(0)}', end='')
 reset = switch_default
 
 

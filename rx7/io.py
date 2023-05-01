@@ -1,6 +1,9 @@
 import re as _re
 from typing import Iterable,Callable,Any
+
 from . import style
+
+
 
 def wait_for_input(prompt=""):
     answer= ''
@@ -50,6 +53,7 @@ def selective_input(prompt:Any, choices:Iterable|Callable[[str],bool], default:A
         inp = post_action(inp)
     return inp
 
+
 def yesno_input(prompt,default=None):
     error= "Invalid Input" if bool(default) else ""
     def action(inp):
@@ -58,6 +62,7 @@ def yesno_input(prompt,default=None):
         elif inp.lower() in ("no","n"):
             return False
     return selective_input(prompt,['y','yes','n','no'],default,True,error,action)
+
 
 def Input(prompt:str ='', default_value:str =''):
     '''
@@ -81,12 +86,14 @@ def Input(prompt:str ='', default_value:str =''):
     _stdin.WriteConsoleInput(keys)
     return input(str(prompt))
 
+
 def getpass(prompt:str="Password: "):
     '''
     Prompt for a password, with echo turned off.
     '''
     import getpass
     return getpass.getpass(prompt=prompt)
+
 
 def regex_input(prompt,pattern,method="match"):
     """Checks the """

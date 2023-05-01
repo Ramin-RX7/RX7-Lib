@@ -43,8 +43,8 @@ from . import style
 Style = style
 
 
-from . import record
-Record = record
+from .record import Record
+record = Record
 
 
 from . import terminal

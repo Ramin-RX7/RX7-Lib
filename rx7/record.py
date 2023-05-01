@@ -1,6 +1,8 @@
 import time as _time
 from functools import wraps
 
+
+
 class Record:
     '''
     Use this method to record an action time in second.
@@ -55,21 +57,24 @@ class Record:
         return ret
 
 
-def timer(function):
-    @wraps(function)
-    def wrapper(*args, **kwargs):
-        t1 = _time.time()
-        result = function(*args, **kwargs)
-        t2 = _time.time()
-        print(f"{function.__name__} : {t2-t1}")
-        return result
-    return wrapper
+
+    @staticmethod
+    def timer(function):
+        @wraps(function)
+        def wrapper(*args, **kwargs):
+            t1 = _time.time()
+            result = function(*args, **kwargs)
+            t2 = _time.time()
+            print(f"{function.__name__} : {t2-t1}")
+            return result
+        return wrapper
 
 
-def timeit(code="pass",setup="pass",times=1_000_000,globals_=None):
-    '''
-    Run the 'code' for 'times' times and return time it needs (all, not once)
-    (If you need any initialization for your 'code', put it in setup arg)
-    '''
-    import timeit
-    return timeit.timeit(stmt=code,setup=setup,number=times,globals=globals_)
+    @staticmethod
+    def timeit(code="pass",setup="pass",times=1_000_000,globals_=None):
+        '''
+        Run the 'code' for 'times' times and return time it needs (all, not once)
+        (If you need any initialization for your 'code', put it in setup arg)
+        '''
+        import timeit
+        return timeit.timeit(stmt=code,setup=setup,number=times,globals=globals_)

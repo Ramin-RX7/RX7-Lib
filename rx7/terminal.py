@@ -2,8 +2,8 @@
 Run Terminal Commands with Terminal functions
 (ALL FUNCTIONS ARE STATIC METHODS)
 """
-import subprocess as _subprocess
 import os as _os
+import subprocess as _subprocess
 
 
 @staticmethod

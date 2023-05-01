@@ -1,8 +1,6 @@
 '''
 random Variable Generator Class.
-(ALL FUNCTIONS ARE STATIC METHODS)
 '''
-
 import random as _random
 from typing import Iterable
 
