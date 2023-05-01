@@ -1,22 +1,8 @@
-"""
-Use this method to record an action time in second.
-Usage:
-    Start= record()
-    #Some codes here...
-    Finnish= Start.lap()
-    print(Finnish) ==> 0.25486741
-    #Some more codes here...
-    Finnish= Start.lap() ==> 0.4502586
-    Start.laps -->  [0.25486741, 0.4502586]
-Use Start.stop() to finnish recording and save memory.
-(after self.stop() using self.lap will cause error.)
-"""
 import time as _time
-
-
+from functools import wraps
 
 class Record:
-    """
+    '''
     Use this method to record an action time in second.
     Usage:
         Start= record()
@@ -28,7 +14,7 @@ class Record:
         Start.laps -->  [0.25486741, 0.4502586]
     Use Start.stop() to finnish recording and save memory.
     (after self.stop() using self.lap will cause error.)
-    """
+    '''
     def __init__(self):
         self.__start = _time.time()
         self.laps = []
@@ -68,11 +54,22 @@ class Record:
             self.laps.append(self.lap())
         return ret
 
-    @staticmethod
-    def timeit(code="pass",setup="pass",times=1_000_000,globals_=None):
-        '''
-        Run the 'code' for 'times' times and return time it needs (all, not once)
-        (If you need any initialization for your 'code', put it in setup arg)
-        '''
-        import timeit
-        return timeit.timeit(stmt=code,setup=setup,number=times,globals=globals_)
+
+def timer(function):
+    @wraps(function)
+    def wrapper(*args, **kwargs):
+        t1 = _time.time()
+        result = function(*args, **kwargs)
+        t2 = _time.time()
+        print(f"{function.__name__} : {t2-t1}")
+        return result
+    return wrapper
+
+
+def timeit(code="pass",setup="pass",times=1_000_000,globals_=None):
+    '''
+    Run the 'code' for 'times' times and return time it needs (all, not once)
+    (If you need any initialization for your 'code', put it in setup arg)
+    '''
+    import timeit
+    return timeit.timeit(stmt=code,setup=setup,number=times,globals=globals_)

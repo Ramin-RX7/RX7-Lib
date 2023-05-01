@@ -2,7 +2,6 @@ import abc as _abc
 from typing import Callable
 
 
-
 class Check_Type:
     """
      Function decorator for developers\n
@@ -36,29 +35,21 @@ class Check_Type:
     '''
     """
     auto_correct = False
-
     def __init__(self, function):
         self.function = function
-
-
     def __call__(self, *args, **kwargs):
         special_types = ('callable', 'iterable', 'generator','container', 'any')
-
         i=-1
         __local__= list(locals()['args'])
         annots= list(self.function.__annotations__.keys())
-
         def extra_remover(correct):
             # Typing module annots check
             if correct.startswith('typing.'):
                 correct = correct[7:].lower()
-
             # built-in types check
             elif correct.startswith('<class '):
                 correct = correct[8:-2]
-
             return correct
-
         def check_specials(TYPE, LOCAL_I):
             import inspect
             wrong = ''
@@ -67,51 +58,41 @@ class Check_Type:
                     return
                 else:
                     correct = 'generator'
-
             elif TYPE == 'callable':
                 if callable(LOCAL_I):
                     return
                 else:
                     correct = 'callable'
-
             elif TYPE == 'iterable':
                 if type(LOCAL_I) in (list, tuple, set, str):
                     print(type(LOCAL_I))
                     return
                 else:
                     correct = 'iterable'
-
             elif TYPE == 'container':
                 if type(LOCAL_I) in (list,set,dict,tuple):
                     return
                 else:
                     correct = 'container'
-
             elif TYPE == 'any':
                 return
-
             wrong = extra_remover(str(type(LOCAL_I))) if not wrong else wrong
             func_name = self.function.__name__
             Error= TypeError(f"'{func_name}()' argument '{ARG}' must be '{correct}' (not '{wrong}')")
             raise Error
-
         for ARG in annots:
             i += 1
             try:
                 LOCAL_I = __local__[i]
                 correct = str(self.function.__annotations__[ARG])
-
                 '''if correct.startswith('typing.Union'):
                     correct = eval(correct[12:])
                 if type(correct) != list:
                     correct = [correct]'''
-
                 correct = extra_remover(correct)
-
                 if correct in special_types:
                     print(type(LOCAL_I))
                     check_specials(correct,LOCAL_I)
-
                 # Builtins and other Libraries objects
                 elif not eval(correct) == type(LOCAL_I):
                     if Check_Type.auto_correct:
@@ -120,21 +101,20 @@ class Check_Type:
                             continue
                         except ValueError:
                             pass
-
                     wrong = extra_remover(str(type(LOCAL_I)))
                     #correct = str(self.function.__annotations__[ARG])#[8:-2]
                     correct = extra_remover(correct)
                     func_name = self.function.__name__
                     Error= TypeError(f"'{func_name}()' argument '{ARG}' must be '{correct}' (not '{wrong}')")
                     raise Error
-
             except (ValueError,IndexError):
                 pass#raise
             except NameError:
                 raise
         return self.function(*__local__, **kwargs)
-
 decorator_all:Callable = None
+
+
 
 def attach_to_all(cls):
     import inspect
@@ -146,9 +126,7 @@ def attach_to_all(cls):
         #print("Decorating function %s" % name)
         setattr(cls, name, decorator_all(method))
     return cls
-
 abstractmethod = _abc.abstractmethod
-
 _registered_functions = {}  #:Dict[str, Any]
 class _MultiMethod(object):
     def __init__(self, name):

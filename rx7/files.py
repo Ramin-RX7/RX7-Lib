@@ -1,31 +1,34 @@
-"""
-Actions and information about files.\n
-(READ FUNCTIONS DOCSTRING)
+'''
+Actions and information about files.
 
 GET INFORMATION:
-  - exists()
-  - size()
-  - abspath()
-  - mdftime()
-  - acstime()
-  - content (read function)()
-  - is file()
-  - is dir()
-  - is readonly()
-  - is hidden()
+  - exists
+  - size
+  - abspath
+  - mdftime
+  - acstime
+  - basename
+  - dirname
+  - content
+  - is_file
+  - is_dir
+  - is_readonly
+  - is_hidden
 
-ACTIONS:
-  - remove()
-  - rename()
-  - move()
-  - copy()
-  - hide()
-  - read only()
-  - write()
-"""
+  ACTIONS:
+  - remove
+  - rename
+  - move
+  - copy
+  - hide
+  - read only
+  - write
+'''
+
+import os as _os
 import os as _os
 import shutil as _shutil
-from typing import Literal,Text,Generator
+from typing import Text,Literal,Generator
 
 
 
@@ -122,7 +125,7 @@ def copy(src:str, dest:str, preserve_metadata:bool=True) -> None:
 def hide(path:str, mode:bool=True) -> None:
     '''
     Hide file or folder.
-    If mode==False: makes 'not hide'
+    If mode==False: unhides the file/folder
     (WINDOWS ONLY)
     '''
     try:
@@ -218,7 +221,7 @@ def is_hidden_Windows(path:str):
     assert res != -1
     return bool(res & 2)
 
-def search_file(pattern:str, path:str='.\\', return_mode:Literal[list,Generator]=list):
+def search_file(pattern:str, path:str='./', return_mode:Literal[list,Generator]=list):
     '''
     Search for files in path.
     Return list or generator.
@@ -283,18 +286,30 @@ def generate_tree(dir_path:str, level: int=-1, limit_to_directories: bool=False,
     RETURN=''
     RETURN+=dir_path.name+'\n'
     iterator = inner(dir_path, level=level)
-    for line in islice(iterator, length_limit): RETURN+=line+'\n'
-    if next(iterator, None): RETURN+=f'... length_limit, {length_limit}, reached, counted:'
-    if print_info: RETURN+=f'\n{directories} directories' + (f', {files} files' if files else '')
+    for line in islice(iterator, length_limit):
+        RETURN+=line+'\n'
+    if next(iterator, None):
+        RETURN+=f'... length_limit, {length_limit}, reached, counted:'
+    if print_info:
+        RETURN+=f'\n{directories} directories' + (f', {files} files' if files else '')
     return RETURN
 
-def get_drives():
+def get_drives() -> tuple:
     """WINDOWS ONLY
     Gets devices and drives in windows
     """
-    return [drive for drive in "CDEFGHIJKLMNOPQRSTUVWXYZ" if exists(f"{drive}:/")]
+    return (drive for drive in "CDEFGHIJKLMNOPQRSTUVWXYZ" if exists(f"{drive}:/"))
 
+def basename(path:str) -> str:
+    """Returns the final component of a pathname"""
+    return _os.path.basename(path)
 
+def join_paths(path:str, *paths) -> str:
+    return _os.path.join(path,*paths)
+
+def dirname(path:str) -> str:
+    """Returns the directory component of a pathname"""
+    return _os.path.dirname(path)
 class MEMBERS:
 
     def all_exactdir(dir:str):

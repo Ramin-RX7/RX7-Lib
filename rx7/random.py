@@ -1,6 +1,7 @@
-"""
-Random variable generator class.
-"""
+'''
+random Variable Generator Class.
+(ALL FUNCTIONS ARE STATIC METHODS)
+'''
 
 import random as _random
 from typing import Iterable
@@ -32,6 +33,7 @@ def choose(iterable:Iterable, k:int=1, duplicate=True):
     else:
         raise ValueError('k Must Be Higher 0')
 
+
 def integer(first_number:int, last_number:int):
     """
     Return random integer in range [a, b], including both end points.
@@ -43,6 +45,7 @@ def integer(first_number:int, last_number:int):
     """
     return _random.randint(first_number,last_number)
 
+
 def O1(decimal_number:int = 17):
     """
     Return x in the interval [0, 1)
@@ -52,6 +55,7 @@ def O1(decimal_number:int = 17):
         float: random number in interval [0,1)
     """
     return round(_random.random(),decimal_number)
+
 
 def number(first_number:float, last_number:float):
     """
@@ -64,6 +68,7 @@ def number(first_number:float, last_number:float):
     """
     return _random.uniform(first_number,last_number)
 
+
 def shuffle(iterable:Iterable):
     """
     Return shuffled version of iterable
@@ -72,6 +77,9 @@ def shuffle(iterable:Iterable):
     Return:
         Iterable[Any]: shuffled version of given iterable
     """
+    # copied = type(iterable)(iterable)
+    # random.shuffle(copied)
+    # return copied
     real_type = type(iterable)
     new_iterable = list(iterable)
     _random.shuffle(new_iterable)
