@@ -11,10 +11,16 @@ from typing import (Any,Iterable,Optional,Callable)
 
 
 
-argv    = _sys.argv
-ABC     = _abc.ABC
-exit = _sys.exit
+argv =  _sys.argv
+ABC  =  _abc.ABC
+exit =  _sys.exit
 environ = _os.environ
+
+
+
+from .files     import write    , read
+from .decorator import overload , Check_Type
+from .io        import getpass  , Input
 
 
 
@@ -30,6 +36,7 @@ def p(text:str='', end='\n'):
     '''
     print(text, end=end)
 
+
 def repeat(function:Callable, n: int, **kwargs):
     '''
     Repeat function for n times with given parameters
@@ -40,6 +47,7 @@ def repeat(function:Callable, n: int, **kwargs):
     '''
     for _ in range(n):
         function(**kwargs)
+
 
 def wait(seconds:int):
     '''
@@ -53,6 +61,7 @@ def wait(seconds:int):
     _time.sleep(seconds)
 sleep = wait
 
+
 def cls():
     '''
     You can use this function if you want to clear the terminal environment.
@@ -63,6 +72,7 @@ def cls():
     else:
         _os.system('clear')
 clear = cls
+
 
 def wait_for(button:str):
     """
@@ -94,6 +104,7 @@ def wait_for(button:str):
         except:
             raise ValueError('Incorrect Button Name.')
 
+
 def call_later(function:Callable, *args, delay=0.001):
     """
     Call Your Function Later Even Between Other Operations
@@ -113,6 +124,7 @@ def call_later(function:Callable, *args, delay=0.001):
     thread.start()
     #keyboard.call_later(function, args, delay)
 call = call_later
+
 
 def convert_bytes(nom:int) -> str:
     """
@@ -146,6 +158,7 @@ def convert_bytes(nom:int) -> str:
             return "%3.1f %s" % (nom, x)
         nom /= 1024.0
 
+
 def restart_app(python3:bool = False):
     """
     This Function Close App and Recall it From Terminal
@@ -158,6 +171,7 @@ def restart_app(python3:bool = False):
     """
     _os.execv(_sys.executable, ['python3' if python3 else 'python'] + _sys.argv)
     _sys.exit()
+
 
 def active_window_title() -> str:
     """
@@ -173,6 +187,7 @@ def active_window_title() -> str:
     """
     import pyautogui
     return pyautogui.getActiveWindowTitle()
+
 
 def open_image(path:str) -> None:
     """
@@ -257,6 +272,7 @@ def download(url:str, filename:str="auto", save_memory:bool=True,
     pass
     if progressbar: print()
 
+
 def extract(filename:str, path:Optional[str]=None,files:Optional[Iterable[str]]=None,
             password:Optional[str]=None) -> None:
     """
@@ -284,6 +300,7 @@ def screenshot(image_name:str = 'Screenshot.png'):
     import pyscreeze
     return pyscreeze.screenshot(image_name)
 
+
 def func_info(func:Callable):
     """
     print some information about 'func'
@@ -304,6 +321,7 @@ def func_info(func:Callable):
         _code_ =  f'No "file" and "line" information available '
         _code_ += f' (I guess "{func}" is a built-in function)'
     print(_code_)
+
 
 def Progressbar(
     total=60, dashes_nom=30, empty_shape=' ', complete_shape='█',
@@ -328,6 +346,7 @@ def Progressbar(
         show(i+1)
     echo.write("\n")
     echo.flush()
+
 
 _MOUSE_X = 0
 _MOUSE_Y = 0
@@ -355,6 +374,7 @@ def pixel_color(x=_MOUSE_X, y=_MOUSE_Y) -> tuple:
     PIXEL = pyautogui.screenshot(region=(x, y, 1, 1))
     COLOR = PIXEL.getcolors()
     return COLOR[0][1]
+
 
 def import_module(path:str):
     """
@@ -391,6 +411,7 @@ def force(tpl: Any, *var: Any) -> tuple:
     return tuple(list(tpl)+[v for v in var])
 #force= lambda tpl,*var: tuple(list(tpl)+[v for v in var])
 
+
 def erase(tpl: tuple, *var: Any) -> tuple:
     '''
     (TUPLE FUNCTION)
@@ -401,6 +422,7 @@ def erase(tpl: tuple, *var: Any) -> tuple:
     for th in [v for v in var if v in tpl]:
         lstt.remove(th)
     return tuple(lstt)
+
 
 def replace(tpl: tuple, index:int, var: Any) -> tuple:
     '''
@@ -413,6 +435,7 @@ def replace(tpl: tuple, index:int, var: Any) -> tuple:
     tpl[index]=var
     return tuple(tpl)
 
+
 def insert(tpl: tuple, index:int, var: Any) -> tuple:
     '''
     (TUPLE FUNCTION)
@@ -423,6 +446,7 @@ def insert(tpl: tuple, index:int, var: Any) -> tuple:
         index= tpl.index(index)
     tpl.insert(index,var)
     return tuple(tpl)
+
 
 def pop(tuple,index=-1):
     '''
