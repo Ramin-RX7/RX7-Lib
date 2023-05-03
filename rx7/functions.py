@@ -19,8 +19,9 @@ environ = _os.environ
 
 
 from .files     import write    , read
-from .decorator import overload , Check_Type
 from .io        import getpass  , Input
+from .decorator import overload , Check_Type
+from .style     import Styled
 
 
 

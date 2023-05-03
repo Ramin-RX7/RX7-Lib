@@ -1,5 +1,5 @@
 import time as _time
-from functools import wraps
+from functools import wraps as _wraps
 
 
 
@@ -60,7 +60,7 @@ class Record:
 
     @staticmethod
     def timer(function):
-        @wraps(function)
+        @_wraps(function)
         def wrapper(*args, **kwargs):
             t1 = _time.time()
             result = function(*args, **kwargs)

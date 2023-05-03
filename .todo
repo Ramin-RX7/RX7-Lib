@@ -1,4 +1,5 @@
 [MAIN]
+    ☐ Protocol (for abstract classes)
     ☐ @high @easy Add old releases to Github releases and delete their file
     ☐ @v4 @easy `pypackage.toml` instead of `setup.py`
     ☐ @v4 @high @norm Improve docstrings
