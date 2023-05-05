@@ -1,3 +1,6 @@
+"""
+Recording time of operations using `Record` class
+"""
 import time as _time
 from functools import wraps as _wraps
 

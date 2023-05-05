@@ -1,3 +1,7 @@
+"""
+High-level functions to manipulate user inputs
+"""
+
 import re as _re
 from typing import Iterable,Callable,Any
 

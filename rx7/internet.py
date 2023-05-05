@@ -1,3 +1,7 @@
+"""
+Useful functions when working with network/internet
+"""
+
 import re as _re
 import urllib as _urllib
 import socket as _socket

@@ -1,3 +1,7 @@
+"""
+Class for working with date, time and calendar
+"""
+
 import re as _re
 import time as _time
 import calendar as _calendar

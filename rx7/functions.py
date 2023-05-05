@@ -1,3 +1,7 @@
+"""
+All variables and functions (out of all modules) are defined here.
+"""
+
 import os   as _os
 import sys  as _sys
 import abc  as _abc

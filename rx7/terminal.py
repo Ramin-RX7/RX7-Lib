@@ -1,10 +1,12 @@
 """
 Run Terminal Commands with Terminal functions
-(ALL FUNCTIONS ARE STATIC METHODS)
 """
 import os as _os
 import subprocess as _subprocess
 
+
+
+from . functions import clear
 
 @staticmethod
 def run(command:str) -> None:
@@ -28,6 +30,3 @@ def size() -> tuple:
     Return terminal size in tuple (columns,rows)
     '''
     return _os.get_terminal_size()
-
-def clear():
-    clear()

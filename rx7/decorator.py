@@ -1,3 +1,7 @@
+"""
+This module includes useful decorators
+"""
+
 import abc as _abc
 from typing import Callable
 

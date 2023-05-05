@@ -1,5 +1,5 @@
 '''
-random Variable Generator Class.
+Random variable generator
 '''
 import random as _random
 from typing import Iterable

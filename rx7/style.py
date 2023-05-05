@@ -20,9 +20,9 @@ from colored import attr as  _attr
 
 from pprint import pprint,pformat
 
-
+_default = -1
 class Styled:
-    def __init__(self, text, color='default', BG='default',style=0):
+    def __init__(self, text, color=_default, BG=_default,style=0):
         self.text = text
         self.styled = ""
         if color != 'default':
@@ -58,12 +58,9 @@ def print(*values,color='default', BG='default', style=None, end='\n', sep=" "):
         text += f"{_bg(BG)}"
     if style:
         text += f"{_attr(style)}"
-    if len(values):
-        text += f"{values[0]}"
-    for t in values[1:]:
-        text += f"{sep}{t}"
+    text += sep.join(values)
     text += f"{_attr(0)}"
-    print(text,end=end)
+    _builtins.print(text,end=end)
 
 
 def switch(color='default', BG='default', style=''):
