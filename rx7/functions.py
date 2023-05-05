@@ -32,17 +32,6 @@ from .style     import Styled
 
 
 
-def p(text:str='', end='\n'):
-    '''
-    p is print!
-    But because we use it a lot, we\'ve decided to make it one letter.
-    Example:
-        p('Hello World')
-        ==>Hello World
-    '''
-    print(text, end=end)
-
-
 def repeat(function:Callable, n: int, *args, **kwargs) -> tuple:
     """Repeat function for n times with given parameters
 
@@ -270,28 +259,6 @@ def screenshot(image_name:str = 'Screenshot.png'):
     """
     import pyscreeze
     return pyscreeze.screenshot(image_name)
-
-
-def func_info(func:Callable):
-    """
-    print some information about 'func'
-
-    Parameters
-    ----------
-    func : Callable
-        function you want to get its information
-    """
-    help(func) #func.__doc__
-    print('-'*30)
-    print('Module  ', func.__module__)
-    print('-'*30)
-    try:
-        _code_ = str(func.__code__)
-        _code_ = _code_[_code_.index(',')+2:-1]
-    except AttributeError:
-        _code_ =  f'No "file" and "line" information available '
-        _code_ += f' (I guess "{func}" is a built-in function)'
-    print(_code_)
 
 
 def Progressbar(

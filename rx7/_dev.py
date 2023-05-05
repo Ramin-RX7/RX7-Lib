@@ -19,6 +19,7 @@ class Developer:
     def run_path(path):
         import runpy
         return runpy.runpath(path)
+    # python_path = sys.executable
 
 '''
 """
