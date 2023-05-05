@@ -46,6 +46,8 @@
 
 
 [TERMINAL]
+    run: replace os.system with subprocess.call
+        https://hackernoon.com/calling-shell-commands-from-python-ossystem-vs-subprocess-mc253z4f
     set_size: sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=32, cols=100))
     ✔ clear
 

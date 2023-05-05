@@ -10,6 +10,7 @@ import urllib   as _urllib
 import subprocess as _subprocess
 
 from typing import (Any,Iterable,Optional,Callable)
+from types import ModuleType
 
 
 
@@ -42,35 +43,33 @@ def p(text:str='', end='\n'):
     print(text, end=end)
 
 
-def repeat(function:Callable, n: int, **kwargs):
-    '''
-    Repeat function for n times with given parameters
-    for more info see the example below.
-    Example:
-        re(rx.screenshot, 3, image_name='screenshot.png')
-        ==> "function rx.screenshot will be executed 3 times."
-    '''
+def repeat(function:Callable, n: int, *args, **kwargs) -> tuple:
+    """Repeat function for n times with given parameters
+
+    Args:
+        function (Callable): function to be called
+        n (int): number of times to execute function
+
+    Returns:
+        tuple: return the result of each call of the function in a tuple
+    """
     for _ in range(n):
-        function(**kwargs)
+        function(*args, **kwargs)
 
 
-def wait(seconds:int):
-    '''
-    Use this if you want your program wait for a certain _time.
+def wait(seconds:int|float):
+    """Sleeps the program for given `seconds`.
 
-    Parameters
-    ----------
-    seconds : [int/float]
-        time to sleep program in seconds
-    '''
+    Args:
+        seconds (int|float): time to sleep program in seconds
+    """
     _time.sleep(seconds)
 sleep = wait
 
 
 def cls():
-    '''
-    You can use this function if you want to clear the terminal environment.
-    '''
+    """Clears the terminal environment
+    """
     import platform
     if platform.system() == "Windows":
         _os.system('cls')
@@ -80,25 +79,19 @@ clear = cls
 
 
 def wait_for(button:str):
-    """
-    If You Want to Wait For the User to Press a Key (Keyboard/Mouse)
-     Use This Function.
+    """Waits For the User to press a key from Keyboard/Mouse
 
-    Parameters
-    ----------
-    button : str
-        Button to click
+    Args:
+        button (str): Button to click
 
-    Raises
-    ------
-    ValueError
-        It will be raised when invalid button is given
+    Raises:
+        ValueError: raised when invalid button is given
     """
     button = button.lower()
     if button.lower() in ('middle', 'left', 'right', 'back', 'forward'):
         if button == 'back':
             button = 'x'
-        if button == 'forward':
+        elif button == 'forward':
             button = 'x2'
         import mouse
         mouse.wait(button)
@@ -111,53 +104,37 @@ def wait_for(button:str):
 
 
 def call_later(function:Callable, *args, delay=0.001):
-    """
-    Call Your Function Later Even Between Other Operations
-    (This function uses threading module so be careful about
-     how, when, and on what object you are going to operate on)
+    """Call the given function after given delay
+    (NOTE: This function does not pause the program. it uses threads so
+    be careful about how, when, and on what object you are going to operate on)
 
-    Parameters
-    ----------
-    function : Callable
-        this should be your function name
-
-    delay : float,int
-        delay before calling function in seconds, by default 0.001
+    Args:
+        function (Callable): function to be called after delay
+        delay (float, optional): delay before calling function in seconds. Defaults to 0.001.
     """
     import threading
-    thread = threading.Thread(target=lambda: (sleep(delay), function(*args)))
+    thread = threading.Thread(target=lambda:(sleep(delay), function(*args)))
     thread.start()
-    #keyboard.call_later(function, args, delay)
 call = call_later
 
 
 def convert_bytes(nom:int) -> str:
+    """Convert num to idiomatic byte unit.
+
+    Args:
+        nom (int): number you want to convert (in Byte)
+
+    Returns:
+        str: number + unit
+
+    Examples:
+        >>> convert_bytes(200)
+        '200.0 bytes'
+        >>> convert_bytes(6000)
+        '5.9 KB'
+        >>> convert_bytes(80000)
+        '78.1 KB'
     """
-    Convert num to idiomatic byte unit.
-
-    Parameters
-    ----------
-    num : int
-        number you want to convert (in Byte)
-
-    Returns
-    -------
-    str
-        number + unit
-
-    Examples
-    --------
-    >>> convert_bytes(200)
-    '200.0 bytes'
-    >>> convert_bytes(6000)
-    '5.9 KB'
-    >>> convert_bytes(80000)
-    '78.1 KB'
-    """
-    '''
-
-
-    '''
     for x in ['bytes', 'KB', 'MB', 'GB', 'TB']:
         if nom < 1024.0:
             return "%3.1f %s" % (nom, x)
@@ -166,82 +143,67 @@ def convert_bytes(nom:int) -> str:
 
 def restart_app(python3:bool = False):
     """
-    This Function Close App and Recall it From Terminal
-    (It uses terminal.run to run command 'python[3] *argv')
+    This Function recall the app from terminal
 
-    Parameters
-    ----------
-    python3 : bool, optional
-        use 'python' or 'python3', by default False
+    Args:
+        python3 (bool, optional): use 'python' or 'python3', by default False.
     """
     _os.execv(_sys.executable, ['python3' if python3 else 'python'] + _sys.argv)
-    _sys.exit()
 
 
 def active_window_title() -> str:
-    """
-    Get active windows title
-    (Usually terminal is active window title
-    but if during executing your script you change window
-    this will return new window title)
+    """Returns active windows title
+    (Usually terminal is active window but if during executing your script you
+     change window this will return the title of that window)
 
-    Returns
-    -------
-    str
-        string of active window title
+    Returns:
+        str: cuurent active window title
     """
     import pyautogui
     return pyautogui.getActiveWindowTitle()
 
 
 def open_image(path:str) -> None:
-    """
-    Open image file with default image viewer.
+    """Open image file with default image viewer.
     (Mac OS is not supported yet)
 
-    Parameters
-    ----------
-    path : str
-        path to the image file
+    Args:
+        path (str): path to the image file
 
-    Raises
-    ------
-    OSError
-        It will be raised when you run this function in not supported OS
+    Raises:
+        OSError: raised when be called in an unsupported OS
     """
+
     import platform
-    if platform.system() == 'Windows':
+    os = platform.system()
+    if   os == 'Windows':
         _os.system(path)
-    elif platform.system() == 'Linux':
+    elif os == 'Linux':
         _subprocess.getoutput(f'xdg-open {path}')
     else:
         raise OSError('Only Windows and Linux are supported for this function.')
 
+
 def download(url:str, filename:str="auto", save_memory:bool=True,
              progressbar:bool =True, prefix:str='Downloading'):
-    '''
-    Use this function to download files.
-    if filename is not given, it will be last part of the url.
-    filename can be path for saving file.
-    save_memory parameter is used to save memory in large files
-    (save directly to storage)
-    '''
+    """Download the file from given url
+
+    Args:
+        url (str): url of the file
+        filename (str, optional): path to save the file.
+            if not given, it will be last part of the url. Defaults to "auto".
+        save_memory (bool, optional):
+            saves up memory when downloading huge files. Defaults to True.
+        progressbar (bool, optional):
+            show a progressbar when downloading. Defaults to True.
+        prefix (str, optional):
+            prefix of progressbar. Defaults to 'Downloading'
+    """
     import requests as _requests
     if filename=='auto':
         filename = url.split('/')[-1]
 
     if save_memory:
-        '''
-        with _urllib.request.urlopen(url) as response, open(filename, 'wb') as f:
-            _shutil.copyfileobj(response, f)
-        '''
-        '''
-        r = _requests.get(url, stream = True)
-        with open(filename,"wb") as f:
-            for chunk in r.iter_content(chunk_size=1024):
-                if chunk:
-                    f.write(chunk)
-        '''
         if progressbar:
             with open(filename, "wb") as f:
                 response = _requests.get(url, stream=True)
@@ -274,34 +236,38 @@ def download(url:str, filename:str="auto", save_memory:bool=True,
         def downloadFile(url):
             _urllib.request.urlretrieve(url, filename, report)
         downloadFile(url)
-    pass
-    if progressbar: print()
+
+    if progressbar:
+        print()
 
 
 def extract(filename:str, path:Optional[str]=None,files:Optional[Iterable[str]]=None,
             password:Optional[str]=None) -> None:
-    """
-    Extract Files from Zip files
-    By default it extracts all files
+    """Extract Files from Zip files. By default it extracts all files
 
-    Parameters
-    ----------
-    filename : str
-        path to .zip file
-    path : str, optional
-        path to extract files (by default: folder in current working directory)
-    files : Iterable[str], optional
-        Iterable of files you want to extract, by default None
-    password : str, optional
-        password if your .zip file is password protected, by default None
+    Args:
+        filename (str): path to .zip file
+        path (Optional[str], optional):
+            path to extract files (by default: current working directory).
+        files (Iterable[str], optional):
+            iterable of files to extract. Defaults to all files.
+        password (str, optional):
+            password of zip file if it is protected. Defaults to None.
     """
     import zipfile
     zipfile.ZipFile(filename, 'r').extractall(path=path,members= files,pwd=password)
 
+
 def screenshot(image_name:str = 'Screenshot.png'):
-    '''
-    This function will take a screenshot and save it as image_name
-    '''
+    """This function will take a screenshot and save it as image_name
+
+    Args:
+        image_name (str, optional):
+            path to save the screenshot. Defaults to 'Screenshot.png'.
+
+    Returns:
+        _type_: _description_
+    """
     import pyscreeze
     return pyscreeze.screenshot(image_name)
 
@@ -331,14 +297,21 @@ def func_info(func:Callable):
 def Progressbar(
     total=60, dashes_nom=30, empty_shape=' ', complete_shape='█',
     pre_text='Loading: ', left_port='|', right_port='|'):
-    '''
-    Make your code more beautiful with progressbars!
-     this is generator function so use it like this:
-        >>> for _ in generator(100,10):
-                do_this()
-                do_that()
-        Loading: |████      | 40/100
-    '''
+    """Generator to display a progressbar for doing something
+
+    Args:
+        total (int, optional): total number of calls. Defaults to 60.
+        dashes_nom (int, optional): number of cells. Defaults to 30.
+        empty_shape (str, optional): empty parts of progressbar. Defaults to ' '
+        complete_shape (str, optional): completed parts of it. Defaults to '█'.
+        pre_text (str, optional): text before progressbar.Defaults to 'Loading: '
+        left_port (str, optional): left side of progreesbar. Defaults to '|'.
+        right_port (str, optional): right side of it. Defaults to '|'.
+
+    Yields:
+        int: number of current call
+    """
+
     echo = _sys.stdout
     def show(j):
         x = int(dashes_nom*j/total)
@@ -355,21 +328,15 @@ def Progressbar(
 
 _MOUSE_X = 0
 _MOUSE_Y = 0
-def pixel_color(x=_MOUSE_X, y=_MOUSE_Y) -> tuple:
-    """
-    Function to return color of pixel of screen in tuple of RGB
+def pixel_color(x:int=_MOUSE_X, y:int=_MOUSE_Y) -> tuple:
+    """Function to return color of pixel on screen in a tuple of RGB
 
-    Parameters
-    ----------
-    x : int
-        pixel of column x, by default last x of mouse
-    y : int
-        pixel of row y, by default last y of mouse
+    Args:
+        x (int, optional): screen x position. Defaults to current mouse location
+        y (int, optional): screen y position. Defaults to current mouse location
 
-    Returns
-    -------
-    tuple
-        tuple with 3 integers: (RED,GREEN,BLUE)
+    Returns:
+        tuple: RGB tuple of pixel color
     """
     import pyautogui
     if not x:
@@ -381,19 +348,14 @@ def pixel_color(x=_MOUSE_X, y=_MOUSE_Y) -> tuple:
     return COLOR[0][1]
 
 
-def import_module(path:str):
-    """
-    Import modules from files even if they are not .py
+def import_module(path:str) -> ModuleType:
+    """Import modules (python code) from given file (even if they are not .py)
 
-    Parameters
-    ----------
-    path : str
-        path to file to import it
+    Args:
+        path (str): path to the file to import
 
-    Returns
-    -------
-    ModuleType
-        return module
+    Returns:
+        ModuleType: returns a module instance of the file
     """
     import importlib.machinery
     import importlib.util
@@ -408,54 +370,80 @@ def import_module(path:str):
 #######################
 #     TUPLE FUNCS     #
 #######################
-def force(tpl: Any, *var: Any) -> tuple:
-    '''
-    (TUPLE FUNCTION)
-    It returns tpl with adding var(s) to it.
-    '''
-    return tuple(list(tpl)+[v for v in var])
+def force(tuple_:tuple, *var: Any) -> tuple:
+    """Returns given tuple with adding var(s) to the end of it.
+
+    Args:
+        tuple_ (tuple): tuple you want to add items to
+        *var: variables to add to it
+
+    Returns:
+        tuple: given tuple with added given items to it
+    """
+    return tuple(list(tuple)+[v for v in var])
 #force= lambda tpl,*var: tuple(list(tpl)+[v for v in var])
 
 
-def erase(tpl: tuple, *var: Any) -> tuple:
-    '''
-    (TUPLE FUNCTION)
-    It returns tpl with removing var(s) from it.
-    '''
+def erase(tuple_:tuple, *var:Any) -> tuple:
+    """Returns tuple with removing var(s) from it.
+
+    Args:
+        tuple_ (tuple): tuple you want to erase items from
+
+    Returns:
+        tuple: given tuple with removed requested items
+    """
     #lstv= [v for v in var if v in tpl]
-    lstt= list(tpl)
-    for th in [v for v in var if v in tpl]:
-        lstt.remove(th)
-    return tuple(lstt)
+    new_tuple= list(tuple_)
+    for th in [v for v in var if v in tuple_]:
+        new_tuple.remove(th)
+    return tuple(new_tuple)
 
 
-def replace(tpl: tuple, index:int, var: Any) -> tuple:
-    '''
-    (TUPLE FUNCTION)
-    Replace tpl[ind] with var
-    '''
-    tpl=list(tpl)
+def replace(tuple_:tuple, index:int, var:Any) -> tuple:
+    """replaces tuple[index] with `var`
+
+    Args:
+        tuple_ (tuple): tuple to be changed
+        index (int): index of item
+        var (Any): new value for the given index
+
+    Returns:
+        tuple: updated tuple
+    """
+    tuple_=list(tuple_)
     if type(index) == str:
-        index= tpl.index(index)
-    tpl[index]=var
-    return tuple(tpl)
+        index= tuple_.index(index)
+    tuple_[index]=var
+    return tuple(tuple_)
 
 
-def insert(tpl: tuple, index:int, var: Any) -> tuple:
-    '''
-    (TUPLE FUNCTION)
-    Exactly like tpl[ind]=var in lists but for tuples.
-    '''
-    tpl=list(tpl)
+def insert(tuple_:tuple, index:int, var:Any) -> tuple:
+    """Inserts `var` in tuple_[index]
+
+    Args:
+        tuple_ (tuple): tuple to be modified
+        index (int): index for item to be inserted
+        var (Any): value of the item to be added
+
+    Returns:
+        tuple: updated tuple
+    """
+    tuple_=list(tuple_)
     if type(index) == str:
-        index= tpl.index(index)
-    tpl.insert(index,var)
-    return tuple(tpl)
+        index= tuple_.index(index)
+    tuple_.insert(index,var)
+    return tuple(tuple_)
 
 
-def pop(tuple,index=-1):
-    '''
-    (TUPLE FUNCTION)
-    pop method that is used in lists but for tuples
-    '''
-    return tuple(list(tuple).pop(index))
+def pop(tuple_:tuple, index=-1) -> tuple:
+    """_summary_
+
+    Args:
+        tuple_ (tuple): tuple that need to have an item popped
+        index (int, optional): index to be popped. Defaults to -1.
+
+    Returns:
+        tuple: updated tuple
+    """
+    return tuple(list(tuple_).pop(index))
