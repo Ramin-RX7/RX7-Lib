@@ -1,5 +1,5 @@
 """
-Run Terminal Commands with Terminal functions
+Functions related to working with running terminal
 """
 import os as _os
 import subprocess as _subprocess
@@ -8,22 +8,24 @@ import subprocess as _subprocess
 
 from . functions import clear
 
+
 @staticmethod
-def run(command:str) -> None:
+def run(command:str) -> int:
     '''
-    Execute the command in a subshell
+    Execute the command in a subshell.
     Returns exit code
-    (LIVE EXECUTION, OUTPUT WILL BE PRINTED)
     '''
     return _os.system(command)
+
 
 @staticmethod
 def getoutput(command:str) -> str:
     '''
-    Return output of executing command in a shell
-    (RETURN STR, RETURN AFTER EXECUTING CODE)
+    Return output of given command in a shell
     '''
     return _subprocess.getoutput(command)
+
+
 @staticmethod
 def size() -> tuple:
     '''
