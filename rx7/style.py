@@ -22,6 +22,9 @@ from pprint import pprint,pformat
 
 _default = -1
 class Styled:
+    """
+    Styled object is a string with given color/background color/style
+    """
     def __init__(self, text, color=_default, BG=_default,style=0):
         self.text = text
         self.styled = ""
@@ -44,13 +47,18 @@ class Styled:
             return self.styled+other.styled
 
 
-def print(*values,color='default', BG='default', style=None, end='\n', sep=" "):
-    '''
-    text(text='Hello World',color='red',BG='white')
-    output ==> 'Hello World' (With red color and white BG)
-    Styles: bold - underlined - reverse - hidden
-     *bold and underlined may not work. (Depends on terminal and OS)
-    '''
+def print(*values,color='default', BG='default', style=None, end='\n', sep=" ") -> None:
+    """prints out the given values decorated with given color/bg/style.
+
+    (You can get list of all colors and styles with: $ python -m rx7 --colors)
+
+    Args:
+        color (str, optional): color to use when printing. Defaults to 'default'.
+        BG (str, optional): background color of output. Defaults to 'default'.
+        style (_type_, optional): style of output text. Defaults to None.
+        end (str, optional): last part of print. Defaults to '\n'.
+        sep (str, optional): Separator of values in output. Defaults to " ".
+    """
     text = ""
     if color != 'default':
         text += f"{_fg(color)}"
@@ -63,9 +71,9 @@ def print(*values,color='default', BG='default', style=None, end='\n', sep=" "):
     _builtins.print(text,end=end)
 
 
-def switch(color='default', BG='default', style=''):
+def switch(color='default', BG='default', style='') -> None:
     '''
-    Change color,BG and style untill you call it again and change them.
+    Changes the color, BG and style of terminal output until you change it again
     '''
     text = ""
     if color != 'default':
@@ -78,7 +86,7 @@ def switch(color='default', BG='default', style=''):
 
 
 def switch_default():
-    '''Switch Terminal Attributes to its defaults'''
+    '''Switch terminal attributes to their defaults'''
     _builtins.print(f'{_attr(0)}', end='')
 reset = switch_default
 
