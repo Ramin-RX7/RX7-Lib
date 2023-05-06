@@ -28,9 +28,9 @@ class Styled(str):
     """
     def __new__(cls, text, color=_default, BG=_default, style=0):
         string = ""
-        if color != 'default':
+        if color != _default:
             string += f"{_fg(color)}"
-        if BG    != 'default':
+        if BG    != _default:
             string += f"{_bg(BG)}"
         if style:
             string += f"{_attr(style)}"
@@ -79,7 +79,7 @@ reset = switch_default
 
 def _get_now():
     return _time.strftime('%H:%M:%S',_time.localtime())
-def _log(pre, text, color='', BG='default', style=None, add_time=True):
+def _log(pre, text, color='', BG=_default, style=None, add_time=True):
     #globals()['style'].print(text, color, BG, style=style)
     if add_time:
         NOW = f"[{_get_now()}]  "
@@ -88,17 +88,17 @@ def _log(pre, text, color='', BG='default', style=None, add_time=True):
     print(f"{NOW}{text}", color=color, BG=BG, style=style)
 
 
-def log_success(text, color='green', BG='default', style=None, add_time=True):
+def log_success(text, color='green', BG=_default, style=None, add_time=True):
     _log("[+]",text,color,BG,style,add_time)
 
-def log_info(text, color='dodger_blue_1', BG='default', style=None, add_time=True):
+def log_info(text, color='dodger_blue_1', BG=_default, style=None, add_time=True):
     _log("[*]",text,color,BG,style,add_time)
 
-def log_warning(text, color='gold_3a', BG='default', style=None, add_time=True):
+def log_warning(text, color='gold_3a', BG=_default, style=None, add_time=True):
     _log("[*]",text,color,BG,style,add_time)
 
-def log_error(text, color='red', BG='default', style=None, add_time=True):
+def log_error(text, color='red', BG=_default, style=None, add_time=True):
     _log("[!]",text,color,BG,style,add_time)
 
-def log_critical(text, color='red_1', BG='default', style='bold', add_time=True):
+def log_critical(text, color='red_1', BG=_default, style='bold', add_time=True):
     _log("[!]",text,color,BG,style,add_time)
