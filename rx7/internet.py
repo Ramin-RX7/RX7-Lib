@@ -12,6 +12,7 @@ from . import system
 
 
 ip_global = system.ip_global
+ip_local  = system.ip_local
 
 
 def is_connected(url:str='https://www.google.com/'):
@@ -30,27 +31,6 @@ def connection_checker(func):
             raise ConnectionError('No internet connection') from None
         return func(*args,**kwargs)
     return inside
-
-
-def ip_local() -> str:
-    """
-    Return local ip of computer in windows by `socket` module
-    and in linux with hostname command in shell.
-    """
-    #return [l for l in ([ip for ip in _socket.gethostbyname_ex(_socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [_socket._socket.(_socket.AF_INET, _socket.SOCK_DGRAM)]][0][1]]) if l][0][0]
-    import platform
-    class NetworkError(Exception):
-        pass
-    ip = _socket.gethostbyname(_socket.gethostname())
-    if ip  and  ip not in ("127.0.1.1","127.0.0.1"):
-        return ip
-    elif platform.system() != "Windows":
-        command = _subprocess.Popen(["hostname", "-I"],stdout=_subprocess.PIPE,stderr=_subprocess.PIPE,stdin=_subprocess.PIPE,shell=False)
-        response = list(command.communicate())
-        if len(response[0]) > 0:
-            return str(response[0])[2:-4]
-        raise NetworkError('No Network Connection')
-    raise NetworkError('No Network Connection')
 
 
 def url_exists(url) -> bool:

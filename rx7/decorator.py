@@ -7,6 +7,14 @@ from typing import Callable
 
 
 
+from .internet import connection_checker as is_connected
+from .record import Record as _record
+
+
+timer = _record.timer
+abstractmethod = _abc.abstractmethod
+
+
 class Check_Type:
     """
      Function decorator for developers\n
@@ -117,9 +125,9 @@ class Check_Type:
             except NameError:
                 raise
         return self.function(*__local__, **kwargs)
+
+
 decorator_all:Callable = None
-
-
 def attach_to_all(cls):
     import inspect
     for name, method in inspect.getmembers(cls):
@@ -130,7 +138,8 @@ def attach_to_all(cls):
         #print("Decorating function %s" % name)
         setattr(cls, name, decorator_all(method))
     return cls
-abstractmethod = _abc.abstractmethod
+
+
 _registered_functions = {}  #:Dict[str, Any]
 class _MultiMethod(object):
     def __init__(self, name):

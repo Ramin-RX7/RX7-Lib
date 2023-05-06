@@ -27,7 +27,7 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-if args.help or (not any(args.wiki,args.colors)):
+if args.help or (not any([args.wiki,args.colors])):
     print('Available Arguments:')
     print('  [-h, --help]       Open rx7 Documention Page (pypi Page)')
     print('  [--colors]          Open a html Page That Contains All Colors and Information About style Class')
