@@ -21,30 +21,23 @@ from colored import attr as  _attr
 from pprint import pprint,pformat
 
 _default = -1
-class Styled:
+class Styled(str):
     """
     Styled object is a string with given color/background color/style
+    (All methods and attributes of strings are accepted on Styled objects since it inherits string)
     """
-    def __init__(self, text, color=_default, BG=_default,style=0):
-        self.text = text
-        self.styled = ""
+    def __new__(cls, text, color=_default, BG=_default,style=0):
+        string = ""
         if color != 'default':
-            self.styled += f"{_fg(color)}"
+            string += f"{_fg(color)}"
         if BG    != 'default':
-            self.styled += f"{_bg(BG)}"
+            string += f"{_bg(BG)}"
         if style:
-            self.styled += f"{_attr(style)}"
-        self.styled += f"{text}"
-        self.styled += f"{_attr(0)}"
-    def __str__(self):
-        return self.styled
-    def __repr__(self):
-        return self.styled
-    def __add__(self, other):
-        if type(other)!=Styled:
-            return self.styled+other
-        else:
-            return self.styled+other.styled
+            string += f"{_attr(style)}"
+        string += f"{text}"
+        string += f"{_attr(0)}"
+        return super().__new__(str, string)
+
 
 
 def print(*values,color='default', BG='default', style=None, end='\n', sep=" ") -> None:
@@ -59,16 +52,8 @@ def print(*values,color='default', BG='default', style=None, end='\n', sep=" ") 
         end (str, optional): last part of print. Defaults to '\n'.
         sep (str, optional): Separator of values in output. Defaults to " ".
     """
-    text = ""
-    if color != 'default':
-        text += f"{_fg(color)}"
-    if BG    != 'default':
-        text += f"{_bg(BG)}"
-    if style:
-        text += f"{_attr(style)}"
-    text += sep.join(values)
-    text += f"{_attr(0)}"
-    _builtins.print(text,end=end)
+    values = map(str, values)
+    _builtins.print(Styled(sep.join(values)+end, color, BG, style), end="")
 
 
 def switch(color='default', BG='default', style='') -> None:

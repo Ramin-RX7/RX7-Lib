@@ -79,7 +79,8 @@
 
 
 [Style]
-    ☐ Styled should be derived from `str`
+    ?  Should the Styled be a function that returns a string?
+    ✔ Styled should be derived from `str`
     ✔ pprint() and pformat()
 
 
