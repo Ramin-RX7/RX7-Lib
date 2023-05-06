@@ -1,20 +1,22 @@
 """
-This Module is One to Make Your Code Shorter.
+This Module will make your code shorter.
 
-Collection of most usefull function and methods from popular modules of python.
+It's a Collection of most useful function/variables of popular python modules.
 
-Official documentation in https://github.com/Ramin-RX7/RX7-Lib
-"""
-'''
+Repository: https://github.com/Ramin-RX7/RX7-Lib
+
 Written By RX
 Last Update: 05-03-2022
-'''
+"""
 __version__ = '3.3.0'
 
 
 """
 < Release Changes >
 
+- p()
+- func_info()
+* Progressbar() -> progressbar()
 """
 
 

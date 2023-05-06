@@ -261,7 +261,7 @@ def screenshot(image_name:str = 'Screenshot.png'):
     return pyscreeze.screenshot(image_name)
 
 
-def Progressbar(
+def progressbar(
     total=60, dashes_nom=30, empty_shape=' ', complete_shape='█',
     pre_text='Loading: ', left_port='|', right_port='|'):
     """Generator to display a progressbar for doing something

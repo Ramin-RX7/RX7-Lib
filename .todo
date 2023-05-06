@@ -1,10 +1,6 @@
 [MAIN]
     ☐ Protocol (for abstract classes)
     ☐ @high @easy Add old releases to Github releases and delete their file
-    ☐ @v4 @easy `pypackage.toml` instead of `setup.py`
-    ☐ @v4 @high @norm Improve docstrings
-    ☐ @v4 @norm Separate classes files
-        ?  for variables and functions?
     ?  Logging class
     ?  itertools & functools
     ☐ Play Sound
@@ -17,7 +13,11 @@
     ☐ win32api.LoadLibrary() - ctypes.PyDLL()
     ☐ socket.socket()
     ☐  Random.shuffle better implementation
-    ☐ type annotation for all functions and classes
+    ✔ type annotation for all functions and classes
+    ✔ @v4 @high @norm Improve docstrings
+        ?  for variables and functions?
+    ✔ @v4 @norm Separate classes files
+    ✔ @v4 @easy `pypackage.toml` instead of `setup.py`
     ✘ pip install update
     ✘ Check 3rd-party modules imports
     ✘ Classes accept both normal methods and static methods
@@ -32,7 +32,7 @@
     ☐ @high Date_Time Class
 
 
-[NEW CLASSES]
+[NEW MODULES]
     KeyboardMouse:
         ☐ Move mouse
         ☐ Write with keyboard

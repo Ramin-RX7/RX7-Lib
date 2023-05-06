@@ -1,27 +1,3 @@
-'''
-class Developer:
-
-    @staticmethod
-    def reload(module):
-        import importlib
-        importlib.reload(module)
-    @staticmethod
-    def add_module_dir(path:str):
-        _sys.path.append(path)
-    @staticmethod
-    def path():
-        return _sys.path
-    @staticmethod
-    def python_version(sep=False):
-        if sep:
-            return _platform.python_version_tuple()
-        return _platform.python_version()
-    def run_path(path):
-        import runpy
-        return runpy.runpath(path)
-    # python_path = sys.executable
-
-'''
 """
 Terminal title in mac: "\033]0;{}\007".format(title)
 
