@@ -9,9 +9,18 @@ version = "3.3.0"
 description = "Useful functions and methods are all gathered in one module"
 license = {text = "LGPL"}
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 dependencies = [
-    'colored','psutil','requests'
+    'colored',
+    'psutil',
+    'requests',
+
+    'pyautogui',
+    'keyboard',
+    'mouse',
+    'pyscreeze',
+    'pywin32    ;  platform_system=="Windows"',
+    'win10toast ;  platform_system=="Windows"',
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -24,12 +33,6 @@ keywords = ["shortcut", "collection"]
 
 [project.optional-dependencies]
 all = [
-    'pyautogui',
-    'keyboard',
-    'mouse',
-    'pyscreeze',
-    'pywin32    ;  platform_system=="Windows"'
-    'win10toast ;  platform_system=="Windows"',
     # 'whois',
 ]
 
