@@ -17,56 +17,44 @@ def _convert_bytes(nom:int) -> str:
             return "%3.1f %s" % (nom, x)
         nom /= 1024.0
 
+
 def accname() -> str:
-    '''
-    return account username you have logged in.
-    '''
+    '''return account username you have logged in.'''
     return _os.getlogin()
 
 
 def pid() -> int:
-    '''
-    Get pid number of terminal and return it.
-    '''
+    '''Get pid number of terminal and return it.'''
     return _os.getpid()
+
 '''
 def disk_usage(path):
     return _shutil.disk_usage(path)
 '''
 
 def chdir(path:str) -> None:
-    '''
-    Change directory of terminal.
-    '''
+    '''Change directory of terminal.'''
     _os.chdir(path)
 
 
 def SHUT_DOWN():
-    '''
-    Shut down the PC. (WINDOWS)
-    '''
+    '''(Windows only) Shut down the PC.'''
     _os.system("shutdown /s /t 1")
 
 
 def RESTART():
-    '''
-    Restart the PC. (WINDOWS)
-    '''
+    '''(Windows only) Restart the PC.'''
     _os.system("shutdown /r /t 1")
 
 
 def terminal_size() -> tuple:
-    '''
-    Return terminal size in tuple (columns,rows)
-    '''
+    '''Return terminal size in tuple (columns,rows)'''
     size= _os.get_terminal_size()
     return (size.columns,size.lines)
 
 
 def cwd() -> str:
-    '''
-    Return a unicode string representing the current working directory.
-    '''
+    '''Return string representing the current working directory.'''
     return _os.getcwd()
 
 
@@ -90,106 +78,79 @@ def ip_global() -> str:
 
 def ip_local() -> str:
     """
-    Return local ip of computer in windows by _socket. module
-    and in unix with hostname command in shell.
+    Return local ip of computer in windows by `socket` module
+    and in linux with hostname command in shell.
     """
     #return [l for l in ([ip for ip in _socket.gethostbyname_ex(_socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [_socket._socket.(_socket.AF_INET, _socket.SOCK_DGRAM)]][0][1]]) if l][0][0]
-    '''
-    s = _socket._socket.(_socket.AF_INET, _socket.SOCK_DGRAM)
-    try:
-        # doesn't even have to be reachable
-        s.connect(('10.255.255.255', 1))
-        IP = s.getsockname()[0]
-    except Exception:
-        IP = '127.0.0.1'
-    finally:
-        s.close()
-    return IP
-    '''
     import platform
     class NetworkError(Exception):
         pass
-    try:
-        ip = _socket.gethostbyname(_socket.gethostname())
-        if ip and ip != "127.0.1.1":
-            return ip
-        elif platform.system() != "Windows":
-            command = _subprocess.Popen(["hostname", "-I"],stdout=_subprocess.PIPE,stderr=_subprocess.PIPE,stdin=_subprocess.PIPE,shell=False)
-            response = list(command.communicate())
-            if len(response[0]) > 0:
-                return str(response[0])[2:-4]
-            raise NetworkError('No Network Connection')
+    ip = _socket.gethostbyname(_socket.gethostname())
+    if ip  and  ip not in ("127.0.1.1","127.0.0.1"):
+        return ip
+    elif platform.system() != "Windows":
+        command = _subprocess.Popen(["hostname", "-I"],stdout=_subprocess.PIPE,stderr=_subprocess.PIPE,stdin=_subprocess.PIPE,shell=False)
+        response = list(command.communicate())
+        if len(response[0]) > 0:
+            return str(response[0])[2:-4]
         raise NetworkError('No Network Connection')
-    except:
-        raise
+    raise NetworkError('No Network Connection')
 # ip_local= internet.ip_local
 
 
-def ram_total(convert:bool=True) -> str:
+def ram_total(convert:bool=True) -> int|str:
     """
     Return total ram of board as string
-    parameter convert: flag for convert mode (using of convert_byte function)
+    parameter convert: convert result to idiomatic byte unit (str)
     """
     response = list(_psutil.virtual_memory())
     if convert:
         return _convert_bytes(int(response[0]))
-    return str(response[0])
+    return response[0]
 
 
-def ram_used(convert:bool=True) -> str:
+def ram_used(convert:bool=True) -> int|str:
     """
     Return how much ram is using.
-    parameter convert: flag for convert mode (convert with convert_byte function)
+    parameter convert: convert result to idiomatic byte unit (str)
     """
     response = list(_psutil.virtual_memory())
     if convert:
         return _convert_bytes(int(response[3]))
-    return str(response[3])
+    return response[3]
 
 
-def ram_free(convert:bool=True) -> str:
+def ram_free(convert:bool=True) -> int|str:
     """
     Return how much ram is available.
-    parameter convert: flag for convert mode (convert with convert_byte function)
+    parameter convert: convert result to idiomatic byte unit (str)
     """
     response = list(_psutil.virtual_memory())
     if convert:
         return _convert_bytes(int(response[1]))
-    return str(response[1])
+    return response[1]
 
 
-def ram_percent(ONLY_NOM:bool=False) -> str:
-    """
-    Return available ram percentage as an integer if ONLY_NOM, as string with % if not ONLY_NOM
-    Parameter ONLY_NOM: flag for return type and value.
-    """
+def ram_percent(ONLY_NOM:bool=False) -> int|str:
+    """Return available ram percentage as an integer"""
     response = list(_psutil.virtual_memory())
-    if ONLY_NOM:
-        return response[2]
-    return str(response[2]) + " %"
+    return response[2]
 
 
 def boot_time() -> str:
-    '''
-    Return the system boot time expressed in seconds since the epoch.
-    '''
+    '''Return the system boot time expressed in seconds since the epoch.'''
     return _psutil.boot_time()
 
 
 def device_name() -> str:
+    """Returns device host name"""
     return _socket.gethostname()
-
-
-def ip_website(url:str) -> str:
-    '''get IP address of Web Site'''
-    return _socket.gethostbyname(url)
-# ip_webs= internet.ip_website
 
 
 def win10_notification(title:str, message:str, icon=None, duration:int=5) -> None:
     '''
-    (THIS ONLY WORKS FOR "WINDOWS 10")\n
-    Display Notification with title, message and icon for speciefic _time.
+    (WINDOWS-10 only)
+    Display Notification with title, message and icon for given seconds.
     '''
     try:
         from win10toast import ToastNotifier
@@ -210,7 +171,7 @@ def cpu_count(logical=True) -> int:
 
 
 def pyshell_execute_bit() -> int:
-    '''to determine whether a Python shell is executing in 32bit or 64bit'''
+    """to determine whether a Python shell is executing in 32bit or 64bit"""
     #return platform.architecture()[0][:2]     # SLOW
     #return ctypes.sizeof(ctypes.c_voidp)*8
     import struct
@@ -224,15 +185,18 @@ def pids() -> list:
 
 def cpu_percent() -> float:
     '''
-    Return a float representing the current system-wide CPU utilization as a percentage.'''
+    Return a float representing the current system-wide CPU utilization as a percentage.
+    '''
     return _psutil.cpu_percent()
 
 
 def pid_exists(pid:int) -> bool:
+    """Detemines whether a pid exists or not"""
     return _psutil.pid_exists(pid)
 
 
 def mac_address(formatted:bool=False) -> str:
+    """Returns mac address of the running device"""
     import uuid
     mac = uuid.getnode()
     if formatted:
@@ -241,5 +205,6 @@ def mac_address(formatted:bool=False) -> str:
 
 
 def os_name():
+    """Returns OS name of the device running the code"""
     import platform
     return platform.system()
