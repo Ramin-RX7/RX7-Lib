@@ -2,20 +2,22 @@
 Random variable generator
 '''
 import random as _random
-from typing import Iterable
+from typing import Iterable,Any
 
 
 
-def choose(iterable:Iterable, k:int=1, duplicate=True):
-    """
-    Return a random element from a non-empty sequence.
+def choose(iterable:Iterable, k:int=1, duplicate=True) -> list|Any:
+    """Return a random element from a non-empty sequence.
+
     Args:
         iterator (Iterator): The iterator you wanna choose a random member of it
         k (int): number of items to randomly get from iterator
         duplicate (bool): wether or not getting duplicate items (if k>1)
+
     Returns:
-        Any: one of members of iterator if k=1
+        Any: an item of iterable if k=1
         List[Any]: if k>1
+
     Raise:
         ValueError: Occurs when k<1
     """
@@ -32,7 +34,7 @@ def choose(iterable:Iterable, k:int=1, duplicate=True):
         raise ValueError('k Must Be Higher 0')
 
 
-def integer(first_number:int, last_number:int):
+def integer(first_number:int, last_number:int) -> int:
     """
     Return random integer in range [a, b], including both end points.
     Args:
@@ -44,40 +46,41 @@ def integer(first_number:int, last_number:int):
     return _random.randint(first_number,last_number)
 
 
-def O1(decimal_number:int = 17):
-    """
-    Return x in the interval [0, 1)
+def O1(round_:int = 17) -> float:
+    """Return x in the interval [0, 1)
+
     Arg:
-        decimal_number (int): how many decimal numbers to round
+        round_ (int): how many decimal numbers to round
+
     Return:
         float: random number in interval [0,1)
     """
-    return round(_random.random(),decimal_number)
+    return round(_random.random(),round_)
 
 
-def number(first_number:float, last_number:float):
-    """
-    Return x in the interval [a, b]
+def number(first_number:float, last_number:float) -> float:
+    """Return x in the interval [a, b]
+
     Args:
         first_number (float):  a
         last_number  (float):  b
+
     Return:
-        flaot: a random number in interval [a, b]
+        float: a random number in interval [a, b]
     """
     return _random.uniform(first_number,last_number)
 
 
-def shuffle(iterable:Iterable):
+def shuffle(iterable:Iterable) -> Iterable:
     """
     Return shuffled version of iterable
+
     Arg:
-        iterable (Iterable): The iterable you want to shuffle it's items
+        Iterable: The iterable you want to shuffle it's items
+
     Return:
         Iterable[Any]: shuffled version of given iterable
     """
-    # copied = type(iterable)(iterable)
-    # random.shuffle(copied)
-    # return copied
     real_type = type(iterable)
     new_iterable = list(iterable)
     _random.shuffle(new_iterable)
