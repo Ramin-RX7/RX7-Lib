@@ -26,7 +26,7 @@ class Styled(str):
     Styled object is a string with given color/background color/style
     (All methods and attributes of strings are accepted on Styled objects since it inherits string)
     """
-    def __new__(cls, text, color=_default, BG=_default,style=0):
+    def __new__(cls, text, color=_default, BG=_default, style=0):
         string = ""
         if color != 'default':
             string += f"{_fg(color)}"
@@ -40,7 +40,7 @@ class Styled(str):
 
 
 
-def print(*values,color='default', BG='default', style=None, end='\n', sep=" ") -> None:
+def print(*values,color=_default, BG=_default, style=0, sep=" ", end='\n') -> None:
     """prints out the given values decorated with given color/bg/style.
 
     (You can get list of all colors and styles with: $ python -m rx7 --colors)
@@ -53,24 +53,25 @@ def print(*values,color='default', BG='default', style=None, end='\n', sep=" ") 
         sep (str, optional): Separator of values in output. Defaults to " ".
     """
     values = map(str, values)
-    _builtins.print(Styled(sep.join(values)+end, color, BG, style), end="")
+    string = Styled(sep.join(values)+end, color=color, BG=BG, style=style)
+    _builtins.print(string, end="")
 
 
-def switch(color='default', BG='default', style='') -> None:
+def switch(color=_default, BG=_default, style='') -> None:
     '''
     Changes the color, BG and style of terminal output until you change it again
     '''
     text = ""
-    if color != 'default':
+    if color != _default:
         text += f"{_fg(color)}"
-    if BG    != 'default':
+    if BG    != _default:
         text += f"{_bg(BG)}"
     if style:
         text += f"{_attr(style)}"
     _builtins.print(f"{text}", end='')
 
 
-def switch_default():
+def switch_default() -> None:
     '''Switch terminal attributes to their defaults'''
     _builtins.print(f'{_attr(0)}', end='')
 reset = switch_default
