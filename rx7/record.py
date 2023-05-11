@@ -25,13 +25,13 @@ class Record:
     def __str__(self):
         return f'Laps: {self.laps}'
 
-    def lap(self, save=True, round:int=15) -> float:
+    def lap(self, save=True, round_:int=15) -> float:
         '''
         Returns time passed from creation of Record object.
         If save is True, time will be added to self.laps
         '''
         lp = _time.time() - self.__start
-        lp = round(lp,round)
+        lp = round(lp,round_)
         if save:
             self.laps.append(lp)
         return lp
