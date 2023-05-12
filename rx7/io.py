@@ -68,7 +68,7 @@ def selective_input(prompt:Any, choices:Iterable|Callable[[str],bool], default:A
                 break
             elif invalid_message:
                 style.print(invalid_message, color='red')
-        elif not inp:
+        elif inp == "":
             if default:
                 inp = default
                 break
