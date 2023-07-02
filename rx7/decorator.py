@@ -6,6 +6,7 @@ import abc as _abc
 from typing import Callable
 
 
+from contextlib import contextmanager
 
 from .internet import connection_checker as is_connected
 from .record import Record as _record
