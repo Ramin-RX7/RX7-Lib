@@ -1,5 +1,10 @@
 """
 Functions related to working with running terminal
+
+- run():  run a command from shell
+- getoutput():  get the result of a command from terminal
+- size():  returns size of terminal
+- clear():  clears the terminal
 """
 import os as _os
 import subprocess as _subprocess
