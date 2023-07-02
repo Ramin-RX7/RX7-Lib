@@ -158,13 +158,11 @@ def write(file_path:str, text:Text=None, mode='replace', start='') -> None:
     start: I use this when I use mode='continue'
     '''
     if mode in ("w",'replace'):
-        op= open(file_path,mode='w')
-        op.write(text)
-        op.close()
+        with open(file_path, "w") as f:
+            f.write(start+text)
     elif mode in ("a",'continue'):
-        op=open(file_path,'a')
-        op.write(text)
-        op.close()
+        with open(file_path, "a") as f:
+            f.write(start+text)
     else:
         raise ValueError('mode can only be: replace(default) or continue Not "{0}"'.format(mode))
 
