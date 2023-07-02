@@ -1,5 +1,11 @@
 '''
 Random variable generator
+
+- choose(): Return a random element from a non-empty sequence
+- integer(): Return random integer in range [a, b]
+- O1(): Return x in the interval [0, 1)
+- number(): Return x in the interval [a, b]
+- shuffle(): Return shuffled version of iterable
 '''
 import random as _random
 from typing import Iterable,Any
@@ -37,9 +43,11 @@ def choose(iterable:Iterable, k:int=1, duplicate=True) -> list|Any:
 def integer(first_number:int, last_number:int) -> int:
     """
     Return random integer in range [a, b], including both end points.
+
     Args:
         first_number (int):  a
         last_number  (int):  b
+
     Return:
         int: a random number in [a, b] range
     """
@@ -82,7 +90,7 @@ def shuffle(iterable:Iterable) -> Iterable:
         Iterable[Any]: shuffled version of given iterable
     """
     real_type = type(iterable)
-    new_iterable = list(iterable)
+    new_iterable = [item for item in iterable]
     _random.shuffle(new_iterable)
     if real_type in (set,tuple):
         return real_type(new_iterable)
@@ -91,4 +99,4 @@ def shuffle(iterable:Iterable) -> Iterable:
     elif real_type == dict:
         return {item:iterable[item] for item in new_iterable}
     else:
-        return new_iterable
+        return (new_iterable)
