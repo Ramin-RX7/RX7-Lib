@@ -142,29 +142,31 @@ def getpass(prompt:str="Password: "):
     return getpass.getpass(prompt=prompt)
 
 
-def regex_input(prompt:Any, pattern:str, method="match") -> bool:
+def regex_input(prompt:Any, pattern:str, method:str="fullmatch") -> bool:
     """Checks to see if user input matches with given regex pattern or not
 
     Args:
         prompt (Any): Prompt
         pattern (str): regex pattern to check user input for validation
         method (str, optional):
-            regex function to use for validation (only `search` and `match` are supported).
-            Defaults to "match".
+            regex function to use for validation (only `match`, `search` and `fullmatch` are supported).
+            Defaults to "fullmatch".
 
     Raises:
-        ValueError: _description_
+        ValueError: when method argument is not either of 'fullmatch', 'match', 'search'
 
     Returns:
-        bool: _description_
+        bool: wether the input matched the given pattern or not
     """
     inp = input(prompt)
-    if method == "match":
-        result = _re.match(pattern,inp)
+    if method == "fullmatch":
+        result = _re.fullmatch(pattern,inp)
     elif method == "search":
         result = _re.search(pattern,inp)
+    elif method == "match":
+        result = _re.match(pattern,inp)
     else:
-        raise ValueError("method argument must be either `match` or `search`")
+        raise ValueError("method argument acceptable arguments: 'fullmatch', 'match', 'search'")
 
     if result:
         return True
