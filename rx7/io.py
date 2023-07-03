@@ -142,7 +142,7 @@ def getpass(prompt:str="Password: "):
     return getpass.getpass(prompt=prompt)
 
 
-def regex_input(prompt:Any, pattern:str, method:str="fullmatch") -> bool:
+def regex_input(prompt:Any, pattern:str, method:str="fullmatch") -> str|None:
     """Checks to see if user input matches with given regex pattern or not
 
     Args:
@@ -169,5 +169,5 @@ def regex_input(prompt:Any, pattern:str, method:str="fullmatch") -> bool:
         raise ValueError("method argument acceptable arguments: 'fullmatch', 'match', 'search'")
 
     if result:
-        return True
-    return False
+        return inp
+    return None
