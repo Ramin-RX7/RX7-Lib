@@ -116,6 +116,18 @@ def open_browser(url, new_tab=True):
         webbrowser.open(url)
 
 
+def get(url, **kwargs):
+    """Sends GET https request to given url and returns the Response object"""
+    import requests
+    return requests.get(url, **kwargs)
+
+
+def post(url, **kwargs):
+    """Sends GET https request to given url and returns the Response object"""
+    import requests
+    return requests.post(url, **kwargs)
+
+
 """
 def whois(URL):
     '''
