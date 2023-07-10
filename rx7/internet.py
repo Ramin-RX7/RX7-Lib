@@ -5,7 +5,6 @@ Useful functions when working with network/internet
 import re as _re
 import urllib.request as _urllib_request
 import socket as _socket
-import subprocess as _subprocess
 
 from . import system
 
