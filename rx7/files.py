@@ -304,31 +304,31 @@ def dirname(path:str) -> str:
 
 
 
-class MEMBERS:
+class list_path:
 
-    def all_exactdir(dir:str):
-        return _os.listdir(dir)
-
-    def all_all_sep(dir:str):
-        return [i for i in _os.walk(dir)]
-
-    def files_exactdir(dir:str, abspath:bool=True):
-        if abspath:
-            return [dir+'/'+file_ for file_ in [i for i in _os.walk(dir)][0][2]]
+    def files(dir:str, abspath_:bool=True):
+        if abspath_:
+            return [abspath(dir)+'/'+file_ for file_ in [i for i in _os.walk(dir)][0][2]]
         return [i for i in _os.walk(dir)][0][2]
 
-    def files_all(dir:str):
+    def files_recursive(dir:str):
         return [val for sublist in [[_os.path.join(i[0], j) for j in i[2]] for i in _os.walk(dir)] for val in sublist]
 
-    def files_all_sep(dir:str):
+    def files_recursive_separeted(dir:str):
         return [[_os.path.join(i[0], j) for j in i[2]] for i in _os.walk(dir)]
 
-    def dirs_exactdir(dir:str, abspath:str=True):
+    def dirs(dir:str, abspath_:str=True):
         if dir.endswith('/'): dir=dir[:-1]
         elif dir.endswith('\\'): dir=dir[:-1]
-        if abspath:
-            return [dir+'/'+folder for folder in [i for i in _os.walk(dir)][0][1]]
+        if abspath_:
+            return [abspath(dir)+'/'+folder for folder in [i for i in _os.walk(dir)][0][1]]
         return [i for i in _os.walk(dir)][0][1]
 
-    def dirs_all(dir:str):
+    def dirs_recursive(dir:str):
         return [TPL[0] for TPL in [i for i in _os.walk(dir)]]
+
+    def all(dir:str):
+        return _os.listdir(dir)
+
+    def all_recursive(dir:str):
+        return [i for i in _os.walk(dir)]
