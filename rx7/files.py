@@ -31,6 +31,9 @@ from typing import Text,Literal,Generator
 
 
 
+from pathlib import Path
+
+
 def size(path:str) -> int:
     '''return size of the file/directory in bytes.'''
     if isdir:
