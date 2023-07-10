@@ -6,6 +6,8 @@ import abc as _abc
 from typing import Callable
 
 
+
+from dataclasses import dataclass
 from contextlib import contextmanager
 
 from .internet import connection_checker as is_connected

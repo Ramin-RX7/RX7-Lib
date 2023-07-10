@@ -1,6 +1,5 @@
 [MAIN]
     ☐ Protocol (for abstract classes)
-    ☐ @high @easy Add old releases to Github releases and delete their file
     ?  Logging class
     ?  itertools & functools
     ☐ Play Sound
@@ -12,12 +11,13 @@
     ☐ mp3 tags
     ☐ win32api.LoadLibrary() - ctypes.PyDLL()
     ☐ socket.socket()
-    ☐  Random.shuffle better implementation
     ✔ type annotation for all functions and classes
     ✔ @v4 @high @norm Improve docstrings
         ?  for variables and functions?
     ✔ @v4 @norm Separate classes files
     ✔ @v4 @easy `pypackage.toml` instead of `setup.py`
+    ✘ Random.shuffle better implementation
+    ✘ @high @easy Add old releases to Github releases and delete their file
     ✘ pip install update
     ✘ Check 3rd-party modules imports
     ✘ Classes accept both normal methods and static methods
@@ -30,6 +30,10 @@
 
 [README]
     ☐ @high Date_Time Class
+
+
+[FUNCTIONS]
+    ☐ import_module accept module name as string
 
 
 [NEW MODULES]
@@ -46,7 +50,7 @@
 
 
 [TERMINAL]
-    ☐ run: replace os.system with subprocess.call
+    ? run: replace os.system with subprocess.call
         https://hackernoon.com/calling-shell-commands-from-python-ossystem-vs-subprocess-mc253z4f
     set_size: sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=32, cols=100))
     ✔ clear
@@ -54,16 +58,19 @@
 
 [DATETIME]
     ✘ calendar_month_st replace day will be all noms
-    ☐ Passed Time func
+    ☐ Passed Time function
 
 
 [Internet]
     ☐ default_timeout
+    ✔ GET and POST
 
 
 [Files]
+    ?  make "list_path" functions generator
+    ☐ Docstring typehint for "list_path"
     ✔ files.join files.dirname
-    ☐ Error in files.MEMBERS.all_all_*
+    ✔ Error in files.MEMBERS.all_all_*
 
 
 [System]
@@ -73,8 +80,9 @@
 
 
 [IO]
-    ?  regex_input methods: fullmatch,split,sub,findall
+    ?  regex_input methods: split,sub,findall
     ✘  modify_input(prompt, modifier:Callable): returns modifier(prompt)
+    ✔ regex_input should return the user input if true
     ✔ `pre_action` and `post_action`
 
 

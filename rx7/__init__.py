@@ -6,7 +6,7 @@ It's a Collection of most useful function/variables of popular python modules.
 Repository: https://github.com/Ramin-RX7/RX7-Lib
 
 Written By RX
-Last Update: 05-03-2022
+Last Update: 07-02-2023
 """
 __version__ = '3.3.0'
 

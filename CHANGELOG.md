@@ -16,10 +16,27 @@
 
   <tr>
     <td>
+      <p style="text-align: center;">4.0.0</p>
+    </td>
+    <td style="text-align: center;">13/07/2023</td>
+    <td>
+      <div>* Use `pyproject.toml` instead of `setup.py`</div>
+      <div>* Separate modules by files instead of classes</div>
+      <div>- p()</div>
+      <div>- func_info()</div>
+      <div>* renamed Progressbar() to progressbar()</div>
+      <div>+ internet.get()</div>
+      <div>+ internet.post()</div>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td>
       <p style="text-align: center;">3.3.0</p>
     </td>
     <td style="text-align: center;">29/04/2023</td>
-    <td style="width: 513px; height: 25px; text-align: center;">
+    <td>
       <div>+ Files.basename()</div>
       <div>+ Files.dirname()</div>
       <div>+ Files.join_paths()</div>
@@ -34,7 +51,7 @@
       <p style="text-align: center;">3.2.0</p>
     </td>
     <td style="text-align: center;">10/03/2023</td>
-    <td style="width: 513px; height: 25px; text-align: center;">
+    <td>
       <div>+ `environ` variable: environment variables as a dict</div>
       <div>+ `Terminal.size()`</div>
       <div>+ `exit()`: sys.exit()</div>
@@ -54,7 +71,7 @@
   <p style="text-align: center;">3.1.0</p>
   </td>
   <td style="text-align: center;">23/12/2022</td>
-  <td style="width: 513px; height: 25px; text-align: center;">
+  <td>
   <div>+ Record.timeit has default parameters now</div>
   <div>- removed progressbar()</div>
   <div>* Improved Style object creation</div>
@@ -70,7 +87,7 @@
   <p style="text-align: center;">3.0.0</p>
   </td>
   <td style="text-align: center;">01/09/2021</td>
-  <td style="width: 513px; height: 25px; text-align: center;">
+  <td>
   <div><b>+ class Internet</b></div>
   <div><b>+ class DateTime</b></div>
   <div>+ "Style.log" now has time prefix</div>
@@ -87,7 +104,7 @@
   <p style="text-align: center;">2.9.0</p>
   </td>
   <td style="text-align: center;">15/12/2020</td>
-  <td style="width: 513px; height: 25px; text-align: center;">
+  <td>
   <div>+ <b>IO Class</b>(wait_for_input() - selective_input() - yesno_input())</div>
   <div>* IMPORT SPEED IS 20x FASTER!</div>
   <div>+ argv (sys.argv)</div>
@@ -101,7 +118,7 @@
   <p style="text-align: center;">2.8.0</p>
   </td>
   <td style="text-align: center;">15/11/2020</td>
-  <td style="width: 513px; height: 25px; text-align: center;">
+  <td>
   <div>+ Decorator Class (attach_to_all --- Check_Type)</div>
   <div>+ pop()</div>
   <div>+ Tuple.pop()</div>
@@ -113,7 +130,7 @@
   <p style="text-align: center;">2.7.0</p>
   </td>
   <td style="text-align: center;">15/10/2020</td>
-  <td style="width: 513px; height: 25px; text-align: center;">
+  <td>
   <div>+ getpass()</div>
   <div>+ style.log_ Family</div>
   <div>+ style.reset() = style.switch_default()</div>
@@ -126,7 +143,7 @@
   <p style="text-align: center;">2.6.0</p>
   </td>
   <td style="text-align: center;">01/10/2020</td>
-  <td style="width: 513px; height: 25px; text-align: center;">
+  <td>
   <div>+ system.cpu_percent()</div>
   <div>+ system.pid_exists()</div>
   <div>+ Progressbar()<em> (Generator)</em></div>
@@ -138,7 +155,7 @@
   <p style="text-align: center;">2.5.0</p>
   </td>
   <td style="text-align: center;">15/09/2020</td>
-  <td style="width: 513px; height: 25px; text-align: center;">
+  <td>
   <div>+ Check_Type decorator</div>
   <div>+ system.pyshell_execute_bit()</div>
   <div>+ system.pids()</div>
@@ -150,7 +167,7 @@
   <p style="text-align: center;">2.4.0</p>
   </td>
   <td style="text-align: center;">01/09/2020</td>
-  <td style="width: 513px; height: 25px; text-align: center;">
+  <td>
   <div>* rand -&gt; random</div>
   <div>+ random.shuffle()</div>
   <div>+ repeat function supports parameters</div>
@@ -163,7 +180,7 @@
   <p style="text-align: center;">2.3.0</p>
   </td>
   <td style="text-align: center;">19/08/2020</td>
-  <td style="width: 513px; height: 25px; text-align: center;">
+  <td>
   <div>+ extract()</div>
   <div>+ screenshot()</div>
   <div>+ func_info()</div>
@@ -174,7 +191,7 @@
   <p style="text-align: center;">2.2.0</p>
   </td>
   <td style="text-align: center;">03/08/2020</td>
-  <td style="width: 513px; height: 25px; text-align: center;">
+  <td>
   <div>+ download()</div>
   <div>+ system.ip_website()</div>
   <div>+ system.win10_notification</div>
@@ -185,7 +202,7 @@
   <p style="text-align: center;">2.1.0</p>
   </td>
   <td style="text-align: center;">15/07/2020</td>
-  <td style="width: 513px; height: 25px; text-align: center;">
+  <td>
   <div>* style class better performance in linux</div>
   <div>+&nbsp;<span style="text-align: center;">MEMBERS&nbsp;group&nbsp;in&nbsp;files&nbsp;class</span></div>
   <div><span style="text-align: center;">+ File object:&nbsp; self.basename, self.ext</span></div>
@@ -198,7 +215,7 @@
   <p style="text-align: center;"><strong>2.0.0</strong></p>
   </td>
   <td style="text-align: center;"><strong>01/07/2020</strong></td>
-  <td style="width: 513px; height: 25px; text-align: center;">
+  <td>
   <div>+ <strong>Tuple object</strong></div>
   <div>rxobject</div>
   <div>+ record.reset()</div>
@@ -216,7 +233,7 @@
   <tr>
   <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.9.0</td>
   <td style="width: 153px; height: 25px;">&nbsp; 09/06/2020</td>
-  <td style="width: 513px; height: 25px; text-align: center;">
+  <td>
   <div>* re() --&gt; repeat()</div>
   <div>+ New Methods of System Class:</div>
   <div>&nbsp; &nbsp; &nbsp; &nbsp; ip_global(),&nbsp;ip_local(),</div>
@@ -229,7 +246,7 @@
   <tr>
   <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.8.0</td>
   <td style="text-align: center;">24/05/2020</td>
-  <td style="width: 513px; height: 25px; text-align: center;">
+  <td>
   <div>+ style.switch_default()</div>
   <div>
   <div>+ Now Linux&nbsp;supports&nbsp;cls()</div>
@@ -246,7 +263,7 @@
   <tr>
   <td style="width: 119px; height: 25px; text-align-last: center; text-align: center;">1.7.0</td>
   <td style="text-align: center;">&nbsp; 08/05/2020</td>
-  <td style="width: 513px; height: 25px; text-align: center;">
+  <td>
   <div>
   <div>+ call_later()&nbsp;&nbsp;-&nbsp;&nbsp;wait_for()</div>
   <div>+ terminal_size()&nbsp;&nbsp;-&nbsp;&nbsp;cwd()</div>
@@ -283,7 +300,7 @@
   <td style="width: 153px; height: 25px;">
   <p style="text-align: center;">08/04/2020</p>
   </td>
-  <td style="width: 513px; height: 25px; text-align: center;">
+  <td>
   <div>+ __init__ &amp; read &amp; write &amp; content&nbsp; func&nbsp;of&nbsp;file&nbsp;class</div>
   <div>* Prgoressbar&nbsp;default&nbsp;args</div>
   </td>
@@ -295,7 +312,7 @@
   <td style="width: 153px; height: 25px;">
   <p style="text-align: center;">18/03/2020</p>
   </td>
-  <td style="width: 513px; height: 25px; text-align: center;"><i>Initial release</i></td>
+  <td><i>Initial release</i></td>
   </tr>
   </tbody>
 </table>
