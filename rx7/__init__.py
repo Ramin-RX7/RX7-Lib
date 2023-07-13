@@ -6,17 +6,13 @@ It's a Collection of most useful function/variables of popular python modules.
 Repository: https://github.com/Ramin-RX7/RX7-Lib
 
 Written By RX
-Last Update: 07-02-2023
+Last Update: 10-07-2023
 """
-__version__ = '3.3.0'
-
+__version__ = '4.0.0'
 
 """
 < Release Changes >
 
-- p()
-- func_info()
-* Progressbar() -> progressbar()
 """
 
 
