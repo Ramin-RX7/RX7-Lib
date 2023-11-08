@@ -27,7 +27,7 @@ def wait_for_input(prompt="") -> str:
 def selective_input(prompt:Any, choices:Iterable|Callable[[str],bool], default:Any=...,
                     *,
                     ignore_case:bool=False, invalid_message:Any='Invalid input',
-                    pre_action:Callable=...,post_action:Callable=...) -> str|Any:
+                    pre_action:Callable=None,post_action:Callable=None) -> str|Any:
     """Prompts for user input and waits until a acceptable input is given
 
     Args:
@@ -50,8 +50,8 @@ def selective_input(prompt:Any, choices:Iterable|Callable[[str],bool], default:A
     Returns:
         str|Any: user input as a string unless pre_action/post_action change the string type
     """
-    assert (callable(pre_action )  or  pre_action ==...)
-    assert (callable(post_action)  or  post_action==...)
+    assert (callable(pre_action )  or  pre_action ==None)
+    assert (callable(post_action)  or  post_action==None)
     if not callable(choices):
         Choices = choices
         if type(choices) == dict:
