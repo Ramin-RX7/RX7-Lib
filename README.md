@@ -78,9 +78,10 @@ List of Functions:
 <br>
 
 
-<h2>List of Classes:</h2>
+<h2>List of Modules:</h2>
 
-<h3>&nbsp; Class Random:&nbsp; &nbsp;<em>Random Variable Generator Class.</em></h3>
+`random` module: *Random Variable Generator Class.*
+---------------------------------------------------
 
 | **Function**             | **Description**                                |
 |--------------------------|------------------------------------------------|
@@ -93,7 +94,8 @@ List of Functions:
 <br>
 
 
-<h3>&nbsp; Class System:&nbsp; &nbsp;<em>Some system actions and information.</em></h3>
+`system` module: *Some system actions and information.*
+-------------------------------------------------------
 
 | **Function**            | **Description**                                                         |
 |-------------------------|-------------------------------------------------------------------------|
@@ -126,7 +128,8 @@ List of Functions:
 <br>
 
 
-<h3>&nbsp; Class Files: (Static<strong style="font-size: 14px;">&nbsp;methods)&nbsp;</strong><em style="font-size: 14px;">Actions and information about files.</em></h3>
+`files` module: *Actions and information about files.*
+------------------------------------------------------
 
 | **Function**                                 | **Description**                                                               |
 |----------------------------------------------|-------------------------------------------------------------------------------|
@@ -168,7 +171,8 @@ List of Functions:
 <br>
 
 
-<h3>&nbsp; Class Style:&nbsp; &nbsp; <em>Changing text Color,BG &amp; Style. (Read Doc String)</em></h3>
+`style` module: *Changing text color, backgrournd and attributes Style. (Read Doc String)*
+------------------------------------------------------------------------------------------
 
 | **Function**                                  | **Description**                                             |
 |-----------------------------------------------|-------------------------------------------------------------|
@@ -182,7 +186,8 @@ List of Functions:
 <br>
 
 
-<h3>&nbsp; Class Record:&nbsp; &nbsp;<em>Record time of a certain actions. (Read Doc String)</em></h3>
+`Record` class: *Record time of a certain actions*
+--------------------------------------------------
 
 | **Function**                        | **Description**                                                            |
 |-------------------------------------|----------------------------------------------------------------------------|
@@ -199,7 +204,8 @@ List of Functions:
 <br>
 
 
-<h3>&nbsp; Class Decorator:&nbsp; &nbsp;<em>Useful decorators you might want to use</em></h3>
+`decorator` module: *Useful decorators you might want to use*
+-------------------------------------------------------------
 
 | **Function**   | **Description**                                                                                    |
 |----------------|----------------------------------------------------------------------------------------------------|
@@ -210,7 +216,8 @@ List of Functions:
 <br />
 
 
-<h3>&nbsp; Class Terminal:&nbsp; &nbsp;<em>functions related to working with terminal</em></h3>
+`terminal` module: functions related to working with terminal
+-------------------------------------------------------------
 
 | **Function**        | **Description**                                             |
 |:------------------- |:----------------------------------------------------------- |
@@ -220,7 +227,8 @@ List of Functions:
 <br>
 
 
-<h3>&nbsp; Class IO:&nbsp; &nbsp;<em>Useful methods when working with user input</em></h3>
+`io` module: *Useful methods when working with user input*
+----------------------------------------------------------
 
 | **Function**                 | **Description**                                                          |
 |------------------------------|--------------------------------------------------------------------------|
@@ -229,10 +237,12 @@ List of Functions:
 | yesno_input(prompt, default) | wait for user to enter one of (`yes`,`no`, `y`, `n`). (Case insensitive) |
 | Input(prompt, default_value) | (Windows only) Types default value before getting user's input           |
 | getpass(prompt)              | Gets users input without showing their input (`getpass.getpass()`)       |
+
 <br>
 
 
-<h3>&nbsp; Class Internet:&nbsp; &nbsp;<em>Methods for working with network and internet related stuffs</em></h3>
+`internet` module: *Methods for working with network and internet related stuffs*
+---------------------------------------------------------------------------------
 
 | **Function**          | **Description**                                                                                 |
 |-----------------------|-------------------------------------------------------------------------------------------------|
@@ -246,6 +256,7 @@ List of Functions:
 | find_urls(text)       | returns list of all urls in a string using regex                                                |
 | is_url(URL)           | checks if the string has the expression of a real url                                           |
 | open_browser(url)     | opens given url in the new tab of default browser                                               |
+
 <br>
 
 
