@@ -32,8 +32,8 @@ if args.help or (not any([args.wiki,args.colors])):
     print('  [--colors]          Open a html Page That Contains All Colors and Information About style Class')
     print('-------')
 elif args.wiki:
-    webbrowser.open_new_tab(f'./../COLORS.html')
+    webbrowser.open_new_tab('https://github.com/Ramin-RX7/RX7-Lib/blob/master/COLORS.html')
 elif args.colors:
     webbrowser.open_new_tab('https://github.com/Ramin-RX7/RX7-Lib')
 else:
-    ...#print('Wrong command. use "python -m rx7 --help"')
+    print('Wrong command. use "python -m rx7 --help"')
