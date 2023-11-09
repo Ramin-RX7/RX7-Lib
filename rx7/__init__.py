@@ -26,5 +26,4 @@ from . import terminal
 from . import decorator
 from . import io
 from . import internet
-from . import datetime
 from .record import Record
