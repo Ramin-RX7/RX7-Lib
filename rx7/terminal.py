@@ -5,13 +5,14 @@ Functions related to working with running terminal
 - getoutput():  get the result of a command from terminal
 - size():  returns size of terminal
 - clear():  clears the terminal
+- argv: list of given CLI arguments
 """
 import os as _os
 import subprocess as _subprocess
 
 
 
-from . functions import clear
+from . functions import clear,argv
 
 
 @staticmethod
