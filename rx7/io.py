@@ -171,3 +171,11 @@ def regex_input(prompt:Any, pattern:str, method:str="fullmatch") -> str|None:
     if result:
         return inp
     return None
+
+
+def router_input(prompt:Any, choices:dict[str,Callable]):
+    while True:
+        user_input = input(prompt)
+        if f:=choices.get(user_input):
+            return f()
+        style.print("Invalid input", color='red')
