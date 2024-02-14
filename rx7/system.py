@@ -56,6 +56,7 @@ def terminal_size() -> tuple:
 def cwd() -> str:
     '''Return string representing the current working directory.'''
     return _os.getcwd()
+pwd = cwd
 
 
 def ip_global() -> str:
